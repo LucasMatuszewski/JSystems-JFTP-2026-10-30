@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-29
 
-**Status:** Build tooling accepted and CLI-verified; launcher fixes and native distribution verification remain a separate pending step.
+**Status:** Build tooling accepted and CLI-verified; the separate launcher fix passed archive checks and Windows native startup/session QA. See [packaged launcher evidence](../testing/packaged-launcher.md).
 
 **Relates to:** [Baseline architecture](000-main-architecture.md), [test gate](001-baseline-verification.md), [executed baseline](../testing/README.md).
 
@@ -62,7 +62,7 @@ flowchart LR
     Wrapper[Pinned Maven wrapper] --> Maven[Maven 3.10.0 on JDK 25]
     Sources[Unchanged production sources and resources] --> Compile[Release 8 compile]
     Maven --> Compile
-    Compile --> Tests[35 characterization tests in isolated profile]
+    Compile --> Tests[48 characterization tests in isolated profile]
     Tests --> Package[JAR and archive assembly]
     Package --> Native[Native startup from actual distribution]
     Native --> Evidence[Logs, discovery counts and screenshots]
@@ -97,8 +97,8 @@ sequenceDiagram
 Build-tool verification uses real CLI compilation/tests/assembly checks. Production
 Java, resource bytes and runtime dependency versions are unchanged from the native
 baseline; the compiler uses the same release 8 compatibility setting used there.
-This build-only record does not claim that changed launcher scripts passed native
-manual QA. Their fix remains separate until that check is possible.
+The build recovery and launcher fix remain separate commits. Launcher verification
+is recorded in its linked report rather than inferred from the build result.
 
 ## Official technology references
 

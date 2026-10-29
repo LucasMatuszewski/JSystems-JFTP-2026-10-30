@@ -17,3 +17,7 @@
 /docs/uml/rendered/*.svg -text
 /docs/uml/validation.json -text
 /docs/testing/evidence/** -text -whitespace
+/mvnw text eol=lf
+/mvnw.cmd text eol=crlf
+/src/main/scripts/jftp.sh text eol=lf
+/src/main/scripts/jftp.bat text eol=crlf

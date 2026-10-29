@@ -1,1 +1,2 @@
-java -jar lib\${project.artifactId}-${project.version}.jar
+@echo off
+java -jar "%~dp0${project.artifactId}-${project.version}.jar" %*

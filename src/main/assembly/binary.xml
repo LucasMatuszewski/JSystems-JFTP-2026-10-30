@@ -31,8 +31,9 @@
 		<fileSet>
 			<outputDirectory>/</outputDirectory>
 			<includes>
-				<include>*.txt</include>
-				<include>*.md</include>
+				<include>LICENSE.txt</include>
+				<include>NOTICE.txt</include>
+				<include>README.md</include>
 			</includes>
 		</fileSet>
 		<fileSet>

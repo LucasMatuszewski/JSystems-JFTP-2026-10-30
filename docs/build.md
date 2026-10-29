@@ -27,10 +27,12 @@ assemblies under `target`. The application JAR belongs at the distribution root,
 with runtime dependencies under `lib`. The [packaging checks](../tests/test_distribution.py)
 inspect the actual archive rather than infer success from compilation.
 
-The historical launchers refer to the wrong JAR path; a separate working-tree fix
-has passed archive checks and awaits native startup inspection after Computer Use
-resumes. Do not treat the launcher fix as a verified release yet. Native baseline
-startup is recorded separately in [the baseline report](testing/README.md).
+Extract the distribution and run `jftp.bat` on Windows or `jftp.sh` on Unix-like
+systems. The launchers locate the application JAR beside themselves and forward
+arguments. Windows startup from a directory containing spaces, with a different
+working directory, passed [packaged desktop QA](testing/packaged-launcher.md).
+Unix launcher execution remains untested. Original native baseline startup is
+recorded separately in [the baseline report](testing/README.md).
 
 Known legacy build diagnostics include Java 8 compatibility/deprecation warnings
 on JDK 25 and an assembly warning that a directory-format output cannot be attached
