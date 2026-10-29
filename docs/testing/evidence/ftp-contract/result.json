@@ -1,0 +1,39 @@
+{
+  "fixture": {
+    "pid": 7596,
+    "parent_pid": 7908,
+    "host": "127.0.0.1",
+    "port": 52642,
+    "pyftpdlib": "2.2.0",
+    "root": "<repo>\\.local\\ftp-integration\\8ed7b66f9e1645ff914b865b40adc4d3\\server"
+  },
+  "counts": {
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "elapsed_seconds": 42.617,
+  "application_ui_tested": false,
+  "transport": "FTPAPI 3.0.0",
+  "tls_tested": false,
+  "runner": "maven",
+  "fixture_supervisor_exit_code": 0,
+  "fixture_stopped": true,
+  "legacy_runner_also_passed": true,
+  "published_log_normalization": "Repository path prefix only; actual protocol/test output retained.",
+  "artifacts": [
+    {
+      "path": "maven.log",
+      "sha256": "618035743a800b1391666d6a361a86037d67d0d953e0abedc08f3f519a2ae9fd"
+    },
+    {
+      "path": "probe.log",
+      "sha256": "3c9212e2dcf661f27390b538277ea57c07aa16c34dc5e590c877ef5d77a001eb"
+    },
+    {
+      "path": "server.log",
+      "sha256": "c5149f7a53a5bc94b75c385350684f476819e3a32ba2e77268b7d605a58b76e5"
+    }
+  ]
+}
