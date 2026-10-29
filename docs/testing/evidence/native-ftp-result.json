@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-29",
+  "code_revision": "5b9ec41",
+  "production_java_revision": "14e62ceba4e371c2a0b955604b10f065f46f4f7d",
+  "transport": "plain FTP over loopback",
+  "fixture": {
+    "run": "C:\\Users\\labuser\\Dev\\jftp\\.local\\ftp-integration\\native-1be0164b4a1b433fbc183358580f5c7f",
+    "supervisor_pid": 15556,
+    "pid": 14632,
+    "parent_pid": 15556,
+    "host": "127.0.0.1",
+    "port": 58570,
+    "pyftpdlib": "2.2.0",
+    "root": "C:\\Users\\labuser\\Dev\\jftp\\.local\\ftp-integration\\native-1be0164b4a1b433fbc183358580f5c7f\\server",
+    "tls": false
+  },
+  "native_ui_tested": true,
+  "tls_tested_in_native_ui": false,
+  "abort_tested": false,
+  "fixture_stopped": true,
+  "file_integrity": [
+    {
+      "flow": "binary download",
+      "file": "server-download.txt",
+      "bytes": 35,
+      "source_sha256": "114b17e8602dae5700d5e290e607729a9c8953554ac7f6090b80b8460248f970",
+      "destination_sha256": "114b17e8602dae5700d5e290e607729a9c8953554ac7f6090b80b8460248f970",
+      "identical": true
+    },
+    {
+      "flow": "upload",
+      "file": "welcome.txt",
+      "bytes": 31,
+      "source_sha256": "93f959e49ba3d282ef3d571a22748cec53808536a9de320f6c7755cdd5904cba",
+      "destination_sha256": "93f959e49ba3d282ef3d571a22748cec53808536a9de320f6c7755cdd5904cba",
+      "identical": true
+    },
+    {
+      "flow": "recursive download",
+      "file": "inside.txt",
+      "bytes": 26,
+      "source_sha256": "25646486e8c7eb367d7a830f49b7fac38289e7f2d94011b6b1fa5f937562999d",
+      "destination_sha256": "25646486e8c7eb367d7a830f49b7fac38289e7f2d94011b6b1fa5f937562999d",
+      "identical": true
+    }
+  ],
+  "screenshots": {
+    "docs/testing/screenshots/2026-10-29-native-ftp-actions.jpg": "a2440e7a0f3ba9e5a9ed2c5250499755431c31b69514a2d94f8659f99c53e25d",
+    "docs/testing/screenshots/2026-10-29-native-ftp-connected.jpg": "c5bed43255aa503b6852f57148856f1956b96824738b88332a61412ebd5f2344",
+    "docs/testing/screenshots/2026-10-29-native-ftp-disconnected.jpg": "7db6d908aef25257f4dda507eafd1f8ba75fd6ef46bd7b297e69f4ee2cd0fc8e",
+    "docs/testing/screenshots/2026-10-29-native-ftp-downloaded.jpg": "92437cefce46eb4b7a21947f3b4b03b87937304282142ca691d8d7b520e22ba7",
+    "docs/testing/screenshots/2026-10-29-native-ftp-favorites.jpg": "12c39e332a4eeb47597fd2695d46e8c707b38b39e8bdf814011778c5b1fc6953",
+    "docs/testing/screenshots/2026-10-29-native-ftp-final.jpg": "bd837389830baac4ee01f277162891e1297c5a3b494184b6210b1d1ccf57ced9",
+    "docs/testing/screenshots/2026-10-29-native-ftp-nested.jpg": "50e9f7cc15018d25215938f8a8399bc81f59a3f36bc4aa95872545dd2ac1b740",
+    "docs/testing/screenshots/2026-10-29-native-ftp-reconnected.jpg": "61324aec2fac860551d002ab05e550af63add11b729a67de407fded48a3409f3",
+    "docs/testing/screenshots/2026-10-29-native-ftp-recursive-download.jpg": "5dceeb8535ce4d4867181c875ab2a85f56d58ea974c5f1edf00c9310f6993156",
+    "docs/testing/screenshots/2026-10-29-native-ftp-transfer-mode.jpg": "6f85b7cde01d9ae05c2d60f73aa53bef580cbb580cbe02971d0636f9072e7473",
+    "docs/testing/screenshots/2026-10-29-native-ftp-uploaded.jpg": "7cf8209d4b5a06022d6260a7053f5df20e78d7a19ec0d4ada0fe2b54a8196a87"
+  },
+  "server_log_sha256": "6ce605efa70e176adc994bc7fc6eb200906ad11807c1b14ed23e82439a7dcd4b"
+}

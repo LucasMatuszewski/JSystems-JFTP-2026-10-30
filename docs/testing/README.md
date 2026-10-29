@@ -11,6 +11,8 @@ Later milestones expanded the local suite to [48 cases](persistence.md), added
 recovered the [Maven build](../build.md), and verified the
 [packaged Windows launcher](packaged-launcher.md). The historical results below
 remain the original baseline, rather than the current total.
+The later [native FTP workflow](native-ftp.md) also passed real desktop upload,
+download, recursive download, browsing, disconnect and reconnect checks.
 
 ## Reproduce the characterization run
 

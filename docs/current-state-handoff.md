@@ -34,7 +34,12 @@ Screenshots are [workspace](testing/screenshots/2026-10-29-packaged-workspace.jp
 [two sessions](testing/screenshots/2026-10-29-packaged-two-sessions.jpg), and
 [after close](testing/screenshots/2026-10-29-packaged-after-close.jpg). The run is
 documented in [packaged launcher verification](testing/packaged-launcher.md).
-This does not verify FTP/FTPS transfers through the native UI.
+The subsequent [native FTP run](testing/native-ftp.md) verified connection,
+binary download, upload, directory browsing, recursive download, disconnect and
+reconnect through the actual desktop. Three transferred files were byte-identical
+to their originals; eleven screenshots and a complete real-server log are saved.
+The fixture stopped and the application remains open/disconnected. Native FTPS
+and abort/interrupted-transfer behavior remain unverified.
 
 The fresh wrapper `package` command passed with 48 tests and zero failures,
 errors or skips. The separate packaging fix is committed as `2973a21`.
@@ -66,8 +71,8 @@ was armed. Original local attempt markers and logs remain under ignored
 1. Decide the supported current Java runtime target and address transport trust,
    archive containment, and credential-storage defects as separately specified
    changes.
-2. Exercise native transfers against an authorized real FTP/FTPS server, including
-   byte integrity, error and abort/reconnect outcomes.
+2. Extend native verification to FTPS, error and abort/interrupted-transfer
+   outcomes; retain the successful plain-FTP workflow as regression evidence.
 3. Apply the approved English UI and JSystems right-side logo work, with native
    screenshots compared against the supplied design reference.
 
