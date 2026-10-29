@@ -1,15 +1,15 @@
 # RepoMap course example
 
-Start with [the source map](jftp-overview.rust.md), then read the [investigation and modernization plan](jftp-modernization-plan.md). The snapshot examines `src` at revision `14e62ceba4e371c2a0b955604b10f065f46f4f7d`; it is not a live index.
+Start with [the source map](jftp-overview.rust.md), then read the [investigation and modernization plan](jftp-modernization-plan.md). The snapshot examines the refreshed `src` working tree described below; it is not a live index. The investigation and its citation cards remain a historical record of application revision `14e62ceba4e371c2a0b955604b10f065f46f4f7d`.
 
 ## What is committed
 
-- `jftp-overview.rust.md`: the original generated overview, with selected declarations and source line numbers.
+- `jftp-overview.rust.md`: the refreshed generated overview, with selected declarations and source line numbers.
 - `jftp-overview.rust.provenance.json`: scope, captured-definition coverage, limits, omitted/skipped entries, raw-map hash, and measured generation time.
 - `source-evidence.json`: 26 original-source citation cards used by the modernization investigation.
 - `jftp-modernization-plan.md`: findings, tool tradeoffs, unresolved questions, and proposed implementation gates. It records the environment of the investigation, not participant setup requirements.
 
-The map parsed all 182 Java files and selected 1,044 of 1,586 captured definitions within a 16,384 estimated-token budget. Its 542 omitted declarations are a size limit, not missing application code. The 41 non-UTF-8 German property files and 98 binary files were not parsed as text. A declaration map cannot prove behavior, runtime wiring, or call-graph accuracy.
+The refreshed map parsed 191 Java files and selected 1,033 of 1,688 captured definitions within a 16,384 estimated-token budget. Its 655 omitted declarations are a size limit, not missing application code. The 41 non-UTF-8 German property files and 98 binary files were not parsed as text. The refresh includes working-tree tests and launcher changes at base HEAD `e6b427273e5037136a780ff516a27d3fb68fbf04`; the provenance's working-copy fingerprint identifies that input beyond the base commit. Generation took about 5.71 seconds on the author's Windows machine. A declaration map cannot prove behavior, runtime wiring, or call-graph accuracy.
 
 Citation cards retain their original byte hashes and an LF-normalized hash. The course checker accepts only CRLF/LF conversion in otherwise identical source and still checks exact quotations and line ranges. The bundled skill checker remains available for strict byte-identical checkouts.
 
@@ -27,7 +27,7 @@ python tools/repo_map.py --setup --replace
 python tools/repo_map.py --replace
 
 # Check the saved original-source evidence.
-python tools/check_source_evidence.py docs/repo-maps/source-evidence.json
+python tools/check_source_evidence.py docs/repo-maps/source-evidence.json --revision 14e62ce
 ```
 
 Setup needs network access to the skill's pinned release. Mapping is local, uses temporary staging outside the checkout, and exports its outputs into this directory. No Rust compiler or Python parser packages are required. A native setup failure is reported directly; the helper does not silently switch implementations. An invalid existing native cache requires inspection and the skill's explicit replacement workflow.

@@ -2,26 +2,26 @@
 
 - Implementation: rust
 - Examined source: "C:\\Users\\labuser\\Dev\\jftp"
-- Examined revision: "14e62ceba4e371c2a0b955604b10f065f46f4f7d"; dirty working copy: True
-- Candidates seen: 564
-- Files selected / parsed: 425 / 182
-- Definitions found / selected: 1586 / 1044
-- Captured definitions omitted: 542
+- Examined revision: "e6b427273e5037136a780ff516a27d3fb68fbf04"; dirty working copy: True
+- Candidates seen: 573
+- Files selected / parsed: 434 / 191
+- Definitions found / selected: 1688 / 1033
+- Captured definitions omitted: 655
 - Selection mode / rendering: ranked / compact
 - Requested coverage: none
 - Requested maximum definitions: none
-- Effective maximum definitions: 1586
-- Actual captured-definition coverage: 65.826%
+- Effective maximum definitions: 1688
+- Actual captured-definition coverage: 61.1967%
 - Selection limit reached: no
 - Declaration snippets clipped: 0
 - Map budget: 16384 estimated tokens
 - Truncated: yes; scan or map is truncated; coverage is not complete
 - Skipped entries / parse failures: 139 / 0
-- Original generation wall time: 13.7524 seconds (measured subprocess wall time)
+- Original generation wall time: 5.70748 seconds (measured subprocess wall time)
 - Raw content: 65515 Unicode characters, 65515 UTF-8 bytes, approximately 16379 tokens
 - Whole annotated report: approximately 16771 tokens
 - Token estimator: ceil(Unicode characters / 4); a size estimate, not a model tokenizer
-- Raw map SHA-256: 6284550cf16cf03c7d62424abd0d87b6970f7545a2d51b6d1a4c99e909f42c4b
+- Raw map SHA-256: 1eb8516ee9261a830e49c04c42af585dffd3f28c210aa9789ada6efc21c9867e
 - Evidence sidecars: "artifacts/jftp-overview.rust/jftp-overview.rust.raw.md", "artifacts/jftp-overview.rust/jftp-overview.rust.meta.json", "artifacts/jftp-overview.rust/jftp-overview.rust.inventory.json"
 
 Generation status complete means the selected map was published, not that every repository file or relationship was analyzed. Read the sidecars for scope, skips, parser failures and the original working-copy fingerprint.
@@ -228,13 +228,9 @@ L93: public void setCharacterCase(int characterCase) {
 L98: public int getCharacterCase() {
 L103: public void setUndoLimit(int undoLimit) {
 L111: public void delete() {
-L125: public void undo() throws CannotUndoException {
-L129: public void redo() throws CannotRedoException {
 L144: public boolean canPaste() {
 L153: public boolean canDelete() {
 L160: public boolean canSelectAll() {
-L164: public boolean canUndo() {
-L171: public boolean canRedo() {
 L209: private void setup() {
 L216: private void setAppearance() {
 
@@ -268,13 +264,9 @@ L74: public void setCharacterCase(int characterCase) {
 L79: public int getCharacterCase() {
 L84: public void setUndoLimit(int undoLimit) {
 L93: public void delete() {
-L107: public void undo() throws CannotUndoException {
-L111: public void redo() throws CannotRedoException {
 L123: public boolean canPaste() {
 L132: public boolean canDelete() {
 L139: public boolean canSelectAll() {
-L143: public boolean canUndo() {
-L148: public boolean canRedo() {
 L192: @Override
 L193: protected void processFocusEvent(FocusEvent evt) {
 L202: private void setup() {
@@ -342,21 +334,15 @@ L77: public void setCharacterCase(int characterCase) {
 L82: public int getCharacterCase() {
 L87: public void setUndoLimit(int undoLimit) {
 L95: public void delete() {
-L109: public void undo() throws CannotUndoException {
-L113: public void redo() throws CannotRedoException {
 L128: public boolean canPaste() {
 L137: public boolean canDelete() {
 L144: public boolean canSelectAll() {
-L148: public boolean canUndo() {
-L152: public boolean canRedo() {
 L187: private void setup() {
 
 ## src/main/java/com/myjavaworld/gui/MTextComponent.java
 
 L26: public interface MTextComponent {
-L48: public void setCharacterCase(int characterCase);
 L56: public int getCharacterCase();
-L66: public void setMaximumLength(int maximumLength);
 L74: public int getMaximumLength();
 L83: public void setUndoLimit(int limit);
 L91: public int getUndoLimit();
@@ -365,7 +351,6 @@ L123: public void selectAll();
 L162: public boolean canPaste();
 L171: public boolean canDelete();
 L180: public boolean canSelectAll();
-L198: public boolean canRedo();
 
 ## src/main/java/com/myjavaworld/gui/MTextField.java
 
@@ -375,10 +360,6 @@ L67: @Override
 L68: public void setText(String text) {
 L77: @Override
 L78: public void setDocument(Document model) {
-L83: public void setMaximumLength(int maxLength) {
-L88: public int getMaximumLength() {
-L93: public void setCharacterCase(int characterCase) {
-L98: public int getCharacterCase() {
 L103: public void setUndoLimit(int undoLimit) {
 L111: public void delete() {
 L144: public boolean canPaste() {
@@ -1309,7 +1290,6 @@ L242: private static class TransferTypeCellRenderer extends MTableCellRenderer {
 ## src/main/java/com/myjavaworld/jftp/TransferObject.java
 
 L23: public class TransferObject {
-L38: public int getDirection() {
 L42: public LocalFile getLocalFile() {
 L46: public RemoteFile getRemoteFile() {
 L50: @Override
@@ -1680,4 +1660,25 @@ L40: public String getFile() {
 
 L23: public interface ZipListener extends EventListener {
 L25: public void beginFile(ZipEvent evt);
+
+## src/test/java/com/myjavaworld/jftp/FtpTransportContractIT.java
+
+L20: public class FtpTransportContractIT extends TestCase {
+L57: private void connect() throws Exception {
+
+## src/test/java/com/myjavaworld/jftp/FtpsTransportContractIT.java
+
+L23: public class FtpsTransportContractIT extends TestCase {
+L172: private static void remove(Path root) throws Exception {
+
+## src/test/java/com/myjavaworld/jftp/LocalFileCharacterizationTest.java
+
+L13: public class LocalFileCharacterizationTest extends TestCase {
+L101: private Path createFile(String name, String contents) throws IOException {
+
+## src/test/java/com/myjavaworld/jftp/LocalFileFilterCharacterizationTest.java
+
+L16: public class LocalFileFilterCharacterizationTest extends TestCase {
+L101: private Path createFile(String name, String contents) throws IOException {
+L115: private Set<String> set(String... names) {
 

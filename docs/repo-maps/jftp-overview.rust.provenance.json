@@ -1,15 +1,15 @@
 {
-  "revision": "14e62ceba4e371c2a0b955604b10f065f46f4f7d",
+  "revision": "e6b427273e5037136a780ff516a27d3fb68fbf04",
   "version": "0.3.1",
   "tool": "legacy-codebase-workflows legacy-repo-map",
   "coverage": {
-    "candidates_seen": 564,
-    "definitions_found": 1586,
-    "definitions_in_map": 1044,
-    "definitions_omitted": 542,
-    "files_with_definitions": 179,
-    "parsed_files": 182,
-    "selected_files": 425
+    "candidates_seen": 573,
+    "definitions_found": 1688,
+    "definitions_in_map": 1033,
+    "definitions_omitted": 655,
+    "files_with_definitions": 188,
+    "parsed_files": 191,
+    "selected_files": 434
   },
   "limits": {
     "budget": 16384,
@@ -20,8 +20,8 @@
     "max_total_tags": 200000
   },
   "selection": {
-    "coverage_percent": 65.82597730138714,
-    "effective_max_definitions": 1586,
+    "coverage_percent": 61.19668246445497,
+    "effective_max_definitions": 1688,
     "excludes": [
       "docs/repo-maps/**"
     ],
@@ -46,7 +46,7 @@
     "format": "compact",
     "whitespace": "leading whitespace removed, including multiline literal lines; declaration sketch, not verbatim source"
   },
-  "map_sha256": "6284550cf16cf03c7d62424abd0d87b6970f7545a2d51b6d1a4c99e909f42c4b",
+  "map_sha256": "1eb8516ee9261a830e49c04c42af585dffd3f28c210aa9789ada6efc21c9867e",
   "parse_failures": [],
   "skipped": [
     {
@@ -613,7 +613,7 @@
     "FTPSession",
     "FavoritesManager"
   ],
-  "generation_elapsed_seconds": 13.7523702,
-  "working_copy_fingerprint": "7da47bdcbfe7655e83e1797873984162403f7ec452d608100ed1c923e25e5097",
-  "report_note": "Original snapshot. Full inventory and exporter sidecars regenerate into ignored artifacts/."
+  "generation_elapsed_seconds": 5.70748370000365,
+  "working_copy_fingerprint": "4cc0216ef30f7457d4cb31c629bf6f8237950dd64024f3b6cbb1cbc46bd07a20",
+  "report_note": "Raw inventory and full metadata are regenerated into ignored artifacts/."
 }
