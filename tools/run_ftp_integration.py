@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import subprocess
 import re
+import ssl
 import time
 import uuid
 import xml.etree.ElementTree as ET
@@ -20,6 +21,7 @@ def main():
                         ("Scripts/python.exe" if os.name == "nt" else "bin/python"))
     parser.add_argument("--runner", choices=("maven", "legacy"), default="maven",
                         help="Use the normal wrapper, or reproduce the source-only pre-build-recovery baseline")
+    parser.add_argument("--tls", action="store_true", help="Run the explicit FTPS contract with a fresh test CA")
     args = parser.parse_args()
     if not args.python.is_file():
         parser.error("Create .local/ftp-test-server venv and install tools/ftp-fixture-requirements.txt")
@@ -31,7 +33,7 @@ def main():
     settings.write_text('<settings xmlns="http://maven.apache.org/SETTINGS/1.2.0"/>\n', encoding="utf-8")
     with (run / "server.log").open("w", encoding="utf-8") as log:
         server = subprocess.Popen([str(args.python), str(ROOT / "tools/ftp_test_server.py"),
-                                   "--root", str(server_root)], stdout=log, stderr=log,
+                                   "--root", str(server_root), *(["--tls"] if args.tls else [])], stdout=log, stderr=log,
                                   cwd=ROOT, env={**os.environ, "PYTHONUNBUFFERED": "1"})
         try:
             deadline = time.monotonic() + 20
@@ -49,22 +51,28 @@ def main():
                 raise RuntimeError("Unexpected fixture identity")
             with (run / "probe.log").open("w", encoding="utf-8") as probe:
                 with contextlib.redirect_stdout(probe):
-                    client = ftplib.FTP()
+                    client = (ftplib.FTP_TLS(context=ssl.create_default_context(cafile=str(run / "ca.pem")))
+                              if args.tls else ftplib.FTP())
                     client.set_debuglevel(2)
                     client.connect(ready["host"], ready["port"], timeout=10)
                     client.login("fixture-user", "fixture-password")
+                    if args.tls:
+                        client.prot_p()
+                        print("Probe negotiated:", client.sock.version())
                     client.pwd()
                     client.quit()
+            test_class = "FtpsTransportContractIT" if args.tls else "FtpTransportContractIT"
+            expected_tests = 5 if args.tls else 7
             command = [str(ROOT / ("mvnw.cmd" if os.name == "nt" else "mvnw")), "-B", "-ntp",
                        "-s", str(settings), "-Dmaven.repo.local=" + str(ROOT / ".local/m2"),
-                       "-Dtest=FtpTransportContractIT", "-Djftp.fixture.root=" + str(server_root),
+                       "-Dtest=" + test_class, "-Djftp.fixture.root=" + str(server_root),
                        "-Djftp.fixture.port=" + str(ready["port"]), "test"]
             if args.runner == "maven":
                 with (run / "maven.log").open("w", encoding="utf-8") as output:
                     result = subprocess.run(command, cwd=ROOT, stdout=output, stderr=subprocess.STDOUT)
                 if result.returncode:
                     raise RuntimeError(f"Integration failed; inspect {run / 'maven.log'}")
-                report = ROOT / "target/surefire-reports/TEST-com.myjavaworld.jftp.FtpTransportContractIT.xml"
+                report = ROOT / ("target/surefire-reports/TEST-com.myjavaworld.jftp." + test_class + ".xml")
                 if not report.exists() or report.stat().st_mtime < started:
                     raise RuntimeError("Missing fresh Surefire integration report")
                 suite = ET.parse(report).getroot()
@@ -86,23 +94,23 @@ def main():
                     cache / "junit-3.8.1.jar"))
                 with (run / "legacy-transport.log").open("w", encoding="utf-8") as output:
                     compiled = subprocess.run(["javac", "--release", "8", "-encoding", "UTF-8", "-cp", classpath,
-                        "-d", str(classes), str(ROOT / "src/test/java/com/myjavaworld/jftp/FtpTransportContractIT.java")],
+                        "-d", str(classes), str(ROOT / ("src/test/java/com/myjavaworld/jftp/" + test_class + ".java"))],
                         cwd=ROOT, stdout=output, stderr=subprocess.STDOUT)
                     if compiled.returncode:
                         raise RuntimeError("Legacy integration compilation failed")
                     result = subprocess.run(["java", "-Djava.awt.headless=true", "-Duser.language=en",
                         "-Djava.io.tmpdir=" + str(run), "-Duser.home=" + str(run / "profile"),
                         "-Djftp.fixture.root=" + str(server_root), "-Djftp.fixture.port=" + str(ready["port"]),
-                        "-cp", classpath, "junit.textui.TestRunner", "com.myjavaworld.jftp.FtpTransportContractIT"],
+                        "-cp", classpath, "junit.textui.TestRunner", "com.myjavaworld.jftp." + test_class],
                         cwd=ROOT, stdout=output, stderr=subprocess.STDOUT)
                 text = (run / "legacy-transport.log").read_text(encoding="utf-8")
-                if result.returncode or not re.search(r"OK \(7 tests\)", text):
+                if result.returncode or not re.search(r"OK \(" + str(expected_tests) + r" tests\)", text):
                     raise RuntimeError(f"Legacy integration failed; inspect {run / 'legacy-transport.log'}")
-                counts = {"tests": 7, "failures": 0, "errors": 0, "skipped": 0}
-            if counts != {"tests": 7, "failures": 0, "errors": 0, "skipped": 0}:
+                counts = {"tests": expected_tests, "failures": 0, "errors": 0, "skipped": 0}
+            if counts != {"tests": expected_tests, "failures": 0, "errors": 0, "skipped": 0}:
                 raise RuntimeError(f"Unexpected integration discovery/results: {counts}")
             receipt = {"fixture": ready, "counts": counts, "elapsed_seconds": round(time.time() - started, 3),
-                       "application_ui_tested": False, "transport": "FTPAPI 3.0.0", "tls_tested": False,
+                       "application_ui_tested": False, "transport": "FTPAPI 3.0.0", "tls_tested": args.tls,
                        "runner": args.runner}
         finally:
             if server.poll() is None:

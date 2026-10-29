@@ -12,6 +12,8 @@ JFTP is an existing desktop FTP/FTPS client for people who browse local and remo
 
 Evidence references **CS-xx** resolve in the [current-state evidence register](current-state-evidence.md). All acceptance criteria below are source-derived baseline expectations, awaiting runtime confirmation. Personas describe plausible users of the implemented features, not findings from user research.
 
+Later executed evidence supplements this initial source description: [native startup/session controls](testing/README.md), [persistence](testing/persistence.md), [real FTP](testing/ftp-contract.md) and [explicit FTPS](testing/ftps-contract.md). Only the specific recorded scenarios are confirmed; these reports do not imply that every acceptance criterion or native flow has passed.
+
 ## 2. Problem statement
 
 People working with an FTP server need to find files on both machines, select the correct transfer direction, and see connection and transfer failures. Repeated connections also require the same host settings and credentials. The existing application combines these activities in a desktop workspace; its historical documentation alone does not establish which features remain usable today.

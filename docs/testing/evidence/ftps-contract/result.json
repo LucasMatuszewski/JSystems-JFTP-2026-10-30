@@ -1,0 +1,74 @@
+{
+  "application_revision": "14e62ceba4e371c2a0b955604b10f065f46f4f7d",
+  "unchanged_production_java": true,
+  "scope": "Explicit FTPS backend/component contract; no native UI or custom warning-path acceptance",
+  "runs": [
+    {
+      "runner": "maven",
+      "counts": {
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "fixture_stopped": true,
+      "control_protocols": [
+        "TLSv1.3"
+      ]
+    },
+    {
+      "runner": "legacy",
+      "counts": {
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "fixture_stopped": true,
+      "control_protocols": [
+        "TLSv1.3"
+      ]
+    }
+  ],
+  "private_keys_published": false,
+  "pyOpenSSL": "26.4.0",
+  "cryptography": "50.0.2",
+  "artifacts": [
+    {
+      "path": "ca.pem",
+      "sha256": "3eeba8d26a940a6049736e8955c71ec8e34f8af42b4ad35bca82f2d7c3b76075"
+    },
+    {
+      "path": "legacy-legacy-transport.log",
+      "sha256": "0021b33d2eed32b1979e5cdacdb4028ba34b00acebcc2ff1b4561596d99c0051"
+    },
+    {
+      "path": "legacy-probe.log",
+      "sha256": "e27e1cba08a79276a95055526fc01bf06fb1f207c8cb1df0703bb57ab7a92ebc"
+    },
+    {
+      "path": "legacy-server.log",
+      "sha256": "f950ff2293006724ea767e43532c4049b093043a011ca8fb46bbf65a895ecc4a"
+    },
+    {
+      "path": "maven-maven.log",
+      "sha256": "803972387c9515d8eb56155e7f3c1a930879d37f78caf8707a233d6f358aaf01"
+    },
+    {
+      "path": "maven-probe.log",
+      "sha256": "e27e1cba08a79276a95055526fc01bf06fb1f207c8cb1df0703bb57ab7a92ebc"
+    },
+    {
+      "path": "maven-server.log",
+      "sha256": "9c063cce950941bb9377cd6d67264baa4a98cf800b811037b03a24e85c5431f6"
+    },
+    {
+      "path": "server.pem",
+      "sha256": "3a4ad8d19c9e0746612667232da8866b6ab44236faa0917625b2575cd22f859b"
+    },
+    {
+      "path": "unrelated-ca.pem",
+      "sha256": "5b5a36fe934b2215b5ed3ffd456a792f3f205ef8f4cc3b6f8c5a7bf975716f96"
+    }
+  ]
+}

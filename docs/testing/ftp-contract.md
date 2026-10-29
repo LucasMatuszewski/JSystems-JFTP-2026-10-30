@@ -57,9 +57,10 @@ hashes and scope. Server/probe logs contain real protocol exchanges; synthetic
 passwords are masked by the libraries. Published logs normalize only the repository
 path prefix. Original per-run logs remain local.
 
-Not covered yet: FTPS, custom application certificate decisions, recursive batch
+Not covered by the plain FTP suite: FTPS, custom application certificate decisions, recursive batch
 transfers, abort/reconnect races, remote editing, or native controls. Passing this
-suite must not be presented as full end-to-end application acceptance.
+suite must not be presented as full end-to-end application acceptance. A separate
+[explicit FTPS suite](ftps-contract.md) now covers five encrypted-transport cases.
 
 ## References
 
