@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "skills": {
+    "agent-usage-analytics": {
+      "source": "EdukeyTeam/agent-toolbox",
+      "sourceType": "github",
+      "skillPath": "skills/agent-usage-analytics/SKILL.md",
+      "computedHash": "683162cdf18b43882fd54a9eceb42025ce76f063c2f16fb9d5d1db99b71d31ce"
+    },
+    "cloudflare-safe": {
+      "source": "EdukeyTeam/agent-toolbox",
+      "sourceType": "github",
+      "skillPath": "skills/cloudflare-safe/SKILL.md",
+      "computedHash": "4dae05b92c6b0e57ac61ea3a0c401b005a5651093f4326b4904773c92505c7d5"
+    },
+    "create-design-system": {
+      "source": "EdukeyTeam/agent-toolbox",
+      "sourceType": "github",
+      "skillPath": "skills/create-design-system/SKILL.md",
+      "computedHash": "742335d110950d579c3b2a0bb253c03029e38a033376e96a745e50b7e235fd00"
+    },
+    "legacy-codebase-workflows": {
+      "source": "EdukeyTeam/agent-toolbox",
+      "sourceType": "github",
+      "skillPath": "skills/legacy-codebase-workflows/SKILL.md",
+      "computedHash": "6acb4ea335289523de46a22dee300ca8911f35ee596ab21c2fa4e262b2105cba"
+    },
+    "respond-to-code-review": {
+      "source": "EdukeyTeam/agent-toolbox",
+      "sourceType": "github",
+      "skillPath": "skills/respond-to-code-review/SKILL.md",
+      "computedHash": "47f060a2815313f2d7d3fa61857bb90e45d226576674731d5048a6fdccde50f0"
+    },
+    "web-performance-audit": {
+      "source": "EdukeyTeam/agent-toolbox",
+      "sourceType": "github",
+      "skillPath": "skills/web-performance-audit/SKILL.md",
+      "computedHash": "adc6dd7634af9d9e32c71014ac0d507327304418363ea1febee4a86df81ffea6"
+    },
+    "write-adr": {
+      "source": "EdukeyTeam/agent-toolbox",
+      "sourceType": "github",
+      "skillPath": "skills/write-adr/SKILL.md",
+      "computedHash": "5ee5eb619ab09e1c6f3a79e10deac73a656c7beb6362dde7b6b040a613ab76dc"
+    },
+    "write-agents-md": {
+      "source": "EdukeyTeam/agent-toolbox",
+      "sourceType": "github",
+      "skillPath": "skills/write-agents-md/SKILL.md",
+      "computedHash": "2c5836b280593dd5efb6cab61b21bcefd73c25ecbbf99f2037233ee54de01a01"
+    },
+    "write-prd": {
+      "source": "EdukeyTeam/agent-toolbox",
+      "sourceType": "github",
+      "skillPath": "skills/write-prd/SKILL.md",
+      "computedHash": "ba0b7a38b4d705b64911871f4b0dac8e1b2909658d7c3a1e042709eb2933b214"
+    }
+  }
+}
