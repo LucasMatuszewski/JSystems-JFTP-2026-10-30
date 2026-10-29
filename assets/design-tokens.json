@@ -1,0 +1,463 @@
+{
+  "metadata": {
+    "name": "JSystems website design system",
+    "sourceUrl": "https://jsystems.pl/",
+    "capturedAt": "2026-10-29",
+    "method": "Visible Chrome controlled by Playwright CLI 0.1.22; computed styles and same-origin CSS",
+    "desktopViewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "mobileViewport": {
+      "width": 390,
+      "height": 844
+    },
+    "scope": "Public homepage and its responsive CSS; observed styles, not an official brand manual",
+    "notes": [
+      "Consent and chat scripts could not load in this environment; no consent, chat or newsletter overlay was visible in the verified screenshot.",
+      "The site clears and hides its h1 after load. Its 42px style is retained only as a source-CSS reference.",
+      "Hidden dialogs and inactive carousel content were excluded when selecting semantic component tokens.",
+      "error is null because no visible validation error state was observed.",
+      "The 4px spacing base is a suggested normalization; source values include many off-grid increments.",
+      "Poppins is served by Google Fonts and was not downloaded. Local fonts are icon fonts only."
+    ]
+  },
+  "colors": {
+    "brand": {
+      "primary": "#800000",
+      "accent": "#EDC82B",
+      "success": "#16A34A",
+      "error": null,
+      "info": "#006EE9"
+    },
+    "background": {
+      "default": "#FFFFFF",
+      "light": "#DEDEDE",
+      "dark": "#0B0F1A",
+      "hero": "#0D1117",
+      "form": "#656263",
+      "cardOnDark": "rgba(255, 255, 255, 0.04)",
+      "rowOnDark": "rgba(255, 255, 255, 0.06)",
+      "overlay": "rgba(0, 0, 0, 0.45)"
+    },
+    "text": {
+      "primary": "#000000",
+      "heading": "#1A1A1A",
+      "secondary": "#333333",
+      "muted": "#888888",
+      "onDark": "#FFFFFF",
+      "headingOnDark": "#F0F0F0",
+      "mutedOnDark": "rgba(255, 255, 255, 0.6)",
+      "brand": "#800000"
+    },
+    "border": {
+      "light": "#E6E6E6",
+      "onDark": "rgba(255, 255, 255, 0.08)",
+      "rowOnDark": "rgba(255, 255, 255, 0.1)"
+    },
+    "status": {
+      "guaranteed": "#2E7D32",
+      "guaranteedBackground": "#E8F5E9",
+      "planned": "#F57F17",
+      "plannedBackground": "#FFF8E1"
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "primary": "Poppins, \"Poppins Fallback\", sans-serif",
+      "nativeControl": "Arial, sans-serif",
+      "icon": "\"Font Awesome 6 Free\"",
+      "brandIcon": "\"Font Awesome 6 Brands\""
+    },
+    "fontWeights": {
+      "regular": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700,
+      "extrabold": 800,
+      "solidIcon": 900
+    },
+    "fontSize": {
+      "xs": "11px",
+      "sm": "12px",
+      "caption": "13px",
+      "compact": "14px",
+      "smallBody": "15px",
+      "base": "16px",
+      "control": "17px",
+      "md": "18px",
+      "lg": "20px",
+      "xl": "22px",
+      "cta": "24px",
+      "sectionSmall": "26px",
+      "section": "32px",
+      "sectionLarge": "34px",
+      "aboutHeading": "36px",
+      "display": "38px",
+      "h1SourceOnly": "42px"
+    },
+    "lineHeight": {
+      "tight": "1.1",
+      "heading": "1.2",
+      "card": "1.3",
+      "base": "1.4",
+      "relaxed": "1.6",
+      "default": "normal"
+    },
+    "roles": {
+      "body": {
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": "normal"
+      },
+      "navigation": {
+        "fontSize": "18px",
+        "fontWeight": 700
+      },
+      "scheduleHeading": {
+        "fontSize": "32px",
+        "fontWeight": 800
+      },
+      "popularHeading": {
+        "fontSize": "26px",
+        "fontWeight": 800
+      },
+      "benefitsHeading": {
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": "1.2"
+      },
+      "aboutHeading": {
+        "fontSize": "38px",
+        "fontWeight": 800,
+        "lineHeight": "1.15"
+      },
+      "footerHeading": {
+        "fontSize": "34px",
+        "fontWeight": 800,
+        "lineHeight": "1.2"
+      },
+      "scheduleTitle": {
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": "1.25"
+      },
+      "courseCardTitle": {
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": "1.35"
+      }
+    }
+  },
+  "spacing": {
+    "1": "4px",
+    "2": "8px",
+    "3": "12px",
+    "4": "16px",
+    "5": "20px",
+    "6": "24px",
+    "7": "28px",
+    "8": "32px",
+    "10": "40px",
+    "12": "48px",
+    "15": "60px",
+    "20": "80px"
+  },
+  "spacingEvidence": {
+    "recommendedBase": "4px",
+    "observedCommonValues": [
+      "2px",
+      "3px",
+      "5px",
+      "6px",
+      "8px",
+      "9px",
+      "10px",
+      "12px",
+      "14px",
+      "16px",
+      "18px",
+      "20px",
+      "22px",
+      "24px",
+      "25px",
+      "26px",
+      "28px",
+      "32px",
+      "40px",
+      "45px",
+      "50px"
+    ],
+    "guidance": "Use component padding and gap values for faithful reproduction; the numbered scale is a convenience, not a recovered global spacing variable."
+  },
+  "borderRadius": {
+    "none": "0px",
+    "xs": "4px",
+    "badge": "6px",
+    "sm": "8px",
+    "tooltip": "10px",
+    "md": "12px",
+    "search": "14px",
+    "lg": "16px",
+    "xl": "20px",
+    "review": "22px",
+    "panel": "24px",
+    "heroMobile": "30px",
+    "corner": "40px",
+    "full": "50px",
+    "circle": "50%",
+    "bottomOnly": "0px 0px 8px 8px"
+  },
+  "shadows": {
+    "search": "0px 10px 40px rgba(0, 0, 0, 0.28)",
+    "heroCta": "0px 4px 25px rgba(0, 0, 0, 0.25)",
+    "header": "0px 2px 30px rgba(0, 0, 0, 0.08)",
+    "row": "0px 2px 12px rgba(0, 0, 0, 0.3)",
+    "carouselArrow": "0px 4px 14px rgba(0, 0, 0, 0.12)"
+  },
+  "components": {
+    "button": {
+      "primary": {
+        "sourceSelector": ".hero__searchBtn",
+        "backgroundColor": "#800000",
+        "color": "#FFFFFF",
+        "padding": "16px 30px",
+        "borderRadius": "0px",
+        "fontFamily": "Arial, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "border": "none",
+        "note": "Rectangular segment clipped by the 14px search container."
+      },
+      "inversePill": {
+        "sourceSelector": ".cards__button",
+        "backgroundColor": "#FFFFFF",
+        "color": "#800000",
+        "padding": "12px 35px",
+        "borderRadius": "50px",
+        "fontSize": "17px",
+        "fontWeight": 600,
+        "letterSpacing": "0.3px"
+      },
+      "heroInverse": {
+        "sourceSelector": ".hero-slide-guaranteed-count__btn",
+        "backgroundColor": "#FFFFFF",
+        "color": "#800000",
+        "padding": "14px 40px",
+        "borderRadius": "50px",
+        "fontSize": "18px",
+        "fontWeight": 700
+      },
+      "schedule": {
+        "sourceSelector": ".st__rowBtn",
+        "backgroundColor": "#800000",
+        "color": "#FFFFFF",
+        "padding": "9px 18px",
+        "borderRadius": "8px",
+        "fontSize": "14px",
+        "fontWeight": 700
+      },
+      "signup": {
+        "sourceSelector": ".st__rowBtn--signup",
+        "backgroundColor": "#16A34A",
+        "color": "#FFFFFF",
+        "padding": "9px 18px",
+        "borderRadius": "8px",
+        "fontFamily": "Arial, sans-serif",
+        "fontSize": "14px",
+        "fontWeight": 700
+      },
+      "outlineOnDark": {
+        "sourceSelector": ".footer__button",
+        "backgroundColor": "transparent",
+        "color": "#FFFFFF",
+        "padding": "14px 50px",
+        "border": "1px solid #FFFFFF",
+        "borderRadius": "50px",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "letterSpacing": "0.5px"
+      }
+    },
+    "promoBar": {
+      "sourceSelector": ".top-bar",
+      "backgroundColor": "rgba(128, 0, 0, 0.92)",
+      "color": "#FFFFFF",
+      "position": "fixed",
+      "top": "0px",
+      "padding": "11px 24px",
+      "gap": "24px",
+      "backdropFilter": "blur(10px)"
+    },
+    "header": {
+      "sourceSelector": "header",
+      "backgroundColor": "transparent",
+      "padding": "20px 50px",
+      "fontSize": "16px",
+      "gap": "20px",
+      "position": "fixed",
+      "top": "48px",
+      "scrolled": {
+        "backgroundColor": "rgba(255, 255, 255, 0.95)",
+        "backdropFilter": "blur(20px)",
+        "boxShadow": "0px 2px 30px rgba(0, 0, 0, 0.08)"
+      }
+    },
+    "nav": {
+      "sourceSelector": ".header__navLink",
+      "color": "#000000",
+      "fontSize": "18px",
+      "fontWeight": 700,
+      "textTransform": "none",
+      "gap": "30px",
+      "hover": {
+        "color": "#800000"
+      },
+      "transition": "0.4s"
+    },
+    "hero": {
+      "sourceSelector": ".hero",
+      "backgroundColor": "#0D1117",
+      "borderRadius": "50px",
+      "marginTop": "58px",
+      "note": "Technology imagery and carousel artwork carry additional colors; image colors are not semantic UI tokens."
+    },
+    "search": {
+      "sourceSelector": ".hero__search",
+      "backgroundColor": "rgba(255, 255, 255, 0.97)",
+      "borderRadius": "14px",
+      "maxWidth": "640px",
+      "boxShadow": "0px 10px 40px rgba(0, 0, 0, 0.28)",
+      "input": {
+        "fontFamily": "Arial, sans-serif",
+        "fontSize": "17px",
+        "color": "#111111",
+        "padding": "16px 14px",
+        "backgroundColor": "transparent",
+        "border": "none"
+      }
+    },
+    "input": {
+      "sourceSelector": ".footer__form .input",
+      "backgroundColor": "#FFFFFF",
+      "color": "#000000",
+      "fontFamily": "Poppins, \"Poppins Fallback\", sans-serif",
+      "fontSize": "16px",
+      "padding": "14px 18px",
+      "height": "50px",
+      "border": "none",
+      "borderRadius": "8px",
+      "focus": {
+        "boxShadow": "0px 0px 0px 3px rgba(255, 255, 255, 0.2)"
+      },
+      "textareaHeight": "190px"
+    },
+    "courseCard": {
+      "sourceSelector": ".mcw__card",
+      "backgroundColor": "rgba(255, 255, 255, 0.04)",
+      "border": "1px solid rgba(255, 255, 255, 0.08)",
+      "borderRadius": "12px",
+      "hover": {
+        "borderColor": "#800000",
+        "backgroundColor": "rgba(128, 0, 0, 0.14)",
+        "transform": "translateY(-3px)"
+      },
+      "transition": "0.2s"
+    },
+    "scheduleRow": {
+      "sourceSelector": ".st__row",
+      "backgroundColor": "rgba(255, 255, 255, 0.06)",
+      "border": "1px solid rgba(255, 255, 255, 0.1)",
+      "borderRadius": "12px",
+      "padding": "8px 15px",
+      "columnGap": "10px"
+    },
+    "testimonials": {
+      "sourceSelector": ".opinions",
+      "backgroundColor": "#DEDEDE",
+      "padding": "130px 0px 50px",
+      "headingColor": "#800000"
+    },
+    "footer": {
+      "contact": {
+        "sourceSelector": ".footer__contactInfo",
+        "backgroundColor": "#800000",
+        "color": "#FFFFFF",
+        "padding": "90px 20px"
+      },
+      "form": {
+        "sourceSelector": ".footer__contactFormWrapper",
+        "backgroundColor": "#656263",
+        "color": "#FFFFFF",
+        "padding": "90px 20px 150px",
+        "maxFormWidth": "1200px",
+        "columnGap": "100px",
+        "rowMarginBottom": "40px"
+      }
+    }
+  },
+  "responsive": {
+    "navigationCollapseAt": "1150px",
+    "navigationCompactAt": "1270px",
+    "courseGrid": {
+      "desktopColumns": 4,
+      "twoColumnsAt": "1100px",
+      "oneColumnAt": "600px",
+      "desktopGap": "18px",
+      "mobileGap": "12px",
+      "mobileCardDirection": "row"
+    },
+    "scheduleHeading": {
+      "default": "32px",
+      "at1050": "26px",
+      "at500": "22px"
+    },
+    "observedMobile": {
+      "headerPadding": "20px",
+      "headerGap": "10px",
+      "heroBorderRadius": "30px",
+      "searchBorderRadius": "14px",
+      "courseTitleSize": "20px",
+      "formGap": "20px"
+    },
+    "note": "Mobile navigation uses an off-canvas transform; display:flex alone does not mean the closed menu is visible."
+  },
+  "assets": {
+    "logo": {
+      "path": "assets/logo.svg",
+      "sourceUrl": "https://jsystems.pl/static/images/logo-colored.svg",
+      "viewBox": "0 0 230 72",
+      "darkBackgroundTreatment": "brightness(0) invert(1)",
+      "separateInvertedFile": false
+    },
+    "favicon": {
+      "path": "assets/favicon.png",
+      "sourceUrl": "https://jsystems.pl/static/images/favicon.png"
+    },
+    "screenshot": "assets/homepage.png",
+    "localFonts": [
+      "assets/fonts/font-awesome-6-brands/fa-brands-400.woff2",
+      "assets/fonts/font-awesome-6-free/fa-regular-400.woff2",
+      "assets/fonts/font-awesome-6-free/fa-solid-900.woff2",
+      "assets/fonts/fontawesome/fa-v4compatibility.woff2"
+    ],
+    "externalFonts": [
+      {
+        "family": "Poppins",
+        "provider": "Google Fonts",
+        "weights": [
+          400,
+          500,
+          700,
+          800
+        ],
+        "italicWeights": [
+          400,
+          700
+        ],
+        "stylesheetUrl": "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;0,800;1,400;1,700&display=swap"
+      }
+    ],
+    "rights": "Verify permission and licensing before using or redistributing the JSystems logo, favicon, or downloaded icon fonts."
+  }
+}

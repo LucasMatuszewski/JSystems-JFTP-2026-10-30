@@ -2,3 +2,4 @@
 /.claude/** -text -whitespace
 /.codex/skills/** -text -whitespace
 /skills-lock.json -text whitespace=cr-at-eol
+/assets/** -text
