@@ -202,3 +202,7 @@ The user explicitly requested autonomous answers instead of a questionnaire and 
 | Which features are dead or known wrong? | The startup license call is commented out. Other unused features cannot be identified from source presence alone; usage is unknown. |
 
 Future work requested by the user is to retain the Java desktop application, establish a regression baseline, modernize incrementally and apply the supplied JSystems brand, including a logo on the right. These requests need separate change criteria and technical decisions; they must not be mistaken for already existing behavior. Native screenshots and controlled-server observations should later supplement, rather than silently overwrite, this dated baseline.
+
+The separate [branded desktop PRD](prd/branded-desktop.md) and
+[ADR-003](ADR/003-branded-swing-workspace.md) define the first visual modernization
+step. They do not change the historical expectations recorded above.

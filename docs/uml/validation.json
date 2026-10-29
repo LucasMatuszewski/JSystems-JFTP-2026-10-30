@@ -1,19 +1,19 @@
 {
   "application_revision": "14e62ceba4e371c2a0b955604b10f065f46f4f7d",
   "mermaid_version": "11.12.1",
-  "source_sha256_lf": "23a03266d4cb450f2b8514cb7b3798e5efbe0fdc1393e1bb167a4bd5ab769c46",
+  "source_sha256_lf": "f02929c96cec1c6b57236fa1e18a0b59053dc1427a05b9f8f0434d490eb2ec5f",
   "diagrams": [
     {
       "id": "01-core-classes",
       "source_sha256_lf": "fd491b1c2ef8310c1a62c55c043ada353b42999f39fcd94b895718bdb6fbe2f2",
-      "svg_sha256": "136f8da4e02a3f287f4e86bb5acc1f5738d5cfaf97f420f384cf4e4583bb1b2a",
+      "svg_sha256": "b5d2d30c173392e2885a8f5db6e4311c8ac19d977fa3cd412956273f1847d5f1",
       "rendered_width": 1654.375,
       "rendered_height": 1132
     },
     {
       "id": "02-persistence-and-tls",
       "source_sha256_lf": "f317b625a0d860daafb9b84707c24273d646bf06cb6f7d639ea7829bfab9200b",
-      "svg_sha256": "18d9cba1f1a2b34f56a0b8c5117df829d79d674a3ad3cfe1893eaf77a6a3e6ae",
+      "svg_sha256": "3824c4eaba1314edba7589f314b9a5b9a78a68c9507c225e212707cff9b5d2fd",
       "rendered_width": 1784,
       "rendered_height": 735.375
     },
@@ -27,14 +27,14 @@
     {
       "id": "04-transfer-activity",
       "source_sha256_lf": "eb15f139c87491f995238cdddbebbcb743600afdc2815eb273d20926fdfb2750",
-      "svg_sha256": "d1a4324e61bd1763107dfff8de91ba2da8eed229c50f1933b368e63ac5f0c3bc",
+      "svg_sha256": "110edad47b6a225739e27dd3b03e794aeeb842aca310e65fbf52bdca940ecfd0",
       "rendered_width": 1195.1875,
       "rendered_height": 2154.125
     },
     {
       "id": "05-session-states",
       "source_sha256_lf": "6c90518c62e6e702d736218e58bede2dc36bb137f3e45afe15da5d9b09d64e0f",
-      "svg_sha256": "9ad69dfcc3824ad6607e0c2960559ac6d3922262f324d82dc19595ce0a487cc8",
+      "svg_sha256": "5cb2329d882f055a37d5e2eee01c973524dceffa135c47df8dc59c6da1c71d64",
       "rendered_width": 1481.21875,
       "rendered_height": 817.984375
     },
@@ -50,7 +50,7 @@
     {
       "path": "docs/PRD.md",
       "diagrams": 1,
-      "source_sha256_lf": "3c7d6f5164208a42df8da9380ac1fc3d4d00e7bc3dd818a659aa7cad8edbb0e0"
+      "source_sha256_lf": "130fc179de2b45f4ef2656d5ef43ab5bc2d2bf98e1aeac3a060a8555b4d51fd7"
     },
     {
       "path": "docs/ADR/000-main-architecture.md",
@@ -66,6 +66,16 @@
       "path": "docs/ADR/002-build-recovery.md",
       "diagrams": 2,
       "source_sha256_lf": "fc8d0bdb9abbf2fa7cb2033d5278d22f202caf9b48fab43c751cb9cc32cdabde"
+    },
+    {
+      "path": "docs/ADR/003-branded-swing-workspace.md",
+      "diagrams": 2,
+      "source_sha256_lf": "d8da42d7369cb493f5625173f402dd5aa6fb12bd897ca977d86780eba3e21500"
+    },
+    {
+      "path": "docs/prd/branded-desktop.md",
+      "diagrams": 1,
+      "source_sha256_lf": "5f92c0f5057807f0a65f244dd56a6b211a4824a80662e83b2561cdf04ba80812"
     }
   ],
   "browser_errors": []

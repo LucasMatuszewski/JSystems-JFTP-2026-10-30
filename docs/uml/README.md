@@ -291,5 +291,5 @@ On other machines set `JFTP_CHROME` to the installed Chrome/Chromium executable.
 The browser renders only the local diagram source and local Mermaid bundle.
 `--check` validates each block in the browser and checks saved source/SVG hashes;
 `--write` replaces generated SVGs, the first-diagram preview and validation receipt.
-It also renders every Mermaid block in the PRD and all Markdown ADRs; the current
-suite covers six UML views plus eleven PRD/ADR diagrams.
+It also renders every Mermaid block in the main/feature PRDs and all Markdown
+ADRs. The receipt records the current source list and diagram counts.
