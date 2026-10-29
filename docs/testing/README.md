@@ -2,9 +2,15 @@
 
 This is the first executed application baseline, recorded on 2026-10-29 after the
 source-derived [PRD](../PRD.md) and [ADRs](../ADR/000-main-architecture.md).
-Production Java/resources and `pom.xml` still match original application revision
+At this first milestone, production Java/resources and `pom.xml` matched application revision
 `14e62ceba4e371c2a0b955604b10f065f46f4f7d`. No runtime modernization or branding
 change is included in this milestone.
+
+Later milestones expanded the local suite to [48 cases](persistence.md), added
+[seven real FTP](ftp-contract.md) and [five real FTPS](ftps-contract.md) cases,
+recovered the [Maven build](../build.md), and verified the
+[packaged Windows launcher](packaged-launcher.md). The historical results below
+remain the original baseline, rather than the current total.
 
 ## Reproduce the characterization run
 
@@ -125,10 +131,11 @@ The coordinator visually inspected the native workspace and
 This is a comparison, not a claim of a visual match. Website promotional sections
 are brand evidence, not features to copy into an FTP workspace.
 
-## Next gates
+## Gates identified at this baseline
 
-Recover a normal pinned Maven build without changing production behavior; verify
+The next gates at this checkpoint were to recover a normal pinned Maven build without changing production behavior; verify
 packaging/startup; expand characterization to synthetic persistence and session
 behavior; then add real authorized FTP/FTPS integration and native workflow checks.
 Security fixes and branding need their own failing tests/change criteria and
-before/after screenshots. The overall modernization objective remains active.
+before/after screenshots. See the [current handoff](../current-state-handoff.md)
+for completed gates and remaining work. The overall modernization objective remains active.
