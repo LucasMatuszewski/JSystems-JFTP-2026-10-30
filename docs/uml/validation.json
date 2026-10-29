@@ -1,19 +1,19 @@
 {
   "application_revision": "14e62ceba4e371c2a0b955604b10f065f46f4f7d",
   "mermaid_version": "11.12.1",
-  "source_sha256_lf": "e9197645be54e70f010678cd928832f5f662480a7f5ebd18104889561ad19a2b",
+  "source_sha256_lf": "23a03266d4cb450f2b8514cb7b3798e5efbe0fdc1393e1bb167a4bd5ab769c46",
   "diagrams": [
     {
       "id": "01-core-classes",
       "source_sha256_lf": "fd491b1c2ef8310c1a62c55c043ada353b42999f39fcd94b895718bdb6fbe2f2",
-      "svg_sha256": "150ac191a61662a0aa77963361b76e1eb42c05ceedeb360ec6423dcd835ab4b5",
+      "svg_sha256": "136f8da4e02a3f287f4e86bb5acc1f5738d5cfaf97f420f384cf4e4583bb1b2a",
       "rendered_width": 1654.375,
       "rendered_height": 1132
     },
     {
       "id": "02-persistence-and-tls",
       "source_sha256_lf": "f317b625a0d860daafb9b84707c24273d646bf06cb6f7d639ea7829bfab9200b",
-      "svg_sha256": "27670b6670b4d977745d4d28be277e8e3685c0b69088b79f59ebf2d93dfc36ec",
+      "svg_sha256": "18d9cba1f1a2b34f56a0b8c5117df829d79d674a3ad3cfe1893eaf77a6a3e6ae",
       "rendered_width": 1784,
       "rendered_height": 735.375
     },
@@ -27,14 +27,14 @@
     {
       "id": "04-transfer-activity",
       "source_sha256_lf": "eb15f139c87491f995238cdddbebbcb743600afdc2815eb273d20926fdfb2750",
-      "svg_sha256": "4a9fa2dad977e2e31173e307d23e8f59ef50f3c21b55f9e61a1d7d9a85d181d7",
+      "svg_sha256": "d1a4324e61bd1763107dfff8de91ba2da8eed229c50f1933b368e63ac5f0c3bc",
       "rendered_width": 1195.1875,
       "rendered_height": 2154.125
     },
     {
       "id": "05-session-states",
       "source_sha256_lf": "6c90518c62e6e702d736218e58bede2dc36bb137f3e45afe15da5d9b09d64e0f",
-      "svg_sha256": "a6d443d073121337289772d714cdc68cb35303a84dfd902220c40e64155ccb64",
+      "svg_sha256": "9ad69dfcc3824ad6607e0c2960559ac6d3922262f324d82dc19595ce0a487cc8",
       "rendered_width": 1481.21875,
       "rendered_height": 817.984375
     },
@@ -50,7 +50,7 @@
     {
       "path": "docs/PRD.md",
       "diagrams": 1,
-      "source_sha256_lf": "a9ebb634439fd0854db113678ba2f1ded5ddc7c3b0f8ceb6ee072f0d5a40f966"
+      "source_sha256_lf": "3c7d6f5164208a42df8da9380ac1fc3d4d00e7bc3dd818a659aa7cad8edbb0e0"
     },
     {
       "path": "docs/ADR/000-main-architecture.md",
@@ -61,6 +61,11 @@
       "path": "docs/ADR/001-baseline-verification.md",
       "diagrams": 2,
       "source_sha256_lf": "b0f4e3ca354c93cba0ca95512f426603f8784e7c845ff20bb549b320d5e853d3"
+    },
+    {
+      "path": "docs/ADR/002-build-recovery.md",
+      "diagrams": 2,
+      "source_sha256_lf": "fc8d0bdb9abbf2fa7cb2033d5278d22f202caf9b48fab43c751cb9cc32cdabde"
     }
   ],
   "browser_errors": []

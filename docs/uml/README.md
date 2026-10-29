@@ -263,10 +263,11 @@ flowchart LR
     JVM -->|HTTP version information| Update[Publisher update endpoint]
 ```
 
-This is the intended packaging topology implied by source. A full distribution has
-not been built/launched yet. The assembly's root JAR location and the launchers'
-`lib/` JAR path appear inconsistent; runtime deployment must be verified. No web
-backend, database server or LLM service is established by the inspected application.
+This is the packaging topology implied by the original source revision. Its
+launcher/root-JAR mismatch was subsequently fixed and the Windows distribution
+built and launched; see [build recovery](../ADR/002-build-recovery.md) and
+[packaged launcher QA](../testing/packaged-launcher.md). No web backend, database
+server or LLM service is established by the inspected application.
 
 ## Viewing, editing and validation
 
@@ -290,3 +291,5 @@ On other machines set `JFTP_CHROME` to the installed Chrome/Chromium executable.
 The browser renders only the local diagram source and local Mermaid bundle.
 `--check` validates each block in the browser and checks saved source/SVG hashes;
 `--write` replaces generated SVGs, the first-diagram preview and validation receipt.
+It also renders every Mermaid block in the PRD and all Markdown ADRs; the current
+suite covers six UML views plus eleven PRD/ADR diagrams.

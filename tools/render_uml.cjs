@@ -53,8 +53,9 @@ const hash = data => crypto.createHash('sha256').update(data).digest('hex');
     }
     if (errors.length) throw new Error(errors.join('\n'));
     const auxiliary = [];
-    for (const relative of ['docs/PRD.md', 'docs/ADR/000-main-architecture.md',
-                            'docs/ADR/001-baseline-verification.md']) {
+    const architectureSources = ['docs/PRD.md', ...fs.readdirSync(path.join(root, 'docs', 'ADR'))
+      .filter(name => name.endsWith('.md')).sort().map(name => `docs/ADR/${name}`)];
+    for (const relative of architectureSources) {
       const content = fs.readFileSync(path.join(root, relative), 'utf8');
       const extra = [...content.matchAll(/```mermaid\r?\n([\s\S]*?)```/g)];
       for (let i = 0; i < extra.length; i++) {
