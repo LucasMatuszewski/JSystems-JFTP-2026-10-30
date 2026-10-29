@@ -57,6 +57,22 @@ Setup is online; indexing and export use local source. The helper sets a dedicat
 
 Windows x86-64 setup/export and the committed snapshot are the tested course route. Platform archive selection is included for Linux and macOS but those setup routes have not been exercised for this example. The exporter targets the pinned version's SQLite schema; changing CBM versions requires reviewing that schema and the CLI again.
 
+If an existing state directory is rejected because its DACL grants mutation rights
+to another identity, use a fresh private directory owned by the current account.
+The verified executable remains in the original installation. The refresh for this
+snapshot used this route without changing ACLs or stopping another session:
+
+```powershell
+$env:JFTP_GRAPH_STATE = Join-Path $env:USERPROFILE '.jftp-code-graph-current'
+python tools/code_graph.py index
+python tools/code_graph.py export --replace
+```
+
+Use the same override for later live queries. It must be an absolute path. Omitting
+it retains the original default state location; offline snapshot queries need no
+running native service. Three CLI configuration tests cover default/override paths
+and rejection of relative state paths (`tests/test_code_graph_state.py`).
+
 For live graph queries after indexing, use the native tool through the same environment:
 
 ```sh
@@ -77,13 +93,13 @@ python tools/code_graph.py stop
 
 ## Snapshot scope and limitations
 
-- Source scope: `src`, revision `14e62ceba4e371c2a0b955604b10f065f46f4f7d`.
+- Source scope: `src`, refreshed at base HEAD `e6b427273e5037136a780ff516a27d3fb68fbf04`, including working-tree tests and launcher updates. The full source manifest identifies the actual indexed files; base HEAD alone does not identify uncommitted content.
 - Tool: Codebase Memory 0.11.0, Windows x86-64; source release `8972ea69c6ad94b1ef1d4ffbf0a92d78d2db1798`.
-- Dataset: 5,811 nodes and 17,567 relationships, including syntax-derived calls and structural/heuristic relationships.
+- Dataset: 5,968 nodes and 18,419 relationships, including syntax-derived calls and structural/heuristic relationships.
 - Retained: every indexed node/edge identity and type, source locations, and available call-site/resolver metadata. Source bodies and other node/edge properties, including machine-specific paths, are omitted.
-- Source manifest: hashes for all 564 source-tree files. `verify` rejects added, removed, or changed source files and mismatched viewer/snapshot data. It permits Git CRLF/LF conversion in the declared source text extensions, while retaining original byte hashes; other content changes fail. Documentation-only commits can change `HEAD` without changing the indexed source revision, which is recorded separately from the export revision.
-- Index diagnostics: 97 files deliberately not indexed, zero skipped files, three partially parsed HTML help pages, and an unusable parse of the one-line `main/scripts/jftp.sh` launcher. The partial help files are `remote/executeCommands.html`, `security/certificatesManager.html`, and `sessions/close.html` beneath `main/help/helpset/content/`.
-- Coverage is best-effort. Reflection, callbacks, dependency implementations, and resource wiring still require original-source review. No working Maven classpath or type-resolved compiler index was established.
+- Source manifest: hashes for all 573 source-tree files. `verify` rejects added, removed, or changed source files and mismatched viewer/snapshot data. It permits Git CRLF/LF conversion in the declared source text extensions, while retaining original byte hashes; other content changes fail. Documentation-only commits can change `HEAD` without changing the indexed source revision, which is recorded separately from the export revision.
+- Index diagnostics: 97 files deliberately not indexed, zero skipped files, four partial parses and zero unusable parses. The partial help files remain `remote/executeCommands.html`, `security/certificatesManager.html`, and `sessions/close.html` beneath `main/help/helpset/content/`; the fourth partial parse is the Maven-filtered `main/scripts/jftp.sh` template. Native ADR-presence hints apply to the indexed `src` subtree; the repository's ADRs are in `docs/ADR`.
+- Coverage is best-effort. Reflection, callbacks, dependency implementations, and resource wiring still require original-source review. The Maven build has since been recovered, but this graph was not produced by a type-resolved compiler index.
 
 CBM's release is [MIT licensed](https://github.com/DeusData/codebase-memory-mcp/blob/v0.11.0/LICENSE); executables and databases are not committed here. See the [pinned release](https://github.com/DeusData/codebase-memory-mcp/releases/tag/v0.11.0) and the bundled [graph workflow](../../.agents/skills/legacy-codebase-workflows/references/code-graphs.md).
 
