@@ -38,12 +38,20 @@ def write_json(path, value):
     path.write_text(json.dumps(value, ensure_ascii=True, indent=2) + "\n", encoding="utf-8", newline="\n")
 
 
+def state_directory():
+    path = Path(os.environ.get("JFTP_GRAPH_STATE", str(BASE)))
+    if not path.is_absolute():
+        raise ValueError("JFTP_GRAPH_STATE must be an absolute private state directory.")
+    return path
+
+
 def environment():
+    state = state_directory()
     result = os.environ.copy()
-    result.update(CBM_CACHE_DIR=str(BASE / "cache"),
-                  CBM_RUNTIME_DIR=str(BASE / "runtime"),
+    result.update(CBM_CACHE_DIR=str(state / "cache"),
+                  CBM_RUNTIME_DIR=str(state / "runtime"),
                   CBM_ALLOWED_ROOT=str(ROOT / "src"))
-    (BASE / "runtime").mkdir(parents=True, exist_ok=True)
+    (state / "runtime").mkdir(parents=True, exist_ok=True)
     return result
 
 
@@ -272,7 +280,7 @@ def main():
     for action in ("setup", "index", "verify", "native-view", "stop"):
         sub.add_parser(action)
     command = sub.add_parser("export")
-    command.add_argument("--database", type=Path, default=BASE / "cache" / f"{PROJECT}.db")
+    command.add_argument("--database", type=Path, default=state_directory() / "cache" / f"{PROJECT}.db")
     command.add_argument("--replace", action="store_true")
     command = sub.add_parser("view")
     command.add_argument("--no-open", action="store_true")
