@@ -2,35 +2,33 @@
 
 ## Project
 
-This is the **participant materials repository** for "OpenAI Codex w codziennej pracy programistycznej przy projektach Java", organized by JSystems, 28-30.10.2026, three days, 09:00-16:00 Europe/Warsaw. The taught tool is OpenAI Codex. Participants use prepared Windows 11 VMs with PowerShell and native Codex sandboxing; WSL is not assumed. They use trainer-provided ChatGPT Business accounts and their own GitLab.com projects with glab.
+JFTP is a Java/Swing desktop FTP and FTPS client for browsing local and remote files, transferring files, and managing connection profiles. The application is in this checkout. Inspect its actual Maven descriptor, source, call sites, resources, and dependency availability before choosing build or startup commands; a declared dependency is not proof that its implementation is available.
 
-The agreed route is jFTP legacy discovery on day 1, Eclipse Cargo Tracker analysis and a read-only cargo-status feature on day 2, then review, GitLab merge requests, javax-to-jakarta migration and read-only Apache Fineract analysis on day 3. jFTP and Cargo Tracker are separate clones; never commit their sources here. Fineract is read-only. No chatbot or Spring AI service is required.
+Use English for all chat, application documentation, participant instructions, and UI text.
 
-The [course agenda](course-materials/course-agenda.md) preserves the offered program and records the agreed teaching route. The [materials hub](https://devpowers.com/szkolenia/jsystems/codex-java-2026-10/) provides the day pages. Exercise instructions are in course-materials/exercises/cargo-tracker.md, cargo-tracker-tickets.md and fineract-multi-agent.md; open them only for an explicitly requested exercise.
-
-Use English for all chat, application documentation, participant instructions, and UI text. The library is not an application specification. For application work, inspect the actual separate checkout, PRD, ADRs, build descriptors and commands. Never assume a runtime, framework or build tool from these examples.
-
-**Key docs** (created during the course — load only when in doubt):
-- `docs/PRD.md` — product requirements and acceptance criteria
-- `docs/ADR/` — Architecture Decision Records
-- `docs/design-guidelines.md` — design system and tokens
-
----
+**Key documentation:**
+- `docs/PRD.md` — current user-visible behavior and its evidence; proposed behavior must be distinguished from the observed baseline.
+- `docs/ADR/` — current architecture, technical contracts, constraints, and validation strategy.
+- `docs/design-guidelines.md` and `assets/homepage.png` — supplied JSystems brand references for approved visual changes.
+- `docs/source-context.md` — RepoMap, code graph, and focused full-source context guides. Generated snapshots are navigation aids; verify current original definitions and callers before editing.
 
 ## Repository Layout
 
 ```
-app/                 Inert scaffold; course applications live in separate clones
-assets/              Design tokens, logo, favicon
-docs/                PRD, ADR, design system
-course-materials/    Notes, scripts, examples, research
+src/main/java/       Desktop client, shared Swing components, utilities, and ZIP helpers
+src/main/resources* Localized resource bundles
+src/main/images/     Application icons and images
+src/main/help/       JavaHelp content and descriptors
+src/main/scripts/    Launcher templates
+src/main/assembly/   Distribution descriptor
+src/test/            Java application test roots
+tests/               Repository-tool checks
+assets/              Supplied logo, design tokens, and visual reference
+docs/                Product/architecture descriptions, evidence, and context examples
+tools/               Local context-generation and verification helpers
 ```
 
-**Do not read `course-materials/` on your own.** It holds teaching examples from this and earlier courses: sample PRDs, ADRs, prompts and agent instructions. They are not requirements or conventions for this app. Do not browse, search or index it during normal work; open a file there only when the user names it or asks for course material.
-
----
-
-**`README.md` is the participant entry page.** Do not add an update-notes section, changelog or "what's new" list to its top before the course has started. During the course the trainer adds update notes there; add them only when the trainer asks.
+`README.md` is the application introduction. Keep application documentation consistent with verified behavior and commands. Add an update-notes section or changelog only when requested.
 
 ---
 
@@ -40,7 +38,7 @@ course-materials/    Notes, scripts, examples, research
 1. Read the relevant PRD and ADR files for the affected area.
 2. Define the expected behavior from the specification before writing or changing any code.
 3. Confirm the actual application checkout and inspect source, build descriptors, call sites and dependencies before proposing commands or APIs. Identify build, test and startup commands from that project, using its wrapper when available; do not assume a framework, build tool or runtime version.
-4. Establish missing or ambiguous requirements with the user and record agreed application scope in its PRD before implementation. Routine course-document changes do not need an application PRD or ADR.
+4. Establish missing or ambiguous requirements with the user and record agreed application scope in its PRD before implementation. Routine documentation changes do not need an application PRD or ADR.
 
 ### TDD Rules
 For every feature and bug fix:
@@ -64,12 +62,12 @@ Investigate production code and fixtures before changing a failing assertion. Do
 
 Use the application's actual runtime and verified commands. The browser flow below applies to web applications; desktop applications need their real UI, and command-line tools need observable CLI checks.
 
-Use **the Playwright CLI** to drive the real running app like a human tester:
+For a browser-based surface, use **the Playwright CLI**. For JFTP, drive the real desktop windows through native UI automation or human verification:
 
-1. Start the app with its verified project command and open it in the browser. Record successful startup separately from compilation and test execution.
+1. Start JFTP with its verified project command and inspect its real desktop window. Record successful startup separately from compilation and test execution.
 2. Take a screenshot of every screen you touched.
-3. Exercise the real flow end-to-end by hand: fill the form, upload the image, submit, follow the navigation to the chat, send a message — whatever the changed scope covers.
-4. Verify the flow actually works: correct navigation, correct data displayed, no console errors, English UI text.
+3. Exercise the affected real flow end-to-end by hand: connect to an authorized test server, browse, transfer files, cancel, or reconnect as appropriate to the changed scope.
+4. Verify the flow actually works: correct navigation, correct data displayed, no application/log errors, English UI text.
 5. **Compare your screenshots against the brand reference** (`assets/homepage.png` + `docs/design-guidelines.md` tokens): colors, typography, spacing, button styles and logo placement must match the application's agreed brand reference.
 6. Report what you validated (steps + screenshots) in your task summary. If anything looks or behaves wrong, fix it before committing.
 
@@ -86,7 +84,7 @@ Verify only the scope relevant to your change. If the change affects runtime beh
 
 **Verification:** For runtime changes, start the real application and finish with Manual QA. Record compilation/build, test execution and startup as separate checks, including discovery counts and skips. A successful build or E2E run alone does not establish that the app works. Documentation-only changes use diff, link and consistency checks and do not require application startup. Fix errors and warnings introduced by the change; report pre-existing failures without hiding them.
 
-**Env Vars:** No LLM API key is required for the course exercises. `.env.example` is an inert example. Inspect the actual application configuration; never read secrets.
+**Env Vars:** JFTP does not require an LLM API key. Inspect the actual application configuration and authorized synthetic test setup; never read secrets or assume an example environment file exists.
 
 ### Commit Rules
 - Commit only after verification passes and the changed scope is in a working state.
