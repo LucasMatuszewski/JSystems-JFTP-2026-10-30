@@ -1,0 +1,11 @@
+.....F.
+Time: 1,96
+There was 1 failure:
+1) testJftpSaveAndLoadRetainDirectoryEmailBoundsAndTransferTypes(com.myjavaworld.jftp.PreferencesCharacterizationTest)junit.framework.ComparisonFailure: expected:<[synthetic-local-dir]> but was:<[C:\Users\labuser\Documents]>
+	at com.myjavaworld.jftp.PreferencesCharacterizationTest.assertConfiguredPreferences(PreferencesCharacterizationTest.java:149)
+	at com.myjavaworld.jftp.PreferencesCharacterizationTest.testJftpSaveAndLoadRetainDirectoryEmailBoundsAndTransferTypes(PreferencesCharacterizationTest.java:105)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+
+FAILURES!!!
+Tests run: 6,  Failures: 1,  Errors: 0
+

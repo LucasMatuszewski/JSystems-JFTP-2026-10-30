@@ -1,0 +1,29 @@
+{
+  "application_revision": "14e62ceba4e371c2a0b955604b10f065f46f4f7d",
+  "unchanged_production_java": true,
+  "new_persistence_tests": 13,
+  "all_local_tests": 48,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "mutations_detected": 2,
+  "original_classes_rechecked": true,
+  "artifacts": [
+    {
+      "path": "favorites-password-loss.log",
+      "sha256": "7321fab351b2c014a3e8b4de73ab0bfb68d89f62fdc05e017cbdbfa384f5a9a7"
+    },
+    {
+      "path": "FavoritesPersistenceCharacterizationTest.log",
+      "sha256": "d92954f317ff0ff58b0b627faa7133c3dceb591dddf7bdf20143168565f46a0b"
+    },
+    {
+      "path": "preferences-default-instead-of-user.log",
+      "sha256": "ca50fb4bfc1fdf333433212815cdd17cdfaa236b58f24dc99226ea596af6e4df"
+    },
+    {
+      "path": "PreferencesCharacterizationTest.log",
+      "sha256": "21f26a8b14dc14931a89e273f86e8a579dcbf0d9f6e0418741e501199ef44629"
+    }
+  ]
+}
