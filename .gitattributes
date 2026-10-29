@@ -9,3 +9,6 @@
 /docs/code-graph/jftp-code-graph.json -text
 /docs/code-graph/verification.json -text
 /docs/code-graph/jftp-code-graph.html -text
+/docs/repomix/connection-transfer.full.xml -text -whitespace
+/docs/repomix/connection-transfer.provenance.json -text
+/docs/repomix/artifacts/*.json -text

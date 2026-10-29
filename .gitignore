@@ -2,3 +2,7 @@
 __pycache__/
 *.py[cod]
 /docs/code-graph/artifacts/
+/docs/repomix/artifacts/*
+!/docs/repomix/artifacts/repomix.config.json
+!/docs/repomix/artifacts/package.json
+!/docs/repomix/artifacts/package-lock.json
