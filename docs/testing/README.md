@@ -22,18 +22,21 @@ Use Windows, PowerShell 7 and JDK 25 with `java` and `javac` on PATH:
 pwsh -NoProfile -File tools/legacy-baseline.ps1
 ```
 
-The script verifies three pinned dependency hashes, downloads missing artifacts
+The current optional direct-source runner verifies six pinned dependency hashes
+(the original three plus FlatLaf, Extras and JSVG), downloads missing artifacts
 over HTTPS into `~/.jftp-build-cache`, compiles the current checkout with
-`--release 8`, copies the original resources, and runs every `*Test.java` class
+the compiler release declared in the current POM, copies resources and the supplied
+logo, and runs every `*Test.java` class
 through the original JUnit 3.8.1 runner. It fails on compile/test errors, zero
 discovered classes or missing JUnit success counts. Every invocation uses a fresh
 ignored `.local/baseline-runs/<id>` directory and isolated Java home/temp paths.
 Logs and `result.json` contain per-class counts. No real server, user profile or
 stored credentials are required for these tests.
 
-This is a temporary legacy build route for the pre-modernization checkout. It is
-not a claim that Java 8 is the final target, that the historical Maven build works,
-or that these tests establish transfer/security compatibility.
+The historical first run below used the original three dependencies and release
+8. Current runner receipts identify the compiler release, base Git revision and
+working-tree scope. The wrapper remains the normal development route; these
+direct-source checks do not establish transfer/security compatibility.
 
 ## Results and limits
 
