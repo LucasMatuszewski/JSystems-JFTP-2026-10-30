@@ -1,7 +1,8 @@
 # One-time local Codex resume monitor
 
 `tools/resume-after-reset.sh` waits until an explicit deadline, then makes one
-`codex exec --sandbox workspace-write --approve-for-me resume SESSION_ID -` call.
+`codex exec --approve-for-me resume SESSION_ID -` call. `--approve-for-me` selects
+workspace-write with automatic approval review; the CLI rejects combining it with `--sandbox`.
 The installed CLI's `exec` and `exec resume --help` were checked on 2026-10-29
 (version 0.165.0). This follows the official [non-interactive session guide](https://developers.openai.com/codex/noninteractive).
 It reuses existing local authentication; no credentials are copied into the repository.
@@ -46,3 +47,8 @@ python -m unittest discover -s tests -p test_resume_monitor.py -v
 
 The tests use a local recording shell script to verify the deadline, exact thread
 and prompt, one-attempt behavior, cancellation, and deferral during recent activity.
+
+The initial 2026-10-29 scheduled attempt fired at 17:10 Warsaw and failed with exit
+2 because the first script combined those mutually exclusive flags. No model call
+occurred. The script and regression assertion were corrected afterward; no retry
+was scheduled because the session was already active.

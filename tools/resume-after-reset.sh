@@ -69,7 +69,7 @@ done
 printf '%s\n' "$(date -u +%FT%TZ)" > "$state/attempted"
 log 'STARTING; one Codex resume attempt'
 set +e
-"$codex" exec --sandbox workspace-write --approve-for-me resume "$thread" - \
+"$codex" exec --approve-for-me resume "$thread" - \
   < "$prompt" > "$state/resume.stdout.log" 2> "$state/resume.stderr.log"
 result=$?
 set -e
