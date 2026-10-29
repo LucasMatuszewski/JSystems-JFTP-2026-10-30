@@ -1,0 +1,67 @@
+{
+  "application_revision": "14e62ceba4e371c2a0b955604b10f065f46f4f7d",
+  "mermaid_version": "11.12.1",
+  "source_sha256_lf": "e9197645be54e70f010678cd928832f5f662480a7f5ebd18104889561ad19a2b",
+  "diagrams": [
+    {
+      "id": "01-core-classes",
+      "source_sha256_lf": "fd491b1c2ef8310c1a62c55c043ada353b42999f39fcd94b895718bdb6fbe2f2",
+      "svg_sha256": "150ac191a61662a0aa77963361b76e1eb42c05ceedeb360ec6423dcd835ab4b5",
+      "rendered_width": 1654.375,
+      "rendered_height": 1132
+    },
+    {
+      "id": "02-persistence-and-tls",
+      "source_sha256_lf": "f317b625a0d860daafb9b84707c24273d646bf06cb6f7d639ea7829bfab9200b",
+      "svg_sha256": "27670b6670b4d977745d4d28be277e8e3685c0b69088b79f59ebf2d93dfc36ec",
+      "rendered_width": 1784,
+      "rendered_height": 735.375
+    },
+    {
+      "id": "03-connection-sequence",
+      "source_sha256_lf": "c513fc5bd822d7c03eec8a36b9e5ef5a45f31b5d0b9fc2da00cc740790f9e9ba",
+      "svg_sha256": "b65a348ca2571178e3f53aac2be0aed9775ef1e8ec0665c803d652da5733de72",
+      "rendered_width": 1671,
+      "rendered_height": 1327
+    },
+    {
+      "id": "04-transfer-activity",
+      "source_sha256_lf": "eb15f139c87491f995238cdddbebbcb743600afdc2815eb273d20926fdfb2750",
+      "svg_sha256": "4a9fa2dad977e2e31173e307d23e8f59ef50f3c21b55f9e61a1d7d9a85d181d7",
+      "rendered_width": 1195.1875,
+      "rendered_height": 2154.125
+    },
+    {
+      "id": "05-session-states",
+      "source_sha256_lf": "6c90518c62e6e702d736218e58bede2dc36bb137f3e45afe15da5d9b09d64e0f",
+      "svg_sha256": "a6d443d073121337289772d714cdc68cb35303a84dfd902220c40e64155ccb64",
+      "rendered_width": 1481.21875,
+      "rendered_height": 817.984375
+    },
+    {
+      "id": "06-deployment",
+      "source_sha256_lf": "1463c8cfab9f10a535525f8d1dca42403dea4ef26fafc4b5e03e9ef04ba4601e",
+      "svg_sha256": "214826bf34fa03aaa495b9b8390c876cd1bd70f4cf598474269d535e0b963095",
+      "rendered_width": 1407.265625,
+      "rendered_height": 931
+    }
+  ],
+  "auxiliary_sources": [
+    {
+      "path": "docs/PRD.md",
+      "diagrams": 1,
+      "source_sha256_lf": "a9ebb634439fd0854db113678ba2f1ded5ddc7c3b0f8ceb6ee072f0d5a40f966"
+    },
+    {
+      "path": "docs/ADR/000-main-architecture.md",
+      "diagrams": 6,
+      "source_sha256_lf": "a3555ccd2104c176b0c4815e23b6e8ecae1da5d301ce7ff58c4a45503716d169"
+    },
+    {
+      "path": "docs/ADR/001-baseline-verification.md",
+      "diagrams": 2,
+      "source_sha256_lf": "b0f4e3ca354c93cba0ca95512f426603f8784e7c845ff20bb549b320d5e853d3"
+    }
+  ],
+  "browser_errors": []
+}
