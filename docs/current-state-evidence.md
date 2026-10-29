@@ -3,7 +3,7 @@
 **Examined:** 2026-10-29. **Application baseline:** `14e62ceba4e371c2a0b955604b10f065f46f4f7d`.
 
 This register supports the [AS-IS PRD](PRD.md) and [architecture records](ADR/000-main-architecture.md).
-Application files and `pom.xml` still match that baseline. All CS entries are
+At initial capture, application files and `pom.xml` matched that baseline. All CS entries are
 **source-derived**, not native UI or server observations. Related lettered entries
 belong to the same CS number. Read the complete cited ranges, callers and resources
 before editing; a matching quotation/hash checks provenance, not semantic correctness.
@@ -12,7 +12,10 @@ before editing; a matching quotation/hash checks provenance, not semantic correc
 
 The [machine-readable register](current-state-evidence.json) records full-file raw
 and LF-normalized SHA-256 hashes, line ranges and exact source excerpts. Verify it
-with `python tools/check_source_evidence.py docs/current-state-evidence.json`.
+against the frozen baseline with
+`python tools/check_source_evidence.py docs/current-state-evidence.json --revision 14e62ce`.
+Omit `--revision` to check the current working tree instead; intentional subsequent
+changes should fail that check rather than silently rewrite this historical record.
 Only recorded CRLF/LF conversion is tolerated.
 
 | Evidence | Observation area | Original source |
