@@ -1,0 +1,619 @@
+{
+  "revision": "14e62ceba4e371c2a0b955604b10f065f46f4f7d",
+  "version": "0.3.1",
+  "tool": "legacy-codebase-workflows legacy-repo-map",
+  "coverage": {
+    "candidates_seen": 564,
+    "definitions_found": 1586,
+    "definitions_in_map": 1044,
+    "definitions_omitted": 542,
+    "files_with_definitions": 179,
+    "parsed_files": 182,
+    "selected_files": 425
+  },
+  "limits": {
+    "budget": 16384,
+    "max_edges": 200000,
+    "max_file_bytes": 2000000,
+    "max_files": 10000,
+    "max_tags_per_file": 20000,
+    "max_total_tags": 200000
+  },
+  "selection": {
+    "coverage_percent": 65.82597730138714,
+    "effective_max_definitions": 1586,
+    "excludes": [
+      "docs/repo-maps/**"
+    ],
+    "focus_files": [],
+    "focus_symbols": [
+      "JFTPApplication",
+      "FTPSession",
+      "FavoritesManager"
+    ],
+    "mode": "ranked",
+    "requested_coverage_percent": null,
+    "requested_max_definitions": null,
+    "selection_limit_reached": false,
+    "subtrees": [
+      "src"
+    ]
+  },
+  "rendering": {
+    "clipped_declarations": [],
+    "declaration_character_limit": 8000,
+    "declaration_line_limit": 80,
+    "format": "compact",
+    "whitespace": "leading whitespace removed, including multiline literal lines; declaration sketch, not verbatim source"
+  },
+  "map_sha256": "6284550cf16cf03c7d62424abd0d87b6970f7545a2d51b6d1a4c99e909f42c4b",
+  "parse_failures": [],
+  "skipped": [
+    {
+      "path": "src/main/help/helpset/content/images/abort16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/certificate16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/changeLocalDirectory16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/changeRemoteDirectory16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/closedBook16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/connect16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/deleteLocalFile16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/deleteRemoteFile16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/directory16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/directory32.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/disconnect16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/downArrow16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/download16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/favorites16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/file16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/file32.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/hardDrive16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/help16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/host16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/indexIcon.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/jftp16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/jftp32.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/newLocalDirectory16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/newLocalFile16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/newRemoteDirectory16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/newRemoteFile16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/newSession16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/nextIcon.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/note32.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/openBook16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/previousIcon.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/reconnect16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/renameLocalFile16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/renameRemoteFile16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/searchIcon.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/server16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/splash.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/tip32.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/tocIcon.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/topic16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/upArrow16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/upDirectory16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/images/upload16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/screenshots/mainWindowExplanation.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/screenshots/mainWindowExplanation.png",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/sessions/images/cascade.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/sessions/images/tileHorizontal.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/help/helpset/content/sessions/images/tileVertical.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/abort16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/certificate16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/changeLocalDirectory16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/changeRemoteDirectory16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/changeRemoteDirectory16.png",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/connect16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/deleteLocalFile16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/deleteRemoteFile16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/deleteRemoteFile16.png",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/directory16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/directory32.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/disconnect16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/downArrow16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/download16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/favorites16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/file16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/file32.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/hardDrive16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/help16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/host16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/jftp.icns",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/jftp128.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/jftp128.png",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/jftp16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/jftp16.png",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/jftp32.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/jftp32.png",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/jftp48.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/jftp48.png",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/jftp60.png",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/key16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/launch.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/lock16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/newLocalDirectory16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/newLocalFile16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/newRemoteDirectory16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/newRemoteDirectory16.png",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/newRemoteFile16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/newRemoteFile16.png",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/newSession16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/reconnect16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/renameLocalFile16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/renameRemoteFile16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/renameRemoteFile16.png",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/server16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/splash.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/splash.png",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/upArrow16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/upDirectory16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/images/com/myjavaworld/jftp/upload16.gif",
+      "reason": "binary file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/gui/EditPopupMenu_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/AboutDlg_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/AdvancedConnectionPrefsPanel_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/AutoUpdater_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/CertificatePrefsPanel_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/ChangeLocalDirectoryDlg_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/ChangeRemoteDirectoryDlg_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/ConnectionDlg_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/DownloadAndUnzipDlg_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/ExecuteCommandDlg_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/FTPMenu_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/FTPSession_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/FavoritePropertiesDlg_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/FavoritesDlg_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/GeneralConnectionPrefsPanel_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/HelpMenu_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/JFTPToolBar_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/LocalFileFilterDlg_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/LocalFilePropertiesDlg_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/LocalFileTableModel_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/LocalPane_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/LocalSystemMenu_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/LocalePrefsPanel_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/PreferencesDlg_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/ProxyPrefsPanel_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/RemoteFileFilterDlg_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/RemoteFilePropertiesDlg_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/RemoteFileTableModel_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/RemoteSystemMenu_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/SecurityPrefsPanel_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/SoftwareUpdatePrefsPanel_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/StatusWindow_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/ToolsMenu_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/TransferModeMenu_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/TransferModesPrefsPanel_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/ZipAndUploadDlg_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/ssl/CertificateManagerDlg_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/ssl/CertificatePane_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/ssl/CertificateTableModel_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/jftp/ssl/SecurityWarningDlg_de.properties",
+      "reason": "non-UTF-8 file"
+    },
+    {
+      "path": "src/main/resources_de/com/myjavaworld/util/CommonResources_de.properties",
+      "reason": "non-UTF-8 file"
+    }
+  ],
+  "truncated": true,
+  "scope": "src",
+  "focus_symbols": [
+    "JFTPApplication",
+    "FTPSession",
+    "FavoritesManager"
+  ],
+  "generation_elapsed_seconds": 13.7523702,
+  "working_copy_fingerprint": "7da47bdcbfe7655e83e1797873984162403f7ec452d608100ed1c923e25e5097",
+  "report_note": "Original snapshot. Full inventory and exporter sidecars regenerate into ignored artifacts/."
+}

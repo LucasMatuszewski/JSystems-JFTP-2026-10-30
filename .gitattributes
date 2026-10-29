@@ -3,3 +3,6 @@
 /.codex/skills/** -text -whitespace
 /skills-lock.json -text whitespace=cr-at-eol
 /assets/** -text
+/docs/repo-maps/jftp-overview.rust.md -text -whitespace
+/docs/repo-maps/jftp-overview.rust.provenance.json -text
+/docs/repo-maps/source-evidence.json -text

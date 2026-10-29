@@ -1,0 +1,293 @@
+{
+  "revision": "14e62ceba4e371c2a0b955604b10f065f46f4f7d",
+  "examined_date": "2026-10-29",
+  "citations": [
+    {
+      "id": "E01",
+      "path": "pom.xml",
+      "sha256": "0e4da3203c623e02327c3876bac889c743d73fff27eb2c2c54196796d85f9019",
+      "start_line": 64,
+      "end_line": 80,
+      "quote": "\t\t\t<artifactId>ftpapi</artifactId>",
+      "status": "observed",
+      "claim": "POM declares JUnit 3.8.1, ftpapi 3.0.0, and JavaHelp 2.0.05.",
+      "sha256_lf": "ebf5684111bbda4f1549eea04c6b1944278167396d8a65ede0a8bf3f272ba5b2"
+    },
+    {
+      "id": "E02-repository",
+      "path": "pom.xml",
+      "sha256": "0e4da3203c623e02327c3876bac889c743d73fff27eb2c2c54196796d85f9019",
+      "start_line": 41,
+      "end_line": 46,
+      "quote": "\t\t\t<url>http://www.jMethods.com/mvn-repo</url>",
+      "status": "observed",
+      "claim": "POM uses an HTTP dependency repository.",
+      "sha256_lf": "ebf5684111bbda4f1549eea04c6b1944278167396d8a65ede0a8bf3f272ba5b2"
+    },
+    {
+      "id": "E02-resources",
+      "path": "pom.xml",
+      "sha256": "0e4da3203c623e02327c3876bac889c743d73fff27eb2c2c54196796d85f9019",
+      "start_line": 84,
+      "end_line": 99,
+      "quote": "\t\t\t\t<directory>src/main/resources_zh_TW</directory>",
+      "status": "observed",
+      "claim": "POM declares language/image/help resource roots.",
+      "sha256_lf": "ebf5684111bbda4f1549eea04c6b1944278167396d8a65ede0a8bf3f272ba5b2"
+    },
+    {
+      "id": "E02-compiler",
+      "path": "pom.xml",
+      "sha256": "0e4da3203c623e02327c3876bac889c743d73fff27eb2c2c54196796d85f9019",
+      "start_line": 102,
+      "end_line": 109,
+      "quote": "\t\t\t\t\t<source>1.5</source>",
+      "status": "observed",
+      "claim": "Compiler plugin 2.4 targets Java 1.5.",
+      "sha256_lf": "ebf5684111bbda4f1549eea04c6b1944278167396d8a65ede0a8bf3f272ba5b2"
+    },
+    {
+      "id": "E02-main",
+      "path": "pom.xml",
+      "sha256": "0e4da3203c623e02327c3876bac889c743d73fff27eb2c2c54196796d85f9019",
+      "start_line": 118,
+      "end_line": 122,
+      "quote": "\t\t\t\t\t\t\t<mainClass>com.myjavaworld.jftp.JFTPApplication</mainClass>",
+      "status": "observed",
+      "claim": "Manifest selects the desktop entry point.",
+      "sha256_lf": "ebf5684111bbda4f1549eea04c6b1944278167396d8a65ede0a8bf3f272ba5b2"
+    },
+    {
+      "id": "E03",
+      "path": "src/main/java/com/myjavaworld/jftp/JFTPApplication.java",
+      "sha256": "a917c338b788b34890fdf8747e35862ff5abf3ca62aa3230fefa23c6c1d13e0a",
+      "start_line": 55,
+      "end_line": 66,
+      "quote": "\t\tjftp = new JFTP();",
+      "status": "observed",
+      "claim": "Startup creates JFTP, shows it and starts a session; main constructs the application.",
+      "sha256_lf": "5881570285aec946a7ded075070f5eb1339f4a9a21d795ab89026b68b3f376b0"
+    },
+    {
+      "id": "E04-reflection",
+      "path": "src/main/java/com/myjavaworld/jftp/FTPSession.java",
+      "sha256": "7ceb1617ec403a910846bb859cf335e5264646f9dbe6cec4611399e07f27243a",
+      "start_line": 617,
+      "end_line": 637,
+      "quote": "\t\t\t\t\tclient = (FTPClient) Class.forName(",
+      "status": "observed",
+      "claim": "Session worker reflectively constructs the client and parser and configures TLS.",
+      "sha256_lf": "e56a851cd9ab528a821f407ecb01fc91a3026c516412d20d3e525941e1b1710c"
+    },
+    {
+      "id": "E04-library",
+      "path": "src/main/java/com/myjavaworld/jftp/FTPSession.java",
+      "sha256": "7ceb1617ec403a910846bb859cf335e5264646f9dbe6cec4611399e07f27243a",
+      "start_line": 642,
+      "end_line": 652,
+      "quote": "\t\t\t\t\t\tclient.connect(remoteHost.getHostName(), port);",
+      "status": "observed",
+      "claim": "Worker calls library connect and login.",
+      "sha256_lf": "e56a851cd9ab528a821f407ecb01fc91a3026c516412d20d3e525941e1b1710c"
+    },
+    {
+      "id": "E05",
+      "path": "src/main/java/com/myjavaworld/jftp/actions/ConnectAction.java",
+      "sha256": "1c6d72787d08f8a9096dff14d50bad8853bcb9b3be9b5d9c5c9270c576fc868f",
+      "start_line": 51,
+      "end_line": 74,
+      "quote": "\t\t\tsession.connect(remoteHost);",
+      "status": "observed",
+      "claim": "Connect action invokes the session entry.",
+      "sha256_lf": "a736a551e1cb6cca50e395e12c86b6a3c5e90969d2a84d26df295fadf6d25a39"
+    },
+    {
+      "id": "E06-favorites",
+      "path": "src/main/java/com/myjavaworld/jftp/FavoritesDlg.java",
+      "sha256": "6af5844028d74575fcb4fc9320629c98347aa74cb61f70a82c547db781d4f137",
+      "start_line": 237,
+      "end_line": 249,
+      "quote": "\t\tsession.connect(selectedHost);",
+      "status": "observed",
+      "claim": "Favorites invokes the session entry.",
+      "sha256_lf": "af471b74ff5eb09c4d9db4ed8e76045f27f1f1cb473301c573a3da1a20c2812d"
+    },
+    {
+      "id": "E06-reconnect",
+      "path": "src/main/java/com/myjavaworld/jftp/FTPSession.java",
+      "sha256": "7ceb1617ec403a910846bb859cf335e5264646f9dbe6cec4611399e07f27243a",
+      "start_line": 701,
+      "end_line": 704,
+      "quote": "\t\t\tconnect(this.remoteHost);",
+      "status": "observed",
+      "claim": "Reconnect invokes the session entry.",
+      "sha256_lf": "e56a851cd9ab528a821f407ecb01fc91a3026c516412d20d3e525941e1b1710c"
+    },
+    {
+      "id": "E07",
+      "path": "src/main/java/com/myjavaworld/jftp/RemoteHost.java",
+      "sha256": "451d94d3e00274b95e0f7275aaca463d9bbac9f8d989d0640f950acc6ef5bd37",
+      "start_line": 33,
+      "end_line": 45,
+      "quote": "\tpublic static final String DEFAULT_FTP_CLIENT_CLASS_NAME = \"com.myjavaworld.ftp.DefaultFTPClient\";",
+      "status": "observed",
+      "claim": "Default client and parser classes are in the external FTP package.",
+      "sha256_lf": "8dcb5c0e11c592f0ab30be64457c2415a9312244c8a88c4b01f49f6830a5319b"
+    },
+    {
+      "id": "E08-read",
+      "path": "src/main/java/com/myjavaworld/jftp/FavoritesManager.java",
+      "sha256": "c50d233ee0488c87df61defaa9440b5eb76f5e71bfa404329a68edfdf5baa126",
+      "start_line": 70,
+      "end_line": 82,
+      "quote": "\t\t\t\tObject obj = in.readObject();",
+      "status": "observed",
+      "claim": "Favorites deserialize an object and handle old list/sealed-object forms.",
+      "sha256_lf": "aabec52061480221e6a23a277b771f6db1ccf9ced440d5a8d580e4344ac463c8"
+    },
+    {
+      "id": "E08-write",
+      "path": "src/main/java/com/myjavaworld/jftp/FavoritesManager.java",
+      "sha256": "c50d233ee0488c87df61defaa9440b5eb76f5e71bfa404329a68edfdf5baa126",
+      "start_line": 120,
+      "end_line": 129,
+      "quote": "\t\t\t\tout.writeObject(favorites);",
+      "status": "observed",
+      "claim": "Favorites contain an unencrypted-write fallback.",
+      "sha256_lf": "aabec52061480221e6a23a277b771f6db1ccf9ced440d5a8d580e4344ac463c8"
+    },
+    {
+      "id": "E09",
+      "path": "src/main/java/com/myjavaworld/jftp/FavoritesManager.java",
+      "sha256": "c50d233ee0488c87df61defaa9440b5eb76f5e71bfa404329a68edfdf5baa126",
+      "start_line": 170,
+      "end_line": 177,
+      "quote": "\t\tfinal byte[] encodedKey = { 28, -9, -23, 35, -93, -47, -28, 55, -83,",
+      "status": "observed",
+      "claim": "AES encryption uses a source-embedded key.",
+      "sha256_lf": "aabec52061480221e6a23a277b771f6db1ccf9ced440d5a8d580e4344ac463c8"
+    },
+    {
+      "id": "E10-trust",
+      "path": "src/main/java/com/myjavaworld/jftp/ssl/JFTPTrustManager.java",
+      "sha256": "11f0a81044f6bb02c0d778732d3ad36b65eec6cb9c63c7d0a5a87e73e226d77a",
+      "start_line": 76,
+      "end_line": 98,
+      "quote": "\t\t\tint userOption = SecurityWarningDlg.showDialog(jftp, chain,",
+      "status": "observed",
+      "claim": "Server trust uses custom checks and user override.",
+      "sha256_lf": "721dd5c6cc051bfc5ec8ae60f9f4d6b091012624dc330184a6313f624963ba26"
+    },
+    {
+      "id": "E10-host",
+      "path": "src/main/java/com/myjavaworld/jftp/ssl/JFTPTrustManager.java",
+      "sha256": "11f0a81044f6bb02c0d778732d3ad36b65eec6cb9c63c7d0a5a87e73e226d77a",
+      "start_line": 130,
+      "end_line": 138,
+      "quote": "\t\t\treturn commonName.toUpperCase().equals(hostName.toUpperCase());",
+      "status": "observed",
+      "claim": "Hostname method compares certificate Common Name to hostname.",
+      "sha256_lf": "721dd5c6cc051bfc5ec8ae60f9f4d6b091012624dc330184a6313f624963ba26"
+    },
+    {
+      "id": "E11",
+      "path": "src/main/java/com/myjavaworld/jftp/ssl/JFTPSSLContext.java",
+      "sha256": "5dd20e780d671faf24efc80807bdae4e74aedf4a56b68895b5925c34bbea2729",
+      "start_line": 37,
+      "end_line": 44,
+      "quote": "\t\tSSLContext ctx = SSLContext.getInstance(\"SSL\");",
+      "status": "observed",
+      "claim": "SSL context uses custom key/trust managers; actual protocol negotiation is unverified.",
+      "sha256_lf": "a29b06344723a3f763b2e02f56927b0be2384b4794c95d5aa47a88deb18e1a97"
+    },
+    {
+      "id": "E12-path",
+      "path": "src/main/java/com/myjavaworld/zip/Unzip.java",
+      "sha256": "fe6d306284a107aef809408855ccd1938632b9b779ef2b21d56e4e282d7c0c26",
+      "start_line": 134,
+      "end_line": 187,
+      "quote": "\t\tFile target = new File(targetDirectory, entry.getName());",
+      "status": "observed",
+      "claim": "The examined extraction methods construct output from entry names without a destination-containment check.",
+      "sha256_lf": "088bb905ba0ad8cb13ff228e18780aa82d00b2d35915e8d0715f21904e126a77"
+    },
+    {
+      "id": "E12-write",
+      "path": "src/main/java/com/myjavaworld/zip/Unzip.java",
+      "sha256": "fe6d306284a107aef809408855ccd1938632b9b779ef2b21d56e4e282d7c0c26",
+      "start_line": 153,
+      "end_line": 187,
+      "quote": "\t\t\tbout = new BufferedOutputStream(new FileOutputStream(target),",
+      "status": "observed",
+      "claim": "Extraction opens the resulting path for output.",
+      "sha256_lf": "088bb905ba0ad8cb13ff228e18780aa82d00b2d35915e8d0715f21904e126a77"
+    },
+    {
+      "id": "E13",
+      "path": "src/main/java/com/myjavaworld/jftp/actions/DownloadAndUnzipAction.java",
+      "sha256": "e9c8b022ff79e580e461f1eaec5947dd1605e1caed16d66b85068100506140cc",
+      "start_line": 88,
+      "end_line": 97,
+      "quote": "\t\t\t\t\tUnzip unzip = new Unzip(localFile);",
+      "status": "observed",
+      "claim": "Downloaded archive is passed to Unzip with the chosen directory.",
+      "sha256_lf": "840b04a0884d5e06d8ebb5b4645e383699f0962621c04ba021ca3592c01de72d"
+    },
+    {
+      "id": "E14",
+      "path": "src/main/java/com/myjavaworld/jftp/JFTPApplet.java",
+      "sha256": "207a069b4b87f8e1901a56d2dccd68f416e810edbef81bbae04952ab281931c9",
+      "start_line": 27,
+      "end_line": 37,
+      "quote": "public class JFTPApplet extends JApplet implements ActionListener {",
+      "status": "observed",
+      "claim": "Applet entry extends JApplet.",
+      "sha256_lf": "7c6685f5038c9bd5b6a04835b8f895fa8d86b44a8e5f51432b00811abb91651c"
+    },
+    {
+      "id": "E15",
+      "path": "src/main/java/com/myjavaworld/jftp/JFTPHelp2.java",
+      "sha256": "d5ad0986c9e36adf8f782ef9b1889f7c55d7cc121815dbad12a70e743503a79e",
+      "start_line": 22,
+      "end_line": 46,
+      "quote": "\t\tURL helpSetURL = HelpSet.findHelpSet(cl, \"helpset/\" + HELPSET_NAME,",
+      "status": "observed",
+      "claim": "Help uses JavaHelp and bundled help-set resources.",
+      "sha256_lf": "d593c08dbe8b6650a0b56700ce13bdc7726661adc99979cad65f436da818d465"
+    },
+    {
+      "id": "E16",
+      "path": "src/main/java/com/myjavaworld/gui/SwingWorker.java",
+      "sha256": "7af6d4940056dfd7cb13663695cc23888c18a4dccbb1fd1f349629eae4ef8ac4",
+      "start_line": 124,
+      "end_line": 146,
+      "quote": "\t\t\t\tSwingUtilities.invokeLater(doFinished);",
+      "status": "observed",
+      "claim": "Custom worker dispatches finished callback through SwingUtilities.",
+      "sha256_lf": "f81c29833b2f001830cfbf85f1a38fff31fe5b4d42a3a303e7e7a8e492591b55"
+    },
+    {
+      "id": "E17-write",
+      "path": "src/main/java/com/myjavaworld/jftp/JFTP.java",
+      "sha256": "845ae223525ea119e310178201fa0f5010fc13888fa27d12d6c18e1cf108350b",
+      "start_line": 514,
+      "end_line": 517,
+      "quote": "\t\t\tout = new ObjectOutputStream(new FileOutputStream(prefsFile));",
+      "status": "observed",
+      "claim": "Preferences use object serialization.",
+      "sha256_lf": "17666bcd7658404929046f278ef6707d4f8cca5f4413888cab76a6dcd59094b3"
+    },
+    {
+      "id": "E17-read",
+      "path": "src/main/java/com/myjavaworld/jftp/JFTP.java",
+      "sha256": "845ae223525ea119e310178201fa0f5010fc13888fa27d12d6c18e1cf108350b",
+      "start_line": 538,
+      "end_line": 555,
+      "quote": "\t\t\tin = new ObjectInputStream(fin);",
+      "status": "observed",
+      "claim": "Preferences use object deserialization.",
+      "sha256_lf": "17666bcd7658404929046f278ef6707d4f8cca5f4413888cab76a6dcd59094b3"
+    }
+  ],
+  "limits": "Source observations, not runtime tests or proof of complete caller/dependency coverage."
+}
