@@ -6,3 +6,4 @@ __pycache__/
 !/docs/repomix/artifacts/repomix.config.json
 !/docs/repomix/artifacts/package.json
 !/docs/repomix/artifacts/package-lock.json
+/.local/

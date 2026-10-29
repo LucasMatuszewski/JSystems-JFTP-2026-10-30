@@ -12,3 +12,4 @@
 /docs/repomix/connection-transfer.full.xml -text -whitespace
 /docs/repomix/connection-transfer.provenance.json -text
 /docs/repomix/artifacts/*.json -text
+/tools/resume-after-reset.sh text eol=lf
