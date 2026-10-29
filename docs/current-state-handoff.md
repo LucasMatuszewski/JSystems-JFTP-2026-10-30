@@ -15,12 +15,36 @@ and evidence. This documentation milestone does not complete that objective.
 - [UML views](uml/README.md) contain six Mermaid diagrams and offline SVGs. All six plus nine diagrams in the PRD/ADRs render successfully in Chrome with Mermaid 11.12.1; source/hash and link checks pass. A class-diagram preview was visually inspected.
 - RepoMap, offline code graph and focused complete-source Repomix pack are committed with their guides and verifiers. Tool verification does not count as Java application tests.
 
-The application source, resources, original README and POM still match original
+At that documentation checkpoint, application source, resources, original README and POM matched original
 revision `14e62ceba4e371c2a0b955604b10f065f46f4f7d`. No production refactor or
 branding integration has begun. The untracked `docs/session-analyses/` belongs to
 separate user work and must be preserved without staging it incidentally.
 
 ## Next work in order
+
+**Current build work in progress:** the wrapper now pins Maven 3.10.0 with a
+verified distribution SHA-256. The modified POM passes all 35 tests through
+Surefire 3.6.1 and produces ZIP/tar/directory assemblies. Three actual-archive
+checks first failed on both bad launcher JAR paths and accidental AGENTS.md
+inclusion, then passed after working-tree launcher/assembly fixes. These runtime
+and build edits are still uncommitted pending packaged native startup verification
+and source-context refresh. Keep them separate when committing: build recovery,
+launcher/distribution fixes, then evidence/context updates.
+
+A packaged app was launched from `.local/packaged launch with spaces/app/jftp.bat`
+with a synthetic profile and a different working directory. Its launcher PID and
+logs are under `.local/packaged launch with spaces/`. The older baseline app may
+also remain open (original baseline PID 12364). Computer Use reported a physical
+Escape stop when inspection resumed after the user's resume message; no new native
+window observation was obtained, so do not claim packaged startup visually passed.
+Do not issue further desktop input until Computer Use is resumed by the user.
+Continue independent CLI/source work meanwhile. The current frozen AS-IS source
+cards can be checked using the evidence helper's `--revision 14e62ce`; the current
+working-tree POM and launcher changes intentionally differ from that historical
+baseline. Refresh live context packs/graphs and add current build instructions
+before the build/distribution commits. Relevant logs are in `.local/baseline/`:
+`maven-recovered-test.log`, `maven-recovered-package.log`, `distribution-red.log`
+and `distribution-green.log`.
 
 **Later executed milestone:** [Baseline verification](testing/README.md) now records
 181 unchanged production files compiled for Windows, 35 passing characterization
