@@ -1,0 +1,10 @@
+..........F....
+Time: 0,063
+There was 1 failure:
+1) testLegacyOrdinaryPortAtOrBelowZeroUsesDefault(com.myjavaworld.jftp.RemoteHostCharacterizationTest)junit.framework.AssertionFailedError: expected:<21> but was:<0>
+	at com.myjavaworld.jftp.RemoteHostCharacterizationTest.testLegacyOrdinaryPortAtOrBelowZeroUsesDefault(RemoteHostCharacterizationTest.java:12)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+
+FAILURES!!!
+Tests run: 14,  Failures: 1,  Errors: 0
+

@@ -1,0 +1,13 @@
+.F.....F.
+Time: 1,657
+There were 2 failures:
+1) testExtensionIsUppercaseAndLastSuffixOnly(com.myjavaworld.jftp.LocalFileCharacterizationTest)junit.framework.ComparisonFailure: expected:<...X...> but was:<...x...>
+	at com.myjavaworld.jftp.LocalFileCharacterizationTest.testExtensionIsUppercaseAndLastSuffixOnly(LocalFileCharacterizationTest.java:39)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+2) testLegacyLeadingDotAndTrailingDotExtensionRules(com.myjavaworld.jftp.LocalFileCharacterizationTest)junit.framework.ComparisonFailure: expected:<HIDDENNAME> but was:<hiddenname>
+	at com.myjavaworld.jftp.LocalFileCharacterizationTest.testLegacyLeadingDotAndTrailingDotExtensionRules(LocalFileCharacterizationTest.java:47)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+
+FAILURES!!!
+Tests run: 7,  Failures: 2,  Errors: 0
+

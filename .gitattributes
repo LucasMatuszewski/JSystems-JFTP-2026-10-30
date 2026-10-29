@@ -16,3 +16,4 @@
 /docs/current-state-evidence.json -text
 /docs/uml/rendered/*.svg -text
 /docs/uml/validation.json -text
+/docs/testing/evidence/** -text -whitespace

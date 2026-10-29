@@ -1,0 +1,52 @@
+warning: [options] source value 8 is obsolete and will be removed in a future release
+warning: [options] target value 8 is obsolete and will be removed in a future release
+warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+<repo>\src\main\java\com\myjavaworld\jftp\OSXAdapterOld.java:58: error: package com.apple.eawt does not exist
+import com.apple.eawt.ApplicationAdapter;
+                     ^
+<repo>\src\main\java\com\myjavaworld\jftp\OSXAdapterOld.java:59: error: package com.apple.eawt does not exist
+import com.apple.eawt.ApplicationEvent;
+                     ^
+<repo>\src\main\java\com\myjavaworld\jftp\OSXAdapterOld.java:61: error: cannot find symbol
+public class OSXAdapterOld extends ApplicationAdapter {
+                                   ^
+  symbol: class ApplicationAdapter
+<repo>\src\main\java\com\myjavaworld\jftp\OSXAdapterOld.java:66: error: package com.apple.eawt does not exist
+	private static com.apple.eawt.Application theApplication;
+	                             ^
+<repo>\src\main\java\com\myjavaworld\jftp\OSXAdapterOld.java:78: error: cannot find symbol
+	public void handleAbout(ApplicationEvent ae) {
+	                        ^
+  symbol:   class ApplicationEvent
+  location: class OSXAdapterOld
+<repo>\src\main\java\com\myjavaworld\jftp\OSXAdapterOld.java:89: error: cannot find symbol
+	public void handlePreferences(ApplicationEvent ae) {
+	                              ^
+  symbol:   class ApplicationEvent
+  location: class OSXAdapterOld
+<repo>\src\main\java\com\myjavaworld\jftp\OSXAdapterOld.java:100: error: cannot find symbol
+	public void handleQuit(ApplicationEvent ae) {
+	                       ^
+  symbol:   class ApplicationEvent
+  location: class OSXAdapterOld
+<repo>\src\main\java\com\myjavaworld\jftp\OSXAdapterOld.java:77: error: method does not override or implement a method from a supertype
+	@Override
+	^
+<repo>\src\main\java\com\myjavaworld\jftp\OSXAdapterOld.java:88: error: method does not override or implement a method from a supertype
+	@Override
+	^
+<repo>\src\main\java\com\myjavaworld\jftp\OSXAdapterOld.java:99: error: method does not override or implement a method from a supertype
+	@Override
+	^
+<repo>\src\main\java\com\myjavaworld\jftp\OSXAdapterOld.java:123: error: package com.apple.eawt does not exist
+			theApplication = new com.apple.eawt.Application();
+			                                   ^
+<repo>\src\main\java\com\myjavaworld\jftp\OSXAdapterOld.java:136: error: package com.apple.eawt does not exist
+			theApplication = new com.apple.eawt.Application();
+			                                   ^
+Note: <repo>\src\main\java\com\myjavaworld\jftp\FavoritesDlg.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+12 errors
+3 warnings

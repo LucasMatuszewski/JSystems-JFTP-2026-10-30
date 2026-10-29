@@ -22,6 +22,14 @@ separate user work and must be preserved without staging it incidentally.
 
 ## Next work in order
 
+**Later executed milestone:** [Baseline verification](testing/README.md) now records
+181 unchanged production files compiled for Windows, 35 passing characterization
+tests, three detected controlled mutations and actual native startup/session
+screenshots. This supplements the historical pending statements below. The original
+Maven path still fails on its HTTP repository; live FTP/FTPS and packaging remain
+pending. Continue with normal Maven build recovery and broader tests before runtime
+refactoring or brand changes.
+
 1. Read the PRD/ADRs and inspect current Git state. Recover build/test execution while retaining unchanged application behavior. Verify current official versions before selecting modernization targets.
 2. The installed Temurin JDK 25 rejects source/target 1.5 in a standalone probe; Maven was not on PATH. A full application build has not passed. The publisher's matching FTPAPI 3.0.0 artifacts are cached at `~/.jftp-build-cache/legacy-ftpapi-3.0.0`; hashes/HTTPS URLs are in the evidence register. JavaHelp and remaining build dependencies/plugins still need resolution.
 3. Establish green characterization on original application source, including filters, host defaults/normalization, transfer types, synthetic persistence and ZIP behavior. Demonstrate critical assertions fail under a controlled mutation, then revert it. Use Luna only for tightly specified simple work; the coordinator makes architecture decisions.

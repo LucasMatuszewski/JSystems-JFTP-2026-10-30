@@ -1,0 +1,13 @@
+..F.F....
+Time: 1,823
+There were 2 failures:
+1) testRegexInclusionAcceptsMatchingFilesOnly(com.myjavaworld.jftp.LocalFileFilterCharacterizationTest)junit.framework.AssertionFailedError: expected:<[keep.txt]> but was:<[skip.bin, keep.txt]>
+	at com.myjavaworld.jftp.LocalFileFilterCharacterizationTest.testRegexInclusionAcceptsMatchingFilesOnly(LocalFileFilterCharacterizationTest.java:45)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+2) testRegexExclusionRejectsMatchingFiles(com.myjavaworld.jftp.LocalFileFilterCharacterizationTest)junit.framework.AssertionFailedError: expected:<[skip.bin]> but was:<[]>
+	at com.myjavaworld.jftp.LocalFileFilterCharacterizationTest.testRegexExclusionRejectsMatchingFiles(LocalFileFilterCharacterizationTest.java:52)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+
+FAILURES!!!
+Tests run: 7,  Failures: 2,  Errors: 0
+

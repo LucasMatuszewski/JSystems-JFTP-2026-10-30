@@ -1,0 +1,23 @@
+[INFO] Scanning for projects...
+[INFO] Loaded 24293 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] 
+[INFO] ------------------------< com.myjavaworld:jftp >------------------------
+[INFO] Building jftp 5.0.2-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] ------------------------------------------------------------------------
+[ERROR] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  11.121 s
+[INFO] Finished at: 2026-10-29T17:44:29+01:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal on project jftp: Could not collect dependencies for project com.myjavaworld:jftp:jar:5.0.2-SNAPSHOT
+[ERROR] Failed to read artifact descriptor for com.myjavaworld:ftpapi:jar:3.0.0
+[ERROR] 	Caused by: The following artifacts could not be resolved: com.myjavaworld:ftpapi:pom:3.0.0 (absent): Could not transfer artifact com.myjavaworld:ftpapi:pom:3.0.0 from/to maven-default-http-blocker (http://0.0.0.0/): Blocked mirror for repositories: [jMethods (http://www.jMethods.com/mvn-repo, default, releases+snapshots)]
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/DependencyResolutionException

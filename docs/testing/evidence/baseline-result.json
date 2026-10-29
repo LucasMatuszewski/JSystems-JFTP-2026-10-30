@@ -1,0 +1,155 @@
+{
+  "examined_utc": "2026-10-29T16:54:11.857738+00:00",
+  "application_revision": "14e62ceba4e371c2a0b955604b10f065f46f4f7d",
+  "unchanged_production_source_and_pom": true,
+  "java": "Temurin 25.0.4.1+1-LTS",
+  "compile_release": 8,
+  "production_sources": 181,
+  "excluded_sources": [
+    "src/main/java/com/myjavaworld/jftp/OSXAdapterOld.java"
+  ],
+  "test_classes": [
+    {
+      "Class": "com.myjavaworld.jftp.LocalFileCharacterizationTest",
+      "Skips": 0,
+      "Tests": 7,
+      "ExitCode": 0
+    },
+    {
+      "Class": "com.myjavaworld.jftp.LocalFileFilterCharacterizationTest",
+      "Skips": 0,
+      "Tests": 7,
+      "ExitCode": 0
+    },
+    {
+      "Class": "com.myjavaworld.jftp.ModelMappingCharacterizationTest",
+      "Skips": 0,
+      "Tests": 2,
+      "ExitCode": 0
+    },
+    {
+      "Class": "com.myjavaworld.jftp.RemoteHostCharacterizationTest",
+      "Skips": 0,
+      "Tests": 14,
+      "ExitCode": 0
+    },
+    {
+      "Class": "com.myjavaworld.zip.ZipCharacterizationTest",
+      "Skips": 0,
+      "Tests": 5,
+      "ExitCode": 0
+    }
+  ],
+  "tests": 35,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "mutations": [
+    {
+      "name": "extension-case",
+      "exit_code": 1,
+      "result": "detected",
+      "log": "mutation-extension-case.log"
+    },
+    {
+      "name": "port-normalization",
+      "exit_code": 1,
+      "result": "detected",
+      "log": "mutation-port-normalization.log"
+    },
+    {
+      "name": "regex-filter",
+      "exit_code": 1,
+      "result": "detected",
+      "log": "mutation-regex-filter.log"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "javahelp-2.0.05.jar",
+      "url": "https://repo.maven.apache.org/maven2/javax/help/javahelp/2.0.05/javahelp-2.0.05.jar",
+      "status": 200,
+      "bytes": 562749,
+      "sha256": "fcf4922d38ff85184f1d2328317bb60826e14da948abd606ee3d5b8c6a70debd"
+    },
+    {
+      "name": "junit-3.8.1.jar",
+      "url": "https://repo.maven.apache.org/maven2/junit/junit/3.8.1/junit-3.8.1.jar",
+      "status": 200,
+      "bytes": 121070,
+      "sha256": "b58e459509e190bed737f3592bc1950485322846cf10e78ded1d065153012d70"
+    }
+  ],
+  "maven": {
+    "url": "https://dlcdn.apache.org/maven/maven-3/3.10.0/binaries/apache-maven-3.10.0-bin.zip",
+    "bytes": 10102082,
+    "sha512": "22d31676d5b92ed53308c19ecded3245d0efd0cddfec51ec7bab62f4f13ad70ddddceff8e62940e0e8e2421f3cde8106737f4becec0aa034ffeff2a754e88337"
+  },
+  "runtime_stderr_bytes": 0,
+  "artifacts": [
+    {
+      "path": "docs/testing/evidence/compile-original.log",
+      "sha256": "6ca1b286493805419920b9584e9417796245d47280578263149f012d2c0b65dd"
+    },
+    {
+      "path": "docs/testing/evidence/compile.log",
+      "sha256": "d0b6c708b4e37a8375cbe84350d314aa9310292ba76af54d4d532c5db9564181"
+    },
+    {
+      "path": "docs/testing/evidence/LocalFileCharacterizationTest.log",
+      "sha256": "b6ce3d08832ddbffd121044e13404c9a8af54104b22e80d6d75ad5e95e6b6a48"
+    },
+    {
+      "path": "docs/testing/evidence/LocalFileFilterCharacterizationTest.log",
+      "sha256": "ef8c7d8cd792a3b4b4653c45da0d4eab662ac026c0da676026a4f816f87c9eb3"
+    },
+    {
+      "path": "docs/testing/evidence/maven-original.log",
+      "sha256": "36dc67712f573e095bcf7258ef137b2a48ef5821454bf7093897d49f7b723b38"
+    },
+    {
+      "path": "docs/testing/evidence/ModelMappingCharacterizationTest.log",
+      "sha256": "9fd8632edc1ca68689fbc4f226219499b4fa90d0d8437bebad27b3b06cbf3c94"
+    },
+    {
+      "path": "docs/testing/evidence/mutation-extension-case.log",
+      "sha256": "7d6fc8a0390c6c41aaf6ef6f9c111d05f9814db55abe717d63a3b2b8fceb1345"
+    },
+    {
+      "path": "docs/testing/evidence/mutation-port-normalization.log",
+      "sha256": "e0fa8fc285c472eb6afcd509da9729ffac70c081a988bab7a1bc2b751cae611f"
+    },
+    {
+      "path": "docs/testing/evidence/mutation-regex-filter.log",
+      "sha256": "8139fe3ce1dc7f2d5b016d28cf7534b56633b6edf368e54c5bfab819195b79fc"
+    },
+    {
+      "path": "docs/testing/evidence/RemoteHostCharacterizationTest.log",
+      "sha256": "8cfdcc702bb90b32e2a9d180281e7db63b00d976b3d91832969ad9ea07f26d6b"
+    },
+    {
+      "path": "docs/testing/evidence/ZipCharacterizationTest.log",
+      "sha256": "e06a9af4b5d597a98a697ddad10ce34f40f9dd0105158975af597c5424970ba6"
+    },
+    {
+      "path": "docs/testing/screenshots/2026-10-29-baseline-after-close.jpg",
+      "sha256": "8c4c8c7fbed2a0658a4806072af1eb524ef54413e3d2b3d36bf96dbce44dfca2"
+    },
+    {
+      "path": "docs/testing/screenshots/2026-10-29-baseline-connect.jpg",
+      "sha256": "5cad083ff7d917ed65496ab9b06e19c2548d2564eceadd7c278c14ddc684c344"
+    },
+    {
+      "path": "docs/testing/screenshots/2026-10-29-baseline-ftp-menu.jpg",
+      "sha256": "a83ad3392eb635699215840b1e6ac984f1be7e2e05fcef6c72bde96c53832ea8"
+    },
+    {
+      "path": "docs/testing/screenshots/2026-10-29-baseline-two-sessions.jpg",
+      "sha256": "b14895c26d5fcbfa1cf0d0c9b9e61fdcb679d7dae01c1435fd0629beb0be05a2"
+    },
+    {
+      "path": "docs/testing/screenshots/2026-10-29-baseline-workspace.jpg",
+      "sha256": "83be2e714c4270953881f6190943724247d552e326ac186275e2e0a8095dee70"
+    }
+  ]
+}
