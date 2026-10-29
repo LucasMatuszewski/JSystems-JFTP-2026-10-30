@@ -40,3 +40,5 @@ Regeneration changes the examined revision and timing. It does not rewrite the h
 2. Find its callers using direct search. Inspect `ConnectAction`, `FavoritesDlg`, and `FTPSession.reconnect`.
 3. Identify the boundary between the Swing session entry and the external FTP client's `connect/login` calls.
 4. Explain which claims needed method bodies or configuration rather than signatures.
+
+Continue with the [code graph course example](../code-graph/README.md) to compare declaration navigation with extracted relationships and source-verified corrections.

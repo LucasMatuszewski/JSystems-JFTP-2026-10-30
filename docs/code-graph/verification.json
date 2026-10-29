@@ -1,0 +1,79 @@
+{
+  "source_revision": "14e62ceba4e371c2a0b955604b10f065f46f4f7d",
+  "citations": [
+    {
+      "path": "src/main/java/com/myjavaworld/jftp/actions/ConnectAction.java",
+      "sha256": "1c6d72787d08f8a9096dff14d50bad8853bcb9b3be9b5d9c5c9270c576fc868f",
+      "sha256_lf": "a736a551e1cb6cca50e395e12c86b6a3c5e90969d2a84d26df295fadf6d25a39",
+      "start_line": 73,
+      "end_line": 73,
+      "quote": "session.connect(remoteHost);",
+      "status": "observed",
+      "claim": "actionPerformed calls FTPSession.connect."
+    },
+    {
+      "path": "src/main/java/com/myjavaworld/jftp/FavoritesDlg.java",
+      "sha256": "6af5844028d74575fcb4fc9320629c98347aa74cb61f70a82c547db781d4f137",
+      "sha256_lf": "af471b74ff5eb09c4d9db4ed8e76045f27f1f1cb473301c573a3da1a20c2812d",
+      "start_line": 249,
+      "end_line": 249,
+      "quote": "session.connect(selectedHost);",
+      "status": "observed",
+      "claim": "connectButtonPressed calls FTPSession.connect."
+    },
+    {
+      "path": "src/main/java/com/myjavaworld/jftp/FTPSession.java",
+      "sha256": "7ceb1617ec403a910846bb859cf335e5264646f9dbe6cec4611399e07f27243a",
+      "sha256_lf": "e56a851cd9ab528a821f407ecb01fc91a3026c516412d20d3e525941e1b1710c",
+      "start_line": 703,
+      "end_line": 703,
+      "quote": "connect(this.remoteHost);",
+      "status": "observed",
+      "claim": "reconnect calls FTPSession.connect."
+    },
+    {
+      "path": "src/main/java/com/myjavaworld/jftp/FTPSession.java",
+      "sha256": "7ceb1617ec403a910846bb859cf335e5264646f9dbe6cec4611399e07f27243a",
+      "sha256_lf": "e56a851cd9ab528a821f407ecb01fc91a3026c516412d20d3e525941e1b1710c",
+      "start_line": 649,
+      "end_line": 649,
+      "quote": "client.connect(remoteHost.getHostName(), port);",
+      "status": "observed",
+      "claim": "This is a lower-level external FTP client call, not a call to the session entry."
+    }
+  ],
+  "checks": {
+    "target": 555,
+    "callers": [
+      {
+        "source": 3570,
+        "target": 555,
+        "line": 73,
+        "status": "missing",
+        "edge_ids": []
+      },
+      {
+        "source": 3368,
+        "target": 555,
+        "line": 249,
+        "status": "confirmed",
+        "edge_ids": [
+          14563
+        ]
+      },
+      {
+        "source": 556,
+        "target": 555,
+        "line": 703,
+        "status": "confirmed",
+        "edge_ids": [
+          9743
+        ]
+      }
+    ],
+    "rejected_file_edges": [
+      9730
+    ]
+  },
+  "snapshot_sha256": "6d9764593bfe0b401e7878eccc021d922cec0c5e259a6f7f1d7289fa05b88823"
+}

@@ -6,3 +6,6 @@
 /docs/repo-maps/jftp-overview.rust.md -text -whitespace
 /docs/repo-maps/jftp-overview.rust.provenance.json -text
 /docs/repo-maps/source-evidence.json -text
+/docs/code-graph/jftp-code-graph.json -text
+/docs/code-graph/verification.json -text
+/docs/code-graph/jftp-code-graph.html -text

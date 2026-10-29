@@ -2,6 +2,8 @@
 
 Keep the Java desktop application and restore a reproducible development loop first. The shortest useful toolchain is direct search, the native repository map, original-source inspection, citation checking, and then a working Java build with behavior tests. Add source packs or graph navigation when a specific task benefits; defer semantic retrieval until measured search failures justify it.
 
+The follow-up [code graph course example](../code-graph/README.md) provides a portable snapshot, offline viewer, source checks, and reproduction commands. It is a separate follow-up to this investigation.
+
 ## Scope and provenance
 
 - Examined on 2026-10-29 at revision `14e62ceba4e371c2a0b955604b10f065f46f4f7d`.

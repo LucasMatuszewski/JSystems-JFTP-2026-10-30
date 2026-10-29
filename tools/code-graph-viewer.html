@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JFTP code graph — course example</title>
+<style>
+:root{font:15px/1.5 system-ui,sans-serif;color:#20242d;background:#f7f7fa;--brand:#800000;--muted:#606775;--line:#dfe1e8}
+*{box-sizing:border-box}body{margin:0}header{padding:24px 32px;background:white;border-bottom:3px solid var(--brand)}h1{font-size:27px;margin:0 0 6px}p{margin:6px 0}header p{color:var(--muted)}main{max-width:1450px;margin:auto;padding:22px 30px}.controls{display:flex;gap:14px;flex-wrap:wrap;align-items:end}label{display:flex;flex-direction:column;gap:4px}input,select,button{font:inherit}input,select{border:1px solid #aeb3bf;border-radius:5px;padding:8px;background:white;max-width:100%}button{background:white;border:1px solid #b9bec9;border-radius:5px;padding:7px 11px;color:#20242d;cursor:pointer}button:hover{border-color:var(--brand)}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #a661dd;outline-offset:2px}.check{flex-direction:row;align-items:center;padding-bottom:9px}.search{flex:1;min-width:220px}.layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:22px;margin-top:20px}.layout>section,.layout>aside{min-width:0}.results{display:flex;flex-direction:column;gap:6px}.results button{text-align:left;overflow-wrap:anywhere}.results small{display:block;color:var(--muted)}.diagram{overflow-x:auto;background:white;border:1px solid var(--line);border-radius:6px;padding:12px;min-width:0}.diagram svg{display:block;width:100%;min-width:860px;touch-action:pan-y}#selection{overflow-wrap:anywhere}#selection strong{font-size:18px}#selection p{color:var(--muted)}.legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin:12px 0}.legend span::before{content:"";display:inline-block;width:20px;border-top:2px solid #8a93a6;margin:0 5px 4px 0}.legend .verified::before{border-color:var(--brand);border-top-style:dashed}.legend .rejected::before{border-color:#c83f28;border-top-style:dashed}.note{background:#fff3da;border-left:4px solid #ac7100;padding:10px 14px;margin-top:14px}#edge-list{margin-top:12px}#edge-list summary{cursor:pointer}#edge-list ul{padding-left:20px}#edge-list li{margin:8px 0;overflow-wrap:anywhere}code{font:13px ui-monospace,monospace}.meta{font-size:13px;color:var(--muted)}.node rect{fill:#f2f4f8;stroke:#8490a3}.node.selected rect{fill:#fff0f0;stroke:var(--brand);stroke-width:2}.node.file rect{stroke-dasharray:5 3}.node text{fill:#20242d;font:13px system-ui,sans-serif;pointer-events:none}.node{cursor:pointer}.edge{fill:none;stroke:#9ba4b5;stroke-width:1.5}.edge.verified{stroke:var(--brand);stroke-dasharray:6 4;stroke-width:2}.edge.rejected{stroke:#c83f28;stroke-dasharray:3 4}.empty{padding:30px;color:var(--muted)}footer{margin-top:18px;color:var(--muted);font-size:13px}@media(max-width:800px){main,header{padding:16px}.layout{grid-template-columns:1fr}.results{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}.diagram{padding:8px}h1{font-size:23px}}
+</style>
+</head>
+<body>
+<header><h1>JFTP code graph</h1><p>Explore dependencies before changing legacy code. Follow an edge, then verify the original source.</p><p id="stats" class="meta"></p></header>
+<main>
+<div class="controls">
+  <label class="search">Find a class or method<input id="search" type="search" value="FTPSession.connect" placeholder="Try JFTPApplication or FavoritesManager"></label>
+  <label>Direction<select id="direction"><option value="inbound">Callers / incoming</option><option value="outbound">Callees / outgoing</option><option value="both">Both directions</option></select></label>
+  <label>Relationship<select id="relation"><option value="CALLS">Calls</option><option value="IMPORTS">Imports</option><option value="DEFINES_METHOD">Defines method</option><option value="INHERITS">Inherits</option><option value="ALL">All relationships</option></select></label>
+  <label class="check"><input id="verified" type="checkbox">Show source-verified missing caller</label>
+</div>
+<div class="layout"><aside><p class="meta" id="result-count"></p><div id="results" class="results" aria-label="Matching symbols"></div></aside>
+<section>
+  <div id="selection" aria-live="polite"></div>
+  <div class="legend"><span>Raw graph edge</span><span class="verified">Source-verified addition</span><span class="rejected">Rejected file caller</span></div>
+  <div class="diagram"><svg id="graph" role="img" aria-label="Relationships of the selected symbol"></svg><p id="graph-count" class="meta"></p></div>
+  <div id="verification-note" class="note" hidden></div>
+  <details id="edge-list"><summary>Relationship evidence and resolver details</summary><ul></ul></details>
+</section></div>
+<footer>This is a saved syntax-based graph, not a compiler-resolved call graph. Missing edges do not prove unused code. Source bodies, some properties, and external dependency implementation are omitted. Open README.md beside this file for exercises and regeneration commands.</footer>
+</main>
+<script id="graph-data" type="application/json">__JFTP_GRAPH_DATA__</script>
+<script>
+"use strict";
+const data = JSON.parse(document.getElementById("graph-data").textContent);
+const nodes = new Map(data.nodes.map(node => [node.id,node]));
+const byId = id => document.getElementById(id);
+const rejected = new Set(data.verification.rejected_file_edges);
+const incoming = new Map(), outgoing = new Map();
+for (const edge of data.edges) {
+  if (!incoming.has(edge.target)) incoming.set(edge.target,[]);
+  if (!outgoing.has(edge.source)) outgoing.set(edge.source,[]);
+  incoming.get(edge.target).push(edge); outgoing.get(edge.source).push(edge);
+}
+let selected = data.verification.target;
+const ns = "http://www.w3.org/2000/svg";
+function svgElement(tag, attrs = {}, text) {
+  const element = document.createElementNS(ns,tag);
+  for (const [key,value] of Object.entries(attrs)) element.setAttribute(key,value);
+  if (text !== undefined) element.textContent = text;
+  return element;
+}
+function shortName(node) {
+  const name = node.qualified_name.split(".");
+  return node.label === "Method" ? name.slice(-2).join(".") : node.name;
+}
+function pick(id) { selected = id; render(); }
+function search() {
+  const term = byId("search").value.toLowerCase().trim();
+  const matches = data.nodes.filter(node => ["Method","Class","Interface","File"].includes(node.label) && node.qualified_name.toLowerCase().includes(term));
+  matches.sort((a,b) => Number(shortName(b).toLowerCase() === term)-Number(shortName(a).toLowerCase() === term) || a.qualified_name.localeCompare(b.qualified_name));
+  byId("result-count").textContent = `${matches.length} matches · first 16 shown`;
+  byId("results").replaceChildren();
+  for (const node of matches.slice(0,16)) {
+    const button = document.createElement("button"); button.type = "button";
+    button.textContent = shortName(node);
+    const detail = document.createElement("small"); detail.textContent = `${node.label} · ${node.start || "container"}`;
+    button.append(detail); button.addEventListener("click",() => pick(node.id));
+    byId("results").append(button);
+  }
+}
+function render() {
+  const node = nodes.get(selected), direction = byId("direction").value, relation = byId("relation").value;
+  let edges = [...(direction !== "outbound" ? incoming.get(selected) || [] : []), ...(direction !== "inbound" ? outgoing.get(selected) || [] : [])];
+  if (byId("verified").checked && selected === data.verification.target && direction !== "outbound" && ["ALL","CALLS"].includes(relation)) {
+    for (const check of data.verification.callers.filter(check => check.status === "missing")) {
+      edges.push({id:`verified-${check.source}`,source:check.source,target:check.target,type:"CALLS",line:check.line,verified:true});
+    }
+  }
+  edges = [...new Map(edges.filter(edge => relation === "ALL" || edge.type === relation).map(edge => [edge.id,edge])).values()];
+  const total = edges.length;
+  edges = edges.slice(0,32);
+  const left = [...new Set(edges.filter(edge => edge.target === selected).map(edge => edge.source))].filter(id => id !== selected);
+  const right = [...new Set(edges.filter(edge => edge.source === selected).map(edge => edge.target))].filter(id => id !== selected && !left.includes(id));
+  const width = 1020, height = Math.max(260,(Math.max(left.length,right.length)+1)*54);
+  const positions = new Map([[selected,{x:510,y:height/2}]]);
+  for (const [ids,x] of [[left,165],[right,855]]) ids.forEach((id,index) => positions.set(id,{x,y:(index+1)*height/(ids.length+1)}));
+  const svg = byId("graph"); svg.replaceChildren(); svg.setAttribute("viewBox",`0 0 ${width} ${height}`);
+  svg.append(svgElement("title",{},`${shortName(node)}: ${total} matching relationships; ${edges.length} displayed`));
+  const defs = svgElement("defs"), marker = svgElement("marker",{id:"arrow",viewBox:"0 0 10 10",refX:9,refY:5,markerWidth:6,markerHeight:6,orient:"auto-start-reverse"});
+  marker.append(svgElement("path",{d:"M 0 0 L 10 5 L 0 10 z",fill:"context-stroke"})); defs.append(marker); svg.append(defs);
+  for (const edge of edges) {
+    const a=positions.get(edge.source), b=positions.get(edge.target);
+    if (!a || !b || edge.source === edge.target) continue;
+    const sign=b.x>a.x?1:-1, x1=a.x+sign*140, x2=b.x-sign*145;
+    const path=svgElement("path",{d:`M${x1},${a.y} C${(x1+x2)/2},${a.y} ${(x1+x2)/2},${b.y} ${x2},${b.y}`,class:`edge${edge.verified?" verified":""}${rejected.has(edge.id)?" rejected":""}`,"marker-end":"url(#arrow)"});
+    path.append(svgElement("title",{},`${edge.type}: ${shortName(nodes.get(edge.source))} → ${shortName(nodes.get(edge.target))}`)); svg.append(path);
+  }
+  for (const [id,point] of positions) {
+    const item=nodes.get(id), group=svgElement("g",{class:`node${id===selected?" selected":""}${item.label==="File"?" file":""}`,transform:`translate(${point.x},${point.y})`});
+    group.append(svgElement("rect",{x:-140,y:-22,width:280,height:44,rx:7}));
+    const label=shortName(item), displayed=label.length>34?label.slice(0,31)+"…":label;
+    group.append(svgElement("text",{"text-anchor":"middle",y:-2},displayed));
+    group.append(svgElement("text",{"text-anchor":"middle",y:15,style:"font-size:10px;fill:#606775"},`${item.label} · ${item.start || "container"}`));
+    group.append(svgElement("title",{},item.qualified_name)); group.addEventListener("click",()=>pick(id)); svg.append(group);
+  }
+  const title=document.createElement("strong"); title.textContent=shortName(node);
+  const path=document.createElement("p"); path.textContent=`${node.path || "Graph container"}${node.start?`:${node.start}–${node.end}`:""}`;
+  const qualified=document.createElement("code"); qualified.textContent=node.qualified_name;
+  byId("selection").replaceChildren(title,path,qualified);
+  byId("graph-count").textContent=`${edges.length} of ${total} matching edges shown · click a node to explore it`;
+  const note=byId("verification-note"); note.hidden=selected!==data.verification.target;
+  const confirmed=data.verification.callers.filter(check=>check.status==="confirmed").length;
+  note.textContent=`Source check: ${confirmed} of 3 real callers are present. ConnectAction.actionPerformed is missing. The red file edge represents client.connect(...), a lower-level library call, and must not count as a session caller. Toggle the source-verified addition to compare.`;
+  const list=byId("edge-list").querySelector("ul"); list.replaceChildren();
+  for(const edge of edges){
+    const li=document.createElement("li"), other=nodes.get(edge.source===selected?edge.target:edge.source);
+    const button=document.createElement("button");button.type="button";button.textContent=shortName(other);button.addEventListener("click",()=>pick(other.id));
+    const details=document.createElement("span"); details.textContent=` — ${edge.type}; line ${edge.line||"not recorded"}; ${edge.verified?"source-verified addition":rejected.has(edge.id)?"rejected synthetic caller":`${edge.strategy||"no resolver metadata"}; confidence ${edge.confidence??"not recorded"}`}`;
+    li.append(button,details);list.append(li);
+  }
+}
+byId("stats").textContent=`${data.node_count.toLocaleString()} nodes · ${data.edge_count.toLocaleString()} edges · scope ${data.scope} · source ${data.source_revision.slice(0,12)} · CBM ${data.tool.version}`;
+byId("search").addEventListener("input",search);
+for(const id of ["direction","relation","verified"]) byId(id).addEventListener("change",render);
+search();render();
+</script>
+</body>
+</html>
