@@ -1,7 +1,9 @@
 # PRD — JFTP current application
 
-**Date:** 2026-10-29  
-**Status:** AS-IS description, derived from source; desktop and live-server confirmation pending.  
+**Date:** 2026-10-29
+
+**Status:** AS-IS description, derived from source; desktop and live-server confirmation pending.
+
 **Baseline:** application source at `14e62ceba4e371c2a0b955604b10f065f46f4f7d`. Documentation and context tools added since that revision do not change the application.
 
 ## 1. Executive summary

@@ -1,7 +1,9 @@
 # ADR-001 — Establish evidence before modernization
 
-**Date:** 2026-10-29  
-**Status:** Accepted workflow from the user's instructions; application verification remains pending.  
+**Date:** 2026-10-29
+
+**Status:** Accepted workflow from the user's instructions; application verification remains pending.
+
 **Relates to:** [Current architecture](000-main-architecture.md), [PRD](../PRD.md), [repository workflow](../../AGENTS.md)
 
 ## 1. Scope
@@ -51,11 +53,16 @@ For suspected defects, preserve the factual observation and create separate inte
 
 ## 6. Decision
 
-**Status:** Accepted user-directed workflow, 2026-10-29.  
-**Context:** There is no established Java regression suite, and the old build declares unsupported compiler options on this machine. Broad changes would make regressions difficult to distinguish from pre-existing behavior.  
-**Decision:** Recover build/test access without initially changing application behavior; add green characterization of the unchanged source; show critical assertions detecting controlled behavioral mutations; then refactor in small verified steps. For new features and intentional bug/security fixes, run Red → Green → Refactor against the agreed specification.  
-**Alternatives:** Tests written only after a broad rewrite cannot establish baseline equivalence. Tests asserting only private layout or mirroring implementation do not sufficiently protect observable behavior. A compile-only gate misses server, file and desktop failures.  
-**Consequences:** (+) Evidence can distinguish a retained quirk from a corrected defect. (−) Build recovery and controlled runtime setup take time before visual changes.  
+**Status:** Accepted user-directed workflow, 2026-10-29.
+
+**Context:** There is no established Java regression suite, and the old build declares unsupported compiler options on this machine. Broad changes would make regressions difficult to distinguish from pre-existing behavior.
+
+**Decision:** Recover build/test access without initially changing application behavior; add green characterization of the unchanged source; show critical assertions detecting controlled behavioral mutations; then refactor in small verified steps. For new features and intentional bug/security fixes, run Red → Green → Refactor against the agreed specification.
+
+**Alternatives:** Tests written only after a broad rewrite cannot establish baseline equivalence. Tests asserting only private layout or mirroring implementation do not sufficiently protect observable behavior. A compile-only gate misses server, file and desktop failures.
+
+**Consequences:** (+) Evidence can distinguish a retained quirk from a corrected defect. (−) Build recovery and controlled runtime setup take time before visual changes.
+
 **Review trigger:** Any baseline observation contradicts a PRD criterion, or a source/dependency change invalidates fixtures or saved context.
 
 ## 7. Diagrams

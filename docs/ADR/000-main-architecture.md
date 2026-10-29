@@ -1,9 +1,13 @@
 # ADR-000 — JFTP current architecture
 
-**Date:** 2026-10-29  
-**Status:** Observed baseline, retrospective; not approval of the legacy security design.  
-**Product description:** [PRD](../PRD.md)  
-**Source baseline:** `14e62ceba4e371c2a0b955604b10f065f46f4f7d`  
+**Date:** 2026-10-29
+
+**Status:** Observed baseline, retrospective; not approval of the legacy security design.
+
+**Product description:** [PRD](../PRD.md)
+
+**Source baseline:** `14e62ceba4e371c2a0b955604b10f065f46f4f7d`
+
 **Verification and change gate:** [ADR-001](001-baseline-verification.md)
 
 ## 1. Overview and autonomous intake
@@ -113,20 +117,30 @@ The JAR manifest names `com.myjavaworld.jftp.JFTPApplication` and uses a `lib/` 
 
 ### Preserve a factual pre-change baseline
 
-**Status:** Accepted for this takeover by the user's instruction, 2026-10-29.  
-**Context:** A modernization can accidentally turn inferred features into promised behavior or erase legacy compatibility constraints.  
-**Decision:** Freeze the source baseline in this PRD/ADR/evidence set, distinguish observations from runtime confirmation, and require characterization before changing production behavior.  
-**Alternatives:** A web rewrite is outside the user's selected direction. An immediate broad source/dependency upgrade lacks a trustworthy regression baseline.  
-**Consequences:** (+) Reviewers can distinguish retained behavior from intentional fixes. (−) Build recovery and baseline verification precede visible modernization.  
+**Status:** Accepted for this takeover by the user's instruction, 2026-10-29.
+
+**Context:** A modernization can accidentally turn inferred features into promised behavior or erase legacy compatibility constraints.
+
+**Decision:** Freeze the source baseline in this PRD/ADR/evidence set, distinguish observations from runtime confirmation, and require characterization before changing production behavior.
+
+**Alternatives:** A web rewrite is outside the user's selected direction. An immediate broad source/dependency upgrade lacks a trustworthy regression baseline.
+
+**Consequences:** (+) Reviewers can distinguish retained behavior from intentional fixes. (−) Build recovery and baseline verification precede visible modernization.
+
 **Review trigger:** Verified runtime evidence contradicts a source-derived requirement, or a scoped change is approved.
 
 ### Retain the desktop application and modernize in increments
 
-**Status:** Accepted direction from the user, 2026-10-29; no replacement framework/version selected here.  
-**Context:** The implemented value is the desktop local/remote workspace and server integration.  
-**Decision:** Preserve that delivery model while recovering the build and adding testable boundaries in scoped changes. Existing Swing/FTPAPI/serialization mechanisms are **observed legacy mechanisms**, not newly approved architectural choices.  
-**Alternatives:** A new browser product and an untested all-at-once dependency/transport replacement are outside this initial scope. Historical reasons for the current libraries and formats are unknown.  
-**Consequences:** (+) Existing workflows and profile compatibility can be checked incrementally. (−) Tight UI/session coupling, reflection, old data formats and unsafe paths remain work to address explicitly.  
+**Status:** Accepted direction from the user, 2026-10-29; no replacement framework/version selected here.
+
+**Context:** The implemented value is the desktop local/remote workspace and server integration.
+
+**Decision:** Preserve that delivery model while recovering the build and adding testable boundaries in scoped changes. Existing Swing/FTPAPI/serialization mechanisms are **observed legacy mechanisms**, not newly approved architectural choices.
+
+**Alternatives:** A new browser product and an untested all-at-once dependency/transport replacement are outside this initial scope. Historical reasons for the current libraries and formats are unknown.
+
+**Consequences:** (+) Existing workflows and profile compatibility can be checked incrementally. (−) Tight UI/session coupling, reflection, old data formats and unsafe paths remain work to address explicitly.
+
 **Review trigger:** A verified compatibility/security constraint forces a transport, persistence or UI boundary change.
 
 ## 9. Diagrams
