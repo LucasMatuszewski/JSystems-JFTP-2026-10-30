@@ -13,3 +13,6 @@
 /docs/repomix/connection-transfer.provenance.json -text
 /docs/repomix/artifacts/*.json -text
 /tools/resume-after-reset.sh text eol=lf
+/docs/current-state-evidence.json -text
+/docs/uml/rendered/*.svg -text
+/docs/uml/validation.json -text
