@@ -52,6 +52,9 @@ Legacy publishing configuration remains in the POM and was not exercised.
 The root [.gitlab-ci.yml](../.gitlab-ci.yml) runs two parallel jobs on a Linux
 Docker runner with JDK 25, using the pinned Maven Wrapper:
 
+The Java jobs install `unzip` so the Unix wrapper uses the pinned ZIP archive.
+Without it, the wrapper downloads TAR.GZ, which does not match the ZIP checksum.
+
 - `java-lint` runs Checkstyle 3.6.0 against production Java sources. The small
   [ruleset](../ci/checkstyle.xml) rejects empty statements, internal `sun.*`
   imports, mismatched outer type filenames, and lowercase `l` long suffixes.

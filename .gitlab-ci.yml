@@ -11,6 +11,8 @@ stages: [check, review]
 default:
   image: eclipse-temurin:25-jdk
   before_script:
+    # The wrapper's pinned checksum is for ZIP; without unzip it downloads TAR.GZ.
+    - apt-get update && apt-get install -y --no-install-recommends unzip
     - chmod +x mvnw
   cache:
     key: maven
