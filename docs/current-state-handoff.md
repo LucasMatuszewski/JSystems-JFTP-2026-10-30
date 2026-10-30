@@ -65,7 +65,10 @@ pipe unavailable, including retry/reset. A request to restore Computer Use is
 pending. Process/window metadata is not visual or flow acceptance. The owned app
 was stopped. The idle fixture did not exit after STOP; its identity-verified child
 was terminated and child/supervisor exit were verified. A real fixture-lifecycle
-regression test is being prepared separately. No owned app or server remains.
+regression now passes after bounding the first idle socket wait; see
+[fixture lifecycle](testing/fixture-lifecycle.md). Ten FTP and five FTPS cases
+also pass again, with both fixture supervisors exiting zero. No owned app or
+server remains.
 Do not alter desktop/security settings as a workaround.
 
 Uncommitted scope: FlatLaf dependencies and packaged logo/theme, new

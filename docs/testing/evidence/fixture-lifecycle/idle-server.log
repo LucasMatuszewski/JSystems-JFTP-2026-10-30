@@ -1,0 +1,16 @@
+2026-10-30 08:51:45,778 INFO concurrency model: async
+2026-10-30 08:51:45,779 INFO masquerade (NAT) address: None
+2026-10-30 08:51:45,780 INFO passive ports: None
+2026-10-30 08:51:45,780 DEBUG poller: 'pyftpdlib.ioloop.Select'
+2026-10-30 08:51:45,780 DEBUG authorizer: 'pyftpdlib.authorizers.DummyAuthorizer'
+2026-10-30 08:51:45,781 DEBUG handler: '__main__.type'
+2026-10-30 08:51:45,781 DEBUG max connections: 16
+2026-10-30 08:51:45,781 DEBUG max connections per ip: 16
+2026-10-30 08:51:45,782 DEBUG timeout: 300
+2026-10-30 08:51:45,782 DEBUG banner: 'JFTP synthetic loopback integration fixture'
+2026-10-30 08:51:45,782 DEBUG max login attempts: 3
+2026-10-30 08:51:45,783 INFO >>> starting FTP server on 127.0.0.1:61823, pid=13816 <<<
+2026-10-30 08:51:45,897 DEBUG [debug] closing IOLoop (<pyftpdlib.ioloop.Select (fds=1, tasks=0) at 0x16a84f312b0>)
+2026-10-30 08:51:45,898 INFO >>> shutting down FTP server, pid=13816, 0 open socket(s) <<<
+2026-10-30 08:51:45,898 DEBUG [debug] closing IOLoop (<pyftpdlib.ioloop.Select (fds=0, tasks=1) at 0x16a84f312b0>)
+2026-10-30 08:51:45,898 DEBUG [debug] closing IOLoop (<pyftpdlib.ioloop.Select (fds=0, tasks=0) at 0x16a84f312b0>)

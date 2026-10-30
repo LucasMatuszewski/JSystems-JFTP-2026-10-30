@@ -54,8 +54,8 @@ records the candidate hash, tests, mutation, startup and remaining gate.
 
 The owned QA app was stopped. The idle synthetic server did not exit after its
 STOP request; its identity-verified child was terminated and both child and
-supervisor exit were verified. This exposed a fixture lifecycle issue being
-handled separately from application behavior.
+supervisor exit were verified. The resulting [fixture lifecycle fix](fixture-lifecycle.md)
+now passes its real idle-stop regression and both real transport suites.
 Restore Computer Use, relaunch a fresh owned fixture/package, and complete the
 native checks below before committing the runtime feature.
 

@@ -8,6 +8,10 @@ proof of native UI transfer behavior or of every session orchestration path.
 Three callback-cancellation/reconnect characterizations were added on 2026-10-30;
 the current runner requires ten passing cases with zero skips.
 
+The separate [fixture lifecycle check](fixture-lifecycle.md) verifies that an
+idle server honors STOP without a client connection; its polling fix also passed
+the full ten-case FTP and five-case FTPS suites.
+
 ## Run it
 
 On the tested Windows/PowerShell 7/Python 3.14/JDK 25 environment:

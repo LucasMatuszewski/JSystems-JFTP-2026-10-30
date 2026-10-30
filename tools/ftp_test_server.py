@@ -119,7 +119,8 @@ def main():
             server.close_all()
     server.ioloop.call_every(0.1, stop_when_requested)
     try:
-        server.serve_forever()
+        # Bound the first idle socket wait so the STOP timer runs without a client.
+        server.serve_forever(timeout=0.1)
     finally:
         server.close_all()
 

@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-30",
+  "base_revision": "1e18019b8fae0f49787407c99eee602358c90c11",
+  "scope": "repository test fixture only; no Java runtime changes",
+  "red": "STOP without a client did not exit within five seconds; one expected failure",
+  "green": {
+    "cases": 1,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "fixture_exit": 0
+  },
+  "ftp_cases": 10,
+  "ftps_cases": 5,
+  "transport_failures": 0,
+  "transport_errors": 0,
+  "transport_skips": 0,
+  "native_app_ui_tested": false,
+  "source_sha256_lf": {
+    "tools/ftp_test_server.py": "df79546e8e00a969b31f556bf8af95d8996720b4386e409d5e2b168f61e01034",
+    "tests/test_ftp_fixture_lifecycle.py": "01b42740680972785977bbdbc617e38489c25b1447b5c8418bcd708ba264614c"
+  },
+  "artifacts_sha256": {
+    "ftp-maven.log": "0ded6e9da08ff99b68926fe18296771c3674f3c83c19f0b20e897262109c59b0",
+    "ftp-result.json": "4049a95c84496a488e8c8026974f625945fa3bb882058e70dcec87b90f85e649",
+    "ftp-server.log": "f69dbc5c16deeb2a604b63b74bf9785eb89fa14d07b174cf0fb6c69023682762",
+    "ftps-maven.log": "7fe74ff8c437d43bb8f5488ff8856962092138fe41d45815baaf6ff7b75148a3",
+    "ftps-result.json": "fbaa6e931c6fa7df09637d0ee2324119fd2ef0fd1f0fd96f5f4a009a63ee265c",
+    "ftps-server.log": "03bbd5301d283c90212e8c76e879784acd17f96d688860ee0fa64f5819742c3b",
+    "green.log": "8f7c30ce64c0e3bd60389d573b7ef92cfe96d9957ba2136f1ca56a0064559f14",
+    "idle-server.log": "dc490e9d3bbc369028f89189839c408492b78105fc700aaef5c80319d27c88fc",
+    "red.log": "918bff836489d5fa10fca64860733df8ac187ff86e2a32045b8ee64dcda1b341"
+  }
+}

@@ -1,0 +1,41 @@
+test_stop_file_exits_real_fixture_successfully (tests.test_ftp_fixture_lifecycle.FixtureLifecycleTests.test_stop_file_exits_real_fixture_successfully) ... FAIL
+
+======================================================================
+FAIL: test_stop_file_exits_real_fixture_successfully (tests.test_ftp_fixture_lifecycle.FixtureLifecycleTests.test_stop_file_exits_real_fixture_successfully)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\labuser\Dev\jftp\tests\test_ftp_fixture_lifecycle.py", line 92, in test_stop_file_exits_real_fixture_successfully
+    exit_code = process.wait(timeout=5)
+  File "C:\Python314\Lib\subprocess.py", line 1279, in wait
+    return self._wait(timeout=timeout)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\subprocess.py", line 1608, in _wait
+    raise TimeoutExpired(self.args, timeout)
+subprocess.TimeoutExpired: Command '['C:\\Users\\labuser\\Dev\\jftp\\.local\\ftp-test-server\\Scripts\\python.exe', 'C:\\Users\\labuser\\Dev\\jftp\\tools\\ftp_test_server.py', '--root', 'C:\\Users\\labuser\\Dev\\jftp\\.local\\ftp-integration\\fixture-lifecycle-61uoip2g\\root']' timed out after 5 seconds
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\labuser\Dev\jftp\tests\test_ftp_fixture_lifecycle.py", line 95, in test_stop_file_exits_real_fixture_successfully
+    self.fail(f"Fixture failed to exit within 5 seconds after STOP; pid={process.pid}; "
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              f"log: {log_path}; output={log_path.read_text(encoding='utf-8', errors='replace')}")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Fixture failed to exit within 5 seconds after STOP; pid=10108; log: C:\Users\labuser\Dev\jftp\.local\ftp-integration\fixture-lifecycle-61uoip2g\fixture.log; output=2026-10-30 08:51:23,710 INFO concurrency model: async
+2026-10-30 08:51:23,711 INFO masquerade (NAT) address: None
+2026-10-30 08:51:23,712 INFO passive ports: None
+2026-10-30 08:51:23,712 DEBUG poller: 'pyftpdlib.ioloop.Select'
+2026-10-30 08:51:23,713 DEBUG authorizer: 'pyftpdlib.authorizers.DummyAuthorizer'
+2026-10-30 08:51:23,713 DEBUG handler: '__main__.type'
+2026-10-30 08:51:23,714 DEBUG max connections: 16
+2026-10-30 08:51:23,714 DEBUG max connections per ip: 16
+2026-10-30 08:51:23,715 DEBUG timeout: 300
+2026-10-30 08:51:23,715 DEBUG banner: 'JFTP synthetic loopback integration fixture'
+2026-10-30 08:51:23,716 DEBUG max login attempts: 3
+2026-10-30 08:51:23,716 INFO >>> starting FTP server on 127.0.0.1:61816, pid=3032 <<<
+
+
+----------------------------------------------------------------------
+Ran 1 test in 8.174s
+
+FAILED (failures=1)

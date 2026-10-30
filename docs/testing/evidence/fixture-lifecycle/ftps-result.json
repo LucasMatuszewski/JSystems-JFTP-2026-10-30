@@ -1,0 +1,26 @@
+{
+  "fixture": {
+    "pid": 7368,
+    "parent_pid": 11620,
+    "host": "127.0.0.1",
+    "port": 61867,
+    "pyftpdlib": "2.2.0",
+    "root": "C:\\Users\\labuser\\Dev\\jftp\\.local\\ftp-integration\\c4d9cbebae044a78aec5876d5d9cb013\\server",
+    "tls": true
+  },
+  "counts": {
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "elapsed_seconds": 26.28,
+  "application_ui_tested": false,
+  "transport": "FTPAPI 3.0.0",
+  "tls_tested": true,
+  "runner": "maven",
+  "java_runtime_version": "25.0.5+8-LTS",
+  "test_source_sha256_lf": "040ad6a78dbf7303e35f6c82ad1de9a4ffa4b93baf94542be276d815a56cb078",
+  "fixture_supervisor_exit_code": 0,
+  "fixture_stopped": true
+}

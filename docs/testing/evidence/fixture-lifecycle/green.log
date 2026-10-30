@@ -1,0 +1,6 @@
+test_stop_file_exits_real_fixture_successfully (tests.test_ftp_fixture_lifecycle.FixtureLifecycleTests.test_stop_file_exits_real_fixture_successfully) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.157s
+
+OK
