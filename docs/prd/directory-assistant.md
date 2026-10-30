@@ -199,7 +199,7 @@ Settings show the fixed team model, a masked key entry, an action to use the ent
 
 ### External-processing notice and reset confirmation
 
-Before the first send in each conversation, the notice identifies OpenRouter and the serving model provider as external processors, lists the categories of information sent, and states that the user's account pays for usage. Continue accepts and sends the pending question; Cancel returns without sending or clearing the draft.
+Before the first send in each conversation, the notice identifies OpenRouter and the serving model provider as external processors, lists the categories of information sent, and states that the user's account pays for usage. Continue accepts and sends the pending question; Cancel returns without sending or clearing the question.
 
 New chat confirmation states that the current tab's messages and attached snapshot will be cleared. Cancel preserves them; confirmation returns to the attachment empty state. The key remains available until cleared or application exit.
 
