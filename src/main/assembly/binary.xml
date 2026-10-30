@@ -29,11 +29,17 @@
 			</excludes>
 		</fileSet>
 		<fileSet>
+			<directory>${project.basedir}/src/main/distribution</directory>
+			<outputDirectory>/</outputDirectory>
+			<includes>
+				<include>README.md</include>
+			</includes>
+		</fileSet>
+		<fileSet>
 			<outputDirectory>/</outputDirectory>
 			<includes>
 				<include>LICENSE.txt</include>
 				<include>NOTICE.txt</include>
-				<include>README.md</include>
 			</includes>
 		</fileSet>
 		<fileSet>
