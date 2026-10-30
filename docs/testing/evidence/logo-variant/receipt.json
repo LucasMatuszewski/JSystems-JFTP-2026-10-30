@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-30",
+  "source": "assets/logo.svg",
+  "variant": "assets/logo-desktop.svg",
+  "source_sha256": "b5c3165d72b805b0b7c4b2b0a6d25295a26a609a766ba5907c1ef243b3e9b7aa",
+  "variant_sha256": "4329d11c71c7c496518602ed0c380d999d548d46960ee51279ca36bdce9e2150",
+  "source_paths": 15,
+  "variant_paths": 14,
+  "removed_path_index": 13,
+  "retained_paths_identical": true,
+  "viewBox": "0 0 230 72"
+}

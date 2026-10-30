@@ -10,7 +10,7 @@
 Retain Swing and the existing session/transport implementation. Add FlatLaf and
 FlatLaf Extras **3.7.2**, the stable release verified from Maven Central metadata
 on this date. Extras brings JSVG **2.1.0**, as declared by its published POM, to
-paint the original local SVG at display scale. No remote asset request occurs.
+paint the local desktop SVG at display scale. No remote asset request occurs.
 Use FlatLaf's documented pure-Java path by disabling its optional native library
 before installation. The initial native run exposed a JDK 25 restricted
 `System.load` warning from that library. Native window decorations are not needed
@@ -32,8 +32,11 @@ Do not claim this fixes existing background-worker Swing mutations elsewhere.
 
 Use a separate header component with application title/subtitle on the left and
 the supplied logo on the right. Put that header above the existing toolbar in
-the frame's north region. Package only `assets/logo.svg` as a classpath resource
-under `com/myjavaworld/jftp/branding`; preserve the original asset bytes.
+the frame's north region. Package only `assets/logo-desktop.svg` as a classpath
+resource under `com/myjavaworld/jftp/branding`. Preserve `assets/logo.svg` as the
+original reference. The desktop variant removes only the separate outlined
+Polish caption; all mark/wordmark paths, colors and the view box are identical.
+See the [asset comparison and provenance](../../assets/README.md).
 
 The fixed appearance uses white surfaces, primary burgundy **#800000**, light
 **#E6E6E6** borders, readable Arial 14-point desktop controls with logical-font
@@ -107,7 +110,9 @@ Swing tests exercise actual theme installation, English defaults, EDT dispatch,
 logo painting/nonempty bounds and header layout, with no mocks or real windows.
 Real-filesystem tests assert exact English type/display output and preserved
 filenames. Run all 48 existing cases unchanged, plus real FTP/FTPS component
-contracts. Inspect the actual assembled JAR/dependency classpath and original SVG.
+contracts. Inspect the actual assembled JAR/dependency classpath and exact desktop
+SVG bytes. Assert successful SVG loading so a missing-resource placeholder cannot
+satisfy the visible-pixel assertion.
 
 Native QA must start the new package with a synthetic existing profile, inspect
 the header and Connect/Favorites/preferences dialogs, create/close sessions, and

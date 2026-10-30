@@ -32,7 +32,7 @@ a change to the current application, not a replacement product.
 
 | ID | Required observable result |
 |---|---|
-| B-01 | The main workspace displays the supplied JSystems wordmark on the right of a persistent header, without distortion or cropping. |
+| B-01 | The main workspace displays the supplied JSystems mark and complete wordmark on the right of a persistent header, without distortion or cropping. The English desktop variant omits the original Polish caption. |
 | B-02 | The header identifies the application as JSystems FTP and describes the workspace as local and remote files. |
 | B-03 | Workspace and dialog controls use the supplied visual reference, including burgundy emphasis, readable text, visible focus and clear selection. |
 | B-04 | At a desktop width of 1000 pixels the header and file panes remain usable without overlapping the logo or hiding the session controls. |

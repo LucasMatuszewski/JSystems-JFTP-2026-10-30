@@ -70,7 +70,7 @@
     {
       "path": "docs/ADR/003-branded-swing-workspace.md",
       "diagrams": 2,
-      "source_sha256_lf": "7baf97b61b9f11b797c4ebd0125d0b1290375e2681ba6f707dc5d1f5423dd364"
+      "source_sha256_lf": "5976aafe21448eee4dbd3df699efe570cd67b2f5e0c43771c239aef30b3c79c6"
     },
     {
       "path": "docs/ADR/004-java25-platform.md",
@@ -80,7 +80,7 @@
     {
       "path": "docs/prd/branded-desktop.md",
       "diagrams": 1,
-      "source_sha256_lf": "a33549ecf5a0414d9090dacfe57c91e9ecd5b2f957288d3e3399bfcbcff700e7"
+      "source_sha256_lf": "0150d22e039a75343de043bfb067142b0863fb2a240d2fc3b3a0f2d62d3238ad"
     }
   ],
   "browser_errors": []

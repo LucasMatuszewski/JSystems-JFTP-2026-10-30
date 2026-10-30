@@ -181,7 +181,7 @@ White benefit cards use burgundy circular icons and restrained shadows. Testimon
 
 ## Logo usage
 
-Use the supplied SVG without stretching or cropping. Preserve its `230:72` aspect ratio and complete wordmark. The header displayed it at approximately 207 × 72 rendered pixels in the sampled desktop environment; use the SVG view box for intrinsic proportions rather than reproducing that measurement as a stretched image.
+Use the supplied SVG without stretching or cropping. Preserve its `230:72` aspect ratio and complete wordmark. For the English desktop, use `assets/logo-desktop.svg`: it omits only the separate Polish caption while retaining every mark/wordmark path and the original view box. Keep `assets/logo.svg` as the unmodified reference; see [asset provenance](../assets/README.md). The header displayed the original at approximately 207 × 72 rendered pixels in the sampled desktop environment; use the SVG view box for intrinsic proportions rather than reproducing that measurement as a stretched image.
 
 On light backgrounds, use the original colored logo. The website creates the white version on dark or image backgrounds with `filter:brightness(0) invert(1)`; no separate inverted asset was found or generated. Keep sufficient clear space for legibility; no official minimum size or exclusion-zone rule was available. The source logo is [logo-colored.svg](https://jsystems.pl/static/images/logo-colored.svg).
 
