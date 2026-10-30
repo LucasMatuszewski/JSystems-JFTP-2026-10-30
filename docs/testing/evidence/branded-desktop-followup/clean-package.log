@@ -1,0 +1,100 @@
+[INFO] Scanning for projects...
+[INFO] Loaded 24294 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] 
+[INFO] ------------------------< com.myjavaworld:jftp >------------------------
+[INFO] Building jftp 5.0.2-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] Loaded 24294 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] 
+[INFO] --- clean:3.5.0:clean (default-clean) @ jftp ---
+[INFO] Deleting C:\Users\labuser\Dev\jftp\target
+[INFO] 
+[INFO] --- resources:3.5.0:resources (default-resources) @ jftp ---
+[INFO] Copying 1 resource from assets to target\classes\com\myjavaworld\jftp\branding
+[INFO] Copying 58 resources from src\main\resources to target\classes
+[INFO] Copying 57 resources from src\main\resources_de to target\classes
+[INFO] Copying 58 resources from src\main\resources_zh_TW to target\classes
+[INFO] Copying 50 resources from src\main\images to target\classes
+[INFO] Copying 155 resources from src\main\help to target\classes
+[INFO] 
+[INFO] --- compiler:3.16.0:compile (default-compile) @ jftp ---
+[INFO] Loaded 74 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 184 source files with javac [debug release 8] to target\classes
+[WARNING] source value 8 is obsolete and will be removed in a future release
+[WARNING] target value 8 is obsolete and will be removed in a future release
+[WARNING] To suppress warnings about obsolete options, use -Xlint:-options.
+[INFO] /C:/Users/labuser/Dev/jftp/src/main/java/com/myjavaworld/jftp/FavoritesDlg.java: C:\Users\labuser\Dev\jftp\src\main\java\com\myjavaworld\jftp\FavoritesDlg.java uses or overrides a deprecated API.
+[INFO] /C:/Users/labuser/Dev/jftp/src/main/java/com/myjavaworld/jftp/FavoritesDlg.java: Recompile with -Xlint:deprecation for details.
+[INFO] /C:/Users/labuser/Dev/jftp/src/main/java/com/myjavaworld/gui/MComboBox.java: Some input files use unchecked or unsafe operations.
+[INFO] /C:/Users/labuser/Dev/jftp/src/main/java/com/myjavaworld/gui/MComboBox.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ jftp ---
+[INFO] Copying 1 resource from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.16.0:testCompile (default-testCompile) @ jftp ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 13 source files with javac [debug release 8] to target\test-classes
+[WARNING] source value 8 is obsolete and will be removed in a future release
+[WARNING] target value 8 is obsolete and will be removed in a future release
+[WARNING] To suppress warnings about obsolete options, use -Xlint:-options.
+[INFO] /C:/Users/labuser/Dev/jftp/src/test/java/com/myjavaworld/jftp/FavoritesPersistenceCharacterizationTest.java: C:\Users\labuser\Dev\jftp\src\test\java\com\myjavaworld\jftp\FavoritesPersistenceCharacterizationTest.java uses unchecked or unsafe operations.
+[INFO] /C:/Users/labuser/Dev/jftp/src/test/java/com/myjavaworld/jftp/FavoritesPersistenceCharacterizationTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- surefire:3.6.1:test (default-test) @ jftp ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.myjavaworld.jftp.DesktopAppearanceTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.275 s -- in com.myjavaworld.jftp.DesktopAppearanceTest
+[INFO] Running com.myjavaworld.jftp.DesktopBootstrapTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.024 s -- in com.myjavaworld.jftp.DesktopBootstrapTest
+[INFO] Running com.myjavaworld.jftp.FavoritesPersistenceCharacterizationTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.303 s -- in com.myjavaworld.jftp.FavoritesPersistenceCharacterizationTest
+[INFO] Running com.myjavaworld.jftp.LocalePrefsEnglishTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.395 s -- in com.myjavaworld.jftp.LocalePrefsEnglishTest
+[INFO] Running com.myjavaworld.jftp.LocalFileCharacterizationTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.263 s -- in com.myjavaworld.jftp.LocalFileCharacterizationTest
+[INFO] Running com.myjavaworld.jftp.LocalFileEnglishDisplayTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.086 s -- in com.myjavaworld.jftp.LocalFileEnglishDisplayTest
+[INFO] Running com.myjavaworld.jftp.LocalFileFilterCharacterizationTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.248 s -- in com.myjavaworld.jftp.LocalFileFilterCharacterizationTest
+[INFO] Running com.myjavaworld.jftp.ModelMappingCharacterizationTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.072 s -- in com.myjavaworld.jftp.ModelMappingCharacterizationTest
+[INFO] Running com.myjavaworld.jftp.PreferencesCharacterizationTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.194 s -- in com.myjavaworld.jftp.PreferencesCharacterizationTest
+[INFO] Running com.myjavaworld.jftp.RemoteHostCharacterizationTest
+[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.069 s -- in com.myjavaworld.jftp.RemoteHostCharacterizationTest
+[INFO] Running com.myjavaworld.zip.ZipCharacterizationTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.211 s -- in com.myjavaworld.zip.ZipCharacterizationTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 62, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.5.1:jar (default-jar) @ jftp ---
+[INFO] Building jar: C:\Users\labuser\Dev\jftp\target\jftp-5.0.2-SNAPSHOT.jar
+[INFO] 
+[INFO] --- source:3.4.0:jar-no-fork (default) @ jftp ---
+[INFO] Building jar: C:\Users\labuser\Dev\jftp\target\jftp-5.0.2-SNAPSHOT-sources.jar
+[INFO] 
+[INFO] --- assembly:3.8.0:single (assemble) @ jftp ---
+[INFO] Reading assembly descriptor: C:\Users\labuser\Dev\jftp/src/main/assembly/binary.xml
+[INFO] Artifact com.myjavaworld:ftpapi:pom:3.0.0 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Building zip: C:\Users\labuser\Dev\jftp\target\jftp-5.0.2-SNAPSHOT-bin.zip
+[INFO] Artifact com.myjavaworld:ftpapi:pom:3.0.0 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Copying files to C:\Users\labuser\Dev\jftp\target\jftp-5.0.2-SNAPSHOT-bin
+[INFO] 11 files copied to C:\Users\labuser\Dev\jftp\target\jftp-5.0.2-SNAPSHOT-bin
+[WARNING] Assembly file: C:\Users\labuser\Dev\jftp\target\jftp-5.0.2-SNAPSHOT-bin is not a regular file (it may be a directory). It cannot be attached to the project build for installation or deployment.
+[INFO] Artifact com.myjavaworld:ftpapi:pom:3.0.0 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Building tar: C:\Users\labuser\Dev\jftp\target\jftp-5.0.2-SNAPSHOT-bin.tar.gz
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  39.451 s
+[INFO] Finished at: 2026-10-30T08:30:14+01:00
+[INFO] ------------------------------------------------------------------------

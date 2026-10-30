@@ -19,14 +19,45 @@ choices. A further regression first failed without the selected pure-Java FlatLa
 configuration. Original source/profile characterization tests remain unchanged.
 
 - The normal wrapper package passes **62 local cases**, zero failures/errors/skips.
-- Four archive checks pass, including exact supplied-logo bytes, theme resources,
-  main entry, runtime classpath and product-document selection.
+- Five archive checks pass, including exact desktop-logo bytes, theme resources,
+  main entry, runtime classpath, product-document selection and README links.
 - The direct-source runner independently passes the same 62 cases.
 - [Java 25 readiness](java25-readiness.md) records 62 local, ten real FTP and five
   explicit FTPS cases on Temurin 25.0.5 with release-25 application/test classes.
   The default POM target was restored to release 8 after that compatibility probe.
 
 These counts do not establish final native transfer acceptance for the branded UI.
+
+## Latest follow-up: English logo and restored desktop access
+
+The [English desktop logo](../../assets/README.md) now omits only the separate
+Polish caption. Its mark, complete wordmark, colors and view box are unchanged;
+the original asset remains the visual reference. An actual-ZIP regression first
+failed because the old archive lacked the desktop asset, then passed after the
+resource/renderer update. The SVG test now also asserts successful resource
+loading: hiding the compiled SVG caused exactly one expected assertion failure
+among five appearance cases; restoring it returned all five to green. No source
+or packaged asset was mutated for that controlled check.
+
+The clean normal package and independent direct-source runner both pass 62
+cases, with no failures/errors/skips. All five archive checks pass. The
+[standalone distribution README](distribution-readme.md) is also verified.
+
+Windows now reports an active session. The copied final candidate created a
+responding window titled `JSystems FTP` on the verified Temurin 25.0.5+8 runtime.
+Its startup log has no earlier optional-native-library warning. These are
+process/window metadata and log observations, not visual acceptance: both desktop
+control tools report `Computer Use native pipe is unavailable`, including the
+documented retry and kernel-reset path. No final screenshot or UI input was
+possible. [Follow-up evidence](evidence/branded-desktop-followup/result.json)
+records the candidate hash, tests, mutation, startup and remaining gate.
+
+The owned QA app was stopped. The idle synthetic server did not exit after its
+STOP request; its identity-verified child was terminated and both child and
+supervisor exit were verified. This exposed a fixture lifecycle issue being
+handled separately from application behavior.
+Restore Computer Use, relaunch a fresh owned fixture/package, and complete the
+native checks below before committing the runtime feature.
 
 ## Native observations before the last startup adjustment
 
@@ -59,12 +90,13 @@ Compared with `assets/homepage.png` and `docs/design-guidelines.md`, the candida
 now uses the supplied wordmark, white surfaces, burgundy emphasis/focus/selection,
 larger text and clearer row spacing. Arial is the documented desktop fallback;
 Poppins is not bundled. Legacy toolbar icons and the historical version banner
-remain follow-up work. The supplied logo's small Polish caption also needs an
-English-desktop asset decision before claiming an entirely English presentation.
+remain follow-up work. The original logo's small Polish caption is omitted by
+the desktop variant; its final native appearance still needs inspection.
 
 The earlier successful run exposed a JDK 25 warning from FlatLaf's optional
 native library. The implementation now selects its documented pure-Java path;
-the configuration regression passes. Its final real-window check remains pending.
+the configuration regression and latest startup-log check pass. Visual and flow
+inspection of that final window remains pending.
 The [recorded evidence](evidence/branded-desktop/result.json) preserves that warning,
 the final package/test results, screenshot hashes and the later startup diagnostic.
 
@@ -76,7 +108,7 @@ Owned QA application instances and FTP fixtures have been closed.
 When desktop access returns: launch the copied final distribution on the selected
 JDK, check startup logs/window frames and touched dialogs, repeat Connect cancel
 and tab controls, and complete real binary upload/download with byte comparisons.
-Capture final screenshots and resolve the remaining logo-language detail before
+Capture final screenshots and inspect the desktop logo before
 the runtime commit. Native FTPS and F12/interrupted-transfer tests remain separate
 overall-modernization gates. The [older unbranded FTP run](native-ftp.md) is useful
 baseline evidence, not a substitute for these checks.

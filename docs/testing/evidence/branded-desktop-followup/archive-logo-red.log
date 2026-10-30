@@ -1,0 +1,23 @@
+test_branded_logo_theme_and_runtime_libraries_are_packaged (tests.test_distribution.DistributionTests.test_branded_logo_theme_and_runtime_libraries_are_packaged) ... ERROR
+
+======================================================================
+ERROR: test_branded_logo_theme_and_runtime_libraries_are_packaged (tests.test_distribution.DistributionTests.test_branded_logo_theme_and_runtime_libraries_are_packaged)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\labuser\Dev\jftp\tests\test_distribution.py", line 59, in test_branded_logo_theme_and_runtime_libraries_are_packaged
+    app.read("com/myjavaworld/jftp/branding/logo-desktop.svg"))
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\zipfile\__init__.py", line 1715, in read
+    with self.open(name, "r", pwd) as fp:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\zipfile\__init__.py", line 1752, in open
+    zinfo = self.getinfo(name)
+  File "C:\Python314\Lib\zipfile\__init__.py", line 1680, in getinfo
+    raise KeyError(
+        'There is no item named %r in the archive' % name)
+KeyError: "There is no item named 'com/myjavaworld/jftp/branding/logo-desktop.svg' in the archive"
+
+----------------------------------------------------------------------
+Ran 1 test in 0.089s
+
+FAILED (errors=1)

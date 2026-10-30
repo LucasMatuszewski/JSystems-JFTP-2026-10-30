@@ -1,0 +1,12 @@
+2026-10-30 08:32:28,861 INFO concurrency model: async
+2026-10-30 08:32:28,862 INFO masquerade (NAT) address: None
+2026-10-30 08:32:28,862 INFO passive ports: None
+2026-10-30 08:32:28,862 DEBUG poller: 'pyftpdlib.ioloop.Select'
+2026-10-30 08:32:28,863 DEBUG authorizer: 'pyftpdlib.authorizers.DummyAuthorizer'
+2026-10-30 08:32:28,863 DEBUG handler: '__main__.type'
+2026-10-30 08:32:28,863 DEBUG max connections: 16
+2026-10-30 08:32:28,863 DEBUG max connections per ip: 16
+2026-10-30 08:32:28,864 DEBUG timeout: 300
+2026-10-30 08:32:28,864 DEBUG banner: 'JFTP synthetic loopback integration fixture'
+2026-10-30 08:32:28,864 DEBUG max login attempts: 3
+2026-10-30 08:32:28,864 INFO >>> starting FTP server on 127.0.0.1:60874, pid=10804 <<<

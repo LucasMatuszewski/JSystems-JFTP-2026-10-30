@@ -46,7 +46,7 @@ component cases pass, and one controlled ineffective-abort mutation makes exactl
 those three fail; the normal client then passes all ten FTP cases again.
 
 The latest normal wrapper `clean package` command passed with 62 tests and zero
-failures/errors/skips, followed by four archive checks. The separate launcher fix
+failures/errors/skips, followed by five archive checks. The separate launcher fix
 is committed as `2973a21`. The pre-existing release-8/deprecation and assembly
 directory-attachment diagnostics remain documented.
 
@@ -58,19 +58,34 @@ preferences, synthetic favorite loading and real directory listing, with eleven
 screenshots. It deliberately does not claim final native transfer acceptance.
 
 The last adjustment disables FlatLaf's optional native library after observing a
-new JDK warning. Its configuration test passes, but the final native launch was
-interrupted by the environment: Windows reports the RDP session as `Disc`, and
-both installed/new Java probes report no desktop access. A reconnect request is
-pending. Do not force headless mode off or alter desktop/security settings.
-No QA app or owned FTP fixture is left running.
+new JDK warning. Windows desktop access has returned: the copied candidate creates
+a responding `JSystems FTP` window on Temurin 25.0.5+8, with no native-library
+warning. The current gate is different: both Computer Use tools report the native
+pipe unavailable, including retry/reset. A request to restore Computer Use is
+pending. Process/window metadata is not visual or flow acceptance. The owned app
+was stopped. The idle fixture did not exit after STOP; its identity-verified child
+was terminated and child/supervisor exit were verified. A real fixture-lifecycle
+regression test is being prepared separately. No owned app or server remains.
+Do not alter desktop/security settings as a workaround.
 
 Uncommitted scope: FlatLaf dependencies and packaged logo/theme, new
 `DesktopBootstrap`, `DesktopAppearance`, `BrandHeader`, EDT startup, main-frame
 header/title/minimum size, table row minimum, English local file descriptions,
 fixed appearance/locale preferences, four test classes, archive checks,
 README and Java CRLF whitespace attributes. Preserve these edits and finish
-native QA before the runtime commit. The original logo still has a small Polish
-caption; prepare an English-desktop variant while retaining the original asset.
+native QA before the runtime commit. The English desktop SVG omits only the
+separate Polish caption and preserves every mark/wordmark path and the view box;
+the original reference remains intact. Asset/provenance commit: `e9706bf`.
+The current candidate JAR SHA-256 is
+`85d95eec316eec3a38b8afacfab1415ebe793a935839e53104617232cc0940ec`.
+The strengthened resource-loading assertion detects a missing compiled SVG
+(one expected failure in five cases), then all five pass after restoration.
+The full package and direct-source runner each pass 62 cases. Follow-up evidence
+is in `docs/testing/evidence/branded-desktop-followup/`.
+
+Distribution documentation is separately fixed in `f361d46`: a standalone user
+README replaces repository-only links in the ZIP, with a real-archive link test.
+Commit `73c2c87` keeps the direct-source runner aligned with the desktop asset.
 
 ## Java platform readiness
 
@@ -110,13 +125,13 @@ was armed. Original local attempt markers and logs remain under ignored
 
 ## Next coordinator work
 
-1. Prepare the English-desktop logo variant, preserve the original asset, and
-   strengthen logo loading checks against a missing-resource placeholder.
-2. When Windows desktop access returns, launch a copied final distribution using
+1. Restore Computer Use's native pipe; Windows itself is already active. The
+   previous owned app and fixture have stopped.
+2. When native control returns, launch a copied final distribution using
    the verified JDK, complete native upload/download byte checks and final
    screenshots, then commit the scoped desktop implementation. The helper under
-   `.local/launch-branded.py` currently invokes Java through PATH; select the new
-   JDK explicitly for that QA run. Use owned synthetic fixtures only.
+   `.local/launch-branded.py` now selects the verified cached JDK explicitly,
+   including the launcher's process-local PATH. Use owned synthetic fixtures only.
 3. Adopt release 25 and retire the applet/unused Apple adapter under ADR-004,
    retaining the actively used macOS integration until its separate migration.
 4. Address transport trust, archive containment, credential storage and worker/UI

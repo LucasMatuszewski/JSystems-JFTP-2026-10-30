@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-30",
+  "base_revision": "73c2c87c77cde3aff2746294948001ad51db8d41",
+  "runtime_scope": "uncommitted branded desktop feature",
+  "local_cases": 62,
+  "local_failures": 0,
+  "local_errors": 0,
+  "local_skips": 0,
+  "archive_checks": 5,
+  "direct_source_cases": 62,
+  "missing_resource_mutation": {
+    "cases": 5,
+    "failures": 1,
+    "errors": 0,
+    "skips": 0,
+    "restored_passes": 5
+  },
+  "candidate_jar_sha256": "85d95eec316eec3a38b8afacfab1415ebe793a935839e53104617232cc0940ec",
+  "archive_sha256": "6786fa912248454255f3241283cbee35d35b3080e5c596e6554898502176f2e2",
+  "native_acceptance": false,
+  "new_native_screenshots": 0,
+  "blocker": "Windows active; both desktop tools report Computer Use native pipe unavailable, including documented retry/reset",
+  "cleanup": "Owned app stopped. Idle fixture did not exit after STOP; identity-verified fixture terminated and both child/supervisor exit verified.",
+  "source_sha256_lf": {
+    "pom.xml": "44a24496a51973fcdb50a6d31f0d36343a3928262de0adfe59e2e37b45c13177",
+    "src/main/java/com/myjavaworld/jftp/BrandHeader.java": "9e98266452bfdf4c497e4d075ece6acdd4fef2c4db90bc573e4571c8d5a33958",
+    "src/test/java/com/myjavaworld/jftp/DesktopAppearanceTest.java": "948421fa6c10e2a90aff652979e61fb6c7a7c9cb122377b767e54186f4f2f67c",
+    "tests/test_distribution.py": "aafd6dc7ef24f53a8a4af3cf012a1bd5562b234b38c1e90231002b472d39a577",
+    "assets/logo-desktop.svg": "4329d11c71c7c496518602ed0c380d999d548d46960ee51279ca36bdce9e2150"
+  },
+  "artifacts_sha256": {
+    "clean-package.log": "f56734a419c0a7ffa897317504a0bcad0f62365e4211799f28c5d40763726fbb",
+    "direct-source.log": "6083ed24949a8a5e5feee1aff6b4a4e647d4857729aff5a5762c3f064c9d49a8",
+    "missing-resource-mutation.log": "40bbb8e8ac440ee692d602586ff5f6dd4f1c111603163c8c7ae1e99a335df8a0",
+    "restored-resource.log": "5b0f64cf5fd3d886897900ec2e1c32a8f1ddd356eeb795f894516485e0008533",
+    "archive-logo-red.log": "15564ed8f8d43bb206b00b1790dd92b4dbc9aadf76c5a42ef3a93dfa22b01761",
+    "startup-metadata.json": "edb9d8490255b20a6ac3955887463d92b9248f7544e3e5a839f5c5c8de7b74ce",
+    "startup-stderr.log": "36aa9e0d1771bd45e84df98fc68712e8b75125aec58aaaab49b176e09da130c4",
+    "startup-stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "fixture.log": "6bb9ee3f811582ea91ef937540c54cccaf48b1ad734ffbb075775f07a419811c"
+  }
+}

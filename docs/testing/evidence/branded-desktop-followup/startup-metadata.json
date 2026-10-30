@@ -1,0 +1,11 @@
+{
+  "ObservedAt": "2026-10-30T08:34:19.4531193+01:00",
+  "ProcessId": 10036,
+  "ParentId": 14000,
+  "Title": "JSystems FTP",
+  "HasWindow": true,
+  "Responding": true,
+  "JavaExecutable": "C:\\Users\\labuser\\.jftp-build-cache\\jdk\\25.0.5+8\\jdk-25.0.5+8\\bin\\java.exe",
+  "JarSha256": "85d95eec316eec3a38b8afacfab1415ebe793a935839e53104617232cc0940ec",
+  "Scope": "Process/window metadata only; no native visual or flow acceptance"
+}
