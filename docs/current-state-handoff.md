@@ -1,5 +1,10 @@
 # JFTP modernization handoff — 2026-10-30
 
+**Latest state:** [scheduled resume handoff](scheduled-resume-handoff.md) supersedes
+the counts, native-access state and ZIP implementation status below. It records
+the working-tree implementation, 85-case package, startup-locale correction and
+the user's 13:30 continuation schedule. Earlier milestones are retained here.
+
 The active objective is incremental modernization of the existing Java desktop
 client: keep a verified regression baseline, improve the runtime and security,
 apply the supplied JSystems brand, and validate real desktop and server workflows.

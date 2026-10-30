@@ -1,0 +1,15 @@
+test_cancel_file_prevents_a_model_call (tests.test_resume_monitor.ResumeMonitorTests.test_cancel_file_prevents_a_model_call) ... ok
+test_recent_session_activity_defers_execution (tests.test_resume_monitor.ResumeMonitorTests.test_recent_session_activity_defers_execution) ... ok
+test_shared_cancel_file_prevents_a_model_call (tests.test_resume_monitor.ResumeMonitorTests.test_shared_cancel_file_prevents_a_model_call) ... ok
+test_waits_until_deadline_then_resumes_exact_thread_once (tests.test_resume_monitor.ResumeMonitorTests.test_waits_until_deadline_then_resumes_exact_thread_once) ... ok
+test_cancel_before_deadline_prevents_execution (tests.test_recurring_resume_monitor.RecurringResumeMonitorTests.test_cancel_before_deadline_prevents_execution) ... ok
+test_cancel_propagates_while_session_activity_defers_execution (tests.test_recurring_resume_monitor.RecurringResumeMonitorTests.test_cancel_propagates_while_session_activity_defers_execution) ... ok
+test_failed_attempt_is_logged_and_next_scheduled_cycle_still_runs (tests.test_recurring_resume_monitor.RecurringResumeMonitorTests.test_failed_attempt_is_logged_and_next_scheduled_cycle_still_runs) ... ok
+test_long_execution_never_overlaps_the_next_cycle (tests.test_recurring_resume_monitor.RecurringResumeMonitorTests.test_long_execution_never_overlaps_the_next_cycle) ... ok
+test_offset_deadline_and_recurring_calls_keep_valid_resume_arguments (tests.test_recurring_resume_monitor.RecurringResumeMonitorTests.test_offset_deadline_and_recurring_calls_keep_valid_resume_arguments) ... ok
+test_second_monitor_cannot_claim_the_same_schedule (tests.test_recurring_resume_monitor.RecurringResumeMonitorTests.test_second_monitor_cannot_claim_the_same_schedule) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 52.381s
+
+OK

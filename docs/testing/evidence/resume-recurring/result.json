@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-30",
+  "cli_version": "0.166.0",
+  "cli_component": "standalone Codex CLI via stable application bin link, not app-server-daemon",
+  "tests": 10,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "real_model_calls_during_validation": 0,
+  "first_at": "2026-10-30T13:30:00+01:00",
+  "timezone": "Europe/Warsaw",
+  "interval_seconds": 18600,
+  "future_model_resume_outcome": "Not yet observable; machine-local live monitor receipt is ignored",
+  "source_sha256_lf": {
+    "tools/resume-recurring.sh": "e181941d49312123c247b737575968495a61cf220204e4dd2378bd160912a8cc",
+    "tools/resume-after-reset.sh": "42af2b2b843bf415edc47d833b3749d4d60bdfd9ca39afefeb74fa16fef8f039",
+    "tests/test_resume_monitor.py": "cc070017f975ba44753ef49ddcb7a666066e58b557a9b92e358712158642090e",
+    "tests/test_recurring_resume_monitor.py": "31d26ebe15c3bcd9872d6a6202391e1510c8e30ede8c2f20c8be0c77a00aa3f1"
+  },
+  "artifacts_sha256": {
+    "cli-parser.log": "05ef9c67d6efae6e685d440e4f3ec80e9b2d9119152230eaaf5e5290c69b5a96",
+    "initial-red.log": "06eb8aa6eebec4271b3b69c60540e10f4ad396c07ae40638be153e7754e77330",
+    "shared-cancel-red.log": "aef398d0139f2e2982ad9ec82bf27db6016e1d8c86e521f2b754f4705ffefe6e",
+    "tests.log": "aec09d4c1b096546c16e9adf9b7c78186a522111cf6a6b907220b18fc6dfba0b"
+  }
+}

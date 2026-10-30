@@ -1,0 +1,80 @@
+test_cancel_before_deadline_prevents_execution (tests.test_recurring_resume_monitor.RecurringResumeMonitorTests.test_cancel_before_deadline_prevents_execution) ... FAIL
+test_cancel_propagates_while_session_activity_defers_execution (tests.test_recurring_resume_monitor.RecurringResumeMonitorTests.test_cancel_propagates_while_session_activity_defers_execution) ... FAIL
+C:\Python314\Lib\unittest\case.py:668: ResourceWarning: unclosed file <_io.BufferedReader name=4>
+  with outcome.testPartExecutor(self):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+C:\Python314\Lib\unittest\case.py:668: ResourceWarning: unclosed file <_io.BufferedReader name=3>
+  with outcome.testPartExecutor(self):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+test_failed_attempt_is_logged_and_next_scheduled_cycle_still_runs (tests.test_recurring_resume_monitor.RecurringResumeMonitorTests.test_failed_attempt_is_logged_and_next_scheduled_cycle_still_runs) ... FAIL
+test_long_execution_never_overlaps_the_next_cycle (tests.test_recurring_resume_monitor.RecurringResumeMonitorTests.test_long_execution_never_overlaps_the_next_cycle) ... FAIL
+test_offset_deadline_and_recurring_calls_keep_valid_resume_arguments (tests.test_recurring_resume_monitor.RecurringResumeMonitorTests.test_offset_deadline_and_recurring_calls_keep_valid_resume_arguments) ... FAIL
+test_second_monitor_cannot_claim_the_same_schedule (tests.test_recurring_resume_monitor.RecurringResumeMonitorTests.test_second_monitor_cannot_claim_the_same_schedule) ... FAIL
+
+======================================================================
+FAIL: test_cancel_before_deadline_prevents_execution (tests.test_recurring_resume_monitor.RecurringResumeMonitorTests.test_cancel_before_deadline_prevents_execution)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\labuser\Dev\jftp\tests\test_recurring_resume_monitor.py", line 85, in test_cancel_before_deadline_prevents_execution
+    self.assertEqual(0, result.returncode, result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 127 : /usr/bin/bash: /c/Users/labuser/Dev/jftp/tools/resume-recurring.sh: No such file or directory
+
+
+======================================================================
+FAIL: test_cancel_propagates_while_session_activity_defers_execution (tests.test_recurring_resume_monitor.RecurringResumeMonitorTests.test_cancel_propagates_while_session_activity_defers_execution)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\labuser\Dev\jftp\tests\test_recurring_resume_monitor.py", line 111, in test_cancel_propagates_while_session_activity_defers_execution
+    self.wait_for_file(self.base / "busy/active-cycle", process)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\labuser\Dev\jftp\tests\test_recurring_resume_monitor.py", line 32, in wait_for_file
+    self.fail(f"Monitor did not reach expected state: {path}; exit={process.poll()}")
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Monitor did not reach expected state: C:\Users\labuser\Dev\jftp\.local\resume-tests\jftp-resume-test-oqlhi0ic\busy\active-cycle; exit=127
+
+======================================================================
+FAIL: test_failed_attempt_is_logged_and_next_scheduled_cycle_still_runs (tests.test_recurring_resume_monitor.RecurringResumeMonitorTests.test_failed_attempt_is_logged_and_next_scheduled_cycle_still_runs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\labuser\Dev\jftp\tests\test_recurring_resume_monitor.py", line 74, in test_failed_attempt_is_logged_and_next_scheduled_cycle_still_runs
+    self.assertEqual(0, result.returncode, result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 127 : /usr/bin/bash: /c/Users/labuser/Dev/jftp/tools/resume-recurring.sh: No such file or directory
+
+
+======================================================================
+FAIL: test_long_execution_never_overlaps_the_next_cycle (tests.test_recurring_resume_monitor.RecurringResumeMonitorTests.test_long_execution_never_overlaps_the_next_cycle)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\labuser\Dev\jftp\tests\test_recurring_resume_monitor.py", line 66, in test_long_execution_never_overlaps_the_next_cycle
+    self.assertEqual(0, result.returncode, result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 127 : /usr/bin/bash: /c/Users/labuser/Dev/jftp/tools/resume-recurring.sh: No such file or directory
+
+
+======================================================================
+FAIL: test_offset_deadline_and_recurring_calls_keep_valid_resume_arguments (tests.test_recurring_resume_monitor.RecurringResumeMonitorTests.test_offset_deadline_and_recurring_calls_keep_valid_resume_arguments)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\labuser\Dev\jftp\tests\test_recurring_resume_monitor.py", line 45, in test_offset_deadline_and_recurring_calls_keep_valid_resume_arguments
+    self.assertEqual(0, process.returncode, (stdout, stderr))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 127 : (b'', b'/usr/bin/bash: /c/Users/labuser/Dev/jftp/tools/resume-recurring.sh: No such file or directory\n')
+
+======================================================================
+FAIL: test_second_monitor_cannot_claim_the_same_schedule (tests.test_recurring_resume_monitor.RecurringResumeMonitorTests.test_second_monitor_cannot_claim_the_same_schedule)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\labuser\Dev\jftp\tests\test_recurring_resume_monitor.py", line 92, in test_second_monitor_cannot_claim_the_same_schedule
+    self.wait_for_file(self.base / "locked/monitor.pid", process)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\labuser\Dev\jftp\tests\test_recurring_resume_monitor.py", line 32, in wait_for_file
+    self.fail(f"Monitor did not reach expected state: {path}; exit={process.poll()}")
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Monitor did not reach expected state: C:\Users\labuser\Dev\jftp\.local\resume-tests\jftp-resume-test-1s7cxvn6\locked\monitor.pid; exit=127
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.739s
+
+FAILED (failures=6)

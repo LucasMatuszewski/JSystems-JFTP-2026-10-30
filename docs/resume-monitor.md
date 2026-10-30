@@ -1,54 +1,74 @@
-# One-time local Codex resume monitor
+# Scheduled local Codex continuation
 
-`tools/resume-after-reset.sh` waits until an explicit deadline, then makes one
-`codex exec --approve-for-me resume SESSION_ID -` call. `--approve-for-me` selects
-workspace-write with automatic approval review; the CLI rejects combining it with `--sandbox`.
-The installed CLI's `exec` and `exec resume --help` were checked on 2026-10-29
-(version 0.165.0). This follows the official [non-interactive session guide](https://developers.openai.com/codex/noninteractive).
-It reuses existing local authentication; no credentials are copied into the repository.
+`tools/resume-recurring.sh` resumes one existing session at an explicit first
+deadline, then on a fixed **18,600-second (5 hour 10 minute)** cadence. It uses
+the tested one-shot helper for each attempt and runs children serially. A long
+run causes missed slots to be skipped; no overlapping or catch-up calls are
+started. A failed attempt is logged, and the next scheduled slot remains armed.
 
-For this session the requested target is **2026-10-29 17:10 Europe/Warsaw
-(16:10 UTC)**, after the user's reported 17:04 reset. The script does not query
-or guarantee quota availability. If Codex still fails, the attempt is logged and
-is not retried automatically.
-
-Run from Git Bash, substituting your own executable, thread, prompt and activity
-paths. Keep private state under the ignored `.local/` directory:
+Use Git Bash on Windows, not the Windows WSL launcher. Supply the verified Codex
+CLI executable rather than an app-server daemon from an old version directory.
+For this launch the application bin link resolves to, and pins, the standalone
+0.166.0 executable; it does not select the old app-server-daemon component.
+The installed CLI 0.166.0 was checked with help, authenticated login status and
+a deliberately absent-session probe. The probe reached thread lookup without
+making a model call. The execution command is:
 
 ```bash
-bash tools/resume-after-reset.sh \
-  --at '2026-10-29T17:10:00+01:00' \
+codex exec --approve-for-me resume SESSION_UUID - < prompt.txt
+```
+
+Do not add `--sandbox`: it conflicts with `--approve-for-me`. See the
+[official command reference](https://learn.chatgpt.com/docs/developer-commands?surface=cli)
+and [non-interactive resume guide](https://learn.chatgpt.com/docs/non-interactive-mode).
+The installed executable's capabilities were checked independently of the docs.
+
+Example from Git Bash; replace the first deadline, session and CLI path:
+
+```bash
+bash tools/resume-recurring.sh \
+  --at '2026-10-30T13:30:00+01:00' \
   --thread 'SESSION_UUID' \
-  --codex '/c/path/to/codex.exe' \
-  --state-dir "$PWD/.local/resume-monitor" \
-  --prompt-file "$PWD/.local/resume-monitor/prompt.txt" \
-  --activity-file '/c/path/to/the/session/rollout.jsonl'
+  --codex '/absolute/path/to/verified/codex' \
+  --state-dir '.local/resume-recurring' \
+  --prompt-file 'tools/resume-work-prompt.txt' \
+  --activity-file '/absolute/path/to/the/session/rollout.jsonl'
 ```
 
-The machine must remain running. After sleep, execution waits until the machine
-wakes; targets more than 12 hours old expire. The script checks every 30 seconds
-and defers until the session file has been quiet for five minutes. File activity
-is a heuristic, not an authoritative Codex busy status: a silent long-running
-operation may look idle. Avoid leaving such an operation running at the target.
+The default activity guard waits for five quiet minutes before invoking Codex.
+This uses the rollout file's modification time, not a quota API. The machine
+must be running and awake; this Bash monitor neither wakes nor reboots Windows.
+`--max-runs N` limits test/demo runs; zero, the default, keeps scheduling until
+cancelled. Each attempt is claimed before launch, with its own logs and exit
+code. A schedule lock prevents a second monitor in the same state directory.
+Do not clear an existing lock while its monitor or child may still be alive.
 
-To cancel, create `.local/resume-monitor/CANCEL`. Inspect `monitor.log` for timer
-and attempt status, `resume.stdout.log` / `resume.stderr.log` for the resumed CLI,
-and `exit-code` for its result. Logs can contain project context; keep them local.
-An atomic directory lock prevents simultaneous monitors using the same state
-directory. The `attempted` marker prevents repeat calls after restart. Use a
-new directory only when deliberately scheduling another attempt.
+The live instance for this request uses the ignored state directory
+`.local/resume-recurring-2026-10-30/`. Its first deadline is **13:30 Warsaw on
+2026-10-30**, followed by **18:40, 23:50, 05:00** and the same elapsed cadence.
+`armed.json` records the exact executable, deadline and launch receipt;
+`next-at`, `monitor.log` and `attempts/` expose the schedule and outcomes.
+Per-machine launchers, session paths and execution logs remain outside Git.
 
-Verification (no model calls):
+Cancel future attempts with:
 
-```bash
-bash -n tools/resume-after-reset.sh
-python -m unittest discover -s tests -p test_resume_monitor.py -v
+```powershell
+New-Item -ItemType File -Path .local/resume-recurring-2026-10-30/CANCEL -Force
 ```
 
-The tests use a local recording shell script to verify the deadline, exact thread
-and prompt, one-attempt behavior, cancellation, and deferral during recent activity.
+Cancellation is checked before launching Codex and while waiting for activity.
+It does not forcibly terminate a Codex run already in progress. The continuation
+prompt also requires later user pauses/cancellation to be honored.
 
-The initial 2026-10-29 scheduled attempt fired at 17:10 Warsaw and failed with exit
-2 because the first script combined those mutually exclusive flags. No model call
-occurred. The script and regression assertion were corrected afterward; no retry
-was scheduled because the session was already active.
+Ten observable tests pass using real Bash processes and a local fake executor:
+deadline/time-offset behavior, exact resume arguments with no conflicting flag,
+single attempts, activity deferral, shared cancellation, recurring failure
+recovery, no overlap and duplicate-monitor exclusion. No model is invoked by
+these tests:
+
+The [saved verification receipt](testing/evidence/resume-recurring/result.json)
+includes the red/green runs and real CLI parser probe.
+
+```powershell
+python -m unittest tests.test_resume_monitor tests.test_recurring_resume_monitor -v
+```

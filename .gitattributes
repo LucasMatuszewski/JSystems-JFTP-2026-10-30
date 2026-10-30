@@ -21,3 +21,4 @@
 /mvnw.cmd text eol=crlf
 /src/main/scripts/jftp.sh text eol=lf
 /src/main/scripts/jftp.bat text eol=crlf
+/tools/resume-recurring.sh text eol=lf

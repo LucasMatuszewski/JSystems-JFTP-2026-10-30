@@ -18,7 +18,7 @@ def bash_path(path):
     return f"/{value[0].lower()}{value[2:]}" if os.name == "nt" else value
 
 
-class ResumeMonitorTests(unittest.TestCase):
+class MonitorFixture(unittest.TestCase):
     def setUp(self):
         local = ROOT / ".local" / "resume-tests"
         local.mkdir(parents=True, exist_ok=True)
@@ -28,9 +28,16 @@ class ResumeMonitorTests(unittest.TestCase):
         self.calls = self.base / "calls.txt"
         self.executor = self.base / "executor.sh"
         self.executor.write_text(
-            '#!/usr/bin/env bash\nprintf "%s\\n" "$*" >> "$TEST_CALLS"\ncat > "$TEST_PROMPT"\n',
+            '#!/usr/bin/env bash\n'
+            'printf "%s\\n" "$*" >> "$TEST_CALLS"\n'
+            '[[ -z ${TEST_EVENTS:-} ]] || echo "START $(date +%s)" >> "$TEST_EVENTS"\n'
+            'cat > "$TEST_PROMPT"\n'
+            '[[ -z ${TEST_SLEEP:-} ]] || sleep "$TEST_SLEEP"\n'
+            '[[ -z ${TEST_EVENTS:-} ]] || echo "END $(date +%s)" >> "$TEST_EVENTS"\n'
+            'exit "${TEST_EXIT_CODE:-0}"\n',
             encoding="utf-8", newline="\n",
         )
+        self.executor.chmod(0o700)
         self.prompt = self.base / "prompt.txt"
         self.prompt.write_text("Continue the authorized work.\n", encoding="utf-8")
         self.env = {**os.environ, "TEST_CALLS": bash_path(self.calls),
@@ -49,6 +56,8 @@ class ResumeMonitorTests(unittest.TestCase):
         return subprocess.run(command, env=self.env, capture_output=True, text=True,
                               encoding="utf-8", timeout=15)
 
+
+class ResumeMonitorTests(MonitorFixture):
     def test_waits_until_deadline_then_resumes_exact_thread_once(self):
         command = self.command(3)
         process = subprocess.Popen(command, env=self.env, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -76,6 +85,13 @@ class ResumeMonitorTests(unittest.TestCase):
         state.mkdir()
         (state / "CANCEL").touch()
         result = self.run_monitor(self.command(0, "cancelled"))
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertFalse(self.calls.exists())
+
+    def test_shared_cancel_file_prevents_a_model_call(self):
+        cancel = self.base / "schedule-cancel"
+        cancel.touch()
+        result = self.run_monitor(self.command(0, "shared-cancel", "--cancel-file", bash_path(cancel)))
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertFalse(self.calls.exists())
 

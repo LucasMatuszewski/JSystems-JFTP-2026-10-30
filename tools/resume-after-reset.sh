@@ -3,18 +3,19 @@
 set -euo pipefail
 
 usage() {
-  echo 'Usage: bash tools/resume-after-reset.sh --at ISO_WITH_OFFSET_OR_EPOCH --thread UUID --codex PATH --state-dir DIR --prompt-file FILE [--activity-file FILE] [--quiet-seconds 300] [--poll-seconds 30]'
+  echo 'Usage: bash tools/resume-after-reset.sh --at ISO_WITH_OFFSET_OR_EPOCH --thread UUID --codex PATH --state-dir DIR --prompt-file FILE [--activity-file FILE] [--cancel-file FILE] [--quiet-seconds 300] [--poll-seconds 30]'
 }
 
-target='' thread='' codex='' state='' prompt='' activity=''
+target='' thread='' codex='' state='' prompt='' activity='' cancel=''
 quiet=300 poll=30
 while (($#)); do
   case "$1" in
-    --at|--thread|--codex|--state-dir|--prompt-file|--activity-file|--quiet-seconds|--poll-seconds)
+    --at|--thread|--codex|--state-dir|--prompt-file|--activity-file|--cancel-file|--quiet-seconds|--poll-seconds)
       (($# >= 2)) || { usage >&2; exit 2; }
       case "$1" in
         --at) target=$2 ;; --thread) thread=$2 ;; --codex) codex=$2 ;;
         --state-dir) state=$2 ;; --prompt-file) prompt=$2 ;; --activity-file) activity=$2 ;;
+        --cancel-file) cancel=$2 ;;
         --quiet-seconds) quiet=$2 ;; --poll-seconds) poll=$2 ;;
       esac
       shift 2 ;;
@@ -43,8 +44,9 @@ printf '%s\n' "$$" > "$state/monitor.pid"
 log() { printf '%s %s\n' "$(date -u +%FT%TZ)" "$*" | tee -a "$state/monitor.log"; }
 log "ARMED target=$(date -u -d "@$target_epoch" +%FT%TZ) thread=$thread quiet_seconds=$quiet"
 last_reason=''
+is_cancelled() { [[ -e $state/CANCEL || ( -n $cancel && -e $cancel ) ]]; }
 while :; do
-  if [[ -e $state/CANCEL ]]; then log 'CANCELLED; no resume requested'; exit 0; fi
+  if is_cancelled; then log 'CANCELLED; no resume requested'; exit 0; fi
   now=$(date +%s)
   if ((now < target_epoch)); then
     remaining=$((target_epoch - now))
@@ -64,7 +66,7 @@ while :; do
   fi
   break
 done
-[[ ! -e $state/CANCEL ]] || { log 'CANCELLED; no resume requested'; exit 0; }
+if is_cancelled; then log 'CANCELLED; no resume requested'; exit 0; fi
 # Claim the attempt before launch, so even a crash cannot cause an automatic second call.
 printf '%s\n' "$(date -u +%FT%TZ)" > "$state/attempted"
 log 'STARTING; one Codex resume attempt'

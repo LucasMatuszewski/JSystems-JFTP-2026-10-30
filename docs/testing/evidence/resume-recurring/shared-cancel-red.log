@@ -1,0 +1,16 @@
+test_shared_cancel_file_prevents_a_model_call (tests.test_resume_monitor.ResumeMonitorTests.test_shared_cancel_file_prevents_a_model_call) ... FAIL
+
+======================================================================
+FAIL: test_shared_cancel_file_prevents_a_model_call (tests.test_resume_monitor.ResumeMonitorTests.test_shared_cancel_file_prevents_a_model_call)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\labuser\Dev\jftp\tests\test_resume_monitor.py", line 95, in test_shared_cancel_file_prevents_a_model_call
+    self.assertEqual(result.returncode, 0, result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 0 : Usage: bash tools/resume-after-reset.sh --at ISO_WITH_OFFSET_OR_EPOCH --thread UUID --codex PATH --state-dir DIR --prompt-file FILE [--activity-file FILE] [--quiet-seconds 300] [--poll-seconds 30]
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.245s
+
+FAILED (failures=1)
