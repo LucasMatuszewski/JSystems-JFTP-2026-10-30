@@ -16,11 +16,6 @@ Use English for all chat, application documentation, participant instructions, a
 
 ```
 src/main/java/       Desktop client, shared Swing components, utilities, and ZIP helpers
-src/main/resources* Localized resource bundles
-src/main/images/     Application icons and images
-src/main/help/       JavaHelp content and descriptors
-src/main/scripts/    Launcher templates
-src/main/assembly/   Distribution descriptor
 src/test/            Java application test roots
 tests/               Repository-tool checks
 assets/              Supplied logo, design tokens, and visual reference
