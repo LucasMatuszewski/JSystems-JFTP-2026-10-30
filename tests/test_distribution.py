@@ -51,6 +51,18 @@ class DistributionTests(unittest.TestCase):
             self.assertIn(prefix + name, self.entries)
         self.assertNotIn(prefix + "AGENTS.md", self.entries)
 
+    def test_branded_logo_theme_and_runtime_libraries_are_packaged(self):
+        jars = [name for name in self.entries if re.search(r'/jftp-[^/]+\.jar$', name)]
+        self.assertEqual(1, len(jars))
+        with zipfile.ZipFile(io.BytesIO(self.archive.read(jars[0]))) as app:
+            self.assertEqual((ROOT / "assets/logo-desktop.svg").read_bytes(),
+                             app.read("com/myjavaworld/jftp/branding/logo-desktop.svg"))
+            theme = app.read("com/myjavaworld/jftp/branding/FlatLightLaf.properties")
+            self.assertIn(b"#800000", theme)
+        prefix = jars[0].rsplit("/", 1)[0] + "/lib/"
+        for library in ("flatlaf-3.7.2.jar", "flatlaf-extras-3.7.2.jar", "jsvg-2.1.0.jar"):
+            self.assertIn(prefix + library, self.entries)
+
 
 if __name__ == "__main__":
     unittest.main()

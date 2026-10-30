@@ -15,10 +15,6 @@
  */
 package com.myjavaworld.jftp;
 
-import java.util.Locale;
-
-import javax.swing.UIManager;
-
 import com.myjavaworld.util.SystemUtil;
 
 /**
@@ -36,22 +32,7 @@ public class JFTPApplication {
 					"com.apple.mrj.application.apple.menu.about.name", "JFTP");
 			registerForMacOSXEvents();
 		}
-		Locale.setDefault(JFTP.prefs.getLocale());
-		try {
-			UIManager.setLookAndFeel(JFTP.prefs.getLookAndFeelClassName());
-		} catch (Exception exp) {
-		}
-
-		// SplashWindow splash = new
-		// SplashWindow(JFTPUtil.getIcon("splash.gif"));
-		// splash.setVisible(true);
-		// try {
-		// Thread.sleep(2000);
-		// } catch (InterruptedException e) {
-		// e.printStackTrace();
-		// }
-		//
-		// splash.setVisible(false);
+		DesktopAppearance.install();
 		jftp = new JFTP();
 
 		if (SystemUtil.isMac()) {
@@ -63,7 +44,7 @@ public class JFTPApplication {
 	}
 
 	public static void main(String args[]) {
-		new JFTPApplication();
+		DesktopBootstrap.runOnEventThread(JFTPApplication::new);
 	}
 
 	public void showAboutDialog() {

@@ -38,6 +38,7 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import javax.swing.JMenuBar;
+import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -135,10 +136,15 @@ public class JFTP extends MFrame implements WindowListener, ActionListener,
 		setJMenuBar(prepareMenuBar());
 		addWindowListener(this);
 		setBounds(getPreferredBounds());
+		setMinimumSize(new Dimension(1000, 650));
+		setTitle("JSystems FTP");
 		tabs = new JTabbedPane(JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabs.addChangeListener(this);
 		toolBar = new JFTPToolBar(this);
-		getContentPane().add(toolBar, BorderLayout.NORTH);
+		JPanel workspaceHeader = new JPanel(new BorderLayout());
+		workspaceHeader.add(new BrandHeader(), BorderLayout.NORTH);
+		workspaceHeader.add(toolBar, BorderLayout.CENTER);
+		getContentPane().add(workspaceHeader, BorderLayout.NORTH);
 		getContentPane().add(tabs, BorderLayout.CENTER);
 	}
 

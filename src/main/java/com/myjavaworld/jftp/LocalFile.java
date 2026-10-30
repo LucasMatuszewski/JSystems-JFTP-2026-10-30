@@ -51,7 +51,7 @@ public class LocalFile implements Serializable {
 	public LocalFile(File file) {
 		this.file = file;
 		name = file.getName();
-		displayName = fsv.getSystemDisplayName(file);
+		displayName = name.length() == 0 ? file.getAbsolutePath() : name;
 		size = file.length();
 		lastModified = file.lastModified();
 		dir = file.isDirectory();
@@ -114,11 +114,7 @@ public class LocalFile implements Serializable {
 	}
 
 	public String getType() {
-		String type = fsv.getSystemTypeDescription(file);
-		if (type == null) {
-			return getTypeOld();
-		}
-		return type;
+		return getTypeOld();
 	}
 
 	public long getSize() {

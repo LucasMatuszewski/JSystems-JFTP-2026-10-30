@@ -71,7 +71,7 @@ public class LocalePrefsPanel extends JPanel implements ActionListener {
 	}
 
 	public void populateScreen(JFTPPreferences prefs) {
-		comboLocales.setSelectedItem(Locale.getDefault());
+		comboLocales.setSelectedItem(Locale.ENGLISH);
 		if (prefs.getDateFormat() == DateFormat.SHORT) {
 			radioDateFormatShort.setSelected(true);
 		} else {
@@ -86,7 +86,7 @@ public class LocalePrefsPanel extends JPanel implements ActionListener {
 	}
 
 	public void saveChanges() {
-		JFTP.prefs.setLocale((Locale) comboLocales.getSelectedItem());
+		// The internal product uses English; retain the old serialized locale field.
 		if (radioDateFormatShort.isSelected()) {
 			JFTP.prefs.setDateFormat(DateFormat.SHORT);
 		} else {
@@ -113,7 +113,8 @@ public class LocalePrefsPanel extends JPanel implements ActionListener {
 		c.insets = new Insets(12, 12, 12, 12);
 		add(labLocale, c);
 
-		comboLocales = new MComboBox(Locale.getAvailableLocales());
+		comboLocales = new MComboBox(new Locale[] { Locale.ENGLISH });
+		comboLocales.setEnabled(false);
 		comboLocales.setRenderer(new LocaleCellRenderer());
 		c.gridx = 1;
 		c.gridy = 0;

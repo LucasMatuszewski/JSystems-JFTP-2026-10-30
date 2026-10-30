@@ -114,8 +114,9 @@ public class MTable extends JTable {
 			font = (Font) UIManager.get("Table.font");
 		}
 		FontMetrics metrics = getFontMetrics(font);
-		return metrics.getLeading() + metrics.getMaxAscent()
-				+ metrics.getMaxDescent() + 2;
+		return Math.max(UIManager.getInt("Table.rowHeight"),
+				metrics.getLeading() + metrics.getMaxAscent()
+				+ metrics.getMaxDescent() + 2);
 	}
 
 	@Override
