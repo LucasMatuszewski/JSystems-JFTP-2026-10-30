@@ -57,13 +57,14 @@ class RepomixCliTests(unittest.TestCase):
         try:
             verified = self.run_cli(fixture, "verify")
             self.assertEqual(verified.returncode, 0, verified.stderr)
-            self.assertIn("Verified 59 full files", verified.stdout)
+            self.assertIn("Verified 60 full files", verified.stdout)
 
             listed = self.run_cli(fixture, "list")
             self.assertEqual(listed.returncode, 0, listed.stderr)
             listed_paths = listed.stdout.splitlines()
             self.assertEqual(set(listed_paths), set(config["include"]))
-            self.assertEqual(len(listed_paths), 59)
+            self.assertEqual(len(listed_paths), 60)
+            self.assertIn("src/main/java/com/myjavaworld/zip/ArchiveEntryPath.java", listed_paths)
 
             extracted = self.run_cli(
                 fixture, "extract", SESSION_PATH.as_posix(), "--start", "593", "--end", "598"

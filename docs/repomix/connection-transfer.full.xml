@@ -16,7 +16,7 @@ or other automated processes.</purpose><file_format>The content is organized as 
   the same level of security as you would the original repository.
 - Pay special attention to the Repository Description. These contain important context and guidelines specific to this project.</usage_guidelines><notes>- Some files may have been excluded based on .gitignore rules and Repomix&apos;s configuration
 - Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
-- Only files matching these patterns are included: LICENSE.txt, NOTICE.txt, README.md, pom.xml, src/main/assembly/binary.xml, src/main/java/com/myjavaworld/gui/SwingWorker.java, src/main/java/com/myjavaworld/jftp/ConnectionDlg.java, src/main/java/com/myjavaworld/jftp/FTPSession.java, src/main/java/com/myjavaworld/jftp/Favorite.java, src/main/java/com/myjavaworld/jftp/FavoritesDlg.java, src/main/java/com/myjavaworld/jftp/FavoritesManager.java, src/main/java/com/myjavaworld/jftp/JFTP.java, src/main/java/com/myjavaworld/jftp/JFTPPreferences.java, src/main/java/com/myjavaworld/jftp/LocalFile.java, src/main/java/com/myjavaworld/jftp/LocalFileFilter.java, src/main/java/com/myjavaworld/jftp/RemoteHost.java, src/main/java/com/myjavaworld/jftp/SessionPanel.java, src/main/java/com/myjavaworld/jftp/TransferObject.java, src/main/java/com/myjavaworld/jftp/actions/AbortAction.java, src/main/java/com/myjavaworld/jftp/actions/ConnectAction.java, src/main/java/com/myjavaworld/jftp/actions/DisconnectAction.java, src/main/java/com/myjavaworld/jftp/actions/DownloadAction.java, src/main/java/com/myjavaworld/jftp/actions/DownloadAndUnzipAction.java, src/main/java/com/myjavaworld/jftp/actions/DownloadAsAction.java, src/main/java/com/myjavaworld/jftp/actions/ReconnectAction.java, src/main/java/com/myjavaworld/jftp/actions/UploadAction.java, src/main/java/com/myjavaworld/jftp/actions/UploadAsAction.java, src/main/java/com/myjavaworld/jftp/actions/ZipAndUploadAction.java, src/main/java/com/myjavaworld/jftp/ssl/DNParser.java, src/main/java/com/myjavaworld/jftp/ssl/JFTPKeyManager.java, src/main/java/com/myjavaworld/jftp/ssl/JFTPSSLContext.java, src/main/java/com/myjavaworld/jftp/ssl/JFTPTrustManager.java, src/main/java/com/myjavaworld/jftp/ssl/KeyStoreManager.java, src/main/java/com/myjavaworld/jftp/ssl/SecurityWarningDlg.java, src/main/java/com/myjavaworld/util/FileUtilities.java, src/main/java/com/myjavaworld/util/ProgressEvent.java, src/main/java/com/myjavaworld/util/ProgressListener.java, src/main/java/com/myjavaworld/util/ResourceLoader.java, src/main/java/com/myjavaworld/zip/Unzip.java, src/main/java/com/myjavaworld/zip/Zip.java, src/main/java/com/myjavaworld/zip/ZipEvent.java, src/main/java/com/myjavaworld/zip/ZipListener.java, src/main/resources/com/myjavaworld/gui/ProgressDialog.properties, src/main/resources/com/myjavaworld/jftp/AdvancedConnectionPrefsPanel.properties, src/main/resources/com/myjavaworld/jftp/ConnectionDlg.properties, src/main/resources/com/myjavaworld/jftp/DownloadAndUnzipDlg.properties, src/main/resources/com/myjavaworld/jftp/DownloadAsDlg.properties, src/main/resources/com/myjavaworld/jftp/FTPSession.properties, src/main/resources/com/myjavaworld/jftp/FavoritesDlg.properties, src/main/resources/com/myjavaworld/jftp/GeneralConnectionPrefsPanel.properties, src/main/resources/com/myjavaworld/jftp/JFTP.properties, src/main/resources/com/myjavaworld/jftp/SecurityPrefsPanel.properties, src/main/resources/com/myjavaworld/jftp/TransferModesPrefsPanel.properties, src/main/resources/com/myjavaworld/jftp/UploadAsDlg.properties, src/main/resources/com/myjavaworld/jftp/ZipAndUploadDlg.properties, src/main/resources/com/myjavaworld/jftp/ssl/SecurityWarningDlg.properties, src/main/resources/com/myjavaworld/util/CommonResources.properties, src/main/scripts/jftp.bat, src/main/scripts/jftp.sh
+- Only files matching these patterns are included: LICENSE.txt, NOTICE.txt, README.md, pom.xml, src/main/assembly/binary.xml, src/main/java/com/myjavaworld/gui/SwingWorker.java, src/main/java/com/myjavaworld/jftp/ConnectionDlg.java, src/main/java/com/myjavaworld/jftp/FTPSession.java, src/main/java/com/myjavaworld/jftp/Favorite.java, src/main/java/com/myjavaworld/jftp/FavoritesDlg.java, src/main/java/com/myjavaworld/jftp/FavoritesManager.java, src/main/java/com/myjavaworld/jftp/JFTP.java, src/main/java/com/myjavaworld/jftp/JFTPPreferences.java, src/main/java/com/myjavaworld/jftp/LocalFile.java, src/main/java/com/myjavaworld/jftp/LocalFileFilter.java, src/main/java/com/myjavaworld/jftp/RemoteHost.java, src/main/java/com/myjavaworld/jftp/SessionPanel.java, src/main/java/com/myjavaworld/jftp/TransferObject.java, src/main/java/com/myjavaworld/jftp/actions/AbortAction.java, src/main/java/com/myjavaworld/jftp/actions/ConnectAction.java, src/main/java/com/myjavaworld/jftp/actions/DisconnectAction.java, src/main/java/com/myjavaworld/jftp/actions/DownloadAction.java, src/main/java/com/myjavaworld/jftp/actions/DownloadAndUnzipAction.java, src/main/java/com/myjavaworld/jftp/actions/DownloadAsAction.java, src/main/java/com/myjavaworld/jftp/actions/ReconnectAction.java, src/main/java/com/myjavaworld/jftp/actions/UploadAction.java, src/main/java/com/myjavaworld/jftp/actions/UploadAsAction.java, src/main/java/com/myjavaworld/jftp/actions/ZipAndUploadAction.java, src/main/java/com/myjavaworld/jftp/ssl/DNParser.java, src/main/java/com/myjavaworld/jftp/ssl/JFTPKeyManager.java, src/main/java/com/myjavaworld/jftp/ssl/JFTPSSLContext.java, src/main/java/com/myjavaworld/jftp/ssl/JFTPTrustManager.java, src/main/java/com/myjavaworld/jftp/ssl/KeyStoreManager.java, src/main/java/com/myjavaworld/jftp/ssl/SecurityWarningDlg.java, src/main/java/com/myjavaworld/util/FileUtilities.java, src/main/java/com/myjavaworld/util/ProgressEvent.java, src/main/java/com/myjavaworld/util/ProgressListener.java, src/main/java/com/myjavaworld/util/ResourceLoader.java, src/main/java/com/myjavaworld/zip/Unzip.java, src/main/java/com/myjavaworld/zip/ArchiveEntryPath.java, src/main/java/com/myjavaworld/zip/Zip.java, src/main/java/com/myjavaworld/zip/ZipEvent.java, src/main/java/com/myjavaworld/zip/ZipListener.java, src/main/resources/com/myjavaworld/gui/ProgressDialog.properties, src/main/resources/com/myjavaworld/jftp/AdvancedConnectionPrefsPanel.properties, src/main/resources/com/myjavaworld/jftp/ConnectionDlg.properties, src/main/resources/com/myjavaworld/jftp/DownloadAndUnzipDlg.properties, src/main/resources/com/myjavaworld/jftp/DownloadAsDlg.properties, src/main/resources/com/myjavaworld/jftp/FTPSession.properties, src/main/resources/com/myjavaworld/jftp/FavoritesDlg.properties, src/main/resources/com/myjavaworld/jftp/GeneralConnectionPrefsPanel.properties, src/main/resources/com/myjavaworld/jftp/JFTP.properties, src/main/resources/com/myjavaworld/jftp/SecurityPrefsPanel.properties, src/main/resources/com/myjavaworld/jftp/TransferModesPrefsPanel.properties, src/main/resources/com/myjavaworld/jftp/UploadAsDlg.properties, src/main/resources/com/myjavaworld/jftp/ZipAndUploadDlg.properties, src/main/resources/com/myjavaworld/jftp/ssl/SecurityWarningDlg.properties, src/main/resources/com/myjavaworld/util/CommonResources.properties, src/main/scripts/jftp.bat, src/main/scripts/jftp.sh
 - Files matching these patterns are excluded: .agents/**, .claude/**, .codex/**, assets/**, docs/**, tools/**, **/.env, **/.env.*, **/*.key, **/*.keystore
 - Files matching patterns in .gitignore are excluded
 - Files matching default ignore patterns are excluded
@@ -66,6 +66,7 @@ or other automated processes.</purpose><file_format>The content is organized as 
             ProgressListener.java
             ResourceLoader.java
           zip/
+            ArchiveEntryPath.java
             Unzip.java
             Zip.java
             ZipEvent.java
@@ -666,8 +667,9 @@ public class DownloadAndUnzipAction implements ActionListener {
 					unzip.addZipListener(session);
 					unzip.addProgressListener(session);
 					unzip.open();
-					unzip.unzip();
-					unzip.close();
+					try (Unzip opened = unzip) {
+						opened.unzip();
+					}
 					if (deleteOption) {
 						localFile.delete();
 					}
@@ -5133,6 +5135,7 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import javax.swing.JMenuBar;
+import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -5230,10 +5233,15 @@ public class JFTP extends MFrame implements WindowListener, ActionListener,
 		setJMenuBar(prepareMenuBar());
 		addWindowListener(this);
 		setBounds(getPreferredBounds());
+		setMinimumSize(new Dimension(1000, 650));
+		setTitle(&quot;JSystems FTP&quot;);
 		tabs = new JTabbedPane(JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabs.addChangeListener(this);
 		toolBar = new JFTPToolBar(this);
-		getContentPane().add(toolBar, BorderLayout.NORTH);
+		JPanel workspaceHeader = new JPanel(new BorderLayout());
+		workspaceHeader.add(new BrandHeader(), BorderLayout.NORTH);
+		workspaceHeader.add(toolBar, BorderLayout.CENTER);
+		getContentPane().add(workspaceHeader, BorderLayout.NORTH);
 		getContentPane().add(tabs, BorderLayout.CENTER);
 	}
 
@@ -6361,7 +6369,7 @@ public class LocalFile implements Serializable {
 	public LocalFile(File file) {
 		this.file = file;
 		name = file.getName();
-		displayName = fsv.getSystemDisplayName(file);
+		displayName = name.length() == 0 ? file.getAbsolutePath() : name;
 		size = file.length();
 		lastModified = file.lastModified();
 		dir = file.isDirectory();
@@ -6424,11 +6432,7 @@ public class LocalFile implements Serializable {
 	}
 
 	public String getType() {
-		String type = fsv.getSystemTypeDescription(file);
-		if (type == null) {
-			return getTypeOld();
-		}
-		return type;
+		return getTypeOld();
 	}
 
 	public long getSize() {
@@ -7274,6 +7278,69 @@ public class ResourceLoader {
 				+ locale + &quot;. &quot;);
 		System.exit(1);
 	}
+}</file><file path="src/main/java/com/myjavaworld/zip/ArchiveEntryPath.java">package com.myjavaworld.zip;
+
+import java.io.IOException;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
+import java.util.Locale;
+
+/** Portable lexical ZIP-name policy. This component never opens an entry path. */
+final class ArchiveEntryPath {
+    private ArchiveEntryPath() { }
+
+    static Path resolve(Path root, String name, boolean directory) throws IOException {
+        if (name == null || name.length() == 0 || name.startsWith(&quot;/&quot;) || name.indexOf(&apos;\\&apos;) &gt;= 0) {
+            throw unsafe(name, &quot;a forward-slash relative path is required&quot;);
+        }
+        String relative = directory &amp;&amp; name.endsWith(&quot;/&quot;) ? name.substring(0, name.length() - 1) : name;
+        String[] parts = relative.split(&quot;/&quot;, -1);
+        for (String part : parts) {
+            if (part.length() == 0 || part.equals(&quot;.&quot;) || part.equals(&quot;..&quot;)
+                    || part.endsWith(&quot;.&quot;) || part.endsWith(&quot; &quot;)) {
+                throw unsafe(name, &quot;empty, dot and ambiguous trailing components are forbidden&quot;);
+            }
+            for (int i = 0; i &lt; part.length(); i++) {
+                char c = part.charAt(i);
+                if (c &lt; 32 || &quot;&lt;&gt;:\&quot;|?*&quot;.indexOf(c) &gt;= 0) {
+                    throw unsafe(name, &quot;a reserved filename character is present&quot;);
+                }
+            }
+            String base = part.split(&quot;\\.&quot;, 2)[0].toUpperCase(Locale.ROOT);
+            if (base.equals(&quot;CON&quot;) || base.equals(&quot;PRN&quot;) || base.equals(&quot;AUX&quot;) || base.equals(&quot;NUL&quot;)
+                    || base.equals(&quot;CONIN$&quot;) || base.equals(&quot;CONOUT$&quot;) || base.equals(&quot;CLOCK$&quot;)
+                    || base.matches(&quot;(?:COM|LPT)[1-9¹²³]&quot;)) {
+                throw unsafe(name, &quot;a reserved device name is present&quot;);
+            }
+        }
+        try {
+            Path result = root.resolve(relative).normalize();
+            if (!result.startsWith(root) || result.equals(root)) {
+                throw unsafe(name, &quot;destination is outside the extraction folder&quot;);
+            }
+            return result;
+        } catch (InvalidPathException error) {
+            throw unsafe(name, &quot;the filesystem cannot represent this path&quot;);
+        }
+    }
+
+    static IOException unsafe(String name, String reason) {
+        return new IOException(&quot;Unsafe ZIP entry &apos;&quot; + printable(name) + &quot;&apos;: &quot; + reason);
+    }
+
+    static String printable(String name) {
+        if (name == null) return &quot;&lt;missing&gt;&quot;;
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i &lt; name.length(); i++) {
+            char c = name.charAt(i);
+            if (c &lt; 32 || c == &apos;&lt;&apos; || c == &apos;&gt;&apos; || c == &apos;&amp;&apos; || c == &apos;\&apos;&apos; || c == &apos;&quot;&apos;) {
+                result.append(String.format(Locale.ROOT, &quot;\\u%04x&quot;, (int) c));
+            } else {
+                result.append(c);
+            }
+        }
+        return result.toString();
+    }
 }</file><file path="src/main/java/com/myjavaworld/zip/Unzip.java">/*
  * Copyright 2012 jMethods, Inc. 
  *
@@ -7294,9 +7361,22 @@ package com.myjavaworld.zip;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileTime;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.zip.CRC32;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
@@ -7309,7 +7389,7 @@ import com.myjavaworld.util.ProgressListener;
 /**
  * @author Sai Pullabhotla
  */
-public class Unzip {
+public class Unzip implements AutoCloseable {
 
 	/**
 	 * Zip file to unzip
@@ -7399,6 +7479,7 @@ public class Unzip {
 		zipFile = new ZipFile(file);
 	}
 
+	@Override
 	public void close() throws IOException {
 		if (zipFile == null) {
 			throw new IllegalStateException(
@@ -7411,54 +7492,218 @@ public class Unzip {
 		if (zipFile == null) {
 			throw new IllegalStateException(&quot;ZipFile is not open&quot;);
 		}
-		Enumeration entries = zipFile.entries();
-		while (entries.hasMoreElements()) {
-			ZipEntry entry = (ZipEntry) entries.nextElement();
+		Path root;
+		try {
+			if (targetDirectory == null) throw new IOException(&quot;No folder selected&quot;);
+			root = targetDirectory.toPath().toRealPath();
+			if (!Files.readAttributes(root, BasicFileAttributes.class,
+					LinkOption.NOFOLLOW_LINKS).isDirectory()) {
+				throw new IOException(&quot;Not a directory&quot;);
+			}
+		} catch (IOException error) {
+			throw new IOException(&quot;Invalid extraction folder: an existing directory is required&quot;, error);
+		}
+		Path input = file.toPath().toRealPath();
+		List&lt;PlannedEntry&gt; plan = planEntries(root, input);
+		for (PlannedEntry planned : plan) {
+			ZipEntry entry = planned.entry;
 			if (entry.isDirectory()) {
-				File dir = new File(targetDirectory, entry.getName());
-				if (!dir.exists()) {
-					dir.mkdirs();
-					dir.setLastModified(entry.getTime());
+				boolean created = ensureDirectories(root, planned.target, entry.getName());
+				if (created &amp;&amp; entry.getTime() &gt;= 0) {
+					checkExistingPath(root, planned.target, entry.getName(), true);
+					Files.setLastModifiedTime(planned.target, FileTime.fromMillis(entry.getTime()));
 				}
 			} else {
-				unzipFile(entry);
+				unzipFile(root, input, planned);
 			}
 		}
 	}
 
-	private void unzipFile(ZipEntry entry) throws IOException {
-		File target = new File(targetDirectory, entry.getName());
-		fireBeginFileEvent(target);
-		File parentDir = target.getParentFile();
-		if (!parentDir.exists()) {
-			parentDir.mkdirs();
+	private List&lt;PlannedEntry&gt; planEntries(Path root, Path input) throws IOException {
+		List&lt;PlannedEntry&gt; plan = new ArrayList&lt;PlannedEntry&gt;();
+		Map&lt;Path, Boolean&gt; kinds = new HashMap&lt;Path, Boolean&gt;();
+		Enumeration&lt;? extends ZipEntry&gt; entries = zipFile.entries();
+		while (entries.hasMoreElements()) {
+			ZipEntry entry = entries.nextElement();
+			String name = entry.getName();
+			Path target = ArchiveEntryPath.resolve(root, name, entry.isDirectory());
+			checkExistingPath(root, target, name, entry.isDirectory());
+			checkInputArchive(input, target, name);
+			if (!entry.isDirectory() &amp;&amp; (entry.getSize() &lt; 0 || entry.getCrc() &lt; 0)) {
+				throw ArchiveEntryPath.unsafe(name, &quot;file size and checksum are required&quot;);
+			}
+			Boolean previous = kinds.get(target);
+			if (previous != null &amp;&amp; (!entry.isDirectory() || !previous.booleanValue())) {
+				throw ArchiveEntryPath.unsafe(name, &quot;duplicate file destination or file/directory conflict&quot;);
+			}
+			for (Path parent = target.getParent(); !parent.equals(root); parent = parent.getParent()) {
+				if (Boolean.FALSE.equals(kinds.get(parent))) {
+					throw ArchiveEntryPath.unsafe(name, &quot;a planned parent is a file&quot;);
+				}
+				kinds.put(parent, Boolean.TRUE);
+			}
+			kinds.put(target, Boolean.valueOf(entry.isDirectory()));
+			if (previous == null) plan.add(new PlannedEntry(entry, target));
 		}
-		BufferedInputStream bin = null;
-		BufferedOutputStream bout = null;
-		final int bufferSize = 16 * 1024;
-		byte[] buffer = new byte[bufferSize];
-		int bytesRead = 0;
-		long totalBytesRead = 0L;
+		return plan;
+	}
 
+	/** Checks a stable destination tree; this is not a concurrent-writer sandbox. */
+	private void checkExistingPath(Path root, Path target, String name, boolean directory)
+			throws IOException {
+		Path current = root;
+		if (!checkPhysicalPath(current, name, true)) {
+			throw ArchiveEntryPath.unsafe(name, &quot;the extraction folder no longer exists&quot;);
+		}
+		for (Path part : root.relativize(target)) {
+			current = current.resolve(part);
+			if (!checkPhysicalPath(current, name, !current.equals(target) || directory)) return;
+		}
+	}
+
+	private boolean checkPhysicalPath(Path path, String name, boolean directory) throws IOException {
+		BasicFileAttributes attributes;
 		try {
-			bin = new BufferedInputStream(zipFile.getInputStream(entry),
-					bufferSize);
-			bout = new BufferedOutputStream(new FileOutputStream(target),
-					bufferSize);
-			while ((bytesRead = bin.read(buffer)) != -1) {
-				bout.write(buffer, 0, bytesRead);
-				totalBytesRead += bytesRead;
-				int progress = (int) ((totalBytesRead * 100) / entry.getSize());
-				fireProgressEvent(progress);
+			attributes = Files.readAttributes(path, BasicFileAttributes.class, LinkOption.NOFOLLOW_LINKS);
+		} catch (NoSuchFileException absent) {
+			return false;
+		} catch (IOException error) {
+			throw pathFailure(name, &quot;an existing destination cannot be inspected&quot;, error);
+		}
+		if (attributes.isSymbolicLink()) {
+			throw ArchiveEntryPath.unsafe(name, &quot;an existing path is a symbolic link&quot;);
+		}
+		Path physical;
+		try {
+			physical = path.toRealPath();
+		} catch (IOException error) {
+			// An existing dangling redirect is not a missing output directory.
+			throw pathFailure(name, &quot;an existing destination cannot be resolved&quot;, error);
+		}
+		if (!physical.equals(path)) {
+			throw ArchiveEntryPath.unsafe(name, &quot;an existing path redirects to another location&quot;);
+		}
+		if (directory ? !attributes.isDirectory() : !attributes.isRegularFile()) {
+			throw ArchiveEntryPath.unsafe(name, directory
+					? &quot;a parent or directory destination is not a directory&quot;
+					: &quot;the file destination is not an ordinary file&quot;);
+		}
+		return true;
+	}
+
+	private IOException pathFailure(String name, String reason, IOException cause) {
+		IOException failure = ArchiveEntryPath.unsafe(name, reason);
+		failure.initCause(cause);
+		return failure;
+	}
+
+	private void checkInputArchive(Path input, Path target, String name) throws IOException {
+		if (target.equals(input)) throw ArchiveEntryPath.unsafe(name, &quot;destination is the input archive&quot;);
+		try {
+			Files.readAttributes(target, BasicFileAttributes.class, LinkOption.NOFOLLOW_LINKS);
+		} catch (NoSuchFileException absent) {
+			return;
+		}
+		if (Files.isSameFile(input, target)) {
+			throw ArchiveEntryPath.unsafe(name, &quot;destination is an alias of the input archive&quot;);
+		}
+	}
+
+	private boolean ensureDirectories(Path root, Path directory, String name) throws IOException {
+		checkExistingPath(root, directory, name, true);
+		Path current = root;
+		boolean created = false;
+		for (Path part : root.relativize(directory)) {
+			current = current.resolve(part);
+			created = false;
+			try {
+				Files.createDirectory(current);
+				created = true;
+			} catch (FileAlreadyExistsException existing) {
+				// Revalidate both type and physical destination, including junctions.
 			}
+			checkExistingPath(root, current, name, true);
+		}
+		return created;
+	}
+
+	private void unzipFile(Path root, Path input, PlannedEntry planned) throws IOException {
+		ZipEntry entry = planned.entry;
+		Path target = planned.target;
+		String name = entry.getName();
+		ensureDirectories(root, target.getParent(), name);
+		checkExistingPath(root, target, name, false);
+		checkInputArchive(input, target, name);
+		fireBeginFileEvent(target.toFile());
+		Path pending = null;
+		Throwable failure = null;
+		try {
+			pending = Files.createTempFile(target.getParent(), &quot;.jftp-unzip-&quot;, &quot;.tmp&quot;);
+			CRC32 checksum = new CRC32();
+			long total = 0;
+			final int bufferSize = 16 * 1024;
+			try (BufferedInputStream bin = new BufferedInputStream(zipFile.getInputStream(entry), bufferSize);
+					BufferedOutputStream bout = new BufferedOutputStream(Files.newOutputStream(pending,
+							StandardOpenOption.WRITE, LinkOption.NOFOLLOW_LINKS), bufferSize)) {
+				byte[] buffer = new byte[bufferSize];
+				int read;
+				while ((read = bin.read(buffer)) != -1) {
+					if (read &gt; entry.getSize() - total) throw corrupt(name, &quot;size exceeds declaration&quot;);
+					bout.write(buffer, 0, read);
+					checksum.update(buffer, 0, read);
+					total += read;
+					int progress = entry.getSize() == 0 ? 0
+							: (int) Math.min(100.0, total * 100.0 / entry.getSize());
+					fireProgressEvent(progress);
+				}
+			}
+			if (total != entry.getSize() || checksum.getValue() != entry.getCrc()) {
+				throw corrupt(name, &quot;size or checksum mismatch&quot;);
+			}
+			checkExistingPath(root, target, name, false);
+			checkInputArchive(input, target, name);
+			Files.move(pending, target, StandardCopyOption.REPLACE_EXISTING);
+			pending = null;
+		} catch (IOException | RuntimeException | Error error) {
+			failure = error;
+			throw error;
 		} finally {
+			finishFile(pending, failure);
+		}
+	}
+
+	private IOException corrupt(String name, String reason) {
+		return new IOException(&quot;Corrupt ZIP entry &apos;&quot; + ArchiveEntryPath.printable(name) + &quot;&apos;: &quot; + reason);
+	}
+
+	private void finishFile(Path pending, Throwable primary) throws IOException {
+		Throwable cleanup = null;
+		try {
+			if (pending != null) Files.deleteIfExists(pending);
+		} catch (IOException | RuntimeException | Error error) {
+			cleanup = error;
+		}
+		try {
+			// Preserve the existing listener contract; events are not success receipts.
 			fireEndFileEvent(file);
-			if (bout != null) {
-				bout.close();
-			}
-			if (bin != null) {
-				bin.close();
-			}
+		} catch (RuntimeException | Error error) {
+			if (cleanup == null) cleanup = error;
+			else cleanup.addSuppressed(error);
+		}
+		if (cleanup != null) {
+			if (primary != null) primary.addSuppressed(cleanup);
+			else if (cleanup instanceof IOException) throw (IOException) cleanup;
+			else if (cleanup instanceof RuntimeException) throw (RuntimeException) cleanup;
+			else throw (Error) cleanup;
+		}
+	}
+
+	private static final class PlannedEntry {
+		final ZipEntry entry;
+		final Path target;
+		PlannedEntry(ZipEntry entry, Path target) {
+			this.entry = entry;
+			this.target = target;
 		}
 	}
 }</file><file path="src/main/java/com/myjavaworld/zip/Zip.java">/*
@@ -8251,6 +8496,16 @@ limitations under the License.</file><file path="pom.xml">&lt;project xmlns=&quo
 	&lt;/properties&gt;
 	&lt;dependencies&gt;
 		&lt;dependency&gt;
+			&lt;groupId&gt;com.formdev&lt;/groupId&gt;
+			&lt;artifactId&gt;flatlaf&lt;/artifactId&gt;
+			&lt;version&gt;3.7.2&lt;/version&gt;
+		&lt;/dependency&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;com.formdev&lt;/groupId&gt;
+			&lt;artifactId&gt;flatlaf-extras&lt;/artifactId&gt;
+			&lt;version&gt;3.7.2&lt;/version&gt;
+		&lt;/dependency&gt;
+		&lt;dependency&gt;
 			&lt;groupId&gt;junit&lt;/groupId&gt;
 			&lt;artifactId&gt;junit&lt;/artifactId&gt;
 			&lt;version&gt;4.13.2&lt;/version&gt;
@@ -8270,6 +8525,13 @@ limitations under the License.</file><file path="pom.xml">&lt;project xmlns=&quo
 
 	&lt;build&gt;
 		&lt;resources&gt;
+			&lt;resource&gt;
+				&lt;directory&gt;assets&lt;/directory&gt;
+				&lt;targetPath&gt;com/myjavaworld/jftp/branding&lt;/targetPath&gt;
+				&lt;includes&gt;
+					&lt;include&gt;logo-desktop.svg&lt;/include&gt;
+				&lt;/includes&gt;
+			&lt;/resource&gt;
 			&lt;resource&gt;
 				&lt;directory&gt;src/main/resources&lt;/directory&gt;
 			&lt;/resource&gt;

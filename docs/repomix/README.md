@@ -2,7 +2,7 @@
 
 Use [connection-transfer.full.xml](connection-transfer.full.xml) for the implementation context of JFTP's connection and transfer workflow. This is **full code with original comments for selected files**, not a structural summary or the whole application.
 
-The snapshot contains **59 files, including 37 Java files**, and **66,402 `o200k_base` tokens**. Repomix 1.18.1 refreshed it at base HEAD `30b25153a3b9a26491bf30c46cee0e32a020c0c3`, using the committed course sources plus the updated root README. Uncommitted application changes are excluded from this snapshot. Per-file hashes identify the exact inputs. The generated UTF-8 pack is 268,849 bytes; the measured generation subprocess took about 3.27 seconds on the author's Windows machine. These are this pack's measurements, not general compression or speed benchmarks.
+The snapshot contains **60 files, including 38 Java files**, and **69,365 `o200k_base` tokens**. Repomix 1.18.1 refreshed it at HEAD `40630d4360e0ebaf258d343aecb9111d1c37fc93`, using the current working-tree source and README. Per-file hashes identify the exact inputs, including the newly added `ArchiveEntryPath` helper. The generated UTF-8 pack is 281,041 bytes; the measured generation subprocess took about 2.63 seconds on the author's Windows machine. These are this pack's measurements, not general compression or speed benchmarks.
 
 ## What the slice covers
 

@@ -39,6 +39,7 @@
     "src/main/java/com/myjavaworld/util/ProgressListener.java",
     "src/main/java/com/myjavaworld/util/ResourceLoader.java",
     "src/main/java/com/myjavaworld/zip/Unzip.java",
+    "src/main/java/com/myjavaworld/zip/ArchiveEntryPath.java",
     "src/main/java/com/myjavaworld/zip/Zip.java",
     "src/main/java/com/myjavaworld/zip/ZipEvent.java",
     "src/main/java/com/myjavaworld/zip/ZipListener.java",
