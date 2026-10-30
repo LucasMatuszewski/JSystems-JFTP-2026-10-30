@@ -1,5 +1,12 @@
 # JSystems FTP — course repository
 
+## Updates — 30 October 2026
+
+- [Directory Assistant PRD](docs/prd/directory-assistant.md): requirements for a proposed read-only AI assistant that answers questions about explicitly attached directory listings.
+- [Local directory chat implementation plan](docs/plans/directory-assistant-local-chat-implementation-plan.md): the first delivery slice, task dependencies, testing and verification gates. Implementation has not started.
+- [Implementation Planning skill](.agents/skills/write-implementation-plan/SKILL.md): creates and audits implementation plans from accepted PRDs and ADRs, with explicit approval gates before implementation.
+- [GitLab CI/CD](.gitlab-ci.yml): Checkstyle linting, headless unit tests and manual PR-Agent merge-request reviews. See [setup and live verification](docs/gitlab-pr-agent.md).
+
 This repository is the working example for the JSystems course on AI-assisted
 software development. We use an existing Java/Swing FTP client to practise
 understanding legacy code, writing regression tests, documenting decisions,
