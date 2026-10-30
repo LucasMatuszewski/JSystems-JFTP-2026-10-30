@@ -46,3 +46,34 @@ diagnostics remain explicit follow-up work, not a warning-free build claim.
 
 Do not invoke release, deploy or tagging goals as part of local verification.
 Legacy publishing configuration remains in the POM and was not exercised.
+
+## GitLab CI checks
+
+The root [.gitlab-ci.yml](../.gitlab-ci.yml) runs two parallel jobs on a Linux
+Docker runner with JDK 25, using the pinned Maven Wrapper:
+
+- `java-lint` runs Checkstyle 3.6.0 against production Java sources. The small
+  [ruleset](../ci/checkstyle.xml) rejects empty statements, internal `sun.*`
+  imports, mismatched outer type filenames, and lowercase `l` long suffixes.
+- `unit-tests` runs `clean test` with the headless settings from `pom.xml`.
+  Surefire XML reports appear in GitLab's test results and remain available,
+  alongside the lint report, as job artifacts for three days, including failures.
+
+Pipelines run for branch/tag pushes and merge requests. An open merge request
+uses its MR pipeline instead of creating a duplicate branch push pipeline.
+Maven downloads are cached within the project. The Java checks require no CI
+secrets. The separate manual `pr-agent-review` job adds an advisory AI review to
+same-project merge requests; see [PR-Agent setup](gitlab-pr-agent.md) for the
+two required secrets, model settings and first-run steps.
+
+Run the equivalent checks locally in PowerShell:
+
+```powershell
+.\mvnw.cmd -B -ntp org.apache.maven.plugins:maven-checkstyle-plugin:3.6.0:check "-Dcheckstyle.config.location=ci/checkstyle.xml" "-Dcheckstyle.includeResources=false"
+.\mvnw.cmd -B -ntp clean test
+```
+
+The GitLab runner needs outbound HTTPS access to Maven Central and the FTPAPI
+publisher repository. These checks exclude the separate `*IT` suites and do not
+launch the desktop application or establish native UI acceptance; real FTP/FTPS
+and manual desktop QA still use their existing verification guides.
