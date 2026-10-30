@@ -206,3 +206,7 @@ Future work requested by the user is to retain the Java desktop application, est
 The separate [branded desktop PRD](prd/branded-desktop.md) and
 [ADR-003](ADR/003-branded-swing-workspace.md) define the first visual modernization
 step. They do not change the historical expectations recorded above.
+
+The [contained extraction PRD](prd/archive-containment.md) specifies a later
+security change. Its criteria are planned behavior, not properties of the
+historical extraction implementation.

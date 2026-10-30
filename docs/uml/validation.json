@@ -50,7 +50,7 @@
     {
       "path": "docs/PRD.md",
       "diagrams": 1,
-      "source_sha256_lf": "130fc179de2b45f4ef2656d5ef43ab5bc2d2bf98e1aeac3a060a8555b4d51fd7"
+      "source_sha256_lf": "6043ec9c87eb940d99b92b9d56ef35b2c58a31b9b5a11f8b0d8da34ebcfeee22"
     },
     {
       "path": "docs/ADR/000-main-architecture.md",
@@ -76,6 +76,11 @@
       "path": "docs/ADR/004-java25-platform.md",
       "diagrams": 2,
       "source_sha256_lf": "5011053e1d0a60a4ada8a722c253b4648ff5afbfb436cbef4e80c5528190a27e"
+    },
+    {
+      "path": "docs/prd/archive-containment.md",
+      "diagrams": 1,
+      "source_sha256_lf": "02de438453adc1aa9b87cf3946c6e7ee18653e24cfc628a9618eac9dec78b7a4"
     },
     {
       "path": "docs/prd/branded-desktop.md",
