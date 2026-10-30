@@ -6,14 +6,14 @@
     {
       "id": "01-core-classes",
       "source_sha256_lf": "fd491b1c2ef8310c1a62c55c043ada353b42999f39fcd94b895718bdb6fbe2f2",
-      "svg_sha256": "b5d2d30c173392e2885a8f5db6e4311c8ac19d977fa3cd412956273f1847d5f1",
+      "svg_sha256": "0229a850656264f60b8a2c01174a830444a11c2aa19d7051ed4a78c6083a8024",
       "rendered_width": 1654.375,
       "rendered_height": 1132
     },
     {
       "id": "02-persistence-and-tls",
       "source_sha256_lf": "f317b625a0d860daafb9b84707c24273d646bf06cb6f7d639ea7829bfab9200b",
-      "svg_sha256": "3824c4eaba1314edba7589f314b9a5b9a78a68c9507c225e212707cff9b5d2fd",
+      "svg_sha256": "9f77751f70ef5c1f5343824a6b74929635b47857c6eb7b3ab69b3399b2f716e5",
       "rendered_width": 1784,
       "rendered_height": 735.375
     },
@@ -27,14 +27,14 @@
     {
       "id": "04-transfer-activity",
       "source_sha256_lf": "eb15f139c87491f995238cdddbebbcb743600afdc2815eb273d20926fdfb2750",
-      "svg_sha256": "110edad47b6a225739e27dd3b03e794aeeb842aca310e65fbf52bdca940ecfd0",
+      "svg_sha256": "293e94ff5fd4a237eaf0bc951a3666069c7c0311aeba77fee7beb173602251fb",
       "rendered_width": 1195.1875,
       "rendered_height": 2154.125
     },
     {
       "id": "05-session-states",
       "source_sha256_lf": "6c90518c62e6e702d736218e58bede2dc36bb137f3e45afe15da5d9b09d64e0f",
-      "svg_sha256": "5cb2329d882f055a37d5e2eee01c973524dceffa135c47df8dc59c6da1c71d64",
+      "svg_sha256": "b4728316a41873e3796a349f9499a637c8606fcb15b0d07ebe470e3fe0da65e9",
       "rendered_width": 1481.21875,
       "rendered_height": 817.984375
     },
@@ -70,12 +70,12 @@
     {
       "path": "docs/ADR/003-branded-swing-workspace.md",
       "diagrams": 2,
-      "source_sha256_lf": "d8da42d7369cb493f5625173f402dd5aa6fb12bd897ca977d86780eba3e21500"
+      "source_sha256_lf": "7baf97b61b9f11b797c4ebd0125d0b1290375e2681ba6f707dc5d1f5423dd364"
     },
     {
       "path": "docs/prd/branded-desktop.md",
       "diagrams": 1,
-      "source_sha256_lf": "5f92c0f5057807f0a65f244dd56a6b211a4824a80662e83b2561cdf04ba80812"
+      "source_sha256_lf": "a33549ecf5a0414d9090dacfe57c91e9ecd5b2f957288d3e3399bfcbcff700e7"
     }
   ],
   "browser_errors": []

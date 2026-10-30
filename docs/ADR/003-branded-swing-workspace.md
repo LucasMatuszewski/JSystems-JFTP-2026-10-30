@@ -11,6 +11,11 @@ Retain Swing and the existing session/transport implementation. Add FlatLaf and
 FlatLaf Extras **3.7.2**, the stable release verified from Maven Central metadata
 on this date. Extras brings JSVG **2.1.0**, as declared by its published POM, to
 paint the original local SVG at display scale. No remote asset request occurs.
+Use FlatLaf's documented pure-Java path by disabling its optional native library
+before installation. The initial native run exposed a JDK 25 restricted
+`System.load` warning from that library. Native window decorations are not needed
+for this workspace; use standard OS window frames rather than grant broad JVM
+native access. The configuration regression test first fails without this choice.
 
 The current `JFTPApplication.main` constructs Swing windows on the calling
 thread. It selects a saved platform look and feel; `JFTP` places its toolbar
@@ -37,6 +42,8 @@ website's colors and Arial fallback to a dense desktop workspace; Poppins has no
 been supplied as a desktop font and is not claimed to be bundled. Selection and
 focus use burgundy with contrasting text. Preserve keyboard actions and toolbar
 listeners. Replace the ineffective appearance selector with the fixed theme name.
+Regional preferences show a disabled single English locale, retaining date/time
+style choices without rewriting the legacy serialized locale field.
 
 Generated local descriptions use `Directory`, `File`, or the uppercase extension
 followed by `File`. Display names use real basenames, or the absolute path for a
@@ -119,3 +126,4 @@ published POM are the sources for this decision.
 | FlatLaf 3.7.2 | [Maven metadata](https://repo.maven.apache.org/maven2/com/formdev/flatlaf/maven-metadata.xml) | Stable version verification |
 | FlatLaf Extras 3.7.2 | [Published POM](https://repo.maven.apache.org/maven2/com/formdev/flatlaf-extras/3.7.2/flatlaf-extras-3.7.2.pom), [exact SVG API source](https://github.com/JFormDesigner/FlatLaf/blob/3.7.2/flatlaf-extras/src/main/java/com/formdev/flatlaf/extras/FlatSVGIcon.java) | Local SVG renderer and dependency contract |
 | Swing | [Event dispatch thread](https://docs.oracle.com/javase/tutorial/uiswing/concurrency/dispatch.html) | Startup thread contract |
+| FlatLaf native option | [Exact-version system properties](https://github.com/JFormDesigner/FlatLaf/blob/3.7.2/flatlaf-core/src/main/java/com/formdev/flatlaf/FlatSystemProperties.java) | Disable optional native library |

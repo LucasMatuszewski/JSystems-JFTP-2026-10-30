@@ -41,6 +41,7 @@ a change to the current application, not a replacement product.
 | B-07 | Existing synthetic favorites and preferences remain readable without changing their stored format or credentials during the visual change. |
 | B-08 | A real local test-server upload and binary download preserve bytes and update the destination panes under the new appearance. |
 | B-09 | The appearance preferences identify the fixed JSystems theme instead of offering an alternative theme that startup ignores. |
+| B-10 | Regional preferences show a fixed English language while retaining short/medium date and time style choices. Saving those styles leaves legacy locale data readable. |
 
 ## UI, constraints and scope
 
