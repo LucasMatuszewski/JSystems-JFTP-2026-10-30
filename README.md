@@ -6,6 +6,7 @@
 - [Local directory chat implementation plan](docs/plans/directory-assistant-local-chat-implementation-plan.md): the first delivery slice, task dependencies, testing and verification gates. Implementation has not started.
 - [Implementation Planning skill](.agents/skills/write-implementation-plan/SKILL.md): creates and audits implementation plans from accepted PRDs and ADRs, with explicit approval gates before implementation.
 - [GitLab CI/CD](.gitlab-ci.yml): Checkstyle linting, headless unit tests and manual PR-Agent merge-request reviews. See [setup and live verification](docs/gitlab-pr-agent.md).
+- [Example AI review on a GitLab merge request](#gitlab-cicd-and-ai-code-review): the PR-Agent comment on merge request !1, with a screenshot below.
 
 This repository is the working example for the JSystems course on AI-assisted
 software development. We use an existing Java/Swing FTP client to practise
@@ -99,6 +100,19 @@ write a failing test, implement it, and exercise the real application.
 Generated context is a saved snapshot, not a live view of the checkout. Follow
 each guide's verification and refresh instructions after changing its inputs.
 Historical baseline reports retain the results and limitations of their own runs.
+
+## GitLab CI/CD and AI code review
+
+The [pipeline](.gitlab-ci.yml) runs on the course GitLab instance (Docker runner) in two stages:
+
+1. **check**, automatic on every merge request and on `master`: `java-lint` runs Checkstyle with [ci/checkstyle.xml](ci/checkstyle.xml), and `unit-tests` runs `./mvnw clean test` and publishes the JUnit report to the merge request.
+2. **review**, started manually after the checks pass: `pr-agent-review` runs community PR-Agent 0.47.0 (image pinned by digest), sends the merge-request diff to a model through OpenRouter and posts a review comment. The review is advisory and never blocks the merge.
+
+It needs two CI/CD variables, `REVIEW_API_KEY` (OpenRouter) and `GITLAB__PERSONAL_ACCESS_TOKEN` (a project bot token that posts the comment). Setup, security notes and the live verification are in [docs/gitlab-pr-agent.md](docs/gitlab-pr-agent.md).
+
+Example: the PR-Agent review on merge request !1 (`ci/gitlab-checks` into `master`). The agent estimated the review effort and flagged a real risk in this setup: in same-project merge requests any pipeline job can read the CI variables, so the manual rule on the review job does not protect the API key or the token.
+
+![PR-Agent review comment on GitLab merge request !1: effort estimate, security concern about CI variables exposed to same-project merge request pipelines, and focus area Secret Exposure](docs/testing/screenshots/2026-10-30-gitlab-pr-agent-review.png)
 
 ## Repository layout
 
