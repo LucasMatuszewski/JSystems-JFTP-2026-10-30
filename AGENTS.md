@@ -34,6 +34,12 @@ tools/               Local context-generation and verification helpers
 
 ## Agent Workflow
 
+### Local code investigation and generated context
+
+- Use [docs/source-context.md](docs/source-context.md), RepoMap, the code graph and scoped Repomix excerpts first, before file-by-file source searches. Delegate source reading to Luna with a focused question and request concise, source-cited findings; verify critical originals before editing.
+- After changing captured inputs, refresh and verify affected maps, graphs, packs and related derived files before committing or handing off. Preserve explicitly frozen historical baselines.
+- Investigate and correct discrepancies between code, agent instructions and generated context; record their cause. Treat generated context as navigation, not authority over valid code. Consult the human when intent remains unclear.
+
 ### Research order: Context7 first
 
 1. **Search Context7 MCP first** for project, library, framework, SDK, API, CLI and platform documentation. Never search the internet before checking Context7.
