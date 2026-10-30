@@ -56,7 +56,7 @@ foreach ($resource in @('resources', 'resources_de', 'resources_zh_TW', 'images'
 }
 $brandingDirectory = Join-Path $classes 'com\myjavaworld\jftp\branding'
 New-Item -ItemType Directory -Path $brandingDirectory -Force | Out-Null
-Copy-Item -LiteralPath (Join-Path $repoRoot 'assets\logo.svg') -Destination $brandingDirectory
+Copy-Item -LiteralPath (Join-Path $repoRoot 'assets\logo-desktop.svg') -Destination $brandingDirectory
 $classpath = $classes + [IO.Path]::PathSeparator + $classpath
 $results = @()
 foreach ($source in $testSources) {
