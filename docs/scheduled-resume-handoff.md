@@ -91,8 +91,9 @@ Keep runtime commits separate and gated by actual UI acceptance. The new
 `/src/**/*.java` whitespace rule in the working `.gitattributes` belongs to the
 desktop change; the recurring-monitor rule is committed separately.
 
-Refresh current RepoMap, graph and focused Repomix after verified runtime commits,
-in separate commits. Historical source cards must remain checked against
+Refresh current RepoMap, graph and focused Repomix after the runtime changes are
+verified and before their commits; verify generated outputs against current
+originals. Keep generated-context updates in separate commits. Historical source cards must remain checked against
 revision `14e62ce`; current ZIP/action definitions now differ. PRD/ADR status and
 Mermaid receipt updates for these runtime changes remain to be reconciled.
 Preserve unrelated `docs/session-analyses/` work. Do not push. The full platform,

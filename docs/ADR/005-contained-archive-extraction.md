@@ -1,9 +1,11 @@
 # ADR-005 — Contained archive extraction
 
 **Date:** 2026-10-30
-**Status:** Accepted planned design under the user's autonomous modernization
-scope. Implementation, failing regression demonstrations and native acceptance
-remain outstanding.
+**Status:** Accepted; implementation and regression tests are present. The combined ordinary package run passes 85 cases,
+including 19 archive cases. The three symbolic-link integration cases errored
+because Windows denied link creation (WinError 1314; zero skips); hard-link and
+junction coverage passed. The user confirmed the application works on 2026-10-30 and requested commits without further testing. The symbolic-link prerequisite remains unresolved. See [current
+state](../current-state.md).
 **PRD:** [Contained extraction](../prd/archive-containment.md)
 **Relates to:** [Baseline architecture](000-main-architecture.md),
 [verification workflow](001-baseline-verification.md), [platform target](004-java25-platform.md).
@@ -41,8 +43,10 @@ available. Official API documentation was checked directly on 2026-10-30.
 
 ## Component design and data
 
-Retain the public explicit `open`, `unzip` and `close` boundary. Keep policy and
-planning helpers internal to the extractor. An extraction plan contains the
+Retain the public explicit `open`, `unzip` and `close` boundary. A package-private
+`ArchiveEntryPath` domain component validates lexical entry paths without disk
+access; this lets reserved device/UNC names be tested without opening them.
+Keep planning/filesystem helpers internal to the extractor. An extraction plan contains the
 original ZIP entry, its relative components, directory/file kind and resolved
 destination. It is transient and contains names/metadata, not every file's bytes.
 
@@ -64,7 +68,8 @@ there is no whole-archive rollback.
 - Use Windows-compatible component rules on every platform: reject ASCII control
   characters, `< > : " | ? *`, trailing dots/spaces, and reserved device basenames
   (case-insensitive, also before an extension): CON, PRN, AUX, NUL, COM1–COM9 and
-  LPT1–LPT9, including the documented superscript-digit variants.
+  LPT1–LPT9, including the documented superscript-digit variants. Also reject
+  legacy/console aliases CLOCK$, CONIN$ and CONOUT$ under this conservative policy.
 - Resolve accepted components against the physical root. Require component-based
   containment and a destination below the root; string-prefix comparison is
   insufficient. Reject output file/directory conflicts and duplicate regular-file
@@ -207,7 +212,8 @@ must stay green. Run the local suite and real FTP/FTPS suites with honest discov
 counts, failures and skips. Native QA must use a non-temporary archive-location
 choice when testing retention without an application-driven deletion step.
 
-The runtime commit requires all eleven Z criteria, source-checked behavior, resource closure,
-real filesystem tests and native acceptance. Refresh source-context snapshots
-after the verified code change in separate commits. This document alone proves
-none of those runtime outcomes.
+The runtime commit requires all eleven Z criteria, source-checked behavior,
+resource closure, real filesystem tests and native acceptance. Refresh affected
+source-context snapshots before the runtime commit and verify the generated
+outputs against current originals. This document alone proves none of those
+runtime outcomes.

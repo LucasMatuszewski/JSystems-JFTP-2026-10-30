@@ -1,7 +1,7 @@
 # ADR-003 — Branded Swing workspace and safe desktop startup
 
 **Date:** 2026-10-29
-**Status:** Accepted for implementation; verification pending.
+**Status:** Accepted; implementation is present. The combined ordinary package run passes 85 cases, including the 15 branding cases and fresh-JVM English-shortcut regression. The user confirmed the application works on 2026-10-30 and requested commits without further testing; prior FTP/FTPS runs passed 10/5 cases, but they do not establish final branded acceptance. See [current state](../current-state.md).
 **PRD:** [Branded desktop](../prd/branded-desktop.md)
 **Relates to:** [Baseline architecture](000-main-architecture.md), [verification gate](001-baseline-verification.md).
 
@@ -28,6 +28,11 @@ Swing event dispatch thread, directly when already there and queued otherwise.
 Install the fixed branded light appearance before constructing any application
 components or loading localized application bundles. Force English application
 and Swing defaults without rewriting the serialized locale/theme preferences.
+Select the English default locale in the bootstrap before asking Swing to create
+the EDT: AWT caches localized keyboard-modifier words during toolkit startup.
+Native QA with German startup flags exposed `Strg`/`Umschalt` in otherwise English
+menus. A separate fresh-JVM regression checks English Ctrl/Shift labels, since
+changing the locale after AWT initialization cannot establish that startup path.
 Do not claim this fixes existing background-worker Swing mutations elsewhere.
 
 Use a separate header component with application title/subtitle on the left and

@@ -1,8 +1,7 @@
 # PRD — Contained archive extraction
 
 **Date:** 2026-10-30
-**Status:** Planned security change under the autonomous modernization request;
-not implemented or accepted by native QA.
+**Status:** Approved scope; implementation is present. Ordinary archive checks pass, but Windows symbolic-link fixtures errored because the environment denied link creation, and the user confirmed the application works on 2026-10-30 and requested commits without further testing; see [current state](../current-state.md).
 **Baseline:** [Current application](../PRD.md), especially download-and-unzip;
 source findings CS-12 and CS-31 in the [evidence register](../current-state-evidence.md).
 

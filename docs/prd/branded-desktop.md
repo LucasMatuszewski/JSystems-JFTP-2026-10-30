@@ -1,7 +1,7 @@
 # PRD — JSystems desktop workspace
 
 **Date:** 2026-10-29
-**Status:** Approved scope from the user's autonomous modernization request; implementation pending.
+**Status:** Approved scope; implementation is present. Automated checks are green, but the user confirmed the application works on 2026-10-30 and requested commits without further testing; see [current state](../current-state.md).
 **Baseline:** [Existing product](../PRD.md), [observed desktop transfers](../testing/native-ftp.md).
 
 ## Purpose and users
