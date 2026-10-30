@@ -2,26 +2,26 @@
 
 - Implementation: rust
 - Examined source: "C:\\Users\\labuser\\Dev\\jftp"
-- Examined revision: "e6b427273e5037136a780ff516a27d3fb68fbf04"; dirty working copy: True
-- Candidates seen: 573
-- Files selected / parsed: 434 / 191
-- Definitions found / selected: 1688 / 1033
-- Captured definitions omitted: 655
+- Examined revision: "40630d4360e0ebaf258d343aecb9111d1c37fc93"; dirty working copy: True
+- Candidates seen: 591
+- Files selected / parsed: 452 / 206
+- Definitions found / selected: 1822 / 1015
+- Captured definitions omitted: 807
 - Selection mode / rendering: ranked / compact
 - Requested coverage: none
 - Requested maximum definitions: none
-- Effective maximum definitions: 1688
-- Actual captured-definition coverage: 61.1967%
+- Effective maximum definitions: 1822
+- Actual captured-definition coverage: 55.708%
 - Selection limit reached: no
 - Declaration snippets clipped: 0
 - Map budget: 16384 estimated tokens
 - Truncated: yes; scan or map is truncated; coverage is not complete
 - Skipped entries / parse failures: 139 / 0
-- Original generation wall time: 5.70748 seconds (measured subprocess wall time)
-- Raw content: 65515 Unicode characters, 65515 UTF-8 bytes, approximately 16379 tokens
-- Whole annotated report: approximately 16771 tokens
+- Original generation wall time: 3.27123 seconds (measured subprocess wall time)
+- Raw content: 65531 Unicode characters, 65531 UTF-8 bytes, approximately 16383 tokens
+- Whole annotated report: approximately 16775 tokens
 - Token estimator: ceil(Unicode characters / 4); a size estimate, not a model tokenizer
-- Raw map SHA-256: 1eb8516ee9261a830e49c04c42af585dffd3f28c210aa9789ada6efc21c9867e
+- Raw map SHA-256: 5ece13313cd7d49281f4653875d6969d686ef27317963d94ceb992271ffcb1a6
 - Evidence sidecars: "artifacts/jftp-overview.rust/jftp-overview.rust.raw.md", "artifacts/jftp-overview.rust/jftp-overview.rust.meta.json", "artifacts/jftp-overview.rust/jftp-overview.rust.inventory.json"
 
 Generation status complete means the selected map was published, not that every repository file or relationship was analyzed. Read the sidecars for scope, skips, parser failures and the original working-copy fingerprint.
@@ -173,8 +173,6 @@ L74: public void setMnemonic(String mnemonic, String mnemonicIndex) {
 ## src/main/java/com/myjavaworld/gui/MComboBox.java
 
 L30: public class MComboBox extends JComboBox {
-L79: public void setData(Object[] data) {
-L93: public void setData(Vector data) {
 
 ## src/main/java/com/myjavaworld/gui/MDialog.java
 
@@ -222,10 +220,6 @@ L67: @Override
 L68: public void setText(String text) {
 L77: @Override
 L78: public void setDocument(Document model) {
-L83: public void setMaximumLength(int maxLength) {
-L88: public int getMaximumLength() {
-L93: public void setCharacterCase(int characterCase) {
-L98: public int getCharacterCase() {
 L103: public void setUndoLimit(int undoLimit) {
 L111: public void delete() {
 L144: public boolean canPaste() {
@@ -233,10 +227,6 @@ L153: public boolean canDelete() {
 L160: public boolean canSelectAll() {
 L209: private void setup() {
 L216: private void setAppearance() {
-
-## src/main/java/com/myjavaworld/gui/MList.java
-
-L28: public class MList extends JList {
 
 ## src/main/java/com/myjavaworld/gui/MMenu.java
 
@@ -258,10 +248,6 @@ L72: public void setMnemonic(String mnemonic, String mnemonicIndex) {
 
 L39: public class MPasswordField extends JPasswordField implements MTextComponent,
 L40: MouseListener {
-L64: public void setMaximumLength(int maximumLength) {
-L69: public int getMaximumLength() {
-L74: public void setCharacterCase(int characterCase) {
-L79: public int getCharacterCase() {
 L84: public void setUndoLimit(int undoLimit) {
 L93: public void delete() {
 L123: public boolean canPaste() {
@@ -274,10 +260,6 @@ L202: private void setup() {
 ## src/main/java/com/myjavaworld/gui/MPlainDocument.java
 
 L31: public class MPlainDocument extends PlainDocument {
-L54: public void setMaximumLength(int maximumLength) {
-L64: public int getMaximumLength() {
-L75: public void setCharacterCase(int characterCase) {
-L85: public int getCharacterCase() {
 L89: @Override
 L90: public void insertString(int offset, String str, AttributeSet a)
 L91: throws BadLocationException {
@@ -311,6 +293,10 @@ L29: public class MScrollPane extends JScrollPane {
 ## src/main/java/com/myjavaworld/gui/MTable.java
 
 L35: public class MTable extends JTable {
+L110: @Override
+L111: public int getRowHeight() {
+L122: @Override
+L123: protected void processMouseEvent(MouseEvent evt) {
 
 ## src/main/java/com/myjavaworld/gui/MTableCellRenderer.java
 
@@ -328,10 +314,6 @@ L92: public Icon getIcon() {
 
 L39: public class MTextArea extends JTextArea implements MTextComponent,
 L40: MouseListener {
-L67: public void setMaximumLength(int maximumLength) {
-L72: public int getMaximumLength() {
-L77: public void setCharacterCase(int characterCase) {
-L82: public int getCharacterCase() {
 L87: public void setUndoLimit(int undoLimit) {
 L95: public void delete() {
 L128: public boolean canPaste() {
@@ -342,8 +324,6 @@ L187: private void setup() {
 ## src/main/java/com/myjavaworld/gui/MTextComponent.java
 
 L26: public interface MTextComponent {
-L56: public int getCharacterCase();
-L74: public int getMaximumLength();
 L83: public void setUndoLimit(int limit);
 L91: public int getUndoLimit();
 L117: public void delete();
@@ -423,6 +403,8 @@ L63: protected synchronized Object getValue() {
 L70: private synchronized void setValue(Object x) {
 L90: public void interrupt() {
 L105: public Object get() {
+L127: public void run() {
+L134: public void run() {
 L152: public void start() {
 
 ## src/main/java/com/myjavaworld/jftp/AboutDlg.java
@@ -441,6 +423,12 @@ L108: private void initComponents() {
 ## src/main/java/com/myjavaworld/jftp/AutoUpdater.java
 
 L31: public class AutoUpdater extends Thread {
+L48: @Override
+L49: public void run() {
+
+## src/main/java/com/myjavaworld/jftp/BrandHeader.java
+
+L13: public final class BrandHeader extends JPanel {
 
 ## src/main/java/com/myjavaworld/jftp/CertificatePrefsPanel.java
 
@@ -469,7 +457,6 @@ L175: private Component getCommandButtons() {
 
 L63: public class ConnectionDlg extends MDialog implements ActionListener,
 L64: ComponentListener, ItemListener {
-L102: public void setRemoteHost(RemoteHost remoteHost) {
 L107: public RemoteHost getRemoteHost() {
 L158: private void close() {
 L167: private void initComponents() {
@@ -484,6 +471,16 @@ L641: private void cancelButtonPressed() {
 L645: private void browseButtonPressed() {
 L673: private boolean validateInput() {
 
+## src/main/java/com/myjavaworld/jftp/DesktopAppearance.java
+
+L13: public final class DesktopAppearance {
+L16: public static void install() {
+
+## src/main/java/com/myjavaworld/jftp/DesktopBootstrap.java
+
+L8: public final class DesktopBootstrap {
+L11: public static void runOnEventThread(Runnable startup) {
+
 ## src/main/java/com/myjavaworld/jftp/DnDTransferHandler.java
 
 L34: public class DnDTransferHandler extends TransferHandler {
@@ -496,8 +493,6 @@ L156: public boolean isDataFlavorSupported(DataFlavor flavor) {
 
 L52: public class DownloadAndUnzipDlg extends MDialog implements ActionListener,
 L53: ItemListener {
-L89: public File getUnzipDirectory() {
-L102: public File getDownloadTo() {
 L123: public boolean getDeleteOption() {
 L191: private boolean validateInput() {
 L214: private void initComponents() {
@@ -618,7 +613,6 @@ L25: public class Favorite extends RemoteHost implements java.io.Serializable,
 L26: Comparable {
 L37: @Override
 L38: public boolean equals(Object obj) {
-L46: public int hashcode() {
 L50: @Override
 L51: public int compareTo(Object obj) {
 
@@ -626,7 +620,6 @@ L51: public int compareTo(Object obj) {
 
 L64: public class FavoritePropertiesDlg extends MDialog implements ActionListener,
 L65: ComponentListener, ItemListener {
-L140: private void initDialog() {
 L160: public void setFavorite(Favorite favorite) {
 L171: public Favorite getFavorite() {
 L222: private void close() {
@@ -697,43 +690,43 @@ L35: public class HelpMenu extends MMenu implements ActionListener {
 
 ## src/main/java/com/myjavaworld/jftp/JFTP.java
 
-L62: public class JFTP extends MFrame implements WindowListener, ActionListener,
-L63: ChangeListener {
-L148: public void newSession() {
-L177: public void windowClosing(WindowEvent evt) {
-L188: public void closeSession() {
-L199: public void exit() {
-L294: private void executeCustomCommand() {
-L310: private void executeCommand(String command) {
-L318: private void manageCertificates() {
-L325: private void showRemoteFileProperties() {
-L347: private void showLocalFileProperties() {
-L363: private void showLocalFileFilter() {
-L379: private void clearLocalFileFilter() {
-L387: private void showRemoteFileFilter() {
-L403: private void clearRemoteFileFilter() {
-L411: private void addToFavorites() {
-L451: public void showPreferencesDialog() {
-L458: private JMenuBar prepareMenuBar() {
-L476: private Rectangle getPreferredBounds() {
-L495: public FTPSession getCurrentSession() {
-L512: public static synchronized void savePreferences(JFTPPreferences prefs)
-L513: throws IOException {
-L535: public static synchronized JFTPPreferences loadPreferences()
-L536: throws IOException {
-L598: public static String[] getInstalledParsers() {
-L611: public static String getParserClassName(String parserName) {
-L622: public static String getParserName(String parserClassName) {
-L639: public static String[] getInstalledClients() {
-L653: public static String getClientClassName(String clientName) {
-L664: public static String getClientName(String clientClassName) {
-L676: public void updateSessionTitle(FTPSession session) {
-L694: public void showAboutDialog() {
-L704: public void updateToolBar() {
-L730: private void selectAllLocalFiles() {
-L737: private void invertLocalFileSelection() {
-L744: private void selectAllRemoteFiles() {
-L751: private void invertRemoteFileSelection() {
+L63: public class JFTP extends MFrame implements WindowListener, ActionListener,
+L64: ChangeListener {
+L154: public void newSession() {
+L183: public void windowClosing(WindowEvent evt) {
+L194: public void closeSession() {
+L205: public void exit() {
+L300: private void executeCustomCommand() {
+L316: private void executeCommand(String command) {
+L324: private void manageCertificates() {
+L331: private void showRemoteFileProperties() {
+L353: private void showLocalFileProperties() {
+L369: private void showLocalFileFilter() {
+L385: private void clearLocalFileFilter() {
+L393: private void showRemoteFileFilter() {
+L409: private void clearRemoteFileFilter() {
+L417: private void addToFavorites() {
+L457: public void showPreferencesDialog() {
+L464: private JMenuBar prepareMenuBar() {
+L482: private Rectangle getPreferredBounds() {
+L501: public FTPSession getCurrentSession() {
+L518: public static synchronized void savePreferences(JFTPPreferences prefs)
+L519: throws IOException {
+L541: public static synchronized JFTPPreferences loadPreferences()
+L542: throws IOException {
+L604: public static String[] getInstalledParsers() {
+L617: public static String getParserClassName(String parserName) {
+L628: public static String getParserName(String parserClassName) {
+L645: public static String[] getInstalledClients() {
+L659: public static String getClientClassName(String clientName) {
+L670: public static String getClientName(String clientClassName) {
+L682: public void updateSessionTitle(FTPSession session) {
+L700: public void showAboutDialog() {
+L710: public void updateToolBar() {
+L736: private void selectAllLocalFiles() {
+L743: private void invertLocalFileSelection() {
+L750: private void selectAllRemoteFiles() {
+L757: private void invertRemoteFileSelection() {
 
 ## src/main/java/com/myjavaworld/jftp/JFTPApplet.java
 
@@ -744,12 +737,12 @@ L67: private void initComponents() {
 
 ## src/main/java/com/myjavaworld/jftp/JFTPApplication.java
 
-L28: public class JFTPApplication {
-L65: public static void main(String args[]) {
-L69: public void showAboutDialog() {
-L75: public void showPreferencesDialog() {
-L81: public void quit() {
-L87: private void registerForMacOSXEvents() {
+L24: public class JFTPApplication {
+L46: public static void main(String args[]) {
+L50: public void showAboutDialog() {
+L56: public void showPreferencesDialog() {
+L62: public void quit() {
+L68: private void registerForMacOSXEvents() {
 
 ## src/main/java/com/myjavaworld/jftp/JFTPConstants.java
 
@@ -781,9 +774,7 @@ L205: public int getTimeout() {
 L209: public void setBufferSize(int bufferSize) {
 L213: public int getBufferSize() {
 L221: public String getLocalDirectory() {
-L225: public void setDateFormat(int dateFormat) {
 L229: public int getDateFormat() {
-L233: public void setTimeFormat(int timeFormat) {
 L237: public int getTimeFormat() {
 L241: public void setDefaultTransferType(int defaultTransferType) {
 L245: public int getDefaultTransferType() {
@@ -842,7 +833,6 @@ L70: public static void updateProxySettings() {
 ## src/main/java/com/myjavaworld/jftp/LocalFile.java
 
 L35: public class LocalFile implements Serializable {
-L70: public File getFile() {
 L74: public String getAbsolutePath() {
 L78: public LocalFile getAbsoluteFile() {
 L82: public String getCanonicalPath() throws IOException {
@@ -853,29 +843,29 @@ L98: public String getDisplayName() {
 L102: public String getExtension() {
 L106: public String getTypeOld() {
 L116: public String getType() {
-L124: public long getSize() {
-L128: public long getLastModified() {
-L132: public boolean isDirectory() {
-L136: public boolean isFile() {
-L140: public boolean exists() {
-L144: public boolean canRead() {
-L148: public boolean canWrite() {
-L152: public boolean isHidden() {
-L156: public LocalFile getParentOld() {
-L164: public LocalFile getParent() {
-L172: public LocalFile[] listOld() {
-L184: public LocalFile[] list() {
-L196: public LocalFile[] listOld(Filter filter) {
-L215: public LocalFile[] list(Filter filter) {
-L234: public static LocalFile[] listRoots() {
-L246: @Override
-L247: public boolean equals(Object obj) {
-L255: public int compareTo(Object obj) {
-L263: @Override
-L264: public String toString() {
-L268: public Icon getIcon() {
-L272: public boolean isTraversable() {
-L276: public boolean delete() {
+L120: public long getSize() {
+L124: public long getLastModified() {
+L128: public boolean isDirectory() {
+L132: public boolean isFile() {
+L136: public boolean exists() {
+L140: public boolean canRead() {
+L144: public boolean canWrite() {
+L148: public boolean isHidden() {
+L152: public LocalFile getParentOld() {
+L160: public LocalFile getParent() {
+L168: public LocalFile[] listOld() {
+L180: public LocalFile[] list() {
+L192: public LocalFile[] listOld(Filter filter) {
+L211: public LocalFile[] list(Filter filter) {
+L230: public static LocalFile[] listRoots() {
+L242: @Override
+L243: public boolean equals(Object obj) {
+L251: public int compareTo(Object obj) {
+L259: @Override
+L260: public String toString() {
+L264: public Icon getIcon() {
+L268: public boolean isTraversable() {
+L272: public boolean delete() {
 
 ## src/main/java/com/myjavaworld/jftp/LocalFileCellRenderer.java
 
@@ -900,7 +890,6 @@ L73: public DateFilter getDateFilter() {
 L81: public void setDateFilter(DateFilter dateFilter) {
 L88: public RegexFilter getRegexFilter() {
 L96: public void setRegexFilter(RegexFilter regexFilter) {
-L103: public boolean isShowHiddenFiles() {
 L111: public void setShowHiddenFiles(boolean showHiddenFiles) {
 L115: public void setExclusionFilter(boolean exclusionFilter) {
 L119: public boolean isExclusionFilter() {
@@ -918,7 +907,6 @@ L221: private void initComponents() {
 L277: private Component getFilterTypePanel() {
 L316: private Component getFileNameFilterPanel() {
 L363: private Component getDateFilterPanel() {
-L434: private Component getAttributesFilterPanel() {
 L457: private Component getCommandButtons() {
 
 ## src/main/java/com/myjavaworld/jftp/LocalFilePropertiesDlg.java
@@ -939,7 +927,6 @@ L410: private Component getCommandButtons() {
 ## src/main/java/com/myjavaworld/jftp/LocalFileTableModel.java
 
 L32: public class LocalFileTableModel extends AbstractTableModel {
-L50: public void setData(LocalFile[] data) {
 L58: public LocalFile[] getData() {
 L62: public LocalFile getFileAt(int row) {
 L75: public int getRowCount() {
@@ -949,8 +936,6 @@ L79: public Object getValueAt(int row, int col) {
 
 L75: public class LocalPane extends JPanel implements ActionListener, MouseListener,
 L76: ListSelectionListener {
-L115: public void setData(LocalFile dir, LocalFile[] data) {
-L135: public LocalFile[] getData() {
 L139: public int getSelectionCount() {
 L143: public LocalFile getSelectedFile() {
 L151: public LocalFile[] getSelectedFiles() {
@@ -985,7 +970,6 @@ L46: public class LocalSystemMenu extends MMenu implements MenuListener {
 L46: public class LocalSystemPopupMenu extends MPopupMenu implements
 L47: PopupMenuListener {
 L90: public static LocalSystemPopupMenu getInstance(JFTP jftp) {
-L99: private void preparePopupMenu() {
 
 ## src/main/java/com/myjavaworld/jftp/LocalePrefsPanel.java
 
@@ -993,7 +977,6 @@ L43: public class LocalePrefsPanel extends JPanel implements ActionListener {
 L69: public void populateScreen() {
 L73: public void populateScreen(JFTPPreferences prefs) {
 L103: private void initComponents() {
-L241: private void updatePreview() {
 
 ## src/main/java/com/myjavaworld/jftp/NewLocalDirectoryDlg.java
 
@@ -1007,7 +990,6 @@ L173: private Component getCommandButtons() {
 ## src/main/java/com/myjavaworld/jftp/NewLocalFileDlg.java
 
 L47: public class NewLocalFileDlg extends MDialog implements ActionListener {
-L79: public String getFile() {
 L98: private void close() {
 L107: private boolean validateInput() {
 L124: private void initComponents() {
@@ -1025,7 +1007,6 @@ L141: private Component getCommandButtons() {
 ## src/main/java/com/myjavaworld/jftp/NewRemoteFileDlg.java
 
 L46: public class NewRemoteFileDlg extends MDialog implements ActionListener {
-L66: public String getFile() {
 L85: private void close() {
 L94: private boolean validateInput() {
 L111: private void initComponents() {
@@ -1095,7 +1076,6 @@ L420: private Component getCommandButtons() {
 ## src/main/java/com/myjavaworld/jftp/RemoteFilePropertiesDlg.java
 
 L56: public class RemoteFilePropertiesDlg extends MDialog implements ActionListener {
-L113: public RemoteFile getFile() {
 L120: public boolean isRecursive() {
 L133: @Override
 L134: public void windowClosing(WindowEvent evt) {
@@ -1113,8 +1093,6 @@ L736: private Component getCommandButtons() {
 ## src/main/java/com/myjavaworld/jftp/RemoteFileTableModel.java
 
 L33: public class RemoteFileTableModel extends AbstractTableModel {
-L52: public void setData(RemoteFile[] data) {
-L60: public RemoteFile[] getData() {
 L64: public RemoteFile getFileAt(int row) {
 L68: public int getRowCount() {
 L81: public Object getValueAt(int row, int col) {
@@ -1164,8 +1142,6 @@ L246: public boolean equals(Object obj) {
 
 L69: public class RemotePane extends JPanel implements ActionListener,
 L70: MouseListener, ListSelectionListener {
-L107: public void setData(RemoteFile dir, RemoteFile[] data) {
-L122: public RemoteFile[] getData() {
 L126: public int getSelectionCount() {
 L130: public RemoteFile getSelectedFile() {
 L138: public RemoteFile[] getSelectedFiles() {
@@ -1193,7 +1169,6 @@ L44: public class RemoteSystemMenu extends MMenu implements MenuListener {
 L48: public class RemoteSystemPopupMenu extends MPopupMenu implements
 L49: PopupMenuListener {
 L89: public static RemoteSystemPopupMenu getInstance(JFTP jftp) {
-L98: private void preparePopupMenu() {
 
 ## src/main/java/com/myjavaworld/jftp/RenameLocalFileDlg.java
 
@@ -1281,7 +1256,6 @@ L82: public void populateScreen(JFTPPreferences prefs) {
 L102: private void initComponents() {
 L147: private void configureTable() {
 L158: private class TypesTableModel extends AbstractTableModel {
-L171: public void setData(Map map) {
 L186: public int getRowCount() {
 L199: public Object getValueAt(int row, int col) {
 L236: private void addEmptyRow() {
@@ -1297,13 +1271,9 @@ L51: public String toString() {
 
 ## src/main/java/com/myjavaworld/jftp/UIPrefsPanel.java
 
-L38: public class UIPrefsPanel extends JPanel {
-L50: private void initComponents() {
-L89: public void populateScreen() {
-L93: public void populateScreen(JFTPPreferences prefs) {
-L115: private String[] getInstalledLookAndFeels() {
-L124: private String getLookAndFeelClassName(String lookAndFeelName) {
-L134: private String getLookAndFeelName(String lookAndFeelClassName) {
+L25: public class UIPrefsPanel extends JPanel {
+L37: public void populateScreen() {
+L39: public void populateScreen(JFTPPreferences prefs) {
 
 ## src/main/java/com/myjavaworld/jftp/UploadAsDlg.java
 
@@ -1367,7 +1337,6 @@ L40: public static synchronized DownloadAction getInstance(JFTP jftp) {
 
 L36: public class DownloadAndUnzipAction implements ActionListener {
 L45: public static synchronized DownloadAndUnzipAction getInstance(JFTP jftp) {
-L58: private void downloadAndUnzip() {
 
 ## src/main/java/com/myjavaworld/jftp/actions/DownloadAsAction.java
 
@@ -1490,8 +1459,6 @@ L115: private Component getCommandButtons() {
 L73: public class CertificateManagerDlg extends MDialog implements ActionListener,
 L74: ListSelectionListener, ChangeListener, MouseListener {
 L117: public void valueChanged(ListSelectionEvent evt) {
-L189: private void viewServerCertificate() {
-L201: private void viewClientCertificate() {
 L363: private void initComponents() {
 L498: private Component getCommandButtons() {
 
@@ -1508,8 +1475,6 @@ L54: public void setKeyStore(KeyStore keyStore) throws KeyStoreException {
 L67: public KeyStore getKeyStore() {
 L75: public int getRowCount() {
 L84: public Object getValueAt(int row, int col) {
-L116: public Certificate getCertificateAt(int row) {
-L125: public String getAliasAt(int row) {
 
 ## src/main/java/com/myjavaworld/jftp/ssl/DNParser.java
 
@@ -1562,8 +1527,6 @@ L304: char[] password, KeyStore keyStore) throws KeyStoreException {
 ## src/main/java/com/myjavaworld/jftp/ssl/SecurityWarningDlg.java
 
 L48: public class SecurityWarningDlg extends MDialog implements ActionListener {
-L88: public static int showDialog(Component invoker, Certificate[] chain,
-L89: boolean validDate, boolean validHost, boolean trusted) {
 L125: private void initComponents() {
 L233: private Component getCommandButtons() {
 
@@ -1575,7 +1538,6 @@ L30: public static String getString(String key) {
 ## src/main/java/com/myjavaworld/util/FileChangeEvent.java
 
 L24: public class FileChangeEvent extends EventObject {
-L37: public File getFile() {
 L41: public long getOldDate() {
 L45: public long getnewDate() {
 
@@ -1620,24 +1582,28 @@ L77: public static String getOSName() {
 L93: public static String getJavaHome() {
 L101: public static String getWorkingDirectory() {
 
+## src/main/java/com/myjavaworld/zip/ArchiveEntryPath.java
+
+L9: final class ArchiveEntryPath {
+L12: static Path resolve(Path root, String name, boolean directory) throws IOException {
+
 ## src/main/java/com/myjavaworld/zip/Unzip.java
 
-L36: public class Unzip {
-L61: public File getFile() {
-L65: public void setTargetDirectory(File targetDirectory) {
-L73: public void addZipListener(ZipListener l) {
-L81: public void addProgressListener(ProgressListener l) {
-L89: protected void fireBeginFileEvent(File file) {
-L99: protected void fireEndFileEvent(File file) {
-L109: protected void fireProgressEvent(int progress) {
-L119: public void open() throws ZipException, IOException {
-L126: public void close() throws IOException {
-L153: private void unzipFile(ZipEntry entry) throws IOException {
+L49: public class Unzip implements AutoCloseable {
+L78: public void setTargetDirectory(File targetDirectory) {
+L86: public void addZipListener(ZipListener l) {
+L94: public void addProgressListener(ProgressListener l) {
+L102: protected void fireBeginFileEvent(File file) {
+L112: protected void fireEndFileEvent(File file) {
+L122: protected void fireProgressEvent(int progress) {
+L139: @Override
+L140: public void close() throws IOException {
+L209: private void checkExistingPath(Path root, Path target, String name, boolean directory)
+L210: throws IOException {
 
 ## src/main/java/com/myjavaworld/zip/Zip.java
 
 L38: public class Zip {
-L69: public File getFile() {
 L73: public void setFilter(Filter filter) {
 L77: public Filter getFilter() {
 L81: public void addZipListener(ZipListener l) {
@@ -1645,7 +1611,6 @@ L89: public void addProgressListener(ProgressListener l) {
 L97: protected void fireBeginFileEvent(File file) {
 L107: protected void fireEndFileEvent(File file) {
 L117: protected void fireProgressEvent(int progress) {
-L159: public void open() throws IOException {
 L172: public void close() throws IOException {
 L185: public void addEntry(File file) throws IOException {
 L250: private String computeEntryName(File file) {
@@ -1654,17 +1619,57 @@ L250: private String computeEntryName(File file) {
 
 L23: public class ZipEvent extends EventObject {
 L36: public int getType() {
-L40: public String getFile() {
 
 ## src/main/java/com/myjavaworld/zip/ZipListener.java
 
 L23: public interface ZipListener extends EventListener {
 L25: public void beginFile(ZipEvent evt);
 
+## src/test/java/com/myjavaworld/jftp/DesktopAppearanceTest.java
+
+L26: public class DesktopAppearanceTest extends TestCase {
+L44: protected void setUp() throws Exception {
+L46: public void run() {
+L61: protected void tearDown() throws Exception {
+L63: public void run() {
+L102: public void testFixedAppearanceSettingsPreserveLegacyPreferences() throws Exception {
+L104: public void run() {
+L126: private static boolean containsComboBox(Container root) {
+L134: public void testInstallSetsBrandedAppearanceAndEnglishDefaults() throws Exception {
+L136: public void run() {
+L160: public void testHeaderContainsAccessiblePaintableLogoAndTitle() throws Exception {
+L163: public void run() {
+L170: public void run() {
+L198: public void testHeaderPlacesLogoToRightOfTitleAtDesktopWidthWithoutOverlap()
+L199: throws Exception {
+L204: public void run() {
+L224: private static JLabel findByAccessibleName(Container root, String name) {
+L243: private static JLabel findByText(Container root, String text) {
+L258: private static int countOpaqueNonwhitePixels(BufferedImage image) {
+L275: private static void layoutRecursively(Container container) {
+L284: private static DimensionSize preferredSize(JComponent component) {
+L289: private static final class DimensionSize {
+
+## src/test/java/com/myjavaworld/jftp/DesktopBootstrapTest.java
+
+L13: public class DesktopBootstrapTest extends TestCase {
+L25: public void testBackgroundCallerDispatchesCallbackToEdtExactlyOnce() throws Exception {
+L32: public void run() {
+L45: public void testEdtCallerRunsCallbackInlineBeforeReturning() throws Exception {
+L48: public void run() {
+L53: public void run() {
+
+## src/test/java/com/myjavaworld/jftp/DesktopStartupLocaleTest.java
+
+L17: public class DesktopStartupLocaleTest extends TestCase {
+L67: public static class Probe {
+L68: public static void main(String[] args) throws Exception {
+L72: public void run() {
+
 ## src/test/java/com/myjavaworld/jftp/FtpTransportContractIT.java
 
-L20: public class FtpTransportContractIT extends TestCase {
-L57: private void connect() throws Exception {
+L25: public class FtpTransportContractIT extends TestCase {
+L62: private void connect() throws Exception {
 
 ## src/test/java/com/myjavaworld/jftp/FtpsTransportContractIT.java
 
