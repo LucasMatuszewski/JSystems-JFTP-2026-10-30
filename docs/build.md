@@ -11,8 +11,8 @@ From PowerShell:
 .\mvnw.cmd package
 ```
 
-On Unix-like systems the equivalent entry point is `./mvnw`; this repository's
-recovered build route was exercised on Windows. The compiler temporarily retains
+On Unix-like systems the equivalent entry point is `./mvnw`; the Linux GitLab
+runner has also passed the headless test suite. The compiler temporarily retains
 release 8 compatibility and excludes the unused Apple-specific `OSXAdapterOld`;
 neither choice is the final runtime modernization target.
 
@@ -49,8 +49,8 @@ Legacy publishing configuration remains in the POM and was not exercised.
 
 ## GitLab CI checks
 
-The root [.gitlab-ci.yml](../.gitlab-ci.yml) runs two parallel jobs on a Linux
-Docker runner with JDK 25, using the pinned Maven Wrapper:
+The root [.gitlab-ci.yml](../.gitlab-ci.yml) runs two parallel Java checks on a
+Linux Docker runner with JDK 25, using the pinned Maven Wrapper.
 
 The Java jobs install `unzip` so the Unix wrapper uses the pinned ZIP archive.
 Without it, the wrapper downloads TAR.GZ, which does not match the ZIP checksum.

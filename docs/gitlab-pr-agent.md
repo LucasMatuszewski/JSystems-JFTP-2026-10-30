@@ -22,6 +22,15 @@ expansion disabled:
 | `REVIEW_API_KEY` | An OpenRouter API key with credit/access to the configured model. Model API usage is billed separately from coding subscriptions. |
 | `GITLAB__PERSONAL_ACCESS_TOKEN` | A dedicated GitLab bot token with `api` scope and access to this project. A project access token with Developer role is a straightforward setup; alternatively use a dedicated bot account's personal access token and give that account Developer membership here. |
 
+To reuse the OpenRouter key across courses on this self-managed server, an
+administrator can define `REVIEW_API_KEY` under **Admin → Settings → CI/CD →
+Variables** instead. The job inherits it without a code change. Remove the
+project-level duplicate if the instance variable should be used, because project
+variables take precedence. Instance variables are available to other projects'
+pipelines too; a group variable provides narrower sharing within a course group.
+Keep the GitLab bot token project-specific. See [GitLab variable scopes and
+precedence](https://docs.gitlab.com/ci/variables/).
+
 Create a project access token under **Settings → Access tokens**, with an expiry
 date, `api` scope and Developer role. Store its value only in the CI variable.
 `CI_JOB_TOKEN` cannot publish the review comment. The token's identity will be
@@ -76,13 +85,31 @@ webhook service. The job sends code/diff context to the selected model endpoint.
 
 ## Validation status
 
-The original course example records a live GitHub/OpenRouter launcher run, but
-does not claim a live GitLab run. For this adaptation, the project's GitLab CI
-validator accepts all three jobs with zero errors or warnings, and a simulated
-`master` pipeline validates. Shell syntax and both missing-secret failure paths
-also passed locally. The Java lint and 85 unit tests passed before adding this
-review job; no application code or Java job commands changed in this step.
+Live GitLab verification passed on 2026-10-30 in
+[MR !1](https://jsystems-gitlab.polandcentral.cloudapp.azure.com/lucas/JSystems-JFTP-2026-10-30/-/merge_requests/1),
+[pipeline 12](https://jsystems-gitlab.polandcentral.cloudapp.azure.com/lucas/JSystems-JFTP-2026-10-30/-/pipelines/12),
+at commit `786db7a`:
 
-A configured model key, bot token and real MR are still needed to complete the
-end-to-end review check. Native Swing QA and real FTP/FTPS verification remain
-separate application checks.
+- Checkstyle passed with zero violations and uploaded its report.
+- All 85 headless tests passed on the Linux Docker runner, with zero failures,
+  errors or skips. GitLab received the JUnit results and report artifacts.
+- The manual PR-Agent job succeeded and the project bot published a
+  [review comment](https://jsystems-gitlab.polandcentral.cloudapp.azure.com/lucas/JSystems-JFTP-2026-10-30/-/merge_requests/1#note_3).
+  Run details identified `openai/openai/gpt-6-luna` through OpenRouter, one AI
+  call, and 5,316 input / 576 output tokens.
+
+The first pipeline exposed a missing `unzip` package: the Unix wrapper switched
+to TAR.GZ and rejected it against the pinned ZIP checksum. Installing `unzip`
+fixed the fresh-download path while preserving checksum validation.
+
+The review raised the documented secret-exposure concern: same-project pipeline
+editors can access injected secrets. This is retained as a limitation of the
+trusted internal course setup, not claimed as fixed by manual execution or
+masking. At verification the private project listed only its owner and review
+bot as members. Reassess this setup before admitting untrusted contributors.
+
+Known nonfatal output includes legacy Java 8 compatibility/deprecation notes,
+local-only runner cache notices, and PR-Agent warnings about absent optional
+`.secrets.toml` files; the configured environment credentials worked. Native Swing
+QA, real FTP/FTPS verification and review-quality testing with a deliberately
+introduced defect remain separate checks.
