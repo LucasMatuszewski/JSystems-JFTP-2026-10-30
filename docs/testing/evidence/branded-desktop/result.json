@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-30",
+  "base_revision": "5b83c2791522d099b336cb7ac90ab45c9f225ac4",
+  "implementation_scope": "uncommitted working-tree desktop feature",
+  "local_tests": 62,
+  "local_failures": 0,
+  "local_errors": 0,
+  "local_skips": 0,
+  "archive_checks": 4,
+  "final_native_acceptance": false,
+  "blocker": "RDP disconnected; no Java desktop access",
+  "observed_candidate_jar_sha256": "3bb05526af77bc0eb34395f72f233bf957a81f86ac12c6eb337b05d714092e31",
+  "current_candidate_jar_sha256": "77d3c2482e17795c4081e923f8d7ebcd1f96eae4b614df44303875e0f1409c45",
+  "screenshot_scope": "successful earlier native iterations, preceding final pure-Java startup check",
+  "screenshots": {
+    "docs/testing/screenshots/2026-10-30-branded-after-close.jpg": "0e4eafc006483668b0c31b617fd4c46a388be5bff47c9de418219fd4a616ea3f",
+    "docs/testing/screenshots/2026-10-30-branded-appearance-initial.jpg": "230d493d1c62dc1c2aefa2433d1a22e4c058d18b99afa21e410eac5576a14c96",
+    "docs/testing/screenshots/2026-10-30-branded-appearance.jpg": "8de057ba83ad0ed5626b0329bf16e036093b77d340b72f7b932695b4ca15768c",
+    "docs/testing/screenshots/2026-10-30-branded-connect.jpg": "19cdc6c28ec41807e58974a480b7bbbc9bd595637eff3a3523a234e600295616",
+    "docs/testing/screenshots/2026-10-30-branded-connected-initial.jpg": "c88399335655c3675f7a3f0999d3f259aa7fb61c673c2d75b88963cce0d79cab",
+    "docs/testing/screenshots/2026-10-30-branded-favorites.jpg": "3cc0b0ee79a61991af631d36e0784efae5cc0f1b75443b9bc0e0c8edc54b7d79",
+    "docs/testing/screenshots/2026-10-30-branded-preferences-general.jpg": "73c035fce0c2cd383e5c864765f7b580c797bc813f9879b544e4c323e7085b03",
+    "docs/testing/screenshots/2026-10-30-branded-regional.jpg": "9e6c65bab2e6787663f562a620c5fa97b5aa0cd36b821b1e2a79a4fb27e3ebad",
+    "docs/testing/screenshots/2026-10-30-branded-tools-menu.jpg": "cb339b4c05da88559719245c06942eb4544c56c74a94e28515123c178cd0f3c7",
+    "docs/testing/screenshots/2026-10-30-branded-two-sessions.jpg": "194bb19b69f6bc658bc823911c751ff6c3683adb7753feaa36230eb2e62697b9",
+    "docs/testing/screenshots/2026-10-30-branded-workspace.jpg": "378dcd5f8524bbff94fafa5dba57241ae2d8517a8931c1c9a0106ae4bd2f08f6"
+  },
+  "artifacts_sha256": {
+    "package.log": "8a11a1b90634329ce00b7973bb5f1b389b6f1115d943c4eaf72fb007a217ab90",
+    "direct-source.log": "766db34fb4e974986e71a93b34bfc86742c0e928eae09e6c9f58c9cfba8db146",
+    "desktop-api-red.log": "72064c59b8bc8f1f8e34a7cffc0d5e567e668e671b122f15acebb854a2eeba84",
+    "english-display-red.log": "904c702d9d9db3d14bf148b138809b3931643a32325f52c8040966cd5cfc3c5c",
+    "appearance-pref-red.log": "dff43f6d88299954cfd72a0ba7e53bad3e146a02ba9149970296bde03a90e9ab",
+    "locale-red.log": "8deda9fdaa70d63da7542d81a18029d664851262587983221be7af96c5e86f5c",
+    "native-library-red.log": "270fa53d52e3432789048aabf789fe150df6d0e93c0d1939240fedd927ca7c12",
+    "distribution-red.log": "9abc840e4f6c3b263f7c10ee83170bf8fec6dc313483195e7c1740cea1326697",
+    "initial-native-warning.log": "e3b6cf3e3a19df7333c95697bdac41b19e7a74d7367640700b87228075dea271",
+    "startup-no-desktop.log": "1d55a244fcc090f5e84cc4e24fa786d6bcae9873f9dba9965498b69cd0748180",
+    "desktop-access.log": "3ae044153a43c98d42d9c2bcc7f9f2f3274e60ed47c6537540a4e8d29c7806af"
+  }
+}

@@ -1,0 +1,64 @@
+warning: [options] source value 8 is obsolete and will be removed in a future release
+warning: [options] target value 8 is obsolete and will be removed in a future release
+warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+Note: C:\Users\labuser\Dev\jftp\src\main\java\com\myjavaworld\jftp\FavoritesDlg.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+3 warnings
+.....
+Time: 4.749
+
+OK (5 tests)
+
+..
+Time: 0.652
+
+OK (2 tests)
+
+.......
+Time: 2.295
+
+OK (7 tests)
+
+..
+Time: 2.311
+
+OK (2 tests)
+
+.......
+Time: 1.531
+
+OK (7 tests)
+
+.....
+Time: 1.336
+
+OK (5 tests)
+
+.......
+Time: 1.772
+
+OK (7 tests)
+
+..
+Time: 1.532
+
+OK (2 tests)
+
+......
+Time: 2.122
+
+OK (6 tests)
+
+..............
+Time: 0.06
+
+OK (14 tests)
+
+.....
+Time: 2.171
+
+OK (5 tests)
+
+Baseline checks passed: 11 classes, 62 tests, 0 skips. Evidence: C:\Users\labuser\Dev\jftp\.local\baseline-runs\898205790dd34b83bdabb2f36c4b9f4e

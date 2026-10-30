@@ -1,21 +1,22 @@
-# JFTP modernization handoff — 2026-10-29
+# JFTP modernization handoff — 2026-10-30
 
 The active objective is incremental modernization of the existing Java desktop
 client: keep a verified regression baseline, improve the runtime and security,
 apply the supplied JSystems brand, and validate real desktop and server workflows.
-The work below advances that objective; it does not complete modernization or
-branding.
+The work below advances that objective. The branded desktop implementation is in
+the working tree; its runtime commit awaits final native QA on an active desktop.
 
 ## Verified application baseline
 
-- Production Java sources remain unchanged from application revision
-  `14e62ceba4e371c2a0b955604b10f065f46f4f7d`. Runtime behavior changes have not
-  been made.
+- Original characterization was established before production changes, against
+  application revision `14e62ceba4e371c2a0b955604b10f065f46f4f7d`. Production Java
+  now has the uncommitted branded/English desktop change described below.
 - The committed build-recovery change `3c0ba84` pins Maven 3.10.0 through the
   wrapper and retains Java 8 bytecode compatibility on JDK 25. Production Java,
   resources, and application dependencies remain unchanged.
-- **60 scoped cases pass:** 48 local/model/archive characterization cases, seven
-  real FTP contract cases, and five real explicit FTPS contract cases. These are
+- **77 scoped cases pass on the working tree:** 62 local/model/archive/desktop
+  cases (48 baseline plus 14 new), ten real FTP contract cases, and five real
+  explicit FTPS contract cases. These are
   separate suites, not full native-application acceptance. See
   [persistence evidence](testing/persistence.md),
   [FTP contract evidence](testing/ftp-contract.md), and
@@ -38,22 +39,63 @@ The subsequent [native FTP run](testing/native-ftp.md) verified connection,
 binary download, upload, directory browsing, recursive download, disconnect and
 reconnect through the actual desktop. Three transferred files were byte-identical
 to their originals; eleven screenshots and a complete real-server log are saved.
-The fixture stopped and the application remains open/disconnected. Native FTPS
-and abort/interrupted-transfer behavior remain unverified.
+The original fixture stopped. Owned QA application instances have since been
+closed for rebuilds. Native FTPS and button-driven abort/interrupted-transfer
+behavior remain unverified. Three new same-thread cancellation/reconnect
+component cases pass, and one controlled ineffective-abort mutation makes exactly
+those three fail; the normal client then passes all ten FTP cases again.
 
-The fresh wrapper `package` command passed with 48 tests and zero failures,
-errors or skips. The separate packaging fix is committed as `2973a21`.
-The pre-existing assembly directory-attachment warning remains documented.
+The latest normal wrapper `clean package` command passed with 62 tests and zero
+failures/errors/skips, followed by four archive checks. The separate launcher fix
+is committed as `2973a21`. The pre-existing release-8/deprecation and assembly
+directory-attachment diagnostics remain documented.
 
-## Refreshed source context
+## Active desktop gate and implementation
+
+[Branded desktop evidence](testing/branded-desktop.md) records the earlier real
+1000-pixel window, Connect cancellation, session controls, fixed-theme/English
+preferences, synthetic favorite loading and real directory listing, with eleven
+screenshots. It deliberately does not claim final native transfer acceptance.
+
+The last adjustment disables FlatLaf's optional native library after observing a
+new JDK warning. Its configuration test passes, but the final native launch was
+interrupted by the environment: Windows reports the RDP session as `Disc`, and
+both installed/new Java probes report no desktop access. A reconnect request is
+pending. Do not force headless mode off or alter desktop/security settings.
+No QA app or owned FTP fixture is left running.
+
+Uncommitted scope: FlatLaf dependencies and packaged logo/theme, new
+`DesktopBootstrap`, `DesktopAppearance`, `BrandHeader`, EDT startup, main-frame
+header/title/minimum size, table row minimum, English local file descriptions,
+fixed appearance/locale preferences, four test classes, archive checks,
+README and Java CRLF whitespace attributes. Preserve these edits and finish
+native QA before the runtime commit. The original logo still has a small Polish
+caption; prepare an English-desktop variant while retaining the original asset.
+
+## Java platform readiness
+
+[ADR-004](ADR/004-java25-platform.md) selects the latest LTS baseline, Java 25.
+Temurin 25.0.5+8 was downloaded from the official release, checksum-verified and
+extracted into a private cache; global Java/PATH were unchanged. All 77 scoped
+cases passed with release-25 application/test classes (major version 69).
+[Readiness evidence](testing/java25-readiness.md) preserves that probe.
+
+The normal POM still targets release 8, and a clean normal package was restored
+after the override probe (major version 52). The current candidate JAR remains
+available under `target/jftp-5.0.2-SNAPSHOT-bin/jftp-5.0.2-SNAPSHOT/`.
+The local verified JDK is identified by `.local/jdk25-latest.json`.
+Do not confuse compatibility proof with adoption or final native acceptance.
+
+## Saved source context — refresh pending
 
 - RepoMap: 191 Java files, 1,688 declarations, 1,033 selected symbols.
 - Code graph: 5,968 nodes, 18,419 edges, 573 files.
 - Repomix: 59 files, 66,300 tokens.
 
-The refreshed snapshots identify their base working-tree revision metadata
-explicitly. They are navigation aids; original source and callers remain the
-evidence for consequential behavior.
+These are the pre-branding snapshot measurements. Current source and new test
+changes make the saved manifest stale; refresh RepoMap, graph and focused Repomix
+after the verified runtime change, in separate commits. The historical original
+source cards remain checked against revision `14e62ce`.
 
 ## Resume monitor
 
@@ -68,14 +110,20 @@ was armed. Original local attempt markers and logs remain under ignored
 
 ## Next coordinator work
 
-1. Decide the supported current Java runtime target and address transport trust,
-   archive containment, and credential-storage defects as separately specified
-   changes.
-2. Extend native verification to FTPS, error and abort/interrupted-transfer
-   outcomes; retain the successful plain-FTP workflow as regression evidence.
-3. Apply the approved English UI and JSystems right-side logo work, with native
-   screenshots compared against the supplied design reference.
+1. Prepare the English-desktop logo variant, preserve the original asset, and
+   strengthen logo loading checks against a missing-resource placeholder.
+2. When Windows desktop access returns, launch a copied final distribution using
+   the verified JDK, complete native upload/download byte checks and final
+   screenshots, then commit the scoped desktop implementation. The helper under
+   `.local/launch-branded.py` currently invokes Java through PATH; select the new
+   JDK explicitly for that QA run. Use owned synthetic fixtures only.
+3. Adopt release 25 and retire the applet/unused Apple adapter under ADR-004,
+   retaining the actively used macOS integration until its separate migration.
+4. Address transport trust, archive containment, credential storage and worker/UI
+   boundaries through specified changes and tests. Extend native verification to
+   FTPS, error and F12/interrupted-transfer outcomes. Refresh current docs and
+   source-context artifacts after verified changes.
 
 Preserve unrelated user work in `docs/session-analyses/`; do not stage it as part
-of these milestones. No modernization, security remediation, or brand integration
-is claimed complete here.
+of these milestones. Full modernization, security remediation and final brand
+acceptance remain incomplete. Do not push.

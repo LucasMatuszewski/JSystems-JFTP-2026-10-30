@@ -1,0 +1,19 @@
+.F.F..F.F
+Time: 1,793
+There were 4 failures:
+1) testDirectoryTypeIsEnglish(com.myjavaworld.jftp.LocalFileEnglishDisplayTest)junit.framework.ComparisonFailure: expected:<[Directory]> but was:<[Folder plik�w]>
+	at com.myjavaworld.jftp.LocalFileEnglishDisplayTest.testDirectoryTypeIsEnglish(LocalFileEnglishDisplayTest.java:53)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+2) testTxtFileTypeIsEnglish(com.myjavaworld.jftp.LocalFileEnglishDisplayTest)junit.framework.ComparisonFailure: expected:<[TXT File]> but was:<[Dokument tekstowy]>
+	at com.myjavaworld.jftp.LocalFileEnglishDisplayTest.testTxtFileTypeIsEnglish(LocalFileEnglishDisplayTest.java:33)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+3) testExtensionlessRegularFileTypeIsEnglish(com.myjavaworld.jftp.LocalFileEnglishDisplayTest)junit.framework.ComparisonFailure: expected:<[File]> but was:<[Plik]>
+	at com.myjavaworld.jftp.LocalFileEnglishDisplayTest.testExtensionlessRegularFileTypeIsEnglish(LocalFileEnglishDisplayTest.java:43)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+4) testEveryFilesystemRootDisplaysItsAbsolutePath(com.myjavaworld.jftp.LocalFileEnglishDisplayTest)junit.framework.ComparisonFailure: expected:<[C:\]> but was:<[Windows (C:)]>
+	at com.myjavaworld.jftp.LocalFileEnglishDisplayTest.testEveryFilesystemRootDisplaysItsAbsolutePath(LocalFileEnglishDisplayTest.java:66)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+
+FAILURES!!!
+Tests run: 5,  Failures: 4,  Errors: 0
+

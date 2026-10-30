@@ -1,0 +1,22 @@
+Picked up JAVA_TOOL_OPTIONS: "-Duser.home=C:\Users\labuser\Dev\jftp\.local\brand-qa\f68717e5679f4725b53e277ae2fb93f8\profile" "-Djava.io.tmpdir=C:\Users\labuser\Dev\jftp\.local\brand-qa\f68717e5679f4725b53e277ae2fb93f8" "-Duser.language=de" "-Duser.country=DE"
+Exception in thread "AWT-EventQueue-0" java.awt.HeadlessException: 
+The application does not have desktop access,
+but this program performed an operation which requires it.
+	at java.desktop/java.awt.GraphicsEnvironment.checkHeadless(GraphicsEnvironment.java:158)
+	at java.desktop/java.awt.Window.<init>(Window.java:518)
+	at java.desktop/java.awt.Frame.<init>(Frame.java:428)
+	at java.desktop/javax.swing.JFrame.<init>(JFrame.java:224)
+	at com.myjavaworld.gui.MFrame.<init>(MFrame.java:56)
+	at com.myjavaworld.gui.MFrame.<init>(MFrame.java:43)
+	at com.myjavaworld.jftp.JFTP.<init>(JFTP.java:125)
+	at com.myjavaworld.jftp.JFTP.<init>(JFTP.java:121)
+	at com.myjavaworld.jftp.JFTPApplication.<init>(JFTPApplication.java:36)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:323)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:723)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:702)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
