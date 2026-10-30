@@ -34,6 +34,14 @@ tools/               Local context-generation and verification helpers
 
 ## Agent Workflow
 
+### Research order: Context7 first
+
+1. **Search Context7 MCP first** for project, library, framework, SDK, API, CLI and platform documentation. Never search the internet before checking Context7.
+2. Start with `resolve-library-id`, using the library/project name and a focused documentation question, unless an exact Context7 ID was supplied. Prefer the closest authoritative, version-matching result.
+3. Use `query-docs` with that ID, scoped to one concept per query. Try relevant alternate names or focused queries before concluding that the needed documentation is missing or insufficient.
+4. **Only after an identified Context7 documentation gap, delegate internet research to Luna.** Give Luna the attempted IDs/versions/queries and the precise unanswered question; require official/primary sources and their URLs. Verify the findings against the repository before applying them. Do not delegate web research before the Context7 check.
+5. If Context7 MCP is unavailable or fails, report that prerequisite instead of silently switching to internet search or claiming that a search found no documentation.
+
 ### When implementing new or refactoring functionality
 1. Read the relevant PRD and ADR files for the affected area.
 2. Define the expected behavior from the specification before writing or changing any code.
