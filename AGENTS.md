@@ -35,10 +35,10 @@ tools/               Local context-generation and verification helpers
 - After changing captured inputs, refresh and verify affected maps, graphs, packs and related derived files before committing or handing off. Preserve explicitly frozen historical baselines.
 - Investigate and correct discrepancies between code, agent instructions and generated context; record their cause. Treat generated context as navigation, not authority over valid code. Consult the human when intent remains unclear.
 
-### Research order: Context7 first
+### Research order: CLI help first, then Context7, web search last
 
-1. **Search Context7 MCP first** for project, library, framework, SDK, API, CLI and platform documentation. Never search the internet before checking Context7.
-2. Start with `resolve-library-id`, using the library/project name and a focused documentation question, unless an exact Context7 ID was supplied. Prefer the closest authoritative, version-matching result.
+1. **For CLI tools, check built-in help first** (`<tool> --help` and relevant subcommand help), then use Context7 if the help is insufficient. **Search Context7 MCP first** for other project, library, framework, SDK, API and platform documentation. Use web search only as a last resort, after checking Context7.
+2. When using Context7, start with `resolve-library-id`, using the library/project name and a focused documentation question, unless an exact Context7 ID was supplied. Prefer the closest authoritative, version-matching result.
 3. Use `query-docs` with that ID, scoped to one concept per query. Try relevant alternate names or focused queries before concluding that the needed documentation is missing or insufficient.
 4. **Only after an identified Context7 documentation gap, delegate internet research to Luna.** Give Luna the attempted IDs/versions/queries and the precise unanswered question; require official/primary sources and their URLs. Verify the findings against the repository before applying them. Do not delegate web research before the Context7 check.
 5. If Context7 MCP is unavailable or fails, report that prerequisite instead of silently switching to internet search or claiming that a search found no documentation.
