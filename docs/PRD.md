@@ -210,3 +210,7 @@ step. They do not change the historical expectations recorded above.
 The [contained extraction PRD](prd/archive-containment.md) specifies a later
 security change. Its criteria are planned behavior, not properties of the
 historical extraction implementation.
+
+The [directory assistant PoC PRD](prd/directory-assistant.md) defines a proposed
+metadata-only chat feature. It is not implemented baseline behavior; AI-driven
+file transfers remain future scope.
