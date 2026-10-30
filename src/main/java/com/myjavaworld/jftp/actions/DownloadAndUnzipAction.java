@@ -93,8 +93,9 @@ public class DownloadAndUnzipAction implements ActionListener {
 					unzip.addZipListener(session);
 					unzip.addProgressListener(session);
 					unzip.open();
-					unzip.unzip();
-					unzip.close();
+					try (Unzip opened = unzip) {
+						opened.unzip();
+					}
 					if (deleteOption) {
 						localFile.delete();
 					}
