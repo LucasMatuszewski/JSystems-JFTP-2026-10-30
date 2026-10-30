@@ -1,0 +1,11 @@
+...F
+Time: 0,397
+There was 1 failure:
+1) testLargeNonAlignedBinaryEntryIsExtractedExactly(com.myjavaworld.zip.UnzipCompatibilityCharacterizationTest)junit.framework.AssertionFailedError: Unexpected output length expected:<65543> but was:<16384>
+	at com.myjavaworld.zip.UnzipCompatibilityCharacterizationTest.assertBytes(UnzipCompatibilityCharacterizationTest.java:113)
+	at com.myjavaworld.zip.UnzipCompatibilityCharacterizationTest.testLargeNonAlignedBinaryEntryIsExtractedExactly(UnzipCompatibilityCharacterizationTest.java:89)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+
+FAILURES!!!
+Tests run: 3,  Failures: 1,  Errors: 0
+

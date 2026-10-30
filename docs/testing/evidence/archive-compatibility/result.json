@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-30",
+  "base_revision": "f49367782ba757b0d9860683ed4108822fc3d516",
+  "original_extractor_revision": "14e62ceba4e371c2a0b955604b10f065f46f4f7d",
+  "original_source_unchanged": true,
+  "mutation": "one-read conditional instead of complete read loop in isolated compiled copy",
+  "mutation_cases": 3,
+  "mutation_failures": 1,
+  "mutation_errors": 0,
+  "restored_cases": 3,
+  "source_sha256_lf": {
+    "src/main/java/com/myjavaworld/zip/Unzip.java": "088bb905ba0ad8cb13ff228e18780aa82d00b2d35915e8d0715f21904e126a77",
+    "src/test/java/com/myjavaworld/zip/UnzipCompatibilityCharacterizationTest.java": "7e16b7bf024a67ee057b48f75c4c83a662e559069eea48933ca0d8e78266b06b"
+  },
+  "java_runtime_version": "25.0.5+8-LTS",
+  "local_cases": 65,
+  "local_failures": 0,
+  "local_errors": 0,
+  "local_skips": 0,
+  "native_application_ui_tested": false,
+  "artifacts_sha256": {
+    "local-tests.log": "3b6fb91eca6091a69e9c636604e2e48da07e137bf4073a654c895432079b52d6",
+    "mutation-compile.log": "33ba12f541c0c1a3892eb5494868d88abe152e43f8a001523d5ac6793a1bbf2d",
+    "original-restored.log": "70db97254152fc22d65a10fa02f4e502338a5b45fe438fa3c87940692d615837",
+    "single-read-mutation.log": "8648daa9eb18b751881c6afc374cf5d1db31989948f9c6b3d5e1876da1c0dea1"
+  }
+}

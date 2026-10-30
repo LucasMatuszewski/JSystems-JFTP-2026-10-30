@@ -16,7 +16,12 @@ recovered build route was exercised on Windows. The compiler temporarily retains
 release 8 compatibility and excludes the unused Apple-specific `OSXAdapterOld`;
 neither choice is the final runtime modernization target.
 
-The ordinary test scope contains **48 local/model/archive tests**. They run with
+The committed baseline test scope contains **51 local/model/archive cases**:
+48 established cases and three later characterizations of the unchanged ZIP
+extractor. The current working tree also has 14 desktop-feature cases, bringing
+its observed ordinary run to 65; that feature still awaits native acceptance.
+See [archive evidence](testing/archive-compatibility.md) and
+[desktop verification](testing/branded-desktop.md). Tests run with
 an isolated Java home/temp directory and English locale. Real FTP/FTPS tests run
 separately through [their fixture guides](testing/ftp-contract.md). The original
 [source-only baseline runner](testing/README.md) remains available for comparing

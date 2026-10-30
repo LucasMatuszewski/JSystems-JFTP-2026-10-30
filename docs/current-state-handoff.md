@@ -14,8 +14,9 @@ the working tree; its runtime commit awaits final native QA on an active desktop
 - The committed build-recovery change `3c0ba84` pins Maven 3.10.0 through the
   wrapper and retains Java 8 bytecode compatibility on JDK 25. Production Java,
   resources, and application dependencies remain unchanged.
-- **77 scoped cases pass on the working tree:** 62 local/model/archive/desktop
-  cases (48 baseline plus 14 new), ten real FTP contract cases, and five real
+- **80 scoped cases pass on the working tree:** 65 local/model/archive/desktop
+  cases (48 earlier baseline, three extra original-extractor cases and 14 new
+  desktop cases), ten real FTP contract cases, and five real
   explicit FTPS contract cases. These are
   separate suites, not full native-application acceptance. See
   [persistence evidence](testing/persistence.md),
@@ -49,6 +50,11 @@ The latest normal wrapper `clean package` command passed with 62 tests and zero
 failures/errors/skips, followed by five archive checks. The separate launcher fix
 is committed as `2973a21`. The pre-existing release-8/deprecation and assembly
 directory-attachment diagnostics remain documented.
+After adding three archive characterizations, a fresh ordinary `test` run passes
+65 cases; the application package itself is unchanged. The
+[extractor compatibility report](testing/archive-compatibility.md) records the
+original-source check and the controlled single-read mutation that fails exactly
+the new large-entry case, followed by three original-code passes.
 
 ## Active desktop gate and implementation
 
