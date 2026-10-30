@@ -1,5 +1,8 @@
 package com.myjavaworld.jftp;
 
+import com.myjavaworld.ftp.ConnectionException;
+import com.myjavaworld.ftp.DataConnectionEvent;
+import com.myjavaworld.ftp.DataConnectionListener;
 import com.myjavaworld.ftp.DefaultFTPClient;
 import com.myjavaworld.ftp.DefaultListParser;
 import com.myjavaworld.ftp.FTPConstants;
@@ -9,6 +12,8 @@ import junit.framework.TestCase;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -116,6 +121,130 @@ public class FtpTransportContractIT extends TestCase {
         } catch (FTPException expected) {
             assertEquals("530", expected.getErrorCode());
         }
+    }
+
+    // Callback cancellation runs on the transfer thread; native/UI cancellation is a separate gate.
+    public void testDownloadCallbackAbortLeavesExactPartialPrefix() throws Exception {
+        byte[] source = largePayload();
+        String name = "cancel-download-" + UUID.randomUUID() + ".bin";
+        Files.write(serverDirectory.resolve(name), source);
+        connect();
+        Path destination = localDirectory.resolve(name);
+        AbortOnFirstProgress listener = cancelDownload(name, destination);
+        assertCancelledPrefix(listener, DataConnectionEvent.RECEIVE, source,
+                Files.readAllBytes(destination));
+    }
+
+    public void testUploadCallbackAbortLeavesExactPartialPrefix() throws Exception {
+        byte[] source = largePayload();
+        String name = "cancel-upload-" + UUID.randomUUID() + ".bin";
+        Path sourceFile = localDirectory.resolve(name);
+        Files.write(sourceFile, source);
+        connect();
+        client.setBufferSize(1024);
+        AbortOnFirstProgress listener = new AbortOnFirstProgress(client);
+        client.addDataConnectionListener(listener);
+        try {
+            client.upload(sourceFile.toFile(), remote(name), FTPConstants.TYPE_BINARY, false, 0L);
+        } finally {
+            client.removeDataConnectionListener(listener);
+        }
+        assertCancelledPrefix(listener, DataConnectionEvent.SEND, source,
+                Files.readAllBytes(serverDirectory.resolve(name)));
+    }
+
+    public void testReconnectAfterCancelledDownloadCanCompleteTransfer() throws Exception {
+        byte[] source = largePayload();
+        String name = "cancel-reconnect-" + UUID.randomUUID() + ".bin";
+        Files.write(serverDirectory.resolve(name), source);
+        connect();
+        Path cancelled = localDirectory.resolve("cancelled-" + name);
+        AbortOnFirstProgress listener = cancelDownload(name, cancelled);
+        assertCancelledPrefix(listener, DataConnectionEvent.RECEIVE, source,
+                Files.readAllBytes(cancelled));
+
+        client.disconnect();
+        client = new DefaultFTPClient();
+        client.setListParser(parser);
+        client.setTimeout(10000);
+        client.setPassive(true);
+        connect();
+        Path complete = localDirectory.resolve("complete-" + name);
+        client.download(remote(name), complete.toFile(), FTPConstants.TYPE_BINARY, false);
+        assertTrue(Arrays.equals(source, Files.readAllBytes(complete)));
+    }
+
+    private AbortOnFirstProgress cancelDownload(String name, Path destination) throws Exception {
+        client.setBufferSize(1024);
+        AbortOnFirstProgress listener = new AbortOnFirstProgress(client);
+        client.addDataConnectionListener(listener);
+        try {
+            client.download(remote(name), destination.toFile(), FTPConstants.TYPE_BINARY, false);
+        } catch (FTPException exception) {
+            if (!"426".equals(exception.getErrorCode())) throw exception;
+        } finally {
+            client.removeDataConnectionListener(listener);
+        }
+        return listener;
+    }
+
+    private static byte[] largePayload() {
+        byte[] result = new byte[1024 * 1024];
+        for (int i = 0; i < result.length; i++) result[i] = (byte) (i * 31 + 7);
+        return result;
+    }
+
+    private static void assertCancelledPrefix(AbortOnFirstProgress listener, int direction,
+            byte[] source, byte[] partial) {
+        assertNull("callback abort must not fail", listener.callbackFailure);
+        assertTrue(listener.abortRequested);
+        assertEquals(1, listener.startedCount);
+        assertEquals(1, listener.progressCount);
+        assertEquals(1, listener.abortedCount);
+        assertEquals(1, listener.finishedCount);
+        assertEquals(0, listener.errorCount);
+        assertEquals(Arrays.asList("started", "progress", "aborted", "finished"), listener.events);
+        assertEquals(direction, listener.startedId);
+        assertEquals(direction, listener.progressId);
+        // FTPAPI 3.0.0 also emits RECEIVE for an aborted upload.
+        assertEquals(DataConnectionEvent.RECEIVE, listener.abortedId);
+        assertEquals(direction, listener.finishedId);
+        assertTrue("cancelled result must be a nonempty partial file", partial.length > 0);
+        assertTrue("cancelled result must be shorter than source", partial.length < source.length);
+        assertTrue("cancelled bytes must equal source prefix",
+                Arrays.equals(Arrays.copyOf(source, partial.length), partial));
+        assertEquals(partial.length, listener.abortedBytes);
+        assertEquals(partial.length, listener.finishedBytes);
+    }
+
+    private static final class AbortOnFirstProgress implements DataConnectionListener {
+        private final DefaultFTPClient client;
+        private final List<String> events = new ArrayList<String>();
+        private Exception callbackFailure;
+        private boolean abortRequested;
+        private int startedCount, progressCount, abortedCount, finishedCount, errorCount;
+        private int startedId, progressId, abortedId, finishedId;
+        private long abortedBytes, finishedBytes;
+
+        private AbortOnFirstProgress(DefaultFTPClient client) { this.client = client; }
+        public void dataTransferStarted(DataConnectionEvent e) {
+            startedCount++; startedId = e.getId(); events.add("started");
+        }
+        public void dataTransferProgress(DataConnectionEvent e) {
+            progressCount++; progressId = e.getId(); events.add("progress");
+            if (!abortRequested) {
+                abortRequested = true;
+                try { client.abort(); }
+                catch (FTPException | ConnectionException exception) { callbackFailure = exception; }
+            }
+        }
+        public void dataTransferAborted(DataConnectionEvent e) {
+            abortedCount++; abortedId = e.getId(); abortedBytes = e.getBytesTransferred(); events.add("aborted");
+        }
+        public void dataTransferFinished(DataConnectionEvent e) {
+            finishedCount++; finishedId = e.getId(); finishedBytes = e.getBytesTransferred(); events.add("finished");
+        }
+        public void dataTransferError(DataConnectionEvent e) { errorCount++; events.add("error"); }
     }
 
     private void roundtrip(boolean passive) throws Exception {

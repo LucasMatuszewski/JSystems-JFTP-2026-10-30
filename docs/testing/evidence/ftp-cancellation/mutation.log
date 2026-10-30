@@ -1,0 +1,19 @@
+....F.F.F....
+Time: 7,534
+There were 3 failures:
+1) testDownloadCallbackAbortLeavesExactPartialPrefix(com.myjavaworld.jftp.FtpTransportContractIT)junit.framework.AssertionFailedError: expected:<1> but was:<1024>
+	at com.myjavaworld.jftp.FtpTransportContractIT.assertCancelledPrefix(FtpTransportContractIT.java:202)
+	at com.myjavaworld.jftp.FtpTransportContractIT.testDownloadCallbackAbortLeavesExactPartialPrefix(FtpTransportContractIT.java:134)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+2) testReconnectAfterCancelledDownloadCanCompleteTransfer(com.myjavaworld.jftp.FtpTransportContractIT)junit.framework.AssertionFailedError: expected:<1> but was:<1024>
+	at com.myjavaworld.jftp.FtpTransportContractIT.assertCancelledPrefix(FtpTransportContractIT.java:202)
+	at com.myjavaworld.jftp.FtpTransportContractIT.testReconnectAfterCancelledDownloadCanCompleteTransfer(FtpTransportContractIT.java:163)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+3) testUploadCallbackAbortLeavesExactPartialPrefix(com.myjavaworld.jftp.FtpTransportContractIT)junit.framework.AssertionFailedError: expected:<1> but was:<1024>
+	at com.myjavaworld.jftp.FtpTransportContractIT.assertCancelledPrefix(FtpTransportContractIT.java:202)
+	at com.myjavaworld.jftp.FtpTransportContractIT.testUploadCallbackAbortLeavesExactPartialPrefix(FtpTransportContractIT.java:152)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+
+FAILURES!!!
+Tests run: 10,  Failures: 3,  Errors: 0
+

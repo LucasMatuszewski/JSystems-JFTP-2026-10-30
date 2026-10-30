@@ -1,0 +1,298 @@
+2026-10-30 01:14:50,129 INFO concurrency model: async
+2026-10-30 01:14:50,130 INFO masquerade (NAT) address: None
+2026-10-30 01:14:50,131 INFO passive ports: None
+2026-10-30 01:14:50,132 DEBUG poller: 'pyftpdlib.ioloop.Select'
+2026-10-30 01:14:50,132 DEBUG authorizer: 'pyftpdlib.authorizers.DummyAuthorizer'
+2026-10-30 01:14:50,133 DEBUG handler: '__main__.type'
+2026-10-30 01:14:50,134 DEBUG max connections: 16
+2026-10-30 01:14:50,134 DEBUG max connections per ip: 16
+2026-10-30 01:14:50,135 DEBUG timeout: 300
+2026-10-30 01:14:50,135 DEBUG banner: 'JFTP synthetic loopback integration fixture'
+2026-10-30 01:14:50,136 DEBUG max login attempts: 3
+2026-10-30 01:14:50,136 INFO >>> starting FTP server on 127.0.0.1:50327, pid=11692 <<<
+2026-10-30 01:14:52,777 INFO 127.0.0.1:50328-[] FTP session opened (connect)
+2026-10-30 01:14:52,779 DEBUG 127.0.0.1:50328-[] -> 220 JFTP synthetic loopback integration fixture
+2026-10-30 01:14:52,805 DEBUG 127.0.0.1:50328-[] <- USER fixture-user
+2026-10-30 01:14:52,806 DEBUG 127.0.0.1:50328-[] -> 331 Username ok, send password.
+2026-10-30 01:14:52,808 DEBUG 127.0.0.1:50328-[fixture-user] <- PASS ******
+2026-10-30 01:14:52,808 DEBUG 127.0.0.1:50328-[fixture-user] -> 230 Login successful.
+2026-10-30 01:14:52,810 INFO 127.0.0.1:50328-[fixture-user] USER 'fixture-user' logged in.
+2026-10-30 01:14:52,920 DEBUG 127.0.0.1:50328-[fixture-user] <- TYPE A
+2026-10-30 01:14:52,920 DEBUG 127.0.0.1:50328-[fixture-user] -> 200 Type set to: ASCII.
+2026-10-30 01:14:52,932 DEBUG 127.0.0.1:50328-[fixture-user] <- CWD /case-4756c6be-f0b5-41a8-99b0-9735e6bf9b3b
+2026-10-30 01:14:52,943 DEBUG 127.0.0.1:50328-[fixture-user] -> 250 "/case-4756c6be-f0b5-41a8-99b0-9735e6bf9b3b" is the current directory.
+2026-10-30 01:14:52,945 DEBUG 127.0.0.1:50328-[fixture-user] <- PWD
+2026-10-30 01:14:52,946 DEBUG 127.0.0.1:50328-[fixture-user] -> 257 "/case-4756c6be-f0b5-41a8-99b0-9735e6bf9b3b" is the current directory.
+2026-10-30 01:14:52,947 DEBUG 127.0.0.1:50328-[fixture-user] <- TYPE I
+2026-10-30 01:14:52,948 DEBUG 127.0.0.1:50328-[fixture-user] -> 200 Type set to: Binary.
+2026-10-30 01:14:52,958 DEBUG 127.0.0.1:50328-[fixture-user] <- PASV
+2026-10-30 01:14:52,961 DEBUG 127.0.0.1:50328-[fixture-user] -> 227 Entering passive mode (127,0,0,1,196,153).
+2026-10-30 01:14:52,968 DEBUG [debug] call: close() (<pyftpdlib.handlers.ftp.dispatchers.PassiveDTP listening 127.0.0.1:0 at 0x18be2f21940>)
+2026-10-30 01:14:52,970 DEBUG [debug] call: close() (<pyftpdlib.handlers.ftp.dispatchers.PassiveDTP 127.0.0.1:0 at 0x18be2f21940>)
+2026-10-30 01:14:52,970 DEBUG 127.0.0.1:50328-[fixture-user] <- STOR /case-4756c6be-f0b5-41a8-99b0-9735e6bf9b3b/upload with spaces.bin
+2026-10-30 01:14:52,977 DEBUG 127.0.0.1:50328-[fixture-user] -> 125 Data connection already open. Transfer starting.
+2026-10-30 01:14:52,994 DEBUG [debug] call: close() (<DTPHandler(id=1700319598240, addr='127.0.0.1:50328', user='fixture-user', sending-file=<_io.BufferedWriter name='C:\\Users\\labuser\\Dev\\jftp\\.local\\ftp-integration\\cancel-mutation-21e15783b346498783a294afb1e336e9\\server\\case-4756c6be-f0b5-41a8-99b0-9735e6bf9b3b\\upload with spaces.bin'>, bytes-trans=4096)>)
+2026-10-30 01:14:52,997 DEBUG 127.0.0.1:50328-[fixture-user] -> 226 Transfer complete.
+2026-10-30 01:14:52,998 INFO 127.0.0.1:50328-[fixture-user] STOR C:\Users\labuser\Dev\jftp\.local\ftp-integration\cancel-mutation-21e15783b346498783a294afb1e336e9\server\case-4756c6be-f0b5-41a8-99b0-9735e6bf9b3b\upload with spaces.bin completed=1 bytes=4096 seconds=0.029
+2026-10-30 01:14:53,014 DEBUG 127.0.0.1:50328-[fixture-user] <- QUIT
+2026-10-30 01:14:53,015 DEBUG 127.0.0.1:50328-[fixture-user] -> 221 Goodbye.
+2026-10-30 01:14:53,016 DEBUG [debug] call: close() (<Handler(id=1700319598240, addr='127.0.0.1:50328', user='fixture-user')>)
+2026-10-30 01:14:53,017 INFO 127.0.0.1:50328-[fixture-user] FTP session closed (disconnect).
+2026-10-30 01:14:53,109 INFO 127.0.0.1:50331-[] FTP session opened (connect)
+2026-10-30 01:14:53,114 DEBUG 127.0.0.1:50331-[] -> 220 JFTP synthetic loopback integration fixture
+2026-10-30 01:14:53,122 DEBUG 127.0.0.1:50331-[] <- USER fixture-user
+2026-10-30 01:14:53,124 DEBUG 127.0.0.1:50331-[] -> 331 Username ok, send password.
+2026-10-30 01:14:53,125 DEBUG 127.0.0.1:50331-[fixture-user] <- PASS ******
+2026-10-30 01:14:53,128 DEBUG 127.0.0.1:50331-[fixture-user] -> 230 Login successful.
+2026-10-30 01:14:53,128 INFO 127.0.0.1:50331-[fixture-user] USER 'fixture-user' logged in.
+2026-10-30 01:14:53,132 DEBUG 127.0.0.1:50331-[fixture-user] <- TYPE A
+2026-10-30 01:14:53,133 DEBUG 127.0.0.1:50331-[fixture-user] -> 200 Type set to: ASCII.
+2026-10-30 01:14:53,136 DEBUG 127.0.0.1:50331-[fixture-user] <- CWD /case-29e548ad-1872-4092-bd5f-e30de791babf
+2026-10-30 01:14:53,159 DEBUG 127.0.0.1:50331-[fixture-user] -> 250 "/case-29e548ad-1872-4092-bd5f-e30de791babf" is the current directory.
+2026-10-30 01:14:53,162 DEBUG 127.0.0.1:50331-[fixture-user] <- PWD
+2026-10-30 01:14:53,164 DEBUG 127.0.0.1:50331-[fixture-user] -> 257 "/case-29e548ad-1872-4092-bd5f-e30de791babf" is the current directory.
+2026-10-30 01:14:53,167 DEBUG 127.0.0.1:50331-[fixture-user] <- TYPE I
+2026-10-30 01:14:53,170 DEBUG 127.0.0.1:50331-[fixture-user] -> 200 Type set to: Binary.
+2026-10-30 01:14:53,173 DEBUG 127.0.0.1:50331-[fixture-user] <- PASV
+2026-10-30 01:14:53,178 DEBUG 127.0.0.1:50331-[fixture-user] -> 227 Entering passive mode (127,0,0,1,196,156).
+2026-10-30 01:14:53,184 DEBUG [debug] call: close() (<pyftpdlib.handlers.ftp.dispatchers.PassiveDTP listening 127.0.0.1:0 at 0x18be2f01bd0>)
+2026-10-30 01:14:53,184 DEBUG [debug] call: close() (<pyftpdlib.handlers.ftp.dispatchers.PassiveDTP 127.0.0.1:0 at 0x18be2f01bd0>)
+2026-10-30 01:14:53,185 DEBUG 127.0.0.1:50331-[fixture-user] <- RETR /case-29e548ad-1872-4092-bd5f-e30de791babf/missing.bin
+2026-10-30 01:14:53,193 DEBUG 127.0.0.1:50331-[fixture-user] -> 550 No such file or directory.
+2026-10-30 01:14:53,197 DEBUG [debug] call: close() (<DTPHandler(id=1700319467536, addr='127.0.0.1:50331', user='fixture-user')>)
+2026-10-30 01:14:53,207 DEBUG 127.0.0.1:50331-[fixture-user] <- QUIT
+2026-10-30 01:14:53,209 DEBUG 127.0.0.1:50331-[fixture-user] -> 221 Goodbye.
+2026-10-30 01:14:53,209 DEBUG [debug] call: close() (<Handler(id=1700319467536, addr='127.0.0.1:50331', user='fixture-user')>)
+2026-10-30 01:14:53,211 INFO 127.0.0.1:50331-[fixture-user] FTP session closed (disconnect).
+2026-10-30 01:14:53,274 INFO 127.0.0.1:50334-[] FTP session opened (connect)
+2026-10-30 01:14:53,278 DEBUG 127.0.0.1:50334-[] -> 220 JFTP synthetic loopback integration fixture
+2026-10-30 01:14:53,279 DEBUG 127.0.0.1:50334-[] <- USER fixture-user
+2026-10-30 01:14:53,281 DEBUG 127.0.0.1:50334-[] -> 331 Username ok, send password.
+2026-10-30 01:14:53,282 DEBUG 127.0.0.1:50334-[fixture-user] <- PASS ******
+2026-10-30 01:14:53,284 DEBUG 127.0.0.1:50334-[fixture-user] -> 230 Login successful.
+2026-10-30 01:14:53,284 INFO 127.0.0.1:50334-[fixture-user] USER 'fixture-user' logged in.
+2026-10-30 01:14:53,288 DEBUG 127.0.0.1:50334-[fixture-user] <- TYPE A
+2026-10-30 01:14:53,290 DEBUG 127.0.0.1:50334-[fixture-user] -> 200 Type set to: ASCII.
+2026-10-30 01:14:53,293 DEBUG 127.0.0.1:50334-[fixture-user] <- CWD /case-715762b0-3355-4ea9-b09f-1855c50e9c1d
+2026-10-30 01:14:53,304 DEBUG 127.0.0.1:50334-[fixture-user] -> 250 "/case-715762b0-3355-4ea9-b09f-1855c50e9c1d" is the current directory.
+2026-10-30 01:14:53,306 DEBUG 127.0.0.1:50334-[fixture-user] <- PWD
+2026-10-30 01:14:53,308 DEBUG 127.0.0.1:50334-[fixture-user] -> 257 "/case-715762b0-3355-4ea9-b09f-1855c50e9c1d" is the current directory.
+2026-10-30 01:14:53,310 DEBUG 127.0.0.1:50334-[fixture-user] <- TYPE I
+2026-10-30 01:14:53,311 DEBUG 127.0.0.1:50334-[fixture-user] -> 200 Type set to: Binary.
+2026-10-30 01:14:53,314 DEBUG 127.0.0.1:50334-[fixture-user] <- PASV
+2026-10-30 01:14:53,320 DEBUG 127.0.0.1:50334-[fixture-user] -> 227 Entering passive mode (127,0,0,1,196,159).
+2026-10-30 01:14:53,326 DEBUG [debug] call: close() (<pyftpdlib.handlers.ftp.dispatchers.PassiveDTP listening 127.0.0.1:0 at 0x18be2f01a90>)
+2026-10-30 01:14:53,327 DEBUG [debug] call: close() (<pyftpdlib.handlers.ftp.dispatchers.PassiveDTP 127.0.0.1:0 at 0x18be2f01a90>)
+2026-10-30 01:14:53,328 DEBUG 127.0.0.1:50334-[fixture-user] <- RETR /case-715762b0-3355-4ea9-b09f-1855c50e9c1d/seed.bin
+2026-10-30 01:14:53,343 DEBUG 127.0.0.1:50334-[fixture-user] -> 125 Data connection already open. Transfer starting.
+2026-10-30 01:14:53,344 DEBUG [debug] starting transfer using send() (<DTPHandler(id=1700319467536, addr='127.0.0.1:50334', user='fixture-user', receiving-file=<_io.BufferedReader name='C:\\Users\\labuser\\Dev\\jftp\\.local\\ftp-integration\\cancel-mutation-21e15783b346498783a294afb1e336e9\\server\\case-715762b0-3355-4ea9-b09f-1855c50e9c1d\\seed.bin'>, bytes-trans=0)>)
+2026-10-30 01:14:53,347 DEBUG [debug] call: close() (<DTPHandler(id=1700319467536, addr='127.0.0.1:50334', user='fixture-user', receiving-file=<_io.BufferedReader name='C:\\Users\\labuser\\Dev\\jftp\\.local\\ftp-integration\\cancel-mutation-21e15783b346498783a294afb1e336e9\\server\\case-715762b0-3355-4ea9-b09f-1855c50e9c1d\\seed.bin'>, bytes-trans=4096)>)
+2026-10-30 01:14:53,350 DEBUG 127.0.0.1:50334-[fixture-user] -> 226 Transfer complete.
+2026-10-30 01:14:53,351 INFO 127.0.0.1:50334-[fixture-user] RETR C:\Users\labuser\Dev\jftp\.local\ftp-integration\cancel-mutation-21e15783b346498783a294afb1e336e9\server\case-715762b0-3355-4ea9-b09f-1855c50e9c1d\seed.bin completed=1 bytes=4096 seconds=0.024
+2026-10-30 01:14:53,368 DEBUG 127.0.0.1:50334-[fixture-user] <- QUIT
+2026-10-30 01:14:53,369 DEBUG 127.0.0.1:50334-[fixture-user] -> 221 Goodbye.
+2026-10-30 01:14:53,370 DEBUG [debug] call: close() (<Handler(id=1700319467536, addr='127.0.0.1:50334', user='fixture-user')>)
+2026-10-30 01:14:53,371 INFO 127.0.0.1:50334-[fixture-user] FTP session closed (disconnect).
+2026-10-30 01:14:53,472 INFO 127.0.0.1:50338-[] FTP session opened (connect)
+2026-10-30 01:14:53,474 DEBUG 127.0.0.1:50338-[] -> 220 JFTP synthetic loopback integration fixture
+2026-10-30 01:14:53,476 DEBUG 127.0.0.1:50338-[] <- USER fixture-user
+2026-10-30 01:14:53,477 DEBUG 127.0.0.1:50338-[] -> 331 Username ok, send password.
+2026-10-30 01:14:53,478 DEBUG 127.0.0.1:50338-[fixture-user] <- PASS ******
+2026-10-30 01:14:53,480 DEBUG 127.0.0.1:50338-[fixture-user] -> 230 Login successful.
+2026-10-30 01:14:53,480 INFO 127.0.0.1:50338-[fixture-user] USER 'fixture-user' logged in.
+2026-10-30 01:14:53,484 DEBUG 127.0.0.1:50338-[fixture-user] <- TYPE A
+2026-10-30 01:14:53,486 DEBUG 127.0.0.1:50338-[fixture-user] -> 200 Type set to: ASCII.
+2026-10-30 01:14:53,489 DEBUG 127.0.0.1:50338-[fixture-user] <- CWD /case-c5d6455d-12be-48b9-832b-b5959efc5d23
+2026-10-30 01:14:53,501 DEBUG 127.0.0.1:50338-[fixture-user] -> 250 "/case-c5d6455d-12be-48b9-832b-b5959efc5d23" is the current directory.
+2026-10-30 01:14:53,504 DEBUG 127.0.0.1:50338-[fixture-user] <- PWD
+2026-10-30 01:14:53,505 DEBUG 127.0.0.1:50338-[fixture-user] -> 257 "/case-c5d6455d-12be-48b9-832b-b5959efc5d23" is the current directory.
+2026-10-30 01:14:53,513 DEBUG 127.0.0.1:50338-[fixture-user] <- TYPE I
+2026-10-30 01:14:53,514 DEBUG 127.0.0.1:50338-[fixture-user] -> 200 Type set to: Binary.
+2026-10-30 01:14:53,516 DEBUG 127.0.0.1:50338-[fixture-user] <- PASV
+2026-10-30 01:14:53,519 DEBUG 127.0.0.1:50338-[fixture-user] -> 227 Entering passive mode (127,0,0,1,196,163).
+2026-10-30 01:14:53,525 DEBUG [debug] call: close() (<pyftpdlib.handlers.ftp.dispatchers.PassiveDTP listening 127.0.0.1:0 at 0x18be2eda9e0>)
+2026-10-30 01:14:53,527 DEBUG [debug] call: close() (<pyftpdlib.handlers.ftp.dispatchers.PassiveDTP 127.0.0.1:0 at 0x18be2eda9e0>)
+2026-10-30 01:14:53,527 DEBUG 127.0.0.1:50338-[fixture-user] <- RETR /case-c5d6455d-12be-48b9-832b-b5959efc5d23/cancel-download-f02d8e0d-4d5a-4e96-8b3d-5175c15c22f3.bin
+2026-10-30 01:14:53,575 DEBUG 127.0.0.1:50338-[fixture-user] -> 125 Data connection already open. Transfer starting.
+2026-10-30 01:14:53,576 DEBUG [debug] starting transfer using send() (<DTPHandler(id=1700319467536, addr='127.0.0.1:50338', user='fixture-user', receiving-file=<_io.BufferedReader name='C:\\Users\\labuser\\Dev\\jftp\\.local\\ftp-integration\\cancel-mutation-21e15783b346498783a294afb1e336e9\\server\\case-c5d6455d-12be-48b9-832b-b5959efc5d23\\cancel-download-f02d8e0d-4d5a-4e96-8b3d-5175c15c22f3.bin'>, bytes-trans=0)>)
+2026-10-30 01:14:53,904 DEBUG [debug] call: close() (<DTPHandler(id=1700319467536, addr='127.0.0.1:50338', user='fixture-user', receiving-file=<_io.BufferedReader name='C:\\Users\\labuser\\Dev\\jftp\\.local\\ftp-integration\\cancel-mutation-21e15783b346498783a294afb1e336e9\\server\\case-c5d6455d-12be-48b9-832b-b5959efc5d23\\cancel-download-f02d8e0d-4d5a-4e96-8b3d-5175c15c22f3.bin'>, bytes-trans=1048576)>)
+2026-10-30 01:14:53,906 DEBUG 127.0.0.1:50338-[fixture-user] -> 226 Transfer complete.
+2026-10-30 01:14:53,907 INFO 127.0.0.1:50338-[fixture-user] RETR C:\Users\labuser\Dev\jftp\.local\ftp-integration\cancel-mutation-21e15783b346498783a294afb1e336e9\server\case-c5d6455d-12be-48b9-832b-b5959efc5d23\cancel-download-f02d8e0d-4d5a-4e96-8b3d-5175c15c22f3.bin completed=1 bytes=1048576 seconds=0.381
+2026-10-30 01:14:54,017 DEBUG 127.0.0.1:50338-[fixture-user] <- QUIT
+2026-10-30 01:14:54,019 DEBUG 127.0.0.1:50338-[fixture-user] -> 221 Goodbye.
+2026-10-30 01:14:54,019 DEBUG [debug] call: close() (<Handler(id=1700319467536, addr='127.0.0.1:50338', user='fixture-user')>)
+2026-10-30 01:14:54,020 INFO 127.0.0.1:50338-[fixture-user] FTP session closed (disconnect).
+2026-10-30 01:14:54,125 INFO 127.0.0.1:50341-[] FTP session opened (connect)
+2026-10-30 01:14:54,127 DEBUG 127.0.0.1:50341-[] -> 220 JFTP synthetic loopback integration fixture
+2026-10-30 01:14:54,129 DEBUG 127.0.0.1:50341-[] <- USER fixture-user
+2026-10-30 01:14:54,130 DEBUG 127.0.0.1:50341-[] -> 331 Username ok, send password.
+2026-10-30 01:14:54,132 DEBUG 127.0.0.1:50341-[fixture-user] <- PASS ******
+2026-10-30 01:14:54,133 DEBUG 127.0.0.1:50341-[fixture-user] -> 230 Login successful.
+2026-10-30 01:14:54,133 INFO 127.0.0.1:50341-[fixture-user] USER 'fixture-user' logged in.
+2026-10-30 01:14:54,139 DEBUG 127.0.0.1:50341-[fixture-user] <- TYPE A
+2026-10-30 01:14:54,141 DEBUG 127.0.0.1:50341-[fixture-user] -> 200 Type set to: ASCII.
+2026-10-30 01:14:54,142 DEBUG 127.0.0.1:50341-[fixture-user] <- CWD /case-0db0b00f-cb5d-4855-97c5-461c1e176340
+2026-10-30 01:14:54,154 DEBUG 127.0.0.1:50341-[fixture-user] -> 250 "/case-0db0b00f-cb5d-4855-97c5-461c1e176340" is the current directory.
+2026-10-30 01:14:54,157 DEBUG 127.0.0.1:50341-[fixture-user] <- PWD
+2026-10-30 01:14:54,158 DEBUG 127.0.0.1:50341-[fixture-user] -> 257 "/case-0db0b00f-cb5d-4855-97c5-461c1e176340" is the current directory.
+2026-10-30 01:14:54,160 DEBUG 127.0.0.1:50341-[fixture-user] <- TYPE I
+2026-10-30 01:14:54,161 DEBUG 127.0.0.1:50341-[fixture-user] -> 200 Type set to: Binary.
+2026-10-30 01:14:54,163 DEBUG 127.0.0.1:50341-[fixture-user] <- PASV
+2026-10-30 01:14:54,165 DEBUG 127.0.0.1:50341-[fixture-user] -> 227 Entering passive mode (127,0,0,1,196,166).
+2026-10-30 01:14:54,171 DEBUG [debug] call: close() (<pyftpdlib.handlers.ftp.dispatchers.PassiveDTP listening 127.0.0.1:0 at 0x18be2eda2c0>)
+2026-10-30 01:14:54,172 DEBUG [debug] call: close() (<pyftpdlib.handlers.ftp.dispatchers.PassiveDTP 127.0.0.1:0 at 0x18be2eda2c0>)
+2026-10-30 01:14:54,173 DEBUG 127.0.0.1:50341-[fixture-user] <- RETR /case-0db0b00f-cb5d-4855-97c5-461c1e176340/cancel-reconnect-827ebbf6-0ef9-4fa7-a611-d3d086544902.bin
+2026-10-30 01:14:54,229 DEBUG 127.0.0.1:50341-[fixture-user] -> 125 Data connection already open. Transfer starting.
+2026-10-30 01:14:54,230 DEBUG [debug] starting transfer using send() (<DTPHandler(id=1700319467536, addr='127.0.0.1:50341', user='fixture-user', receiving-file=<_io.BufferedReader name='C:\\Users\\labuser\\Dev\\jftp\\.local\\ftp-integration\\cancel-mutation-21e15783b346498783a294afb1e336e9\\server\\case-0db0b00f-cb5d-4855-97c5-461c1e176340\\cancel-reconnect-827ebbf6-0ef9-4fa7-a611-d3d086544902.bin'>, bytes-trans=0)>)
+2026-10-30 01:14:54,530 DEBUG [debug] call: close() (<DTPHandler(id=1700319467536, addr='127.0.0.1:50341', user='fixture-user', receiving-file=<_io.BufferedReader name='C:\\Users\\labuser\\Dev\\jftp\\.local\\ftp-integration\\cancel-mutation-21e15783b346498783a294afb1e336e9\\server\\case-0db0b00f-cb5d-4855-97c5-461c1e176340\\cancel-reconnect-827ebbf6-0ef9-4fa7-a611-d3d086544902.bin'>, bytes-trans=1048576)>)
+2026-10-30 01:14:54,532 DEBUG 127.0.0.1:50341-[fixture-user] -> 226 Transfer complete.
+2026-10-30 01:14:54,533 INFO 127.0.0.1:50341-[fixture-user] RETR C:\Users\labuser\Dev\jftp\.local\ftp-integration\cancel-mutation-21e15783b346498783a294afb1e336e9\server\case-0db0b00f-cb5d-4855-97c5-461c1e176340\cancel-reconnect-827ebbf6-0ef9-4fa7-a611-d3d086544902.bin completed=1 bytes=1048576 seconds=0.361
+2026-10-30 01:14:54,631 DEBUG 127.0.0.1:50341-[fixture-user] <- QUIT
+2026-10-30 01:14:54,632 DEBUG 127.0.0.1:50341-[fixture-user] -> 221 Goodbye.
+2026-10-30 01:14:54,632 DEBUG [debug] call: close() (<Handler(id=1700319467536, addr='127.0.0.1:50341', user='fixture-user')>)
+2026-10-30 01:14:54,633 INFO 127.0.0.1:50341-[fixture-user] FTP session closed (disconnect).
+2026-10-30 01:14:54,726 INFO 127.0.0.1:50345-[] FTP session opened (connect)
+2026-10-30 01:14:54,728 DEBUG 127.0.0.1:50345-[] -> 220 JFTP synthetic loopback integration fixture
+2026-10-30 01:14:54,730 DEBUG 127.0.0.1:50345-[] <- USER fixture-user
+2026-10-30 01:14:54,731 DEBUG 127.0.0.1:50345-[] -> 331 Username ok, send password.
+2026-10-30 01:14:54,733 DEBUG 127.0.0.1:50345-[fixture-user] <- PASS ******
+2026-10-30 01:14:54,734 DEBUG 127.0.0.1:50345-[fixture-user] -> 230 Login successful.
+2026-10-30 01:14:54,735 INFO 127.0.0.1:50345-[fixture-user] USER 'fixture-user' logged in.
+2026-10-30 01:14:54,739 DEBUG 127.0.0.1:50345-[fixture-user] <- TYPE A
+2026-10-30 01:14:54,740 DEBUG 127.0.0.1:50345-[fixture-user] -> 200 Type set to: ASCII.
+2026-10-30 01:14:54,742 DEBUG 127.0.0.1:50345-[fixture-user] <- CWD /case-ce7e89bf-5abe-4bac-931c-aa0a20d2a4fe
+2026-10-30 01:14:54,754 DEBUG 127.0.0.1:50345-[fixture-user] -> 250 "/case-ce7e89bf-5abe-4bac-931c-aa0a20d2a4fe" is the current directory.
+2026-10-30 01:14:54,757 DEBUG 127.0.0.1:50345-[fixture-user] <- PWD
+2026-10-30 01:14:54,758 DEBUG 127.0.0.1:50345-[fixture-user] -> 257 "/case-ce7e89bf-5abe-4bac-931c-aa0a20d2a4fe" is the current directory.
+2026-10-30 01:14:54,761 DEBUG 127.0.0.1:50345-[fixture-user] <- TYPE I
+2026-10-30 01:14:54,761 DEBUG 127.0.0.1:50345-[fixture-user] -> 200 Type set to: Binary.
+2026-10-30 01:14:54,763 DEBUG 127.0.0.1:50345-[fixture-user] <- PASV
+2026-10-30 01:14:54,766 DEBUG 127.0.0.1:50345-[fixture-user] -> 227 Entering passive mode (127,0,0,1,196,170).
+2026-10-30 01:14:54,773 DEBUG [debug] call: close() (<pyftpdlib.handlers.ftp.dispatchers.PassiveDTP listening 127.0.0.1:0 at 0x18be2e979b0>)
+2026-10-30 01:14:54,773 DEBUG [debug] call: close() (<pyftpdlib.handlers.ftp.dispatchers.PassiveDTP 127.0.0.1:0 at 0x18be2e979b0>)
+2026-10-30 01:14:54,775 DEBUG 127.0.0.1:50345-[fixture-user] <- STOR /case-ce7e89bf-5abe-4bac-931c-aa0a20d2a4fe/cancel-upload-0eb12bd5-091b-460e-a530-409f8579cc65.bin
+2026-10-30 01:14:54,787 DEBUG 127.0.0.1:50345-[fixture-user] -> 125 Data connection already open. Transfer starting.
+2026-10-30 01:14:55,442 DEBUG [debug] call: close() (<DTPHandler(id=1700319467536, addr='127.0.0.1:50345', user='fixture-user', sending-file=<_io.BufferedWriter name='C:\\Users\\labuser\\Dev\\jftp\\.local\\ftp-integration\\cancel-mutation-21e15783b346498783a294afb1e336e9\\server\\case-ce7e89bf-5abe-4bac-931c-aa0a20d2a4fe\\cancel-upload-0eb12bd5-091b-460e-a530-409f8579cc65.bin'>, bytes-trans=1048576)>)
+2026-10-30 01:14:55,446 DEBUG 127.0.0.1:50345-[fixture-user] -> 226 Transfer complete.
+2026-10-30 01:14:55,447 INFO 127.0.0.1:50345-[fixture-user] STOR C:\Users\labuser\Dev\jftp\.local\ftp-integration\cancel-mutation-21e15783b346498783a294afb1e336e9\server\case-ce7e89bf-5abe-4bac-931c-aa0a20d2a4fe\cancel-upload-0eb12bd5-091b-460e-a530-409f8579cc65.bin completed=1 bytes=1048576 seconds=0.674
+2026-10-30 01:14:55,503 DEBUG 127.0.0.1:50345-[fixture-user] <- QUIT
+2026-10-30 01:14:55,506 DEBUG 127.0.0.1:50345-[fixture-user] -> 221 Goodbye.
+2026-10-30 01:14:55,507 DEBUG [debug] call: close() (<Handler(id=1700319467536, addr='127.0.0.1:50345', user='fixture-user')>)
+2026-10-30 01:14:55,510 INFO 127.0.0.1:50345-[fixture-user] FTP session closed (disconnect).
+2026-10-30 01:14:55,566 INFO 127.0.0.1:50349-[] FTP session opened (connect)
+2026-10-30 01:14:55,571 DEBUG 127.0.0.1:50349-[] -> 220 JFTP synthetic loopback integration fixture
+2026-10-30 01:14:55,574 DEBUG 127.0.0.1:50349-[] <- USER fixture-user
+2026-10-30 01:14:55,576 DEBUG 127.0.0.1:50349-[] -> 331 Username ok, send password.
+2026-10-30 01:14:55,578 DEBUG 127.0.0.1:50349-[fixture-user] <- PASS ******
+2026-10-30 01:14:55,580 DEBUG 127.0.0.1:50349-[fixture-user] -> 230 Login successful.
+2026-10-30 01:14:55,582 INFO 127.0.0.1:50349-[fixture-user] USER 'fixture-user' logged in.
+2026-10-30 01:14:55,584 DEBUG 127.0.0.1:50349-[fixture-user] <- TYPE A
+2026-10-30 01:14:55,588 DEBUG 127.0.0.1:50349-[fixture-user] -> 200 Type set to: ASCII.
+2026-10-30 01:14:55,590 DEBUG 127.0.0.1:50349-[fixture-user] <- CWD /case-d5dd8aba-c1b0-4bb9-8c4e-17031fe917a2
+2026-10-30 01:14:55,601 DEBUG 127.0.0.1:50349-[fixture-user] -> 250 "/case-d5dd8aba-c1b0-4bb9-8c4e-17031fe917a2" is the current directory.
+2026-10-30 01:14:55,603 DEBUG 127.0.0.1:50349-[fixture-user] <- PWD
+2026-10-30 01:14:55,604 DEBUG 127.0.0.1:50349-[fixture-user] -> 257 "/case-d5dd8aba-c1b0-4bb9-8c4e-17031fe917a2" is the current directory.
+2026-10-30 01:14:55,608 DEBUG 127.0.0.1:50349-[fixture-user] <- TYPE I
+2026-10-30 01:14:55,611 DEBUG 127.0.0.1:50349-[fixture-user] -> 200 Type set to: Binary.
+2026-10-30 01:14:55,612 DEBUG 127.0.0.1:50349-[fixture-user] <- PASV
+2026-10-30 01:14:55,617 DEBUG 127.0.0.1:50349-[fixture-user] -> 227 Entering passive mode (127,0,0,1,196,175).
+2026-10-30 01:14:55,622 DEBUG [debug] call: close() (<pyftpdlib.handlers.ftp.dispatchers.PassiveDTP listening 127.0.0.1:0 at 0x18be2f407c0>)
+2026-10-30 01:14:55,623 DEBUG [debug] call: close() (<pyftpdlib.handlers.ftp.dispatchers.PassiveDTP 127.0.0.1:0 at 0x18be2f407c0>)
+2026-10-30 01:14:55,623 DEBUG 127.0.0.1:50349-[fixture-user] <- STOR /case-d5dd8aba-c1b0-4bb9-8c4e-17031fe917a2/roundtrip.bin
+2026-10-30 01:14:55,631 DEBUG 127.0.0.1:50349-[fixture-user] -> 125 Data connection already open. Transfer starting.
+2026-10-30 01:14:55,639 DEBUG [debug] call: close() (<DTPHandler(id=1700319467536, addr='127.0.0.1:50349', user='fixture-user', sending-file=<_io.BufferedWriter name='C:\\Users\\labuser\\Dev\\jftp\\.local\\ftp-integration\\cancel-mutation-21e15783b346498783a294afb1e336e9\\server\\case-d5dd8aba-c1b0-4bb9-8c4e-17031fe917a2\\roundtrip.bin'>, bytes-trans=4096)>)
+2026-10-30 01:14:55,641 DEBUG 127.0.0.1:50349-[fixture-user] -> 226 Transfer complete.
+2026-10-30 01:14:55,642 INFO 127.0.0.1:50349-[fixture-user] STOR C:\Users\labuser\Dev\jftp\.local\ftp-integration\cancel-mutation-21e15783b346498783a294afb1e336e9\server\case-d5dd8aba-c1b0-4bb9-8c4e-17031fe917a2\roundtrip.bin completed=1 bytes=4096 seconds=0.02
+2026-10-30 01:14:55,643 DEBUG 127.0.0.1:50349-[fixture-user] <- PASV
+2026-10-30 01:14:55,645 DEBUG 127.0.0.1:50349-[fixture-user] -> 227 Entering passive mode (127,0,0,1,196,177).
+2026-10-30 01:14:55,651 DEBUG [debug] call: close() (<pyftpdlib.handlers.ftp.dispatchers.PassiveDTP listening 127.0.0.1:0 at 0x18be2f407c0>)
+2026-10-30 01:14:55,652 DEBUG [debug] call: close() (<pyftpdlib.handlers.ftp.dispatchers.PassiveDTP 127.0.0.1:0 at 0x18be2f407c0>)
+2026-10-30 01:14:55,653 DEBUG 127.0.0.1:50349-[fixture-user] <- RETR /case-d5dd8aba-c1b0-4bb9-8c4e-17031fe917a2/roundtrip.bin
+2026-10-30 01:14:55,666 DEBUG 127.0.0.1:50349-[fixture-user] -> 125 Data connection already open. Transfer starting.
+2026-10-30 01:14:55,666 DEBUG [debug] starting transfer using send() (<DTPHandler(id=1700319467536, addr='127.0.0.1:50349', user='fixture-user', receiving-file=<_io.BufferedReader name='C:\\Users\\labuser\\Dev\\jftp\\.local\\ftp-integration\\cancel-mutation-21e15783b346498783a294afb1e336e9\\server\\case-d5dd8aba-c1b0-4bb9-8c4e-17031fe917a2\\roundtrip.bin'>, bytes-trans=0)>)
+2026-10-30 01:14:55,669 DEBUG [debug] call: close() (<DTPHandler(id=1700319467536, addr='127.0.0.1:50349', user='fixture-user', receiving-file=<_io.BufferedReader name='C:\\Users\\labuser\\Dev\\jftp\\.local\\ftp-integration\\cancel-mutation-21e15783b346498783a294afb1e336e9\\server\\case-d5dd8aba-c1b0-4bb9-8c4e-17031fe917a2\\roundtrip.bin'>, bytes-trans=4096)>)
+2026-10-30 01:14:55,671 DEBUG 127.0.0.1:50349-[fixture-user] -> 226 Transfer complete.
+2026-10-30 01:14:55,672 INFO 127.0.0.1:50349-[fixture-user] RETR C:\Users\labuser\Dev\jftp\.local\ftp-integration\cancel-mutation-21e15783b346498783a294afb1e336e9\server\case-d5dd8aba-c1b0-4bb9-8c4e-17031fe917a2\roundtrip.bin completed=1 bytes=4096 seconds=0.021
+2026-10-30 01:14:55,692 DEBUG 127.0.0.1:50349-[fixture-user] <- QUIT
+2026-10-30 01:14:55,693 DEBUG 127.0.0.1:50349-[fixture-user] -> 221 Goodbye.
+2026-10-30 01:14:55,693 DEBUG [debug] call: close() (<Handler(id=1700319467536, addr='127.0.0.1:50349', user='fixture-user')>)
+2026-10-30 01:14:55,694 INFO 127.0.0.1:50349-[fixture-user] FTP session closed (disconnect).
+2026-10-30 01:14:55,745 INFO 127.0.0.1:50355-[] FTP session opened (connect)
+2026-10-30 01:14:55,746 DEBUG 127.0.0.1:50355-[] -> 220 JFTP synthetic loopback integration fixture
+2026-10-30 01:14:55,748 DEBUG 127.0.0.1:50355-[] <- USER fixture-user
+2026-10-30 01:14:55,749 DEBUG 127.0.0.1:50355-[] -> 331 Username ok, send password.
+2026-10-30 01:14:55,750 DEBUG 127.0.0.1:50355-[fixture-user] <- PASS ******
+2026-10-30 01:14:55,751 DEBUG 127.0.0.1:50355-[fixture-user] -> 230 Login successful.
+2026-10-30 01:14:55,752 INFO 127.0.0.1:50355-[fixture-user] USER 'fixture-user' logged in.
+2026-10-30 01:14:55,756 DEBUG 127.0.0.1:50355-[fixture-user] <- TYPE A
+2026-10-30 01:14:55,756 DEBUG 127.0.0.1:50355-[fixture-user] -> 200 Type set to: ASCII.
+2026-10-30 01:14:55,758 DEBUG 127.0.0.1:50355-[fixture-user] <- CWD /case-91e72a92-75d2-49ad-85f7-24942c18749f
+2026-10-30 01:14:55,768 DEBUG 127.0.0.1:50355-[fixture-user] -> 250 "/case-91e72a92-75d2-49ad-85f7-24942c18749f" is the current directory.
+2026-10-30 01:14:55,769 DEBUG 127.0.0.1:50355-[fixture-user] <- PWD
+2026-10-30 01:14:55,770 DEBUG 127.0.0.1:50355-[fixture-user] -> 257 "/case-91e72a92-75d2-49ad-85f7-24942c18749f" is the current directory.
+2026-10-30 01:14:55,772 DEBUG 127.0.0.1:50355-[fixture-user] <- TYPE I
+2026-10-30 01:14:55,773 DEBUG 127.0.0.1:50355-[fixture-user] -> 200 Type set to: Binary.
+2026-10-30 01:14:55,777 DEBUG 127.0.0.1:50355-[fixture-user] <- PORT 127,0,0,1,196,180
+2026-10-30 01:14:55,783 DEBUG 127.0.0.1:50355-[fixture-user] -> 200 Active data connection established.
+2026-10-30 01:14:55,784 DEBUG 127.0.0.1:50355-[fixture-user] <- STOR /case-91e72a92-75d2-49ad-85f7-24942c18749f/roundtrip.bin
+2026-10-30 01:14:55,791 DEBUG 127.0.0.1:50355-[fixture-user] -> 125 Data connection already open. Transfer starting.
+2026-10-30 01:14:55,801 DEBUG [debug] call: close() (<DTPHandler(id=1700319467536, addr='127.0.0.1:50355', user='fixture-user', sending-file=<_io.BufferedWriter name='C:\\Users\\labuser\\Dev\\jftp\\.local\\ftp-integration\\cancel-mutation-21e15783b346498783a294afb1e336e9\\server\\case-91e72a92-75d2-49ad-85f7-24942c18749f\\roundtrip.bin'>, bytes-trans=4096)>)
+2026-10-30 01:14:55,804 DEBUG 127.0.0.1:50355-[fixture-user] -> 226 Transfer complete.
+2026-10-30 01:14:55,804 INFO 127.0.0.1:50355-[fixture-user] STOR C:\Users\labuser\Dev\jftp\.local\ftp-integration\cancel-mutation-21e15783b346498783a294afb1e336e9\server\case-91e72a92-75d2-49ad-85f7-24942c18749f\roundtrip.bin completed=1 bytes=4096 seconds=0.02
+2026-10-30 01:14:55,807 DEBUG 127.0.0.1:50355-[fixture-user] <- PORT 127,0,0,1,196,182
+2026-10-30 01:14:55,808 DEBUG [debug] call: close() (<pyftpdlib.handlers.ftp.dispatchers.ActiveDTP connected 127.0.0.1:50356 at 0x18be2f21a90>)
+2026-10-30 01:14:55,809 DEBUG [debug] call: unregister(); fd was no longer in socket_map (<pyftpdlib.ioloop.Select (fds=2, tasks=36) at 0x18be2f212b0>)
+2026-10-30 01:14:55,817 DEBUG 127.0.0.1:50355-[fixture-user] -> 200 Active data connection established.
+2026-10-30 01:14:55,819 DEBUG 127.0.0.1:50355-[fixture-user] <- RETR /case-91e72a92-75d2-49ad-85f7-24942c18749f/roundtrip.bin
+2026-10-30 01:14:55,837 DEBUG 127.0.0.1:50355-[fixture-user] -> 125 Data connection already open. Transfer starting.
+2026-10-30 01:14:55,839 DEBUG [debug] starting transfer using send() (<DTPHandler(id=1700319467536, addr='127.0.0.1:50355', user='fixture-user', receiving-file=<_io.BufferedReader name='C:\\Users\\labuser\\Dev\\jftp\\.local\\ftp-integration\\cancel-mutation-21e15783b346498783a294afb1e336e9\\server\\case-91e72a92-75d2-49ad-85f7-24942c18749f\\roundtrip.bin'>, bytes-trans=0)>)
+2026-10-30 01:14:55,844 DEBUG [debug] call: close() (<DTPHandler(id=1700319467536, addr='127.0.0.1:50355', user='fixture-user', receiving-file=<_io.BufferedReader name='C:\\Users\\labuser\\Dev\\jftp\\.local\\ftp-integration\\cancel-mutation-21e15783b346498783a294afb1e336e9\\server\\case-91e72a92-75d2-49ad-85f7-24942c18749f\\roundtrip.bin'>, bytes-trans=4096)>)
+2026-10-30 01:14:55,847 DEBUG 127.0.0.1:50355-[fixture-user] -> 226 Transfer complete.
+2026-10-30 01:14:55,848 INFO 127.0.0.1:50355-[fixture-user] RETR C:\Users\labuser\Dev\jftp\.local\ftp-integration\cancel-mutation-21e15783b346498783a294afb1e336e9\server\case-91e72a92-75d2-49ad-85f7-24942c18749f\roundtrip.bin completed=1 bytes=4096 seconds=0.03
+2026-10-30 01:14:55,865 DEBUG 127.0.0.1:50355-[fixture-user] <- QUIT
+2026-10-30 01:14:55,867 DEBUG 127.0.0.1:50355-[fixture-user] -> 221 Goodbye.
+2026-10-30 01:14:55,868 DEBUG [debug] call: close() (<pyftpdlib.handlers.ftp.dispatchers.ActiveDTP connected 127.0.0.1:50358 at 0x18be2f01bd0>)
+2026-10-30 01:14:55,868 DEBUG [debug] call: unregister(); fd was no longer in socket_map (<pyftpdlib.ioloop.Select (fds=2, tasks=39) at 0x18be2f212b0>)
+2026-10-30 01:14:55,870 DEBUG [debug] call: close() (<Handler(id=1700319467536, addr='127.0.0.1:50355', user='fixture-user')>)
+2026-10-30 01:14:55,872 INFO 127.0.0.1:50355-[fixture-user] FTP session closed (disconnect).
+2026-10-30 01:14:55,911 INFO 127.0.0.1:50360-[] FTP session opened (connect)
+2026-10-30 01:14:55,912 DEBUG 127.0.0.1:50360-[] -> 220 JFTP synthetic loopback integration fixture
+2026-10-30 01:14:55,913 DEBUG 127.0.0.1:50360-[] <- USER fixture-user
+2026-10-30 01:14:55,914 DEBUG 127.0.0.1:50360-[] -> 331 Username ok, send password.
+2026-10-30 01:14:55,915 DEBUG 127.0.0.1:50360-[fixture-user] <- PASS ******
+2026-10-30 01:14:55,916 DEBUG 127.0.0.1:50360-[fixture-user] -> 230 Login successful.
+2026-10-30 01:14:55,916 INFO 127.0.0.1:50360-[fixture-user] USER 'fixture-user' logged in.
+2026-10-30 01:14:55,922 DEBUG 127.0.0.1:50360-[fixture-user] <- TYPE A
+2026-10-30 01:14:55,923 DEBUG 127.0.0.1:50360-[fixture-user] -> 200 Type set to: ASCII.
+2026-10-30 01:14:55,924 DEBUG 127.0.0.1:50360-[fixture-user] <- CWD /case-f7317963-91a2-402c-8651-a3cfe17c3a5b
+2026-10-30 01:14:55,937 DEBUG 127.0.0.1:50360-[fixture-user] -> 250 "/case-f7317963-91a2-402c-8651-a3cfe17c3a5b" is the current directory.
+2026-10-30 01:14:55,942 DEBUG 127.0.0.1:50360-[fixture-user] <- PWD
+2026-10-30 01:14:55,944 DEBUG 127.0.0.1:50360-[fixture-user] -> 257 "/case-f7317963-91a2-402c-8651-a3cfe17c3a5b" is the current directory.
+2026-10-30 01:14:55,949 DEBUG 127.0.0.1:50360-[fixture-user] <- PASV
+2026-10-30 01:14:55,958 DEBUG 127.0.0.1:50360-[fixture-user] -> 227 Entering passive mode (127,0,0,1,196,185).
+2026-10-30 01:14:55,963 DEBUG [debug] call: close() (<pyftpdlib.handlers.ftp.dispatchers.PassiveDTP listening 127.0.0.1:0 at 0x18be2ec2d50>)
+2026-10-30 01:14:55,963 DEBUG [debug] call: close() (<pyftpdlib.handlers.ftp.dispatchers.PassiveDTP 127.0.0.1:0 at 0x18be2ec2d50>)
+2026-10-30 01:14:55,964 DEBUG 127.0.0.1:50360-[fixture-user] <- LIST
+2026-10-30 01:14:55,969 DEBUG 127.0.0.1:50360-[fixture-user] -> 125 Data connection already open. Transfer starting.
+2026-10-30 01:14:55,970 DEBUG [debug] starting transfer using send() (<DTPHandler(id=1700319467536, addr='127.0.0.1:50360', user='fixture-user')>)
+2026-10-30 01:14:55,972 DEBUG [debug] call: close() (<DTPHandler(id=1700319467536, addr='127.0.0.1:50360', user='fixture-user')>)
+2026-10-30 01:14:55,975 DEBUG 127.0.0.1:50360-[fixture-user] -> 226 Transfer complete.
+2026-10-30 01:14:55,983 DEBUG 127.0.0.1:50360-[fixture-user] <- QUIT
+2026-10-30 01:14:55,984 DEBUG 127.0.0.1:50360-[fixture-user] -> 221 Goodbye.
+2026-10-30 01:14:55,984 DEBUG [debug] call: close() (<Handler(id=1700319467536, addr='127.0.0.1:50360', user='fixture-user')>)
+2026-10-30 01:14:55,986 INFO 127.0.0.1:50360-[fixture-user] FTP session closed (disconnect).
+2026-10-30 01:14:56,029 INFO 127.0.0.1:50363-[] FTP session opened (connect)
+2026-10-30 01:14:56,030 DEBUG 127.0.0.1:50363-[] -> 220 JFTP synthetic loopback integration fixture
+2026-10-30 01:14:56,032 DEBUG 127.0.0.1:50363-[] <- USER fixture-user
+2026-10-30 01:14:56,033 DEBUG 127.0.0.1:50363-[] -> 331 Username ok, send password.
+2026-10-30 01:14:56,034 DEBUG 127.0.0.1:50363-[fixture-user] <- PASS ******
+2026-10-30 01:14:59,052 DEBUG 127.0.0.1:50363-[] -> 530 Authentication failed.
+2026-10-30 01:14:59,052 INFO 127.0.0.1:50363-[] USER 'fixture-user' failed login.
+2026-10-30 01:14:59,053 DEBUG 127.0.0.1:50363-[] <- QUIT
+2026-10-30 01:14:59,054 DEBUG 127.0.0.1:50363-[] -> 221 Goodbye.
+2026-10-30 01:14:59,054 DEBUG [debug] call: close() (<Handler(id=1700319467536, addr='127.0.0.1:50363')>)
+2026-10-30 01:14:59,056 INFO 127.0.0.1:50363-[] FTP session closed (disconnect).
+2026-10-30 01:14:59,323 DEBUG [debug] closing IOLoop (<pyftpdlib.ioloop.Select (fds=1, tasks=43) at 0x18be2f212b0>)
+2026-10-30 01:14:59,325 INFO >>> shutting down FTP server, pid=11692, 0 open socket(s) <<<
+2026-10-30 01:14:59,326 DEBUG [debug] closing IOLoop (<pyftpdlib.ioloop.Select (fds=0, tasks=1) at 0x18be2f212b0>)
+2026-10-30 01:14:59,326 DEBUG [debug] closing IOLoop (<pyftpdlib.ioloop.Select (fds=0, tasks=0) at 0x18be2f212b0>)

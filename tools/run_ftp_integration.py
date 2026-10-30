@@ -2,6 +2,7 @@
 import argparse
 import contextlib
 import ftplib
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -62,7 +63,7 @@ def main():
                     client.pwd()
                     client.quit()
             test_class = "FtpsTransportContractIT" if args.tls else "FtpTransportContractIT"
-            expected_tests = 5 if args.tls else 7
+            expected_tests = 5 if args.tls else 10
             command = [str(ROOT / ("mvnw.cmd" if os.name == "nt" else "mvnw")), "-B", "-ntp",
                        "-s", str(settings), "-Dmaven.repo.local=" + str(ROOT / ".local/m2"),
                        "-Dtest=" + test_class, "-Djftp.fixture.root=" + str(server_root),
@@ -77,7 +78,10 @@ def main():
                     raise RuntimeError("Missing fresh Surefire integration report")
                 suite = ET.parse(report).getroot()
                 counts = {key: int(suite.attrib[key]) for key in ("tests", "failures", "errors", "skipped")}
+                runtime_version = next((item.get("value") for item in suite.findall("properties/property")
+                                        if item.get("name") == "java.runtime.version"), None)
             else:
+                runtime_version = None
                 result = subprocess.run(["pwsh", "-NoProfile", "-File", str(ROOT / "tools/legacy-baseline.ps1")],
                                         cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace")
                 (run / "legacy-build.log").write_text(result.stdout + result.stderr, encoding="utf-8")
@@ -111,7 +115,9 @@ def main():
                 raise RuntimeError(f"Unexpected integration discovery/results: {counts}")
             receipt = {"fixture": ready, "counts": counts, "elapsed_seconds": round(time.time() - started, 3),
                        "application_ui_tested": False, "transport": "FTPAPI 3.0.0", "tls_tested": args.tls,
-                       "runner": args.runner}
+                       "runner": args.runner, "java_runtime_version": runtime_version,
+                       "test_source_sha256_lf": hashlib.sha256((ROOT / ("src/test/java/com/myjavaworld/jftp/" +
+                           test_class + ".java")).read_bytes().replace(b"\r\n", b"\n")).hexdigest()}
         finally:
             if server.poll() is None:
                 (run / "STOP").touch()

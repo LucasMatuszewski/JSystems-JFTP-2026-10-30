@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-30",
+  "base_revision": "93d8abe00e1d0b4c56dae935023a92bab05f464f",
+  "scope": "current working-tree FTPAPI component tests; native UI not tested",
+  "test_source_sha256_lf": "13516109ce72b476b85c691ac2ca9e5025fe9585a441696e3c016656e18bce0f",
+  "normal_run": {
+    "fixture": {
+      "pid": 17112,
+      "parent_pid": 7352,
+      "host": "127.0.0.1",
+      "port": 59033,
+      "pyftpdlib": "2.2.0",
+      "root": "C:\\Users\\labuser\\Dev\\jftp\\.local\\ftp-integration\\ef86c8fda2f5401bb886a0b1d525d30d\\server",
+      "tls": false
+    },
+    "counts": {
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "elapsed_seconds": 55.176,
+    "application_ui_tested": false,
+    "transport": "FTPAPI 3.0.0",
+    "tls_tested": false,
+    "runner": "maven",
+    "java_runtime_version": "25.0.5+8-LTS",
+    "test_source_sha256_lf": "13516109ce72b476b85c691ac2ca9e5025fe9585a441696e3c016656e18bce0f",
+    "fixture_supervisor_exit_code": 0,
+    "fixture_stopped": true
+  },
+  "controlled_mutation": {
+    "passed": true,
+    "mutation": "FTPAPI DataConnection.abort flag assignment made ineffective",
+    "production_source_modified": false,
+    "repository_dependency_jar_modified": false,
+    "mutant_source_sha256": "1e3ba87bd0980ccb6aec7406d8a7f3e77da7d19257e1be91ce31821b16ef2650",
+    "tests": 10,
+    "expected_failures": 3,
+    "errors": 0,
+    "fixture_stopped": true,
+    "fixture_exit_code": 0,
+    "run": "C:\\Users\\labuser\\Dev\\jftp\\.local\\ftp-integration\\cancel-mutation-21e15783b346498783a294afb1e336e9"
+  },
+  "artifacts_sha256": {
+    "maven.log": "09f95686352645726d3782623036df034d7852e20278e6edcd68dd5777542dbe",
+    "server.log": "1d8dc395286fb87ef2b6dc120e54b48bd42f1302d19ecd05fb2770ddb8e08e40",
+    "probe.log": "b300bd7318553167512f45574045152e88b62a89dc58a0ee44dfd87777446deb",
+    "mutation.log": "918141da7628729207c0ca94201ddb4aed582c3806393bed56f772d61443dd2e",
+    "mutation-server.log": "9bf46c1a7c079963dd11af997cc64aea0b757efa936621e22dd99abf53cc96da"
+  }
+}
