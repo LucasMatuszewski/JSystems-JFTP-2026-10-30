@@ -111,9 +111,9 @@ If time/tool/model access runs out, prefer sequential execution by the primary a
 
 The five-person usefulness pilot in [ADR-006][A-pilot] follows a working slice; it is not a new telemetry subsystem or permission to expand file access. This PR need not wait for the whole pilot, but its handoff must identify that later evaluation and the deferred remote-directory work.
 
-**Review gate:** the user has accepted the local-only scope, dependency matrix, single-checkout ownership, evidence gates and C0/C1 boundaries. Execution begins with T0 when work resumes; all dependency, verification and independent-review gates remain in force. Acceptance does not authorize publication or merge. This documentation update starts no workers or implementation tasks.
+**Review gate:** the user has accepted the local-only scope, dependency matrix, single-checkout ownership, evidence gates and C0/C1 boundaries. The [governing PRD](../prd/directory-assistant.md) still says “Proposed feature”; establish explicit acceptance of its current scope and synchronize that status before T0 or implementation. Plan acceptance alone does not establish PRD acceptance. All dependency, verification and independent-review gates remain in force. Acceptance does not authorize publication or merge. This documentation update starts no workers or implementation tasks.
 
-**First bounded execution task:** T0, performed by the orchestrator with one freshly prepared durable brief: establish the SDK/service/native prerequisites and return a go/no-go evidence report before coding. No unresolved product or architectural decision is hidden in this plan; if that probe identifies one, it must return as a proposed ADR change for review.
+**First bounded execution task after governing approvals are confirmed:** T0, performed by the orchestrator with one freshly prepared durable brief: establish the SDK/service/native prerequisites and return a go/no-go evidence report before coding. No unresolved product or architectural decision is hidden in this plan; if that probe identifies one, it must return as a proposed ADR change for review.
 
 [P-flow]: ../prd/directory-assistant.md#4-main-flows
 [P-ac]: ../prd/directory-assistant.md#6-acceptance-criteria
