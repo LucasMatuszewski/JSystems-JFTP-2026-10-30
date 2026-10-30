@@ -1,0 +1,1330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Agent usage report</title>
+<style>
+:root {
+  --bg: #f5f6f8; --surface: #ffffff; --surface-2: #eef1f4; --border: #dce1e7; --text: #18212d;
+  --muted: #566173; --faint: #8b94a3; --accent: #0f766e;
+  --c1: #0f766e; --c2: #5fb3a9; --c3: #6d4fc2; --c4: #a993e0; --c5: #d4604b; --c6: #eea493; --c7: #7c8796; --c8: #b9dcd6;
+  --track: #e6eaef; --free: #d7e9e6; --hatch: #8b94a3;
+  --info-bg: #eef6f5; --info-border: #b8dbd6; --warn-bg: #fdf1ec; --warn-border: #efb9aa; --warn-text: #8c3420;
+  --shadow: 0 1px 2px rgba(16, 24, 40, .05), 0 2px 6px rgba(16, 24, 40, .05);
+  --focus: #6d4fc2; --radius: 12px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e131a; --surface: #151c25; --surface-2: #1c2530; --border: #2a3441; --text: #e5e9ef;
+    --muted: #a2acba; --faint: #76808f; --accent: #3cbfae;
+    --c1: #33b5a5; --c2: #1f7c72; --c3: #a28be6; --c4: #6650b0; --c5: #f08a73; --c6: #a5513f; --c7: #8b95a5; --c8: #24524c;
+    --track: #232d39; --free: #1d3a37; --hatch: #76808f;
+    --info-bg: #142a29; --info-border: #24524c; --warn-bg: #33201b; --warn-border: #7a3a2b; --warn-text: #f6b5a5;
+    --shadow: none; --focus: #a993e6;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e131a; --surface: #151c25; --surface-2: #1c2530; --border: #2a3441; --text: #e5e9ef;
+  --muted: #a2acba; --faint: #76808f; --accent: #3cbfae;
+  --c1: #33b5a5; --c2: #1f7c72; --c3: #a28be6; --c4: #6650b0; --c5: #f08a73; --c6: #a5513f; --c7: #8b95a5; --c8: #24524c;
+  --track: #232d39; --free: #1d3a37; --hatch: #76808f;
+  --info-bg: #142a29; --info-border: #24524c; --warn-bg: #33201b; --warn-border: #7a3a2b; --warn-text: #f6b5a5;
+  --shadow: none; --focus: #a993e6;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+.skip-link { position: absolute; left: -9999px; top: 8px; background: var(--surface); color: var(--text); padding: 8px 12px; border-radius: 8px; z-index: 10; }
+.skip-link:focus { left: 8px; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+h1, h2, h3 { line-height: 1.25; margin: 0; }
+h1 { font-size: 1.65rem; font-weight: 680; letter-spacing: -.01em; }
+h2 { font-size: 1.2rem; font-weight: 650; }
+h3 { font-size: 1rem; font-weight: 640; }
+p { margin: 0; }
+.masthead { background: var(--surface); border-bottom: 1px solid var(--border); }
+.masthead-inner { display: flex; gap: 16px; align-items: flex-start; justify-content: space-between; padding-top: 22px; padding-bottom: 14px; flex-wrap: wrap; }
+.eyebrow { color: var(--accent); font-size: .78rem; font-weight: 650; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; }
+.scope { color: var(--muted); margin-top: 6px; }
+.badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.badge { display: inline-block; font-size: .75rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--surface-2); color: var(--muted); border: 1px solid var(--border); }
+.badge.warn { background: var(--warn-bg); color: var(--warn-text); border-color: var(--warn-border); }
+.actions { display: flex; gap: 8px; }
+.btn { font: inherit; font-size: .85rem; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+.btn:hover { background: var(--surface-2); }
+.btn-quiet { border-color: transparent; color: var(--accent); padding-left: 0; background: transparent; }
+.btn-quiet:hover { background: transparent; text-decoration: underline; }
+.toc { display: flex; gap: 4px 14px; flex-wrap: wrap; padding-bottom: 12px; font-size: .85rem; }
+.toc a { color: var(--muted); text-decoration: none; }
+.toc a:hover { color: var(--accent); text-decoration: underline; }
+main { padding-top: 18px; padding-bottom: 48px; }
+main:focus { outline: none; }
+.section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px 22px; margin-bottom: 18px; scroll-margin-top: 150px; }
+.section-head { display: flex; gap: 12px; align-items: baseline; justify-content: space-between; flex-wrap: wrap; margin-bottom: 14px; }
+.section-head .lead { color: var(--muted); font-size: .9rem; flex-basis: 100%; }
+.section-body > * + * { margin-top: 14px; }
+.filters { position: sticky; top: 0; z-index: 5; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 12px 16px; margin-bottom: 18px; }
+.filter-row { display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; }
+.field { display: flex; flex-direction: column; gap: 3px; font-size: .8rem; color: var(--muted); }
+.field.inline { flex-direction: row; align-items: center; gap: 8px; }
+.field select, .field input { font: inherit; font-size: .88rem; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 5px 8px; min-width: 9rem; max-width: 100%; }
+.filter-status { font-size: .82rem; color: var(--muted); margin-top: 8px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+#summary .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (min-width: 641px) and (max-width: 900px) { #summary .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+.stat { border-top: 3px solid var(--border); }
+.stat.accent-teal { border-top-color: var(--c1); }
+.stat.accent-coral { border-top-color: var(--c5); }
+.stat.accent-purple { border-top-color: var(--c3); }
+.stat-label { font-size: .8rem; color: var(--muted); font-weight: 600; }
+.stat-value { font-size: 1.45rem; font-weight: 680; margin-top: 2px; letter-spacing: -.01em; overflow-wrap: anywhere; }
+.stat-sub { font-size: .8rem; color: var(--muted); margin-top: 2px; }
+.delta { font-size: .8rem; font-weight: 600; margin-top: 6px; color: var(--text); }
+.note { font-size: .85rem; color: var(--muted); }
+.meta { font-size: .82rem; color: var(--muted); overflow-wrap: anywhere; }
+.notice { border: 1px solid var(--info-border); background: var(--info-bg); border-radius: 10px; padding: 10px 14px; font-size: .88rem; }
+.notice strong { display: block; margin-bottom: 2px; }
+.notice.warn { border-color: var(--warn-border); background: var(--warn-bg); color: var(--warn-text); }
+.empty { border: 1px dashed var(--border); border-radius: 10px; padding: 18px; text-align: center; color: var(--muted); }
+.empty strong { display: block; color: var(--text); margin-bottom: 4px; }
+.segmented { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.segmented button { font: inherit; font-size: .82rem; border: 0; background: var(--surface); color: var(--muted); padding: 5px 12px; cursor: pointer; }
+.segmented button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.chart-title { font-size: .9rem; font-weight: 620; }
+.chart-wrap { overflow-x: auto; }
+svg.chart { display: block; width: 100%; min-width: 520px; height: auto; }
+.chart .grid { stroke: var(--border); stroke-width: 1; }
+.chart .axis { stroke: var(--faint); stroke-width: 1; }
+.chart .tick { fill: var(--muted); font-size: 11px; font-family: inherit; }
+.chart .bar:hover rect { opacity: .82; }
+.c1 { fill: var(--c1); background: var(--c1); } .c2 { fill: var(--c2); background: var(--c2); }
+.c3 { fill: var(--c3); background: var(--c3); } .c4 { fill: var(--c4); background: var(--c4); }
+.c5 { fill: var(--c5); background: var(--c5); } .c6 { fill: var(--c6); background: var(--c6); }
+.c7 { fill: var(--c7); background: var(--c7); } .c8 { fill: var(--c8); background: var(--c8); }
+.track { fill: var(--track); }
+.free { fill: var(--free); background: var(--free); }
+.residual { background: repeating-linear-gradient(45deg, var(--track), var(--track) 3px, var(--hatch) 3px, var(--hatch) 5px); }
+.hatch-bg { fill: var(--track); }
+.hatch-line { stroke: var(--hatch); stroke-width: 3; }
+.legend { list-style: none; display: flex; flex-wrap: wrap; gap: 4px 14px; padding: 0; margin: 8px 0 0; font-size: .82rem; color: var(--muted); }
+.legend li { display: inline-flex; align-items: center; gap: 6px; }
+.swatch { display: inline-block; width: 11px; height: 11px; border-radius: 3px; }
+.gauge { display: flex; flex-direction: column; gap: 6px; }
+.gauge-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: .85rem; }
+.gauge-title { font-weight: 620; }
+.gauge-value { color: var(--muted); }
+svg.stack { display: block; width: 100%; height: 28px; border-radius: 6px; overflow: visible; }
+svg.stack .marker { stroke: var(--text); stroke-width: 2; stroke-dasharray: 4 3; vector-effect: non-scaling-stroke; }
+.two-col { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+.two-col > * { min-width: 0; }
+@media (min-width: 900px) { .two-col { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.barlist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.barlist li { display: grid; grid-template-columns: minmax(7rem, 13rem) 1fr minmax(4.5rem, auto); gap: 4px 10px; align-items: center; font-size: .85rem; }
+.bl-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bl-value { text-align: right; font-weight: 600; }
+.bl-note { grid-column: 2 / -1; font-size: .76rem; color: var(--muted); margin-top: -4px; }
+svg.bar-svg { display: block; width: 100%; height: 10px; border-radius: 4px; }
+.quota-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+.quota-title { font-weight: 640; overflow-wrap: anywhere; }
+.quota-sub { font-size: .8rem; color: var(--muted); margin-bottom: 10px; overflow-wrap: anywhere; }
+.quota-value { font-size: 1.15rem; font-weight: 660; margin-top: 6px; }
+.quota.mid .meter-fill { fill: var(--c3); }
+.quota.high .meter-fill { fill: var(--c5); }
+.meter-fill { fill: var(--c1); }
+svg.meter { display: block; width: 100%; height: 10px; border-radius: 5px; }
+.kv { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; margin: 8px 0 0; font-size: .82rem; }
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; overflow-wrap: anywhere; }
+.insights { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.insight { border-left: 3px solid var(--c3); }
+.insight p { font-size: .88rem; margin-top: 4px; }
+.insight .label { color: var(--muted); font-weight: 600; }
+.table-block > * + * { margin-top: 6px; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 10px; }
+table.data { border-collapse: collapse; width: 100%; font-size: .84rem; }
+table.data caption { text-align: left; font-weight: 620; font-size: .85rem; padding: 10px 12px 6px; color: var(--text); }
+table.data th, table.data td { padding: 7px 12px; border-top: 1px solid var(--border); text-align: left; vertical-align: top; }
+table.data thead th { background: var(--surface-2); color: var(--muted); font-weight: 600; font-size: .78rem; white-space: nowrap; }
+table.data tbody th { font-weight: 560; overflow-wrap: anywhere; max-width: 22rem; }
+table.data .num { text-align: right; white-space: nowrap; }
+.method { margin: 0; padding-left: 1.1rem; font-size: .88rem; }
+.method li + li { margin-top: 4px; }
+.source-list { margin: 6px 0 0; padding-left: 1.1rem; font-size: .85rem; overflow-wrap: anywhere; }
+footer { color: var(--faint); font-size: .8rem; padding: 0 20px 32px; text-align: center; }
+@media (max-width: 640px) {
+  #summary .cards { grid-template-columns: minmax(0, 1fr); }
+  .wrap { padding: 0 12px; }
+  .section { padding: 16px 14px; }
+  .filters { position: static; }
+  h1 { font-size: 1.35rem; }
+  .barlist li { grid-template-columns: 1fr auto; }
+  .barlist li svg.bar-svg { grid-column: 1 / -1; grid-row: 2; }
+  .bl-note { grid-column: 1 / -1; grid-row: 3; margin-top: 0; }
+  .field select, .field input { min-width: 0; width: 100%; }
+  .filter-row .field { flex: 1 1 140px; }
+}
+@media print {
+  :root, :root[data-theme="dark"], :root:not([data-theme="light"]) {
+    --bg: #ffffff; --surface: #ffffff; --surface-2: #f1f3f5; --border: #cfd5dc; --text: #111111; --muted: #444c58; --faint: #6b7380;
+    --accent: #0f766e; --c1: #0f766e; --c2: #5fb3a9; --c3: #6d4fc2; --c4: #a993e0; --c5: #d4604b; --c6: #eea493; --c7: #7c8796; --c8: #b9dcd6;
+    --track: #e6eaef; --free: #d7e9e6; --hatch: #8b94a3; --info-bg: #f3f8f7; --info-border: #b8dbd6; --warn-bg: #fdf1ec; --warn-border: #efb9aa; --warn-text: #8c3420;
+    --shadow: none; color-scheme: light;
+  }
+  body { background: #fff; font-size: 12px; }
+  .no-print { display: none !important; }
+  .wrap { max-width: none; padding: 0; }
+  .section { border: 0; border-top: 1px solid var(--border); border-radius: 0; padding: 14px 0; margin: 0; }
+  .card, .chart-wrap, .gauge, .notice, table.data tr, .insight { break-inside: avoid; }
+  h2 { break-after: avoid; }
+  .chart-wrap, .table-wrap { overflow: visible; }
+  svg.chart { min-width: 0; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to report</a>
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <div>
+      <p class="eyebrow" id="report-kind">Agent usage analytics</p>
+      <h1 id="report-title">Agent usage report</h1>
+      <p class="scope" id="scope-line"></p>
+      <div class="badges" id="badges"></div>
+    </div>
+    <div class="actions no-print">
+      <button type="button" class="btn" id="theme-toggle">Switch theme</button>
+      <button type="button" class="btn" id="print-button">Print</button>
+    </div>
+  </div>
+  <nav class="wrap toc no-print" id="toc" aria-label="Report sections"></nav>
+</header>
+<main id="main" class="wrap" tabindex="-1">
+  <noscript><div class="notice warn"><strong>JavaScript is off.</strong> This dashboard renders its embedded data with local JavaScript. The Markdown and JSON reports contain the same figures.</div></noscript>
+</main>
+<footer>Generated locally from the embedded report data. This file loads no external resources.</footer>
+<script type="application/json" id="report-data">{"schema_version":1,"generated_at":"2026-10-29T14:51:53.798Z","mode":"session","scope":{"since":null,"until":null,"timezone":"UTC","session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959","share":false,"include_child_sessions":false},"summary":{"input_tokens":1118433,"cache_read_tokens":1022464,"cache_write_tokens":0,"output_tokens":16769,"reasoning_tokens":6904,"requests":19,"sessions":1,"total_tokens":1135202,"cost_lower_usd":0.4618744,"cost_upper_usd":0.8399038,"priced_requests":19,"unpriced_requests":0,"missing_usage_requests":0,"cache_hit_percent":91.41933401464371,"unknown_request_count_observations":0,"count_quality":"reported/reconstructed","missing_fields":{"input_tokens":0,"cache_read_tokens":0,"cache_write_tokens":0,"output_tokens":0,"reasoning_tokens":0},"unverified_model_requests":0,"accounting_gap_observations":0},"requests":[{"id":"51d52d68d7c8d30833e2db8f","agent":"codex","session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959","model":"gpt-6.1-sol","reported_model":"gpt-6.1-sol","provider":"openai","model_attribution":"recorded","timestamp":"2026-10-29T14:04:23.065Z","source_id":"39bf2d530052bca50490332a","origin":"local","device":"local","account":"local","input_tokens":19612,"cache_read_tokens":13184,"cache_write_tokens":0,"output_tokens":225,"reasoning_tokens":0,"cache_write_5m_tokens":null,"cache_write_1h_tokens":null,"request_count":1,"unit":"request","quality":"reported","speed":null,"inference_geo":null,"service_tier":null,"cache_write_reported":true,"model_inferred":false,"accounting_mode":"codex_native_per_response","parent_session_id":null,"native_total_input_tokens":19612,"native_total_output_tokens":225,"cost_lower_usd":0.0164244,"cost_upper_usd":0.0317238,"price_status":"range","price_notes":["prompt_tier_range","reference_rates_not_historical_invoice"],"task":"unclassified"},{"id":"c5c48c1254dd67c678105e37","agent":"codex","session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959","model":"gpt-6.1-sol","reported_model":"gpt-6.1-sol","provider":"openai","model_attribution":"recorded","timestamp":"2026-10-29T14:04:48.804Z","source_id":"39bf2d530052bca50490332a","origin":"local","device":"local","account":"local","input_tokens":24092,"cache_read_tokens":19712,"cache_write_tokens":0,"output_tokens":561,"reasoning_tokens":329,"cache_write_5m_tokens":null,"cache_write_1h_tokens":null,"request_count":1,"unit":"request","quality":"reported","speed":null,"inference_geo":null,"service_tier":null,"cache_write_reported":true,"model_inferred":false,"accounting_mode":"codex_native_per_response","parent_session_id":null,"native_total_input_tokens":43704,"native_total_output_tokens":786,"cost_lower_usd":0.0163412,"cost_upper_usd":0.0298774,"price_status":"range","price_notes":["prompt_tier_range","reference_rates_not_historical_invoice"],"task":"unclassified"},{"id":"bca9a34b13c6e3b39ae368c8","agent":"codex","session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959","model":"gpt-6.1-sol","reported_model":"gpt-6.1-sol","provider":"openai","model_attribution":"recorded","timestamp":"2026-10-29T14:05:15.654Z","source_id":"39bf2d530052bca50490332a","origin":"local","device":"local","account":"local","input_tokens":26911,"cache_read_tokens":24448,"cache_write_tokens":0,"output_tokens":438,"reasoning_tokens":147,"cache_write_5m_tokens":null,"cache_write_1h_tokens":null,"request_count":1,"unit":"request","quality":"reported","speed":null,"inference_geo":null,"service_tier":null,"cache_write_reported":true,"model_inferred":false,"accounting_mode":"codex_native_per_response","parent_session_id":null,"native_total_input_tokens":70615,"native_total_output_tokens":1224,"cost_lower_usd":0.0117508,"cost_upper_usd":0.0213116,"price_status":"range","price_notes":["prompt_tier_range","reference_rates_not_historical_invoice"],"task":"unclassified"},{"id":"94c37b00ea66fe92c2a8bbc9","agent":"codex","session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959","model":"gpt-6.1-sol","reported_model":"gpt-6.1-sol","provider":"openai","model_attribution":"recorded","timestamp":"2026-10-29T14:05:37.485Z","source_id":"39bf2d530052bca50490332a","origin":"local","device":"local","account":"local","input_tokens":32799,"cache_read_tokens":13184,"cache_write_tokens":0,"output_tokens":274,"reasoning_tokens":26,"cache_write_5m_tokens":null,"cache_write_1h_tokens":null,"request_count":1,"unit":"request","quality":"reported","speed":null,"inference_geo":null,"service_tier":null,"cache_write_reported":true,"model_inferred":false,"accounting_mode":"codex_native_per_response","parent_session_id":null,"native_total_input_tokens":103414,"native_total_output_tokens":1498,"cost_lower_usd":0.0432884,"cost_upper_usd":0.0852068,"price_status":"range","price_notes":["prompt_tier_range","reference_rates_not_historical_invoice"],"task":"unclassified"},{"id":"cacd13df82887eda84adef8f","agent":"codex","session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959","model":"gpt-6.1-sol","reported_model":"gpt-6.1-sol","provider":"openai","model_attribution":"recorded","timestamp":"2026-10-29T14:05:58.189Z","source_id":"39bf2d530052bca50490332a","origin":"local","device":"local","account":"local","input_tokens":47720,"cache_read_tokens":27136,"cache_write_tokens":0,"output_tokens":185,"reasoning_tokens":62,"cache_write_5m_tokens":null,"cache_write_1h_tokens":null,"request_count":1,"unit":"request","quality":"reported","speed":null,"inference_geo":null,"service_tier":null,"cache_write_reported":true,"model_inferred":false,"accounting_mode":"codex_native_per_response","parent_session_id":null,"native_total_input_tokens":151134,"native_total_output_tokens":1683,"cost_lower_usd":0.0457316,"cost_upper_usd":0.0905382,"price_status":"range","price_notes":["prompt_tier_range","reference_rates_not_historical_invoice"],"task":"unclassified"},{"id":"8d72c877c95b4d44e3f5b5d9","agent":"codex","session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959","model":"gpt-6.1-sol","reported_model":"gpt-6.1-sol","provider":"openai","model_attribution":"recorded","timestamp":"2026-10-29T14:06:35.939Z","source_id":"39bf2d530052bca50490332a","origin":"local","device":"local","account":"local","input_tokens":56379,"cache_read_tokens":47744,"cache_write_tokens":0,"output_tokens":423,"reasoning_tokens":352,"cache_write_5m_tokens":null,"cache_write_1h_tokens":null,"request_count":1,"unit":"request","quality":"reported","speed":null,"inference_geo":null,"service_tier":null,"cache_write_reported":true,"model_inferred":false,"accounting_mode":"codex_native_per_response","parent_session_id":null,"native_total_input_tokens":207513,"native_total_output_tokens":2106,"cost_lower_usd":0.0262744,"cost_upper_usd":0.0504338,"price_status":"range","price_notes":["prompt_tier_range","reference_rates_not_historical_invoice"],"task":"unclassified"},{"id":"f41c4b74a7d2004a471540c5","agent":"codex","session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959","model":"gpt-6.1-sol","reported_model":"gpt-6.1-sol","provider":"openai","model_attribution":"recorded","timestamp":"2026-10-29T14:10:04.098Z","source_id":"39bf2d530052bca50490332a","origin":"local","device":"local","account":"local","input_tokens":56870,"cache_read_tokens":56576,"cache_write_tokens":0,"output_tokens":841,"reasoning_tokens":516,"cache_write_5m_tokens":null,"cache_write_1h_tokens":null,"request_count":1,"unit":"request","quality":"reported","speed":null,"inference_geo":null,"service_tier":null,"cache_write_reported":true,"model_inferred":false,"accounting_mode":"codex_native_per_response","parent_session_id":null,"native_total_input_tokens":264383,"native_total_output_tokens":2947,"cost_lower_usd":0.0146556,"cost_upper_usd":0.0251062,"price_status":"range","price_notes":["prompt_tier_range","reference_rates_not_historical_invoice"],"task":"unclassified"},{"id":"038723f28fb2f16f6175fe80","agent":"codex","session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959","model":"gpt-6.1-sol","reported_model":"gpt-6.1-sol","provider":"openai","model_attribution":"recorded","timestamp":"2026-10-29T14:18:54.057Z","source_id":"39bf2d530052bca50490332a","origin":"local","device":"local","account":"local","input_tokens":57728,"cache_read_tokens":57472,"cache_write_tokens":0,"output_tokens":464,"reasoning_tokens":0,"cache_write_5m_tokens":null,"cache_write_1h_tokens":null,"request_count":1,"unit":"request","quality":"reported","speed":null,"inference_geo":null,"service_tier":null,"cache_write_reported":true,"model_inferred":false,"accounting_mode":"codex_native_per_response","parent_session_id":null,"native_total_input_tokens":322111,"native_total_output_tokens":3411,"cost_lower_usd":0.0108992,"cost_upper_usd":0.0194784,"price_status":"range","price_notes":["prompt_tier_range","reference_rates_not_historical_invoice"],"task":"unclassified"},{"id":"ef7ba4928ad8f3fe3b7252dc","agent":"codex","session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959","model":"gpt-6.1-sol","reported_model":"gpt-6.1-sol","provider":"openai","model_attribution":"recorded","timestamp":"2026-10-29T14:19:12.819Z","source_id":"39bf2d530052bca50490332a","origin":"local","device":"local","account":"local","input_tokens":58347,"cache_read_tokens":57984,"cache_write_tokens":0,"output_tokens":85,"reasoning_tokens":0,"cache_write_5m_tokens":null,"cache_write_1h_tokens":null,"request_count":1,"unit":"request","quality":"reported","speed":null,"inference_geo":null,"service_tier":null,"cache_write_reported":true,"model_inferred":false,"accounting_mode":"codex_native_per_response","parent_session_id":null,"native_total_input_tokens":380458,"native_total_output_tokens":3496,"cost_lower_usd":0.0073744,"cost_upper_usd":0.0143238,"price_status":"range","price_notes":["prompt_tier_range","reference_rates_not_historical_invoice"],"task":"unclassified"},{"id":"a9c4dc4804ce5040682f9ff4","agent":"codex","session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959","model":"gpt-6.1-sol","reported_model":"gpt-6.1-sol","provider":"openai","model_attribution":"recorded","timestamp":"2026-10-29T14:43:39.501Z","source_id":"39bf2d530052bca50490332a","origin":"local","device":"local","account":"local","input_tokens":58670,"cache_read_tokens":58240,"cache_write_tokens":0,"output_tokens":395,"reasoning_tokens":0,"cache_write_5m_tokens":null,"cache_write_1h_tokens":null,"request_count":1,"unit":"request","quality":"reported","speed":null,"inference_geo":null,"service_tier":null,"cache_write_reported":true,"model_inferred":false,"accounting_mode":"codex_native_per_response","parent_session_id":null,"native_total_input_tokens":439128,"native_total_output_tokens":3891,"cost_lower_usd":0.010634,"cost_upper_usd":0.019293,"price_status":"range","price_notes":["prompt_tier_range","reference_rates_not_historical_invoice"],"task":"unclassified"},{"id":"3859a47951a13b1b52a10b5d","agent":"codex","session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959","model":"gpt-6.1-sol","reported_model":"gpt-6.1-sol","provider":"openai","model_attribution":"recorded","timestamp":"2026-10-29T14:44:09.076Z","source_id":"39bf2d530052bca50490332a","origin":"local","device":"local","account":"local","input_tokens":63704,"cache_read_tokens":58880,"cache_write_tokens":0,"output_tokens":555,"reasoning_tokens":229,"cache_write_5m_tokens":null,"cache_write_1h_tokens":null,"request_count":1,"unit":"request","quality":"reported","speed":null,"inference_geo":null,"service_tier":null,"cache_write_reported":true,"model_inferred":false,"accounting_mode":"codex_native_per_response","parent_session_id":null,"native_total_input_tokens":502832,"native_total_output_tokens":4446,"cost_lower_usd":0.021086,"cost_upper_usd":0.039397,"price_status":"range","price_notes":["prompt_tier_range","reference_rates_not_historical_invoice"],"task":"unclassified"},{"id":"762750bf4ed7a1eb5c9e483b","agent":"codex","session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959","model":"gpt-6.1-sol","reported_model":"gpt-6.1-sol","provider":"openai","model_attribution":"recorded","timestamp":"2026-10-29T14:44:45.655Z","source_id":"39bf2d530052bca50490332a","origin":"local","device":"local","account":"local","input_tokens":64287,"cache_read_tokens":64128,"cache_write_tokens":0,"output_tokens":42,"reasoning_tokens":9,"cache_write_5m_tokens":null,"cache_write_1h_tokens":null,"request_count":1,"unit":"request","quality":"reported","speed":null,"inference_geo":null,"service_tier":null,"cache_write_reported":true,"model_inferred":false,"accounting_mode":"codex_native_per_response","parent_session_id":null,"native_total_input_tokens":567119,"native_total_output_tokens":4488,"cost_lower_usd":0.0071508,"cost_upper_usd":0.0140916,"price_status":"range","price_notes":["prompt_tier_range","reference_rates_not_historical_invoice"],"task":"unclassified"},{"id":"0c8053b6f31c629efc1e208f","agent":"codex","session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959","model":"gpt-6.1-sol","reported_model":"gpt-6.1-sol","provider":"openai","model_attribution":"recorded","timestamp":"2026-10-29T14:44:50.680Z","source_id":"39bf2d530052bca50490332a","origin":"local","device":"local","account":"local","input_tokens":64357,"cache_read_tokens":64128,"cache_write_tokens":0,"output_tokens":77,"reasoning_tokens":44,"cache_write_5m_tokens":null,"cache_write_1h_tokens":null,"request_count":1,"unit":"request","quality":"reported","speed":null,"inference_geo":null,"service_tier":null,"cache_write_reported":true,"model_inferred":false,"accounting_mode":"codex_native_per_response","parent_session_id":null,"native_total_input_tokens":631476,"native_total_output_tokens":4565,"cost_lower_usd":0.0076408,"cost_upper_usd":0.0148966,"price_status":"range","price_notes":["prompt_tier_range","reference_rates_not_historical_invoice"],"task":"unclassified"},{"id":"f30941199ea6a81f7d7d07ed","agent":"codex","session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959","model":"gpt-6.1-sol","reported_model":"gpt-6.1-sol","provider":"openai","model_attribution":"recorded","timestamp":"2026-10-29T14:45:01.548Z","source_id":"39bf2d530052bca50490332a","origin":"local","device":"local","account":"local","input_tokens":73391,"cache_read_tokens":64256,"cache_write_tokens":0,"output_tokens":520,"reasoning_tokens":51,"cache_write_5m_tokens":null,"cache_write_1h_tokens":null,"request_count":1,"unit":"request","quality":"reported","speed":null,"inference_geo":null,"service_tier":null,"cache_write_reported":true,"model_inferred":false,"accounting_mode":"codex_native_per_response","parent_session_id":null,"native_total_input_tokens":704867,"native_total_output_tokens":5085,"cost_lower_usd":0.0298956,"cost_upper_usd":0.0571912,"price_status":"range","price_notes":["prompt_tier_range","reference_rates_not_historical_invoice"],"task":"unclassified"},{"id":"b1596b05e3214d91cf53a375","agent":"codex","session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959","model":"gpt-6.1-sol","reported_model":"gpt-6.1-sol","provider":"openai","model_attribution":"recorded","timestamp":"2026-10-29T14:45:36.272Z","source_id":"39bf2d530052bca50490332a","origin":"local","device":"local","account":"local","input_tokens":73970,"cache_read_tokens":73728,"cache_write_tokens":0,"output_tokens":55,"reasoning_tokens":22,"cache_write_5m_tokens":null,"cache_write_1h_tokens":null,"request_count":1,"unit":"request","quality":"reported","speed":null,"inference_geo":null,"service_tier":null,"cache_write_reported":true,"model_inferred":false,"accounting_mode":"codex_native_per_response","parent_session_id":null,"native_total_input_tokens":778837,"native_total_output_tokens":5140,"cost_lower_usd":0.0084068,"cost_upper_usd":0.0165386,"price_status":"range","price_notes":["prompt_tier_range","reference_rates_not_historical_invoice"],"task":"unclassified"},{"id":"251d48109e2b5cab9a856fb3","agent":"codex","session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959","model":"gpt-6.1-sol","reported_model":"gpt-6.1-sol","provider":"openai","model_attribution":"recorded","timestamp":"2026-10-29T14:45:41.050Z","source_id":"39bf2d530052bca50490332a","origin":"local","device":"local","account":"local","input_tokens":74053,"cache_read_tokens":73856,"cache_write_tokens":0,"output_tokens":66,"reasoning_tokens":33,"cache_write_5m_tokens":null,"cache_write_1h_tokens":null,"request_count":1,"unit":"request","quality":"reported","speed":null,"inference_geo":null,"service_tier":null,"cache_write_reported":true,"model_inferred":false,"accounting_mode":"codex_native_per_response","parent_session_id":null,"native_total_input_tokens":852890,"native_total_output_tokens":5206,"cost_lower_usd":0.0084396,"cost_upper_usd":0.0165492,"price_status":"range","price_notes":["prompt_tier_range","reference_rates_not_historical_invoice"],"task":"unclassified"},{"id":"f9f5af6f7b8b5ffe188da250","agent":"codex","session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959","model":"gpt-6.1-sol","reported_model":"gpt-6.1-sol","provider":"openai","model_attribution":"recorded","timestamp":"2026-10-29T14:46:36.336Z","source_id":"39bf2d530052bca50490332a","origin":"local","device":"local","account":"local","input_tokens":82444,"cache_read_tokens":73984,"cache_write_tokens":0,"output_tokens":1780,"reasoning_tokens":944,"cache_write_5m_tokens":null,"cache_write_1h_tokens":null,"request_count":1,"unit":"request","quality":"reported","speed":null,"inference_geo":null,"service_tier":null,"cache_write_reported":true,"model_inferred":false,"accounting_mode":"codex_native_per_response","parent_session_id":null,"native_total_input_tokens":935334,"native_total_output_tokens":6986,"cost_lower_usd":0.0421184,"cost_upper_usd":0.0753368,"price_status":"range","price_notes":["prompt_tier_range","reference_rates_not_historical_invoice"],"task":"unclassified"},{"id":"a62e31715e0395309b406e80","agent":"codex","session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959","model":"gpt-6.1-sol","reported_model":"gpt-6.1-sol","provider":"openai","model_attribution":"recorded","timestamp":"2026-10-29T14:47:51.130Z","source_id":"39bf2d530052bca50490332a","origin":"local","device":"local","account":"local","input_tokens":88237,"cache_read_tokens":84096,"cache_write_tokens":0,"output_tokens":1717,"reasoning_tokens":1552,"cache_write_5m_tokens":null,"cache_write_1h_tokens":null,"request_count":1,"unit":"request","quality":"reported","speed":null,"inference_geo":null,"service_tier":null,"cache_write_reported":true,"model_inferred":false,"accounting_mode":"codex_native_per_response","parent_session_id":null,"native_total_input_tokens":1023571,"native_total_output_tokens":8703,"cost_lower_usd":0.0338616,"cost_upper_usd":0.0591382,"price_status":"range","price_notes":["prompt_tier_range","reference_rates_not_historical_invoice"],"task":"unclassified"},{"id":"2ce4bb325dfb2177d5a1abb7","agent":"codex","session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959","model":"gpt-6.1-sol","reported_model":"gpt-6.1-sol","provider":"openai","model_attribution":"recorded","timestamp":"2026-10-29T14:51:42.706Z","source_id":"39bf2d530052bca50490332a","origin":"local","device":"local","account":"local","input_tokens":94862,"cache_read_tokens":89728,"cache_write_tokens":0,"output_tokens":8066,"reasoning_tokens":2588,"cache_write_5m_tokens":null,"cache_write_1h_tokens":null,"request_count":1,"unit":"request","quality":"reported","speed":null,"inference_geo":null,"service_tier":null,"cache_write_reported":true,"model_inferred":false,"accounting_mode":"codex_native_per_response","parent_session_id":null,"native_total_input_tokens":1118433,"native_total_output_tokens":16769,"cost_lower_usd":0.0999008,"cost_upper_usd":0.1594716,"price_status":"range","price_notes":["prompt_tier_range","reference_rates_not_historical_invoice"],"task":"unclassified"}],"daily":[{"label":"2026-10-29","input_tokens":1118433,"cache_read_tokens":1022464,"cache_write_tokens":0,"output_tokens":16769,"reasoning_tokens":6904,"requests":19,"sessions":1,"total_tokens":1135202,"cost_lower_usd":0.4618744,"cost_upper_usd":0.8399038,"priced_requests":19,"unpriced_requests":0,"missing_usage_requests":0,"cache_hit_percent":91.41933401464371,"unknown_request_count_observations":0,"count_quality":"reported/reconstructed","missing_fields":{"input_tokens":0,"cache_read_tokens":0,"cache_write_tokens":0,"output_tokens":0,"reasoning_tokens":0}}],"monthly":[{"label":"2026-10","input_tokens":1118433,"cache_read_tokens":1022464,"cache_write_tokens":0,"output_tokens":16769,"reasoning_tokens":6904,"requests":19,"sessions":1,"total_tokens":1135202,"cost_lower_usd":0.4618744,"cost_upper_usd":0.8399038,"priced_requests":19,"unpriced_requests":0,"missing_usage_requests":0,"cache_hit_percent":91.41933401464371,"unknown_request_count_observations":0,"count_quality":"reported/reconstructed","missing_fields":{"input_tokens":0,"cache_read_tokens":0,"cache_write_tokens":0,"output_tokens":0,"reasoning_tokens":0}}],"models":[{"label":"gpt-6.1-sol","input_tokens":1118433,"cache_read_tokens":1022464,"cache_write_tokens":0,"output_tokens":16769,"reasoning_tokens":6904,"requests":19,"sessions":1,"total_tokens":1135202,"cost_lower_usd":0.4618744,"cost_upper_usd":0.8399038,"priced_requests":19,"unpriced_requests":0,"missing_usage_requests":0,"cache_hit_percent":91.41933401464371,"unknown_request_count_observations":0,"count_quality":"reported/reconstructed","missing_fields":{"input_tokens":0,"cache_read_tokens":0,"cache_write_tokens":0,"output_tokens":0,"reasoning_tokens":0}}],"sessions":[{"label":"codex:01a187f8-a6ed-7103-bcd3-81df033c1959","input_tokens":1118433,"cache_read_tokens":1022464,"cache_write_tokens":0,"output_tokens":16769,"reasoning_tokens":6904,"requests":19,"sessions":1,"total_tokens":1135202,"cost_lower_usd":0.4618744,"cost_upper_usd":0.8399038,"priced_requests":19,"unpriced_requests":0,"missing_usage_requests":0,"cache_hit_percent":91.41933401464371,"unknown_request_count_observations":0,"count_quality":"reported/reconstructed","missing_fields":{"input_tokens":0,"cache_read_tokens":0,"cache_write_tokens":0,"output_tokens":0,"reasoning_tokens":0},"agent":"codex","model":"gpt-6.1-sol"}],"tasks":[{"label":"unclassified","input_tokens":1118433,"cache_read_tokens":1022464,"cache_write_tokens":0,"output_tokens":16769,"reasoning_tokens":6904,"requests":19,"sessions":1,"total_tokens":1135202,"cost_lower_usd":0.4618744,"cost_upper_usd":0.8399038,"priced_requests":19,"unpriced_requests":0,"missing_usage_requests":0,"cache_hit_percent":91.41933401464371,"unknown_request_count_observations":0,"count_quality":"reported/reconstructed","missing_fields":{"input_tokens":0,"cache_read_tokens":0,"cache_write_tokens":0,"output_tokens":0,"reasoning_tokens":0}}],"tools":[{"agent":"codex","name":"exec","calls":11,"argument_chars":33599,"result_chars":146009,"estimated_tokens":44902,"quality":"estimated visible content; not causal cost"},{"agent":"codex","name":"wait","calls":4,"argument_chars":220,"result_chars":62169,"estimated_tokens":15597,"quality":"estimated visible content; not causal cost"},{"agent":"codex","name":"js","calls":2,"argument_chars":215,"result_chars":36694,"estimated_tokens":9227,"quality":"estimated visible content; not causal cost"}],"skills":[{"agent":"codex","name":"agent-usage-analytics","calls":2,"argument_chars":null,"result_chars":41360,"estimated_tokens":10340,"quality":"estimated visible content; not causal cost"},{"agent":"codex","name":"computer-use","calls":1,"argument_chars":null,"result_chars":9876,"estimated_tokens":2469,"quality":"estimated visible content; not causal cost"}],"contexts":[{"id":"385c6bd0825123ca32ac6642","agent":"codex","session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959","observed_at":"2026-10-29T14:51:42.706Z","used_tokens":102928,"window_tokens":475000,"basis":"input_plus_output","provider_percent":null,"computed_percent":21.669052631578946,"categories":[{"name":"assistant_messages","characters":2917,"estimated_tokens":729,"lower_tokens":486,"upper_tokens":1458,"quality":"estimated"},{"name":"environment","characters":921,"estimated_tokens":230,"lower_tokens":154,"upper_tokens":460,"quality":"estimated"},{"name":"instructions","characters":27530,"estimated_tokens":6882,"lower_tokens":4588,"upper_tokens":13765,"quality":"estimated"},{"name":"skill_catalog","characters":14437,"estimated_tokens":3609,"lower_tokens":2406,"upper_tokens":7218,"quality":"estimated"},{"name":"tool_arguments","characters":34034,"estimated_tokens":8508,"lower_tokens":5672,"upper_tokens":17017,"quality":"estimated"},{"name":"tool_results","characters":244872,"estimated_tokens":61218,"lower_tokens":40812,"upper_tokens":122436,"quality":"estimated"},{"name":"user_messages","characters":7393,"estimated_tokens":1848,"lower_tokens":1232,"upper_tokens":3696,"quality":"estimated"}],"visible_estimated_tokens":83024,"unattributed_tokens":19904,"compactions":0,"model":"gpt-6.1-sol","quality":"reported","estimation_method":"visible characters / 4.0; range characters / 6 to / 2","retention_status":"recorded-visible-history","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local","capacity_basis":"preceding_observation","parent_session_id":null}],"quotas":[{"id":"a3c15727ce83b433b02cecc4","agent":"codex","account":"local","bucket":"codex:primary","window_minutes":300,"resets_at":"2026-10-29T16:04:09.000Z","used_percent":44.0,"observed_at":"2026-10-29T14:04:32.958Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"eb990913ba8a29db7926a074","agent":"codex","account":"local","bucket":"codex:secondary","window_minutes":10080,"resets_at":"2026-11-04T13:32:27.000Z","used_percent":24.0,"observed_at":"2026-10-29T14:04:32.958Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"a51522ec84cc85c9b5461e08","agent":"codex","account":"local","bucket":"codex:primary","window_minutes":300,"resets_at":"2026-10-29T16:04:09.000Z","used_percent":44.0,"observed_at":"2026-10-29T14:05:04.181Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"0332ee51cdd4197007ed1513","agent":"codex","account":"local","bucket":"codex:secondary","window_minutes":10080,"resets_at":"2026-11-04T13:32:26.000Z","used_percent":24.0,"observed_at":"2026-10-29T14:05:04.181Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"66a9675dee0eace5db504b4e","agent":"codex","account":"local","bucket":"codex:primary","window_minutes":300,"resets_at":"2026-10-29T16:04:09.000Z","used_percent":44.0,"observed_at":"2026-10-29T14:05:30.763Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"3ad107be2c0fb4c909379f60","agent":"codex","account":"local","bucket":"codex:secondary","window_minutes":10080,"resets_at":"2026-11-04T13:32:27.000Z","used_percent":24.0,"observed_at":"2026-10-29T14:05:30.763Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"441b3a47a5409080b52c1fe6","agent":"codex","account":"local","bucket":"codex:primary","window_minutes":300,"resets_at":"2026-10-29T16:04:09.000Z","used_percent":44.0,"observed_at":"2026-10-29T14:05:50.593Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"443156fdef7bfaa50d6cf83f","agent":"codex","account":"local","bucket":"codex:secondary","window_minutes":10080,"resets_at":"2026-11-04T13:32:27.000Z","used_percent":24.0,"observed_at":"2026-10-29T14:05:50.593Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"54086b9f08c45070519f7f4d","agent":"codex","account":"local","bucket":"codex:primary","window_minutes":300,"resets_at":"2026-10-29T16:04:09.000Z","used_percent":45.0,"observed_at":"2026-10-29T14:06:18.836Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"49e73efd60fe1facc6dc6076","agent":"codex","account":"local","bucket":"codex:secondary","window_minutes":10080,"resets_at":"2026-11-04T13:32:27.000Z","used_percent":24.0,"observed_at":"2026-10-29T14:06:18.836Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"6b0b7d7630919926d839a3d4","agent":"codex","account":"local","bucket":"codex:primary","window_minutes":300,"resets_at":"2026-10-29T16:04:09.000Z","used_percent":46.0,"observed_at":"2026-10-29T14:09:35.302Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"eaa990f322b088c03a250518","agent":"codex","account":"local","bucket":"codex:secondary","window_minutes":10080,"resets_at":"2026-11-04T13:32:26.000Z","used_percent":24.0,"observed_at":"2026-10-29T14:09:35.302Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"66692c68d5c80777bae5dcb0","agent":"codex","account":"local","bucket":"codex:primary","window_minutes":300,"resets_at":"2026-10-29T16:04:09.000Z","used_percent":49.0,"observed_at":"2026-10-29T14:10:04.150Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"44795b880309c807f01e687e","agent":"codex","account":"local","bucket":"codex:secondary","window_minutes":10080,"resets_at":"2026-11-04T13:32:27.000Z","used_percent":25.0,"observed_at":"2026-10-29T14:10:04.150Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"a79991667d2ad47f3e5704aa","agent":"codex","account":"local","bucket":"codex:primary","window_minutes":300,"resets_at":"2026-10-29T16:04:09.000Z","used_percent":52.0,"observed_at":"2026-10-29T14:19:06.166Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"fe81f9e5a8ab11d53398699a","agent":"codex","account":"local","bucket":"codex:secondary","window_minutes":10080,"resets_at":"2026-11-04T13:32:27.000Z","used_percent":25.0,"observed_at":"2026-10-29T14:19:06.166Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"a42c40794def790a36b8e3a8","agent":"codex","account":"local","bucket":"codex:primary","window_minutes":300,"resets_at":"2026-10-29T16:04:09.000Z","used_percent":52.0,"observed_at":"2026-10-29T14:19:12.855Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"711ac160ddce47a1b3e221b4","agent":"codex","account":"local","bucket":"codex:secondary","window_minutes":10080,"resets_at":"2026-11-04T13:32:26.000Z","used_percent":25.0,"observed_at":"2026-10-29T14:19:12.855Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"483b255d1595ba3960aaab46","agent":"codex","account":"local","bucket":"codex:primary","window_minutes":300,"resets_at":"2026-10-29T16:04:09.000Z","used_percent":53.0,"observed_at":"2026-10-29T14:43:53.041Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"a5c3e7875942a26566940493","agent":"codex","account":"local","bucket":"codex:secondary","window_minutes":10080,"resets_at":"2026-11-04T13:32:26.000Z","used_percent":25.0,"observed_at":"2026-10-29T14:43:53.041Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"17a5ee3db05e4f52215a01cb","agent":"codex","account":"local","bucket":"codex:primary","window_minutes":300,"resets_at":"2026-10-29T16:04:09.000Z","used_percent":53.0,"observed_at":"2026-10-29T14:44:41.301Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"38dce7b007e5b642afe66814","agent":"codex","account":"local","bucket":"codex:secondary","window_minutes":10080,"resets_at":"2026-11-04T13:32:27.000Z","used_percent":25.0,"observed_at":"2026-10-29T14:44:41.301Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"d8457ea09a212a13429b1d2f","agent":"codex","account":"local","bucket":"codex:primary","window_minutes":300,"resets_at":"2026-10-29T16:04:09.000Z","used_percent":54.0,"observed_at":"2026-10-29T14:44:46.858Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"b59367c2b8a99a24801b1239","agent":"codex","account":"local","bucket":"codex:secondary","window_minutes":10080,"resets_at":"2026-11-04T13:32:27.000Z","used_percent":25.0,"observed_at":"2026-10-29T14:44:46.858Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"df05583f2aeffb92c17f7619","agent":"codex","account":"local","bucket":"codex:primary","window_minutes":300,"resets_at":"2026-10-29T16:04:09.000Z","used_percent":54.0,"observed_at":"2026-10-29T14:44:51.072Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"6663b4ec29722b6b7cb60625","agent":"codex","account":"local","bucket":"codex:secondary","window_minutes":10080,"resets_at":"2026-11-04T13:32:27.000Z","used_percent":25.0,"observed_at":"2026-10-29T14:44:51.072Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"23ccf32a01d2c61fdab7d472","agent":"codex","account":"local","bucket":"codex:primary","window_minutes":300,"resets_at":"2026-10-29T16:04:09.000Z","used_percent":54.0,"observed_at":"2026-10-29T14:45:33.304Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"d782eeb01c8eb8c608c19216","agent":"codex","account":"local","bucket":"codex:secondary","window_minutes":10080,"resets_at":"2026-11-04T13:32:27.000Z","used_percent":25.0,"observed_at":"2026-10-29T14:45:33.304Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"a10be43778ffdea42574ec75","agent":"codex","account":"local","bucket":"codex:primary","window_minutes":300,"resets_at":"2026-10-29T16:04:09.000Z","used_percent":54.0,"observed_at":"2026-10-29T14:45:37.413Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"de83556e41d0ecbdf30d4b08","agent":"codex","account":"local","bucket":"codex:secondary","window_minutes":10080,"resets_at":"2026-11-04T13:32:27.000Z","used_percent":25.0,"observed_at":"2026-10-29T14:45:37.413Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"59269283272b3026d19d02bd","agent":"codex","account":"local","bucket":"codex:primary","window_minutes":300,"resets_at":"2026-10-29T16:04:09.000Z","used_percent":54.0,"observed_at":"2026-10-29T14:45:41.289Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"bb69cc833b5a25a084c888af","agent":"codex","account":"local","bucket":"codex:secondary","window_minutes":10080,"resets_at":"2026-11-04T13:32:27.000Z","used_percent":25.0,"observed_at":"2026-10-29T14:45:41.289Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"50a631a1e6b9d83dbd05f4a5","agent":"codex","account":"local","bucket":"codex:primary","window_minutes":300,"resets_at":"2026-10-29T16:04:09.000Z","used_percent":54.0,"observed_at":"2026-10-29T14:46:49.261Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"539d64125c4ae7c6f7481841","agent":"codex","account":"local","bucket":"codex:secondary","window_minutes":10080,"resets_at":"2026-11-04T13:32:27.000Z","used_percent":25.0,"observed_at":"2026-10-29T14:46:49.261Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"d33b94ea8f902ec00edf3416","agent":"codex","account":"local","bucket":"codex:primary","window_minutes":300,"resets_at":"2026-10-29T16:04:09.000Z","used_percent":55.0,"observed_at":"2026-10-29T14:48:03.428Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"2959d11972ca79587786652b","agent":"codex","account":"local","bucket":"codex:secondary","window_minutes":10080,"resets_at":"2026-11-04T13:32:27.000Z","used_percent":25.0,"observed_at":"2026-10-29T14:48:03.428Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"}],"attribution":[{"label":"codex | openai | gpt-6.1-sol | gpt-6.1-sol | recorded","input_tokens":1118433,"cache_read_tokens":1022464,"cache_write_tokens":0,"output_tokens":16769,"reasoning_tokens":6904,"requests":19,"sessions":1,"total_tokens":1135202,"cost_lower_usd":0.4618744,"cost_upper_usd":0.8399038,"priced_requests":19,"unpriced_requests":0,"missing_usage_requests":0,"cache_hit_percent":91.41933401464371,"unknown_request_count_observations":0,"count_quality":"reported/reconstructed","missing_fields":{"input_tokens":0,"cache_read_tokens":0,"cache_write_tokens":0,"output_tokens":0,"reasoning_tokens":0},"agent":"codex","provider":"openai","reported_model":"gpt-6.1-sol","model":"gpt-6.1-sol","model_attribution":"recorded"}],"quota_estimates":[{"agent":"codex","account":"local","bucket":"codex:primary","resets_at":"2026-10-29T16:04:09.000Z","provider":null,"window_minutes":300,"samples":18,"status":"unavailable","tokens_per_point":null,"cost_per_point":null,"reason":"Declare complete device/cloud coverage to attempt empirical calibration."},{"agent":"codex","account":"local","bucket":"codex:secondary","resets_at":"2026-11-04T13:32:27.000Z","provider":null,"window_minutes":10080,"samples":14,"status":"unavailable","tokens_per_point":null,"cost_per_point":null,"reason":"Declare complete device/cloud coverage to attempt empirical calibration."},{"agent":"codex","account":"local","bucket":"codex:secondary","resets_at":"2026-11-04T13:32:26.000Z","provider":null,"window_minutes":10080,"samples":4,"status":"unavailable","tokens_per_point":null,"cost_per_point":null,"reason":"Declare complete device/cloud coverage to attempt empirical calibration."}],"local_rolling_usage":{"five_hour":{"input_tokens":1118433,"cache_read_tokens":1022464,"cache_write_tokens":0,"output_tokens":16769,"reasoning_tokens":6904,"requests":19,"sessions":1,"total_tokens":1135202,"cost_lower_usd":0.4618744,"cost_upper_usd":0.8399038,"priced_requests":19,"unpriced_requests":0,"missing_usage_requests":0,"cache_hit_percent":91.41933401464371,"unknown_request_count_observations":0,"count_quality":"reported/reconstructed","missing_fields":{"input_tokens":0,"cache_read_tokens":0,"cache_write_tokens":0,"output_tokens":0,"reasoning_tokens":0}},"seven_day":{"input_tokens":1118433,"cache_read_tokens":1022464,"cache_write_tokens":0,"output_tokens":16769,"reasoning_tokens":6904,"requests":19,"sessions":1,"total_tokens":1135202,"cost_lower_usd":0.4618744,"cost_upper_usd":0.8399038,"priced_requests":19,"unpriced_requests":0,"missing_usage_requests":0,"cache_hit_percent":91.41933401464371,"unknown_request_count_observations":0,"count_quality":"reported/reconstructed","missing_fields":{"input_tokens":0,"cache_read_tokens":0,"cache_write_tokens":0,"output_tokens":0,"reasoning_tokens":0}}},"coverage":[{"id":"39bf2d530052bca50490332a","agent":"codex","device":"local","origin":"local","contract":"observed-local","files_seen":1,"files_parsed":1,"rows_seen":178,"malformed_rows":0,"session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959"}],"warnings":[],"insights":[{"title":"Largest observed tool content","evidence":"exec: 146009 result characters across 11 calls.","action":"Narrow repeated reads or bound result sizes. This measures visible text, not the tool's full causal token cost."}],"comparison":null,"undated_requests_excluded":0,"pricing":{"version":"2026-10-17.2","verified_at":"2026-10-17","sources":{"openai":"https://developers.openai.com/api/docs/pricing","anthropic":"https://platform.claude.com/docs/en/about-claude/pricing","zai":"https://docs.z.ai/guides/overview/pricing"},"historical_policy":"Reference rates verified on this date, not a reconstructed historical invoice. Add effective intervals when verified.","currency":"USD","rates":{"gpt-6.1-sol":{"provider":"openai","input":2,"output":10,"cache_read":0.1,"cache_write_5m":2.5,"cache_write_1h":2.5,"effective_from":null,"effective_until":null,"alternate_rates":{"input":4,"output":15.0,"cache_read":0.2,"cache_write_5m":5.0,"cache_write_1h":5.0},"alternate_reason":"Official short/long rates differ; threshold was not established from the verified table. Range spans both.","fast_multiplier":2,"ultrafast_multiplier":6}},"aliases":{}},"methodology":["Historical totals include measured/reconstructed request counters only; no character estimates.","Accounting-gap warnings cover selected source history and can extend outside the report period.","Context categories estimate visible text; hidden schemas, prompts and multimodal content are unknown.","Local rolling usage is distinct from provider-defined quotas and can omit other devices/cloud work.","API-equivalent cost uses per-request reference rates, excludes unrecorded tool fees and is not a subscription bill.","Harness labels can hide proxy routes. Reported/unverified models are reference comparisons; use an explicit attribution map for GLM or other routed sessions. Known provider mismatches are unpriced."],"session_inspection":{"session_id":"01a187f8-a6ed-7103-bcd3-81df033c1959","scope":"Only the current root conversation; automatic-review children and other sessions excluded","capture_time_utc":"2026-10-29T14:51:53+00:00","usage_cutoff_utc":"2026-10-29T14:51:42.706Z","last_recorded_event_utc":"2026-10-29T14:51:42.706Z","session_started_utc":"2026-10-29T14:03:03.498Z","source":"C:\\Users\\labuser\\.codex\\sessions\\2026\\10\\29\\rollout-2026-10-29T15-03-03-01a187f8-a6ed-7103-bcd3-81df033c1959.jsonl","source_rows_seen":178,"originator":"codex-tui","source_application":"vscode","cli_version":"0.165.0","provider":"openai","models":["gpt-6.1-sol"],"native_request_records":19,"native_cumulative_endpoint_matches_request_sums":true,"phases":[{"input_tokens":264383,"cache_read_tokens":201984,"cache_write_tokens":0,"output_tokens":2947,"reasoning_tokens":1432,"phase":"Analyze all locally available Codex sessions","turn_id":"01a187f9-bef7-7512-86de-8eb007ba160b","requests":7,"total_tokens":267330},{"input_tokens":116075,"cache_read_tokens":115456,"cache_write_tokens":0,"output_tokens":549,"reasoning_tokens":0,"phase":"Save the three all-session reports in the repository","turn_id":"01a18807-0818-7393-b5a5-097e56507f2e","requests":2,"total_tokens":116624},{"input_tokens":737975,"cache_read_tokens":705024,"cache_write_tokens":0,"output_tokens":13273,"reasoning_tokens":5472,"phase":"Inspect only this conversation and its current context","turn_id":"01a1881d-b410-7751-8d8d-a82edfce1923","requests":10,"total_tokens":751248}],"event_type_counts":{"session_meta":1,"event_msg":78,"response_item":75,"world_state":2,"turn_context":3,"token_usage_record":19},"response_item_type_counts":{"additional_tools":1,"message":19,"custom_tool_call":11,"custom_tool_call_output":10,"reasoning":22,"function_call":6,"function_call_output":6},"message_role_counts":{"developer":4,"user":6,"assistant":9},"tool_calls":[{"name":"exec","timestamp":"2026-10-29T14:04:22.714Z","argument_characters":616,"line":17,"result_characters":20443,"result_records":1,"completion":"result recorded"},{"name":"exec","timestamp":"2026-10-29T14:04:48.482Z","argument_characters":759,"line":24,"result_characters":9876,"result_records":1,"completion":"result recorded"},{"name":"exec","timestamp":"2026-10-29T14:05:15.343Z","argument_characters":899,"line":32,"result_characters":21505,"result_records":1,"completion":"result recorded"},{"name":"exec","timestamp":"2026-10-29T14:05:37.099Z","argument_characters":793,"line":40,"result_characters":40150,"result_records":1,"completion":"result recorded"},{"name":"js","timestamp":"2026-10-29T14:05:58.129Z","argument_characters":95,"line":50,"result_characters":36437,"result_records":1,"completion":"result recorded"},{"name":"js","timestamp":"2026-10-29T14:06:35.890Z","argument_characters":120,"line":59,"result_characters":257,"result_records":1,"completion":"result recorded"},{"name":"exec","timestamp":"2026-10-29T14:18:53.609Z","argument_characters":1585,"line":78,"result_characters":544,"result_records":1,"completion":"result recorded"},{"name":"exec","timestamp":"2026-10-29T14:43:39.146Z","argument_characters":1169,"line":97,"result_characters":20917,"result_records":1,"completion":"result recorded"},{"name":"exec","timestamp":"2026-10-29T14:44:08.684Z","argument_characters":1032,"line":105,"result_characters":61,"result_records":1,"completion":"result recorded"},{"name":"wait","timestamp":"2026-10-29T14:44:45.568Z","argument_characters":55,"line":111,"result_characters":60,"result_records":1,"completion":"result recorded"},{"name":"wait","timestamp":"2026-10-29T14:44:50.569Z","argument_characters":55,"line":118,"result_characters":31719,"result_records":1,"completion":"result recorded"},{"name":"exec","timestamp":"2026-10-29T14:45:01.047Z","argument_characters":1506,"line":125,"result_characters":162,"result_records":1,"completion":"result recorded"},{"name":"wait","timestamp":"2026-10-29T14:45:36.220Z","argument_characters":55,"line":131,"result_characters":60,"result_records":1,"completion":"result recorded"},{"name":"wait","timestamp":"2026-10-29T14:45:40.999Z","argument_characters":55,"line":139,"result_characters":30330,"result_records":1,"completion":"result recorded"},{"name":"exec","timestamp":"2026-10-29T14:46:36.264Z","argument_characters":2700,"line":149,"result_characters":12915,"result_records":1,"completion":"result recorded"},{"name":"exec","timestamp":"2026-10-29T14:47:50.751Z","argument_characters":530,"line":160,"result_characters":19436,"result_records":1,"completion":"result recorded"},{"name":"exec","timestamp":"2026-10-29T14:51:42.575Z","argument_characters":22010,"line":177,"result_characters":null,"result_records":0,"completion":"no result recorded at capture"}],"nested_tool_call_sites":{"exec_command":17,"write_stdin":1},"nested_tool_count_basis":"Static call sites in recorded functions.exec code; these are not separately billed model requests","explicit_literal_file_reads":[{"path":"C:\\Users\\labuser\\.codex\\plugins\\cache\\openai-bundled\\computer-use\\26.1021.31345\\docs\\confirmations.md","read_commands":1},{"path":"C:\\Users\\labuser\\.codex\\plugins\\cache\\openai-bundled\\computer-use\\26.1021.31345\\docs\\guidance.md","read_commands":1},{"path":"C:\\Users\\labuser\\.codex\\plugins\\cache\\openai-bundled\\computer-use\\26.1021.31345\\skills\\computer-use\\SKILL.md","read_commands":1},{"path":"C:\\Users\\labuser\\AppData\\Local\\Temp\\codex-usage-analytics\\2026-10-29-all-sessions\\report.md","read_commands":1},{"path":"C:\\Users\\labuser\\Dev\\jftp\\.agents\\skills\\agent-usage-analytics\\SKILL.md","read_commands":2},{"path":"C:\\Users\\labuser\\Dev\\jftp\\.agents\\skills\\agent-usage-analytics\\assets\\pricing.json","read_commands":1},{"path":"C:\\Users\\labuser\\Dev\\jftp\\.agents\\skills\\agent-usage-analytics\\references\\collection-and-quotas.md","read_commands":1},{"path":"C:\\Users\\labuser\\Dev\\jftp\\.agents\\skills\\agent-usage-analytics\\references\\schema-and-pricing.md","read_commands":2},{"path":"C:\\Users\\labuser\\Dev\\jftp\\.agents\\skills\\agent-usage-analytics\\references\\sources.md","read_commands":2},{"path":"C:\\Users\\labuser\\Dev\\jftp\\.agents\\skills\\agent-usage-analytics\\scripts\\agent_usage.py","read_commands":2},{"path":"C:\\Users\\labuser\\Dev\\jftp\\.agents\\skills\\agent-usage-analytics\\scripts\\usage_collectors.py","read_commands":3},{"path":"C:\\Users\\labuser\\Dev\\jftp\\.agents\\skills\\agent-usage-analytics\\scripts\\usage_common.py","read_commands":1},{"path":"C:\\Users\\labuser\\Dev\\jftp\\.agents\\skills\\agent-usage-analytics\\scripts\\usage_render.py","read_commands":1},{"path":"C:\\Users\\labuser\\Dev\\jftp\\AGENTS.md","read_commands":1}],"explicit_python_script_runs":[{"path":"C:\\Users\\labuser\\Dev\\jftp\\.agents\\skills\\agent-usage-analytics\\scripts\\agent_usage.py","run_commands":5}],"resource_inventory_limit":"Literal file-read commands and Python script invocations detected statically; imported modules, variable-based reads and scans are described separately, not claimed as an exhaustive OS audit","advertised_skill_names":["imagegen","openai-docs","skill-creator","skill-installer","agent-usage-analytics","cloudflare-safe","create-design-system","legacy-codebase-workflows","repository-security-audit","repository-use-case-advisor","respond-to-code-review","web-performance-audit","write-adr","write-agents-md","write-prd","computer-use:computer-use","documents:documents","google-drive:google-docs","google-drive:google-drive","google-drive:google-drive-comments","google-drive:google-sheets","google-drive:google-slides","pages:maintain-space","pages:manage-schedules","pages:organize-space","pages:write-page","pdf:pdf","plugin-management:plugin-management","presentations:Presentations","sites:sites","sites:sites-remix","spreadsheets:Spreadsheets","spreadsheets:excel-live-control","template-creator:template-creator","visualize:visualize","work-pets:create-pet","work-pets:pets","work-pets:update-pet"],"advertised_skill_count":38,"loaded_skill_names":["agent-usage-analytics","computer-use"],"retained_visible_inventory_at_capture":[{"name":"assistant_messages","characters":2917,"estimated_tokens":729,"lower_tokens":486,"upper_tokens":1458,"quality":"estimated"},{"name":"environment","characters":921,"estimated_tokens":230,"lower_tokens":154,"upper_tokens":460,"quality":"estimated"},{"name":"instructions","characters":27530,"estimated_tokens":6882,"lower_tokens":4588,"upper_tokens":13765,"quality":"estimated"},{"name":"skill_catalog","characters":14437,"estimated_tokens":3609,"lower_tokens":2406,"upper_tokens":7218,"quality":"estimated"},{"name":"tool_arguments","characters":34034,"estimated_tokens":8508,"lower_tokens":5672,"upper_tokens":17017,"quality":"estimated"},{"name":"tool_results","characters":244872,"estimated_tokens":61218,"lower_tokens":40812,"upper_tokens":122436,"quality":"estimated"},{"name":"user_messages","characters":7393,"estimated_tokens":1848,"lower_tokens":1232,"upper_tokens":3696,"quality":"estimated"}],"latest_recorded_quota_by_bucket":[{"id":"d33b94ea8f902ec00edf3416","agent":"codex","account":"local","bucket":"codex:primary","window_minutes":300,"resets_at":"2026-10-29T16:04:09.000Z","used_percent":55.0,"observed_at":"2026-10-29T14:48:03.428Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"},{"id":"2959d11972ca79587786652b","agent":"codex","account":"local","bucket":"codex:secondary","window_minutes":10080,"resets_at":"2026-11-04T13:32:27.000Z","used_percent":25.0,"observed_at":"2026-10-29T14:48:03.428Z","source_id":"39bf2d530052bca50490332a","device":"local","origin":"local"}],"exactness":"Historical native request counters are exact recorded counts. Category token estimates and tool/skill content proxies are not exact per-element or causal token costs. Hidden overhead cannot be enumerated exactly.","scope_warning":"Previously returned cross-session statistics are text within this conversation, not usage rows to add to its own request totals.","snapshot_limit":"The current collection tool can appear without its result. Later tool results, this report and the final assistant reply are outside the frozen request cutoff. A live session has no knowable final total before it ends.","content_policy":"No raw prompts, responses, commands, tool results, reasoning text or credentials are exported; only counts, safe resource names/paths and task descriptions.","browser_check":"Visual browser verification unavailable after the earlier Computer Use URL-confidence stop. Offline structure and embedded JSON are checked locally."}}</script>
+<script>
+(function () {
+  'use strict';
+
+  var NS = 'http://www.w3.org/2000/svg';
+  var root = document.documentElement;
+  var mainEl = document.getElementById('main');
+  var uid = 0;
+
+  // ------------------------------------------------------------ DOM helpers
+  // Only textContent, createTextNode and setAttribute with constant names are used.
+  function props(node, attrs) {
+    if (!attrs) return;
+    Object.keys(attrs).forEach(function (key) {
+      var value = attrs[key];
+      if (value === null || value === undefined || value === false) return;
+      if (key === 'text') node.textContent = String(value);
+      else if (key.slice(0, 2) === 'on' && typeof value === 'function') node.addEventListener(key.slice(2), value);
+      else node.setAttribute(key, value === true ? '' : String(value));
+    });
+  }
+  function add(node, kids) {
+    kids.forEach(function (kid) {
+      if (kid === null || kid === undefined || kid === false) return;
+      if (Array.isArray(kid)) { add(node, kid); return; }
+      node.appendChild(typeof kid === 'object' ? kid : document.createTextNode(String(kid)));
+    });
+  }
+  function el(tag, attrs) {
+    var node = document.createElement(tag);
+    props(node, attrs);
+    add(node, Array.prototype.slice.call(arguments, 2));
+    return node;
+  }
+  function sv(tag, attrs) {
+    var node = document.createElementNS(NS, tag);
+    props(node, attrs);
+    add(node, Array.prototype.slice.call(arguments, 2));
+    return node;
+  }
+
+  // ------------------------------------------------------------- formatting
+  function isNum(v) { return typeof v === 'number' && Number.isFinite(v); }
+  function rows(v) { return Array.isArray(v) ? v.filter(function (x) { return x && typeof x === 'object' && !Array.isArray(x); }) : []; }
+  function obj(v) { return v && typeof v === 'object' && !Array.isArray(v) ? v : {}; }
+  function text(v) {
+    if (v === null || v === undefined) return 'Unknown';
+    var s = String(v).replace(/[\u0000-\u001f\u007f\u2028\u2029]+/g, ' ').trim();
+    return s || 'Unknown';
+  }
+  function trunc(s, n) { return s.length > n ? s.slice(0, n - 3) + '...' : s; }
+  function sumKnown(list, fn) {
+    var total = null;
+    list.forEach(function (r) { var v = fn(r); if (isNum(v)) total = (total || 0) + v; });
+    return total;
+  }
+  function uniq(list) {
+    return Array.from(new Set(list)).sort(function (a, b) { return a.localeCompare(b); });
+  }
+  var NF = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
+  function fmtInt(v) { return isNum(v) ? NF.format(Math.round(v)) : 'Unknown'; }
+  function fmtCompact(v) {
+    if (!isNum(v)) return 'Unknown';
+    var a = Math.abs(v), units = [[1e9, 'B'], [1e6, 'M'], [1e3, 'k']];
+    for (var i = 0; i < units.length; i += 1) {
+      if (a >= units[i][0]) {
+        var x = v / units[i][0];
+        return (Math.abs(x) >= 100 ? x.toFixed(0) : x.toFixed(1).replace(/\.0$/, '')) + units[i][1];
+      }
+    }
+    return String(Math.round(v * 100) / 100);
+  }
+  function fmtUsd(v) {
+    if (v !== 0 && Math.abs(v) < 0.01) return '$' + v.toFixed(4);
+    return '$' + v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  function fmtUsdAxis(v) { return v >= 1000 ? '$' + fmtCompact(v) : (v >= 1 ? '$' + v.toFixed(v >= 10 ? 0 : 1) : '$' + v.toFixed(2)); }
+  function fmtCost(lo, hi) {
+    var l = isNum(lo) ? lo : null, h = isNum(hi) ? hi : null;
+    if (l === null && h === null) return 'Unknown';
+    if (l === null) return 'up to ' + fmtUsd(h);
+    if (h === null) return 'at least ' + fmtUsd(l);
+    if (Math.abs(h - l) < 0.00005) return fmtUsd(l);
+    return fmtUsd(l) + ' to ' + fmtUsd(h);
+  }
+  function fmtPct(v) { return isNum(v) ? v.toFixed(1) + '%' : 'Unknown'; }
+  function fmtDelta(v) { return isNum(v) ? (v > 0 ? '+' : '') + v.toFixed(1) + '%' : 'Unknown'; }
+  function fmtTime(v) {
+    if (typeof v !== 'string' || !v) return 'Unknown';
+    var m = /^(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2})(?::\d{2}(?:\.\d+)?)?(Z|[+-]\d{2}:\d{2})$/.exec(v);
+    return m ? m[1] + ' ' + m[2] + ' ' + (m[3] === 'Z' ? 'UTC' : m[3]) : text(v);
+  }
+  function fmtDuration(m) {
+    if (!isNum(m) || m <= 0) return 'Unknown';
+    m = Math.round(m);
+    if (m % 1440 === 0) return (m / 1440) + ' d';
+    if (m % 60 === 0) return (m / 60) + ' h';
+    return m + ' min';
+  }
+  var CATEGORY_NAMES = {
+    skill_catalog: 'Skill catalog', plugin_instructions: 'Plugin instructions', instructions: 'Instructions',
+    environment: 'Environment', tool_schemas: 'Tool schemas (visible)', user_messages: 'User messages',
+    assistant_messages: 'Assistant messages', tool_calls: 'Tool calls', tool_results: 'Tool results',
+    reasoning: 'Reasoning summaries', compaction_summary: 'Compaction summary'
+  };
+  function prettyCategory(name) {
+    var s = text(name);
+    if (Object.prototype.hasOwnProperty.call(CATEGORY_NAMES, s)) return CATEGORY_NAMES[s];
+    s = s.replace(/_/g, ' ');
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+  var BASIS = {
+    input_plus_output: 'Input + output of the latest measured request',
+    input_only: 'Input of the latest measured request'
+  };
+  function basisLabel(b) { return b ? (BASIS[b] || 'Basis: ' + text(b)) : 'Basis unknown'; }
+
+  // ------------------------------------------------------------- accounting
+  var METRIC_FIELDS = ['input_tokens', 'cache_read_tokens', 'cache_write_tokens', 'output_tokens',
+    'reasoning_tokens', 'total_tokens', 'cost_lower_usd', 'cost_upper_usd'];
+  function rowTotal(r) {
+    if (isNum(r.total_tokens)) return r.total_tokens;
+    if (!isNum(r.input_tokens) && !isNum(r.output_tokens)) return null;
+    return (isNum(r.input_tokens) ? r.input_tokens : 0) + (isNum(r.output_tokens) ? r.output_tokens : 0);
+  }
+  function reqCount(r) { var n = isNum(r.request_count) ? r.request_count : r.requests; return isNum(n) && n >= 0 ? n : 1; }
+  function newMetrics(label) {
+    var m = { label: label, requests: 0, priced_requests: 0, unpriced_requests: 0, missing_usage_requests: 0,
+      _sessions: new Set(), _agents: new Set(), _models: new Set() };
+    METRIC_FIELDS.forEach(function (f) { m[f] = null; });
+    return m;
+  }
+  function addTo(m, r) {
+    var n = reqCount(r);
+    m.requests += n;
+    if (r.session_id !== null && r.session_id !== undefined) m._sessions.add(text(r.agent) + ':' + String(r.session_id));
+    m._agents.add(text(r.agent));
+    m._models.add(text(r.model));
+    var values = { input_tokens: r.input_tokens, cache_read_tokens: r.cache_read_tokens,
+      cache_write_tokens: r.cache_write_tokens, output_tokens: r.output_tokens,
+      reasoning_tokens: r.reasoning_tokens, total_tokens: rowTotal(r),
+      cost_lower_usd: r.cost_lower_usd, cost_upper_usd: r.cost_upper_usd };
+    METRIC_FIELDS.forEach(function (f) { if (isNum(values[f])) m[f] = (m[f] || 0) + values[f]; });
+    if (isNum(r.cost_lower_usd) || isNum(r.cost_upper_usd)) m.priced_requests += n; else m.unpriced_requests += n;
+    if (!isNum(r.input_tokens) || !isNum(r.output_tokens)) m.missing_usage_requests += n;
+  }
+  function finish(m) {
+    m.sessions = m._sessions.size;
+    m.agent = m._agents.size === 1 ? Array.from(m._agents)[0] : 'Multiple';
+    m.model = m._models.size === 1 ? Array.from(m._models)[0] : 'Multiple';
+    delete m._sessions; delete m._agents; delete m._models;
+    return m;
+  }
+  function groupBy(items, keyFn) {
+    var map = new Map();
+    items.forEach(function (item) {
+      var key = keyFn(item);
+      if (!map.has(key)) map.set(key, newMetrics(key));
+      addTo(map.get(key), item.r);
+    });
+    return Array.from(map.values()).map(finish);
+  }
+  function byLabel(a, b) { var x = String(a.label), y = String(b.label); return x < y ? -1 : (x > y ? 1 : 0); }
+  function byField(field, fn) {
+    return function (a, b) {
+      var x = fn ? fn(a) : a[field], y = fn ? fn(b) : b[field];
+      x = isNum(x) ? x : null; y = isNum(y) ? y : null;
+      if (x === null && y === null) return 0;
+      if (x === null) return 1;
+      if (y === null) return -1;
+      return y - x;
+    };
+  }
+  var byTotal = byField('total_tokens', rowTotal);
+
+  // ------------------------------------------------------------ report data
+  var report = null;
+  try { report = JSON.parse(document.getElementById('report-data').textContent); } catch (err) { report = null; }
+  if (!report || typeof report !== 'object' || Array.isArray(report)) {
+    mainEl.appendChild(el('div', { class: 'notice warn', role: 'alert' },
+      el('strong', { text: 'The embedded report data could not be read.' }),
+      'Regenerate the report with the usage analytics command.'));
+    return;
+  }
+  var scope = obj(report.scope);
+  var isSession = report.mode === 'session';
+  var tzName = typeof scope.timezone === 'string' && scope.timezone ? scope.timezone : 'UTC';
+  var tzFallback = false;
+  var dayFormat;
+  try {
+    dayFormat = new Intl.DateTimeFormat('en-CA', { timeZone: tzName, year: 'numeric', month: '2-digit', day: '2-digit' });
+  } catch (err) {
+    tzFallback = true;
+    tzName = 'UTC';
+    dayFormat = new Intl.DateTimeFormat('en-CA', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit' });
+  }
+  function dayKey(ts) {
+    if (typeof ts !== 'string' || !ts) return null;
+    var d = new Date(ts);
+    if (Number.isNaN(d.getTime())) return null;
+    var parts = {};
+    dayFormat.formatToParts(d).forEach(function (p) { parts[p.type] = p.value; });
+    return parts.year + '-' + parts.month + '-' + parts.day;
+  }
+  var requests = rows(report.requests).map(function (r) {
+    return { r: r, day: dayKey(r.timestamp), agent: text(r.agent), model: text(r.model) };
+  });
+  var hasTask = requests.some(function (x) { return typeof x.r.task === 'string' && x.r.task; });
+  var state = { agent: '', model: '', from: '', to: '' };
+  var trendMode = 'daily';
+
+  function isFiltered() { return Boolean(state.agent || state.model || state.from || state.to); }
+  function computeView() {
+    var tools = rows(report.tools), skills = rows(report.skills);
+    if (state.agent) {
+      tools = tools.filter(function (t) { return text(t.agent) === state.agent; });
+      skills = skills.filter(function (t) { return text(t.agent) === state.agent; });
+    }
+    if (!isFiltered()) {
+      return { filtered: false, matched: requests.length, summary: obj(report.summary),
+        daily: rows(report.daily).slice().sort(byLabel), monthly: rows(report.monthly).slice().sort(byLabel),
+        models: rows(report.models).slice().sort(byTotal), sessions: rows(report.sessions).slice().sort(byTotal),
+        tasks: rows(report.tasks).slice().sort(byTotal), tasksFiltered: true, tools: tools, skills: skills };
+    }
+    var list = requests.filter(function (x) {
+      return (!state.agent || x.agent === state.agent) && (!state.model || x.model === state.model) &&
+        (!state.from || (x.day !== null && x.day >= state.from)) && (!state.to || (x.day !== null && x.day <= state.to));
+    });
+    var summary = newMetrics('All');
+    list.forEach(function (x) { addTo(summary, x.r); });
+    summary = finish(summary);
+    // Skipped or unreadable activity cannot be proven outside the filter, so a report-level gap still applies.
+    var gaps = obj(report.summary).accounting_gap_observations;
+    if (isNum(gaps) && gaps > 0) { summary.accounting_gap_observations = gaps; summary.count_quality = 'known lower bound'; }
+    return {
+      filtered: true, matched: list.length, summary: summary,
+      daily: groupBy(list, function (x) { return x.day || 'Unknown date'; }).sort(byLabel),
+      monthly: groupBy(list, function (x) { return x.day ? x.day.slice(0, 7) : 'Unknown month'; }).sort(byLabel),
+      models: groupBy(list, function (x) { return x.model; }).sort(byTotal),
+      sessions: groupBy(list, function (x) { return text(x.r.agent) + ':' + text(x.r.session_id); }).sort(byTotal),
+      tasks: hasTask ? groupBy(list, function (x) { return typeof x.r.task === 'string' && x.r.task ? x.r.task : 'Unclassified'; }).sort(byTotal)
+        : rows(report.tasks).slice().sort(byTotal),
+      tasksFiltered: hasTask, tools: tools, skills: skills
+    };
+  }
+
+  // ------------------------------------------------------------- components
+  function section(id, title, lead) {
+    var head = el('div', { class: 'section-head' }, el('h2', { id: id + '-title', text: title }),
+      lead ? el('p', { class: 'lead', text: lead }) : null);
+    var body = el('div', { class: 'section-body' });
+    var node = el('section', { id: id, class: 'section', 'aria-labelledby': id + '-title' }, head, body);
+    return { id: id, title: title, node: node, head: head, body: body };
+  }
+  function empty(title, hint) {
+    return el('div', { class: 'empty' }, el('strong', { text: title }), hint ? el('span', { text: hint }) : null);
+  }
+  function notice(kind, title, body) {
+    return el('div', { class: 'notice' + (kind === 'warn' ? ' warn' : ''), role: kind === 'warn' ? 'note' : null },
+      el('strong', { text: title }), body);
+  }
+  function note(s) { return el('p', { class: 'note', text: s }); }
+  function card(label, value, sub, opts) {
+    opts = opts || {};
+    return el('div', { class: 'card stat' + (opts.accent ? ' accent-' + opts.accent : '') },
+      el('p', { class: 'stat-label', text: label }), el('p', { class: 'stat-value', text: value }),
+      sub ? el('p', { class: 'stat-sub', text: sub }) : null, opts.extra || null);
+  }
+  function legend(items) {
+    return el('ul', { class: 'legend' }, items.map(function (it) {
+      return el('li', null, el('span', { class: 'swatch ' + it.cls, 'aria-hidden': 'true' }), it.name);
+    }));
+  }
+  function dataTable(caption, columns, list, limit) {
+    var tbody = el('tbody');
+    function render(all) {
+      tbody.textContent = '';
+      (all || !limit ? list : list.slice(0, limit)).forEach(function (r) {
+        tbody.appendChild(el('tr', null, columns.map(function (c, i) {
+          var attrs = { class: c.num ? 'num' : null };
+          if (i === 0) attrs.scope = 'row';
+          return el(i === 0 ? 'th' : 'td', attrs, c.value(r));
+        })));
+      });
+    }
+    render(false);
+    var table = el('table', { class: 'data' }, el('caption', { text: caption }),
+      el('thead', null, el('tr', null, columns.map(function (c) {
+        return el('th', { scope: 'col', class: c.num ? 'num' : null, text: c.label });
+      }))), tbody);
+    var block = el('div', { class: 'table-block' }, el('div', { class: 'table-wrap', tabindex: '0', role: 'region', 'aria-label': caption }, table));
+    if (limit && list.length > limit) {
+      var all = false;
+      var more = el('button', { type: 'button', class: 'btn btn-quiet no-print', 'aria-expanded': 'false', text: 'Show all ' + list.length + ' rows' });
+      more.addEventListener('click', function () {
+        all = !all;
+        render(all);
+        more.textContent = all ? 'Show the first ' + limit + ' rows' : 'Show all ' + list.length + ' rows';
+        more.setAttribute('aria-expanded', String(all));
+      });
+      block.appendChild(more);
+    }
+    return block;
+  }
+  function metricColumns(first) {
+    return first.concat([
+      { label: 'Requests', num: true, value: function (r) { return fmtInt(r.requests); } },
+      { label: 'Input', num: true, value: function (r) { return fmtInt(r.input_tokens); } },
+      { label: 'Cache read', num: true, value: function (r) { return fmtInt(r.cache_read_tokens); } },
+      { label: 'Cache write', num: true, value: function (r) { return fmtInt(r.cache_write_tokens); } },
+      { label: 'Output', num: true, value: function (r) { return fmtInt(r.output_tokens); } },
+      { label: 'Reasoning (in output)', num: true, value: function (r) { return fmtInt(r.reasoning_tokens); } },
+      { label: 'Total', num: true, value: function (r) { return fmtInt(rowTotal(r)); } },
+      { label: 'API-equivalent cost', num: true, value: function (r) { return fmtCost(r.cost_lower_usd, r.cost_upper_usd); } }
+    ]);
+  }
+  function labelColumn(name) { return { label: name, value: function (r) { return text(r.label); } }; }
+
+  function niceMax(v) {
+    var p = Math.pow(10, Math.floor(Math.log10(v)));
+    var steps = [1, 1.2, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
+    for (var i = 0; i < steps.length; i += 1) if (steps[i] * p >= v) return steps[i] * p;
+    return 10 * p;
+  }
+  function shortLabel(s) { return /^\d{4}-\d{2}-\d{2}$/.test(s) ? s.slice(5) : trunc(s, 10); }
+  function columnChart(list, series, title, axisFmt, valueFmt) {
+    var W = 760, H = 260, ml = 62, mr = 12, mt = 14, mb = 40, ph = H - mt - mb, pw = W - ml - mr;
+    var totals = list.map(function (r) {
+      return series.reduce(function (s, se) { var x = se.value(r); return s + (isNum(x) && x > 0 ? x : 0); }, 0);
+    });
+    var peak = totals.reduce(function (a, b) { return Math.max(a, b); }, 0);
+    if (!list.length || peak <= 0) return empty('No measured values to chart for this selection.');
+    var top = niceMax(peak);
+    var node = sv('svg', { viewBox: '0 0 ' + W + ' ' + H, class: 'chart', role: 'img',
+      'aria-label': title + ': ' + list.length + ' periods, highest ' + valueFmt(peak) + '. The table below lists every value.' });
+    node.appendChild(sv('title', { text: title }));
+    for (var i = 0; i <= 4; i += 1) {
+      var y = mt + ph * (1 - i / 4);
+      node.appendChild(sv('line', { x1: ml, x2: W - mr, y1: y, y2: y, class: i ? 'grid' : 'axis' }));
+      node.appendChild(sv('text', { x: ml - 8, y: y + 4, class: 'tick', 'text-anchor': 'end', text: axisFmt(top * i / 4) }));
+    }
+    var band = pw / list.length, bw = Math.max(1.5, Math.min(40, band * 0.72));
+    var step = Math.max(1, Math.ceil(list.length / Math.max(1, Math.floor(pw / 64))));
+    list.forEach(function (r, index) {
+      var x = ml + band * index + (band - bw) / 2, y0 = mt + ph;
+      var g = sv('g', { class: 'bar' });
+      var lines = series.map(function (se) { var v = se.value(r); return se.name + ': ' + (isNum(v) ? valueFmt(v) : 'Unknown'); });
+      g.appendChild(sv('title', { text: text(r.label) + '\n' + lines.join('\n') }));
+      series.forEach(function (se) {
+        var v = se.value(r);
+        if (!isNum(v) || v <= 0) return;
+        var h = ph * v / top;
+        y0 -= h;
+        g.appendChild(sv('rect', { x: x.toFixed(2), y: y0.toFixed(2), width: bw.toFixed(2), height: Math.max(0.5, h).toFixed(2), class: se.cls }));
+      });
+      node.appendChild(g);
+      if (index % step === 0) {
+        node.appendChild(sv('text', { x: (x + bw / 2).toFixed(2), y: H - mb + 18, class: 'tick', 'text-anchor': 'middle', text: shortLabel(text(r.label)) }));
+      }
+    });
+    return el('div', { class: 'chart-wrap' }, node);
+  }
+  function barList(items, title, valueFmt, cls) {
+    var peak = items.reduce(function (a, it) { return isNum(it.value) ? Math.max(a, it.value) : a; }, 0);
+    return el('ol', { class: 'barlist', 'aria-label': title }, items.map(function (it) {
+      var pct = isNum(it.value) && peak > 0 ? Math.max(0.6, 100 * it.value / peak) : 0;
+      var bar = sv('svg', { viewBox: '0 0 100 10', preserveAspectRatio: 'none', class: 'bar-svg', 'aria-hidden': 'true', focusable: 'false' },
+        sv('rect', { x: 0, y: 0, width: 100, height: 10, class: 'track' }),
+        pct ? sv('rect', { x: 0, y: 0, width: pct.toFixed(2), height: 10, class: cls }) : null);
+      return el('li', null, el('span', { class: 'bl-label', title: it.label, text: trunc(it.label, 60) }), bar,
+        el('span', { class: 'bl-value', text: isNum(it.value) ? valueFmt(it.value) : 'Unknown' }),
+        it.note ? el('span', { class: 'bl-note', text: it.note }) : null);
+    }));
+  }
+  function stackBar(segments, scale, label, marker) {
+    var id = 'hatch-' + (uid += 1);
+    var node = sv('svg', { viewBox: '0 0 1000 28', preserveAspectRatio: 'none', class: 'stack', role: 'img', 'aria-label': label },
+      sv('title', { text: label }),
+      sv('defs', null, sv('pattern', { id: id, width: 8, height: 8, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(45)' },
+        sv('rect', { width: 8, height: 8, class: 'hatch-bg' }), sv('line', { x1: 0, y1: 0, x2: 0, y2: 8, class: 'hatch-line' }))),
+      sv('rect', { x: 0, y: 0, width: 1000, height: 28, class: 'track' }));
+    var x = 0;
+    segments.forEach(function (s) {
+      if (!s || !isNum(s.value) || s.value <= 0) return;
+      var w = 1000 * s.value / scale;
+      var rect = sv('rect', { x: x.toFixed(2), y: 0, width: w.toFixed(2), height: 28, class: s.cls },
+        sv('title', { text: s.label + ': ' + fmtInt(s.value) + ' tokens' }));
+      if (s.cls === 'residual') rect.style.fill = 'url(#' + id + ')';
+      node.appendChild(rect);
+      x += w;
+    });
+    if (isNum(marker) && marker > 0) {
+      var mx = (1000 * marker / scale).toFixed(2);
+      node.appendChild(sv('line', { x1: mx, x2: mx, y1: 0, y2: 28, class: 'marker' }));
+    }
+    return node;
+  }
+  function meter(percent, label) {
+    var p = isNum(percent) ? Math.max(0, Math.min(100, percent)) : 0;
+    return sv('svg', { viewBox: '0 0 100 10', preserveAspectRatio: 'none', class: 'meter', role: 'img', 'aria-label': label },
+      sv('rect', { x: 0, y: 0, width: 100, height: 10, class: 'track' }),
+      isNum(percent) && p > 0 ? sv('rect', { x: 0, y: 0, width: p.toFixed(2), height: 10, class: 'meter-fill' }) : null);
+  }
+
+  // --------------------------------------------------------------- sections
+  var LEADS = {
+    summary: 'Processed historical work: every request in scope, including cache reads and writes. This is not the current context size.',
+    sessionSummary: 'Everything this session processed over its lifetime. The current context is shown separately above.',
+    context: 'Measured occupancy from the latest request, with estimated visible content kept separate.',
+    trend: 'Token components and API-equivalent cost by period.',
+    contributors: 'Ranked by visible content size and invocation counts. These are content proxies, not exact causal charges: a request is billed for its whole prompt, not per tool.',
+    quotas: 'Provider windows, percentages and resets as observed. They are separate from local token totals and are not converted into tokens.'
+  };
+
+  function renderHeader() {
+    var kind = isSession ? 'Single session' : 'Historical usage';
+    document.getElementById('report-kind').textContent = kind;
+    document.getElementById('report-title').textContent = isSession ? 'Session usage report' : 'Agent usage report';
+    document.title = isSession ? 'Session usage report' : 'Agent usage report';
+    var parts = [];
+    if (isSession && scope.session_id) parts.push('Session ' + trunc(text(scope.session_id), 60));
+    parts.push('Period ' + (scope.since ? text(scope.since) : 'not set') + ' to ' + (scope.until ? text(scope.until) : 'not set'));
+    parts.push('Calendar ' + tzName);
+    parts.push('Generated ' + fmtTime(report.generated_at));
+    document.getElementById('scope-line').textContent = parts.join(' - ');
+    var badges = document.getElementById('badges');
+    badges.appendChild(el('span', { class: 'badge', text: 'Costs: API-equivalent estimates, not an invoice' }));
+    if (scope.share) badges.appendChild(el('span', { class: 'badge', text: 'Share mode: identifying labels pseudonymized' }));
+    if (tzFallback) badges.appendChild(el('span', { class: 'badge warn', text: 'Timezone unavailable in this browser; filters group by UTC' }));
+  }
+
+  function renderSummary(sec, v) {
+    var body = sec.body;
+    body.textContent = '';
+    var s = v.summary;
+    if (!Object.keys(s).length) { body.appendChild(empty('No summary is available in this report.')); return; }
+    var missing = isNum(s.missing_usage_requests) ? s.missing_usage_requests : 0;
+    var incomplete = missing || s.count_quality === 'known lower bound';
+    var unpriced = isNum(s.unpriced_requests) ? s.unpriced_requests : 0;
+    if (!isNum(s.requests) || s.requests === 0) {
+      body.appendChild(v.filtered
+        ? empty('No requests match the current filters.', 'Reset the filters to return to the report totals.')
+        : empty('No measurable usage was found for this scope.', 'Check Coverage and warnings for unreadable or unsupported sources, widen the period, or select another data root.'));
+    }
+    var cmp = !v.filtered && report.comparison && typeof report.comparison === 'object' ? report.comparison : null;
+    function share(part, whole) { return isNum(part) && isNum(whole) && whole > 0 ? ' (' + Math.round(100 * part / whole) + '%)' : ''; }
+    function delta(value) { return el('p', { class: 'delta', text: fmtDelta(value) + ' vs previous period' }); }
+    body.appendChild(el('div', { class: 'cards' },
+      card('Total processed tokens', fmtInt(s.total_tokens), 'Input + output' + (incomplete ? '; known lower bound' : ''),
+        { accent: 'teal', extra: cmp ? delta(cmp.token_delta_percent) : null }),
+      card('API-equivalent cost', fmtCost(s.cost_lower_usd, s.cost_upper_usd),
+        'Estimate, not an invoice' + (unpriced ? '; ' + fmtInt(unpriced) + ' requests unpriced' : ''),
+        { accent: 'coral', extra: cmp ? delta(cmp.cost_delta_percent) : null }),
+      card('Requests', fmtInt(s.requests), fmtInt(s.sessions) + ' sessions', { accent: 'purple' }),
+      card('Input tokens', fmtInt(s.input_tokens), 'Cache read ' + fmtInt(s.cache_read_tokens) + share(s.cache_read_tokens, s.input_tokens) +
+        ', cache write ' + fmtInt(s.cache_write_tokens)),
+      card('Output tokens', fmtInt(s.output_tokens), 'Includes reasoning ' + fmtInt(s.reasoning_tokens)),
+      card('Usage coverage', fmtInt(s.priced_requests) + ' priced', fmtInt(unpriced) + ' unpriced, ' + fmtInt(missing) + ' missing usage counts')));
+    if (missing) body.appendChild(note('Token totals are known lower bounds: ' + fmtInt(missing) + ' requests had no usage counts.'));
+    if (s.accounting_gap_observations) body.appendChild(note('Selected source history has ' + fmtInt(s.accounting_gap_observations) + ' accounting-gap observations. Excluded or unattributable activity is not zero usage; these gaps may extend outside the selected period.'));
+    if (cmp) {
+      var prev = obj(cmp.previous);
+      body.appendChild(dataTable('Comparison with the previous period', [
+        { label: 'Metric', value: function (r) { return r[0]; } },
+        { label: 'Previous', num: true, value: function (r) { return r[1]; } },
+        { label: 'Current', num: true, value: function (r) { return r[2]; } }
+      ], [
+        ['Requests', fmtInt(prev.requests), fmtInt(s.requests)],
+        ['Total tokens', fmtInt(prev.total_tokens), fmtInt(s.total_tokens)],
+        ['API-equivalent cost', fmtCost(prev.cost_lower_usd, prev.cost_upper_usd), fmtCost(s.cost_lower_usd, s.cost_upper_usd)],
+        ['Change', fmtDelta(cmp.token_delta_percent) + ' tokens', fmtDelta(cmp.cost_delta_percent) + ' cost']
+      ]));
+    }
+  }
+
+  function ordinaryInput(r) {
+    if (!isNum(r.input_tokens)) return null;
+    return r.input_tokens - (isNum(r.cache_read_tokens) ? r.cache_read_tokens : 0) - (isNum(r.cache_write_tokens) ? r.cache_write_tokens : 0);
+  }
+  var TOKEN_SERIES = [
+    { name: 'Ordinary input', cls: 'c1', value: ordinaryInput },
+    { name: 'Cache read', cls: 'c2', value: function (r) { return r.cache_read_tokens; } },
+    { name: 'Cache write', cls: 'c4', value: function (r) { return r.cache_write_tokens; } },
+    { name: 'Output (includes reasoning)', cls: 'c5', value: function (r) { return r.output_tokens; } }
+  ];
+  var COST_SERIES = [
+    { name: 'Lower estimate', cls: 'c3', value: function (r) { return r.cost_lower_usd; } },
+    { name: 'Range to upper estimate', cls: 'c4', value: function (r) {
+      return isNum(r.cost_upper_usd) && isNum(r.cost_lower_usd) ? r.cost_upper_usd - r.cost_lower_usd : null; } }
+  ];
+
+  function renderTrend(sec, v, toggles) {
+    var body = sec.body;
+    body.textContent = '';
+    if (trendMode === 'daily' && !v.daily.length && v.monthly.length) trendMode = 'monthly';
+    toggles.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-mode') === trendMode)); });
+    var list = trendMode === 'monthly' ? v.monthly : v.daily;
+    var period = trendMode === 'monthly' ? 'Month' : 'Date';
+    if (!list.length) { body.appendChild(empty('No dated usage in this selection.')); return; }
+    body.appendChild(el('div', null, el('p', { class: 'chart-title', text: 'Tokens by ' + period.toLowerCase() }),
+      columnChart(list, TOKEN_SERIES, 'Tokens by ' + period.toLowerCase(), fmtCompact, fmtInt), legend(TOKEN_SERIES)));
+    body.appendChild(el('div', null, el('p', { class: 'chart-title', text: 'API-equivalent cost by ' + period.toLowerCase() }),
+      columnChart(list, COST_SERIES, 'API-equivalent cost by ' + period.toLowerCase(), fmtUsdAxis, fmtUsd), legend(COST_SERIES)));
+    if (list.some(function (r) { var o = ordinaryInput(r); return isNum(o) && o < 0; })) {
+      body.appendChild(notice('warn', 'Counter anomaly', 'Some periods report cache tokens larger than input. The chart omits the negative ordinary-input part; the table shows the recorded values.'));
+    }
+    body.appendChild(dataTable((trendMode === 'monthly' ? 'Monthly' : 'Daily') + ' usage', metricColumns([labelColumn(period)]), list.slice().reverse(), 31));
+  }
+
+  function renderModels(sec, v) {
+    var body = sec.body;
+    body.textContent = '';
+    if (!v.models.length) { body.appendChild(empty('No model usage in this selection.')); return; }
+    body.appendChild(barList(v.models.slice(0, 12).map(function (r) {
+      return { label: text(r.label), value: rowTotal(r), note: fmtInt(r.requests) + ' requests, ' + fmtCost(r.cost_lower_usd, r.cost_upper_usd) };
+    }), 'Total tokens by model', fmtCompact, 'c1'));
+    body.appendChild(dataTable('Usage by model', metricColumns([labelColumn('Model')]), v.models, 25));
+  }
+
+  function renderSessions(sec, v) {
+    var body = sec.body;
+    body.textContent = '';
+    if (!v.sessions.length) { body.appendChild(empty('No session usage in this selection.')); return; }
+    body.appendChild(dataTable('Sessions ranked by total tokens', metricColumns([
+      labelColumn('Session'),
+      { label: 'Agent', value: function (r) { return text(r.agent); } },
+      { label: 'Model', value: function (r) { return text(r.model); } }
+    ]), v.sessions, 20));
+  }
+
+  function renderTasks(sec, v) {
+    var body = sec.body;
+    body.textContent = '';
+    if (v.filtered && !v.tasksFiltered) body.appendChild(note('Task categories cannot be recomputed from the embedded rows, so this table shows the unfiltered report.'));
+    if (!v.tasks.length) { body.appendChild(empty('No task categories were supplied.', 'Supply explicit task categories to group work; unclassified work stays visible.')); return; }
+    body.appendChild(dataTable('Usage by task category', metricColumns([labelColumn('Task')]), v.tasks, 25));
+  }
+
+  function contributorBlock(title, list, kind) {
+    var sorted = list.slice().sort(byField('estimated_tokens'));
+    var block = el('div', null, el('h3', { text: title }));
+    if (!sorted.length) { block.appendChild(empty('No ' + kind + ' observed in this selection.')); return block; }
+    block.appendChild(barList(sorted.slice(0, 10).map(function (r) {
+      return { label: text(r.name), value: r.estimated_tokens, note: fmtInt(r.calls) + ' calls - ' + text(r.agent) };
+    }), title + ' by estimated visible tokens', fmtCompact, kind === 'tools' ? 'c3' : 'c2'));
+    block.appendChild(dataTable(title + ' (visible content proxies)', [
+      { label: 'Name', value: function (r) { return text(r.name); } },
+      { label: 'Agent', value: function (r) { return text(r.agent); } },
+      { label: 'Calls', num: true, value: function (r) { return fmtInt(r.calls); } },
+      { label: 'Argument chars', num: true, value: function (r) { return fmtInt(r.argument_chars); } },
+      { label: 'Result chars', num: true, value: function (r) { return fmtInt(r.result_chars); } },
+      { label: 'Est. visible tokens', num: true, value: function (r) { return fmtInt(r.estimated_tokens); } }
+    ], sorted, 15));
+    return block;
+  }
+  function renderContributors(sec, v) {
+    var body = sec.body;
+    body.textContent = '';
+    if (isFiltered() && (state.model || state.from || state.to)) body.appendChild(note('Tools and skills follow the agent filter only; model and date filters do not apply to them.'));
+    body.appendChild(el('div', { class: 'two-col' }, contributorBlock('Tools', v.tools, 'tools'), contributorBlock('Skills', v.skills, 'skills')));
+  }
+
+  function renderContext(sec) {
+    var body = sec.body;
+    var ctxs = rows(report.contexts).slice().sort(function (a, b) { return String(b.observed_at || '').localeCompare(String(a.observed_at || '')); });
+    if (!ctxs.length) {
+      body.appendChild(empty('No context observation is available in this report.', 'Context is reported per session from its latest measured request. Run the session workflow to inspect one session.'));
+      return;
+    }
+    var index = 0;
+    if (scope.session_id !== null && scope.session_id !== undefined) {
+      var found = ctxs.findIndex(function (c) { return String(c.session_id) === String(scope.session_id); });
+      if (found >= 0) index = found;
+    }
+    body.appendChild(note('Context belongs to one session at its latest measured request. It is separate from the processed historical totals, and the agent, model and date filters never change it.'));
+    var holder = el('div', { class: 'section-body' });
+    if (ctxs.length > 1) {
+      var select = el('select', { id: 'context-select' });
+      ctxs.forEach(function (c, i) {
+        var option = el('option', { value: String(i), text: trunc(text(c.session_id), 40) + ' - ' + text(c.agent) + ' - ' + fmtTime(c.observed_at) });
+        if (i === index) option.selected = true;
+        select.appendChild(option);
+      });
+      select.addEventListener('change', function () { drawContext(holder, ctxs[Number(select.value)]); });
+      body.appendChild(el('div', { class: 'field inline no-print' }, el('label', { for: 'context-select', text: 'Session shown' }), select));
+    }
+    body.appendChild(holder);
+    drawContext(holder, ctxs[index]);
+  }
+
+  function drawContext(holder, c) {
+    holder.textContent = '';
+    var used = isNum(c.used_tokens) ? c.used_tokens : null;
+    var win = isNum(c.window_tokens) && c.window_tokens > 0 ? c.window_tokens : null;
+    var cats = rows(c.categories).slice().sort(byField('estimated_tokens'));
+    var visible = isNum(c.visible_estimated_tokens) ? c.visible_estimated_tokens : sumKnown(cats, function (x) { return x.estimated_tokens; });
+    var residual = isNum(c.unattributed_tokens) ? c.unattributed_tokens : null;
+    if (residual === null && used !== null && isNum(visible)) residual = used - visible;
+    var compactions = isNum(c.compactions) ? c.compactions : 0;
+    var percent = isNum(c.computed_percent) ? c.computed_percent : (used !== null && win !== null ? 100 * used / win : null);
+    var occupancy = percent === null ? 'Occupancy unknown' : fmtPct(percent) + ' computed occupancy';
+    if (isNum(c.provider_percent)) occupancy += '; provider reports ' + fmtPct(c.provider_percent);
+
+    holder.appendChild(el('div', { class: 'cards' },
+      card('Measured context', fmtInt(used), basisLabel(c.basis), { accent: 'teal' }),
+      card('Context window', fmtInt(win), occupancy),
+      card('Free space', used !== null && win !== null ? fmtInt(win - used) : 'Unknown', 'Window minus measured context'),
+      card('Compactions', fmtInt(compactions), 'Retention: ' + text(c.retention_status), { accent: 'purple' })));
+    holder.appendChild(el('p', { class: 'meta', text: 'Session ' + text(c.session_id) + ' - ' + text(c.agent) + ', ' + text(c.model) +
+      ' - observed ' + fmtTime(c.observed_at) + ' - quality ' + text(c.quality) }));
+
+    if (used === null) {
+      holder.appendChild(notice('info', 'Current context is unknown', compactions
+        ? 'The session compacted after its latest measured request. Occupancy and free space stay unknown until a new request is recorded, and pre-compaction messages are not shown as retained context.'
+        : 'No measured request is recorded for this context, so occupancy and free space are unknown.'));
+    }
+    var scale = Math.max(win || 0, used || 0, isNum(visible) ? visible : 0) || 1;
+    if (used !== null) {
+      var measuredLabel = 'Measured: ' + fmtInt(used) + (win !== null ? ' of ' + fmtInt(win) + ' tokens' : ' tokens; window unknown');
+      holder.appendChild(el('div', { class: 'gauge' },
+        el('div', { class: 'gauge-head' }, el('span', { class: 'gauge-title', text: 'Measured occupancy' }), el('span', { class: 'gauge-value', text: measuredLabel })),
+        stackBar([{ value: used, cls: 'c1', label: 'Measured context' },
+          win !== null && win > used ? { value: win - used, cls: 'free', label: 'Free (window minus measured)' } : null], scale, measuredLabel),
+        legend([{ name: 'Measured context', cls: 'c1' }].concat(win !== null ? [{ name: 'Free', cls: 'free' }] : []))));
+    }
+    if (!cats.length) {
+      holder.appendChild(notice('info', 'No visible category estimate', 'The retained visible history could not be reconstructed for this observation. Hidden prompts, tool schemas and other overhead are not invented.'));
+      return;
+    }
+    var segments = cats.map(function (x, i) { return { value: x.estimated_tokens, cls: 'c' + ((i % 8) + 1), label: prettyCategory(x.name) }; });
+    if (residual !== null && residual > 0) segments.push({ value: residual, cls: 'residual', label: 'Unattributed residual' });
+    var lower = sumKnown(cats, function (x) { return x.lower_tokens; });
+    var upper = sumKnown(cats, function (x) { return x.upper_tokens; });
+    var estLabel = fmtInt(visible) + ' estimated (range ' + fmtInt(lower) + ' to ' + fmtInt(upper) + ')';
+    holder.appendChild(el('div', { class: 'gauge' },
+      el('div', { class: 'gauge-head' }, el('span', { class: 'gauge-title', text: 'Estimated visible content' }), el('span', { class: 'gauge-value', text: estLabel })),
+      stackBar(segments, scale, 'Estimated visible content: ' + estLabel + (used !== null ? '; dashed line marks the measured total' : ''), used),
+      legend(segments.map(function (s) { return { name: s.label, cls: s.cls }; }))));
+    if (used !== null) holder.appendChild(note('Same scale as the measured bar. The dashed line marks the measured total; categories are never rescaled to meet it.'));
+    if (residual !== null && residual >= 0) {
+      holder.appendChild(note('Unattributed residual: ' + fmtInt(residual) + ' tokens of measured context not explained by visible text, such as hidden system prompts, tool schemas, non-text payloads and estimation error.'));
+    } else if (residual !== null) {
+      holder.appendChild(notice('warn', 'Estimate overrun', 'The visible estimate exceeds the measured total by ' + fmtInt(-residual) +
+        ' tokens. The heuristic overestimates here; categories are shown unscaled rather than forced to fit.'));
+    }
+    holder.appendChild(dataTable('Estimated context categories', [
+      { label: 'Category', value: function (r) { return prettyCategory(r.name); } },
+      { label: 'Characters', num: true, value: function (r) { return fmtInt(r.characters); } },
+      { label: 'Estimated tokens', num: true, value: function (r) { return fmtInt(r.estimated_tokens); } },
+      { label: 'Range', num: true, value: function (r) { return fmtInt(r.lower_tokens) + ' to ' + fmtInt(r.upper_tokens); } },
+      { label: 'Share of measured', num: true, value: function (r) { return used ? fmtPct(isNum(r.estimated_tokens) ? 100 * r.estimated_tokens / used : null) : 'Unknown'; } }
+    ], cats));
+    if (c.estimation_method) holder.appendChild(note('Method: ' + text(c.estimation_method) + '. A diagnostic size estimate, not provider tokenization.'));
+  }
+
+  function localWindows() {
+    var supplied = obj(report.local_rolling_usage);
+    if (supplied.five_hour && supplied.seven_day && report.generated_at) {
+      return { anchor: report.generated_at, rows: [['five_hour', '5 hours'], ['seven_day', '7 days']].map(function (pair) {
+        var r = supplied[pair[0]];
+        return {label: pair[1], requests: r.requests, total: r.total_tokens, missing: r.missing_usage_requests};
+      }) };
+    }
+    var stamped = [];
+    requests.forEach(function (x) {
+      var t = typeof x.r.timestamp === 'string' ? Date.parse(x.r.timestamp) : NaN;
+      if (!Number.isNaN(t)) stamped.push({ t: t, r: x.r });
+    });
+    if (!stamped.length) return null;
+    var anchor = stamped.reduce(function (a, s) { return Math.max(a, s.t); }, -Infinity);
+    return { anchor: new Date(anchor).toISOString(), rows: [['5 hours', 5 * 3600e3], ['7 days', 7 * 86400e3]].map(function (w) {
+      var m = { label: w[0], requests: 0, total: null, missing: 0 };
+      stamped.forEach(function (s) {
+        if (s.t > anchor - w[1] && s.t <= anchor) {
+          var n = reqCount(s.r), v = rowTotal(s.r);
+          m.requests += n;
+          if (isNum(v)) m.total = (m.total || 0) + v; else m.missing += n;
+        }
+      });
+      return m;
+    }) };
+  }
+
+  function renderQuotas(sec) {
+    var body = sec.body;
+    var quotas = rows(report.quotas);
+    if (!quotas.length) {
+      body.appendChild(empty('No quota observations are available.', 'Record them from the owning agent\'s status interface or a numeric import. Local token totals are not quotas.'));
+    } else {
+      var latest = new Map();
+      quotas.forEach(function (q) {
+        var key = [text(q.agent), text(q.provider), text(q.account), text(q.bucket)].join('\u0000');
+        var prev = latest.get(key);
+        if (!prev || String(q.observed_at || '') > String(prev.observed_at || '')) latest.set(key, q);
+      });
+      body.appendChild(el('div', { class: 'quota-grid' }, Array.from(latest.values()).map(function (q) {
+        var p = isNum(q.used_percent) ? q.used_percent : null;
+        var level = p === null ? '' : (p >= 90 ? ' high' : (p >= 70 ? ' mid' : ''));
+        var label = text(q.agent) + ' ' + text(q.bucket) + ': ' + (p === null ? 'usage unknown' : fmtPct(p) + ' used');
+        return el('div', { class: 'card quota' + level },
+          el('p', { class: 'quota-title', text: text(q.agent) + ' / ' + text(q.provider) + ' - ' + text(q.bucket) }),
+          el('p', { class: 'quota-sub', text: 'Account ' + text(q.account) + ' - window ' + fmtDuration(q.window_minutes) }),
+          meter(p, label),
+          el('p', { class: 'quota-value', text: p === null ? 'Used: Unknown' : fmtPct(p) + ' used' }),
+          el('dl', { class: 'kv' }, el('dt', { text: 'Resets' }), el('dd', { text: fmtTime(q.resets_at) }),
+            el('dt', { text: 'Observed' }), el('dd', { text: fmtTime(q.observed_at) })));
+      })));
+      body.appendChild(dataTable('All quota observations', [
+        { label: 'Agent', value: function (r) { return text(r.agent); } },
+        { label: 'Provider', value: function (r) { return text(r.provider); } },
+        { label: 'Account', value: function (r) { return text(r.account); } },
+        { label: 'Bucket', value: function (r) { return text(r.bucket); } },
+        { label: 'Window', value: function (r) { return fmtDuration(r.window_minutes); } },
+        { label: 'Resets at', value: function (r) { return fmtTime(r.resets_at); } },
+        { label: 'Used', num: true, value: function (r) { return fmtPct(r.used_percent); } },
+        { label: 'Observed at', value: function (r) { return fmtTime(r.observed_at); } }
+      ], quotas.slice().sort(function (a, b) { return String(b.observed_at || '').localeCompare(String(a.observed_at || '')); }), 20));
+    }
+    var estimates = rows(report.quota_estimates);
+    if (estimates.length) {
+      body.appendChild(dataTable('Descriptive quota estimates', [
+        { label: 'Agent', value: function (r) { return text(r.agent); } },
+        { label: 'Bucket', value: function (r) { return text(r.bucket); } },
+        { label: 'Status', value: function (r) { return text(r.status); } },
+        { label: 'Reason', value: function (r) { return text(r.reason); } },
+        { label: 'Samples', num: true, value: function (r) { return fmtInt(r.samples); } },
+        { label: 'Tokens per point', num: true, value: function (r) { return fmtInt(r.tokens_per_point); } },
+        { label: 'Cost per point', num: true, value: function (r) { return fmtCost(r.cost_per_point, r.cost_per_point); } }
+      ], estimates));
+      body.appendChild(note('Estimates describe compatible observations only. The provider quota formula is unknown; they are not an allowance or a forecast.'));
+    }
+    var windows = localWindows();
+    if (windows) {
+      body.appendChild(dataTable('Local activity as of ' + fmtTime(windows.anchor.replace(/\.\d+Z$/, 'Z')), [
+        { label: 'Rolling window', value: function (r) { return r.label; } },
+        { label: 'Requests', num: true, value: function (r) { return fmtInt(r.requests); } },
+        { label: 'Total tokens', num: true, value: function (r) { return fmtInt(r.total); } },
+        { label: 'Requests missing usage', num: true, value: function (r) { return fmtInt(r.missing); } }
+      ], windows.rows));
+      body.appendChild(note('Local rolling windows use the collected source history as of report generation. They are not provider quota periods, ignore display filters, and can extend outside the selected report period.'));
+    }
+  }
+
+  function renderInsights(sec) {
+    var body = sec.body;
+    var insights = rows(report.insights);
+    if (!insights.length) { body.appendChild(empty('No evidence-based recommendation applies to this scope.')); return; }
+    body.appendChild(el('ol', { class: 'insights' }, insights.map(function (it) {
+      return el('li', { class: 'card insight' }, el('h3', { text: text(it.title) }),
+        el('p', null, el('span', { class: 'label', text: 'Evidence: ' }), text(it.evidence)),
+        el('p', null, el('span', { class: 'label', text: 'Suggested action: ' }), text(it.action)));
+    })));
+    body.appendChild(note('Recommendations are suggestions only. Nothing in your agent configuration was changed.'));
+  }
+
+  function renderCoverage(sec) {
+    var body = sec.body;
+    var sources = rows(report.coverage);
+    if (sources.length) {
+      body.appendChild(dataTable('Sources', [
+        { label: 'Source', value: function (r) { return trunc(text(r.id), 12); } },
+        { label: 'Agent', value: function (r) { return text(r.agent); } },
+        { label: 'Device', value: function (r) { return text(r.device); } },
+        { label: 'Origin', value: function (r) { return text(r.origin); } },
+        { label: 'Contract', value: function (r) { return text(r.contract); } },
+        { label: 'Files seen', num: true, value: function (r) { return fmtInt(r.files_seen); } },
+        { label: 'Files parsed', num: true, value: function (r) { return fmtInt(r.files_parsed); } },
+        { label: 'Rows seen', num: true, value: function (r) { return fmtInt(r.rows_seen); } },
+        { label: 'Malformed rows', num: true, value: function (r) { return fmtInt(r.malformed_rows); } }
+      ], sources, 25));
+    } else {
+      body.appendChild(empty('No source coverage was recorded.'));
+    }
+    body.appendChild(note('Data from other devices, provider-hosted tasks and deleted histories may be absent. Local totals are not the complete account history.'));
+    var warnings = rows(report.warnings);
+    if (!warnings.length) { body.appendChild(note('No warnings.')); return; }
+    var counts = new Map();
+    warnings.forEach(function (w) {
+      var code = text(w.code);
+      if (!counts.has(code)) counts.set(code, { code: code, count: 0, sources: new Set() });
+      var entry = counts.get(code);
+      entry.count += 1;
+      entry.sources.add(String(w.source_id || ''));
+    });
+    body.appendChild(dataTable('Warnings by code', [
+      { label: 'Code', value: function (r) { return r.code; } },
+      { label: 'Occurrences', num: true, value: function (r) { return fmtInt(r.count); } },
+      { label: 'Sources', num: true, value: function (r) { return fmtInt(r.sources.size); } }
+    ], Array.from(counts.values()).sort(function (a, b) { return b.count - a.count; })));
+    body.appendChild(dataTable('Warning details', [
+      { label: 'Code', value: function (r) { return text(r.code); } },
+      { label: 'Source', value: function (r) { return trunc(text(r.source_id), 12); } },
+      { label: 'Line', num: true, value: function (r) { return fmtInt(r.line); } }
+    ], warnings, 20));
+  }
+
+  function renderMethod(sec) {
+    var body = sec.body;
+    var pricing = obj(report.pricing);
+    body.appendChild(el('h3', {text: 'Provider and model attribution'}));
+    body.appendChild(note('Harness labels can hide GLM or another proxy route. Reported models are unverified reference comparisons. Confirm historical routes with an attribution map; provider mismatches remain unpriced. This table shows the full report scope.'));
+    body.appendChild(dataTable('Provider and model attribution', [
+      {label:'Agent', value:function(r){return text(r.agent);}},
+      {label:'Provider', value:function(r){return text(r.provider);}},
+      {label:'Reported label', value:function(r){return text(r.reported_model);}},
+      {label:'Effective model', value:function(r){return text(r.model);}},
+      {label:'Basis', value:function(r){return text(r.model_attribution);}},
+      {label:'Requests',num:true,value:function(r){return fmtInt(r.requests);}}
+    ], rows(report.attribution), 50));
+    body.appendChild(el('ul', { class: 'method' }, [
+      'Input tokens include cache reads and cache writes; ordinary input is input minus both.',
+      'Output tokens include reasoning. Reasoning is shown as a subset and never added again.',
+      'Total processed tokens are input plus output summed over every request. They measure historical work, not the current context size.',
+      'Missing values appear as Unknown, never as zero. Totals are known lower bounds when some requests lack counts.',
+      'Repeated snapshots and overlapping sources are reconciled before aggregation, so the same activity counts once.',
+      'Context is anchored to the latest measured request. Category sizes are character-based estimates of recorded visible content; the unattributed residual is kept separate and categories are never rescaled.',
+      'Tool and skill figures are visible content sizes and invocation counts, not causal charges.',
+      'Quota figures are provider observations with their own windows and resets.',
+      'Filters recompute summary, trend, model, session and, when available, task figures from the embedded request rows. Without filters every figure equals the report totals in the JSON and Markdown files.'
+    ].map(function (s) { return el('li', { text: s }); })));
+    var items = Array.isArray(pricing.sources) ? pricing.sources : (pricing.sources ? [pricing.sources] : []);
+    var list = el('ul', { class: 'source-list' });
+    items.forEach(function (item) {
+      if (item && typeof item === 'object' && !Array.isArray(item)) {
+        var parts = Object.keys(item).filter(function (k) {
+          var val = item[k];
+          return typeof val === 'string' || isNum(val);
+        }).map(function (k) { return trunc(text(k), 40) + ': ' + trunc(text(item[k]), 200); });
+        if (parts.length) list.appendChild(el('li', { text: parts.join('; ') }));
+      } else if (typeof item === 'string' || isNum(item)) {
+        list.appendChild(el('li', { text: trunc(text(item), 200) }));
+      }
+    });
+    body.appendChild(el('div', null, el('h3', { text: 'Pricing' }),
+      el('dl', { class: 'kv' }, el('dt', { text: 'Rate card' }), el('dd', { text: pricing.version ? text(pricing.version) : 'Unknown' }),
+        el('dt', { text: 'Verified' }), el('dd', { text: pricing.verified_at ? text(pricing.verified_at) : 'Unknown' })),
+      list.childNodes.length ? list : null,
+      note('Costs are API-equivalent estimates priced per request before aggregation. They are not an invoice and not subscription payments. A range appears when a billing dimension such as cache-write duration or prompt tier is unknown; unknown models stay unpriced.')));
+  }
+
+  function buildFilters(onChange) {
+    var bar = el('div', { class: 'filters no-print', role: 'region', 'aria-label': 'Filters' });
+    var status = el('p', { class: 'filter-status', role: 'status', 'aria-live': 'polite' });
+    if (!requests.length) {
+      bar.appendChild(note('Filters are unavailable because this report has no embedded request rows. All figures show the report totals.'));
+      return { node: bar, status: null };
+    }
+    function select(id, label, values, all) {
+      var s = el('select', { id: id }, el('option', { value: '', text: all }), values.map(function (v) { return el('option', { value: v, text: trunc(v, 60) }); }));
+      return { field: el('div', { class: 'field' }, el('label', { for: id, text: label }), s), input: s };
+    }
+    var days = uniq(requests.map(function (x) { return x.day; }).filter(Boolean));
+    var agent = select('filter-agent', 'Agent', uniq(requests.map(function (x) { return x.agent; })), 'All agents');
+    var model = select('filter-model', 'Model', uniq(requests.map(function (x) { return x.model; })), 'All models');
+    function dateField(id, label) {
+      var input = el('input', { type: 'date', id: id, min: days[0], max: days[days.length - 1] });
+      return { field: el('div', { class: 'field' }, el('label', { for: id, text: label + ' (' + tzName + ')' }), input), input: input };
+    }
+    var from = dateField('filter-from', 'From');
+    var to = dateField('filter-to', 'To, inclusive');
+    var reset = el('button', { type: 'button', class: 'btn', text: 'Reset filters' });
+    function read() {
+      state.agent = agent.input.value; state.model = model.input.value;
+      state.from = /^\d{4}-\d{2}-\d{2}$/.test(from.input.value) ? from.input.value : '';
+      state.to = /^\d{4}-\d{2}-\d{2}$/.test(to.input.value) ? to.input.value : '';
+      onChange();
+    }
+    [agent.input, model.input].forEach(function (i) { i.addEventListener('change', read); });
+    [from.input, to.input].forEach(function (i) { i.addEventListener('change', read); i.addEventListener('input', read); });
+    reset.addEventListener('click', function () { agent.input.value = ''; model.input.value = ''; from.input.value = ''; to.input.value = ''; read(); });
+    bar.appendChild(el('div', { class: 'filter-row' }, agent.field, model.field, from.field, to.field, reset));
+    bar.appendChild(status);
+    return { node: bar, status: status };
+  }
+  function statusText(v) {
+    if (!v.filtered) return 'No filter: showing report totals for all ' + fmtInt(requests.length) + ' request rows. Context, quotas, coverage and insights always show the full report.';
+    var s = 'Filtered: ' + fmtInt(v.matched) + ' of ' + fmtInt(requests.length) + ' request rows. Summary, trend, models, sessions' +
+      (hasTask ? ', tasks' : '') + ' are recomputed; tools and skills follow the agent filter only. Context, quotas, coverage and insights are unfiltered.';
+    if (state.from || state.to) {
+      var undated = requests.filter(function (x) { return x.day === null; }).length;
+      if (undated) s += ' ' + fmtInt(undated) + ' rows without a timestamp are excluded by the date filter.';
+    }
+    return s;
+  }
+
+  // ------------------------------------------------------------------- main
+  function setupTheme() {
+    var button = document.getElementById('theme-toggle');
+    var media = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+    function current() { return root.getAttribute('data-theme') || (media && media.matches ? 'dark' : 'light'); }
+    function sync() { button.textContent = current() === 'dark' ? 'Light theme' : 'Dark theme'; }
+    button.addEventListener('click', function () { root.setAttribute('data-theme', current() === 'dark' ? 'light' : 'dark'); sync(); });
+    if (media && media.addEventListener) media.addEventListener('change', sync);
+    sync();
+    document.getElementById('print-button').addEventListener('click', function () { window.print(); });
+  }
+
+  function run() {
+    setupTheme();
+    renderHeader();
+    var secs = {
+      context: section('context', isSession ? 'Current context' : 'Latest context by session', LEADS.context),
+      summary: section('summary', isSession ? 'Lifetime usage of this session' : 'Summary', isSession ? LEADS.sessionSummary : LEADS.summary),
+      insights: section('insights', 'Insights'),
+      trend: section('trend', 'Usage over time', LEADS.trend),
+      models: section('models', 'Models'),
+      sessions: section('sessions', 'Sessions'),
+      tasks: section('tasks', 'Task categories'),
+      contributors: section('contributors', 'Tools and skills', LEADS.contributors),
+      quotas: section('quotas', 'Quotas', LEADS.quotas),
+      coverage: section('coverage', 'Coverage and warnings'),
+      method: section('method', 'Methodology and pricing')
+    };
+    var toggles = ['daily', 'monthly'].map(function (mode) {
+      return el('button', { type: 'button', 'data-mode': mode, 'aria-pressed': String(mode === trendMode), text: mode === 'daily' ? 'Daily' : 'Monthly' });
+    });
+    secs.trend.head.insertBefore(el('div', { class: 'segmented no-print', role: 'group', 'aria-label': 'Trend period' }, toggles), secs.trend.head.children[1] || null);
+
+    var filters = buildFilters(update);
+    var order = isSession
+      ? ['context', 'filters', 'summary', 'insights', 'trend', 'contributors', 'models', 'sessions', 'tasks', 'quotas', 'coverage', 'method']
+      : ['filters', 'summary', 'insights', 'trend', 'models', 'sessions', 'tasks', 'context', 'contributors', 'quotas', 'coverage', 'method'];
+    var toc = document.getElementById('toc');
+    order.forEach(function (key) {
+      if (key === 'filters') { mainEl.appendChild(filters.node); return; }
+      mainEl.appendChild(secs[key].node);
+      toc.appendChild(el('a', { href: '#' + secs[key].id, text: secs[key].title }));
+    });
+
+    renderContext(secs.context);
+    renderInsights(secs.insights);
+    renderQuotas(secs.quotas);
+    renderCoverage(secs.coverage);
+    renderMethod(secs.method);
+
+    var current = null;
+    function update() {
+      current = computeView();
+      renderSummary(secs.summary, current);
+      renderTrend(secs.trend, current, toggles);
+      renderModels(secs.models, current);
+      renderSessions(secs.sessions, current);
+      renderTasks(secs.tasks, current);
+      renderContributors(secs.contributors, current);
+      if (filters.status) filters.status.textContent = statusText(current);
+    }
+    toggles.forEach(function (b) {
+      b.addEventListener('click', function () { trendMode = b.getAttribute('data-mode'); renderTrend(secs.trend, current, toggles); });
+    });
+    update();
+  }
+
+  run();
+})();
+</script>
+<details style="margin:24px;padding:20px;border:1px solid #64748b;border-radius:12px"><summary>Detailed session inspection and exact request ledger</summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:1.6"># Detailed inspection of this conversation
+
+Session `01a187f8-a6ed-7103-bcd3-81df033c1959` only. Started 2026-10-29T14:03:03.498Z; captured 2026-10-29T14:51:53+00:00. Exact request counters end at 2026-10-29T14:51:42.706Z. All timestamps are UTC. Automatic-review threads and every unrelated session are excluded.
+
+The native per-response counters record **1,135,202 processed tokens across 19 requests**: 1,118,433 input plus 16,769 output. The input includes 1,022,464 cache reads (91.42%), 0 cache writes and 95,969 ordinary input tokens. Output includes 6,904 reasoning tokens; reasoning is not added again. Repeated input across requests counts again, so processed tokens are not the amount of unique text in the chat.
+
+All 19 request records have reported counters; 0 are missing usage, 0 are unpriced, and the cumulative native input/output endpoint matches the request sums. Reference API-equivalent cost: $0.4619–$0.8399, using bundled card 2026-10-17.2. This is not subscription spending or an invoice.
+
+## Usage by user task
+
+| Task | Requests | Input | Cached input | Output | Reasoning subset | Total |
+| --- | --- | --- | --- | --- | --- | --- |
+| Analyze all locally available Codex sessions | 7 | 264,383 | 201,984 | 2,947 | 1,432 | 267,330 |
+| Save the three all-session reports in the repository | 2 | 116,075 | 115,456 | 549 | 0 | 116,624 |
+| Inspect only this conversation and its current context | 10 | 737,975 | 705,024 | 13,273 | 5,472 | 751,248 |
+
+## Exact request ledger
+
+These are model requests, not user messages or tool calls. Input contains the cached column, and output contains the reasoning column.
+
+| # | Completed UTC | Task # | Input | Cached input | Output | Reasoning subset | Total |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | 2026-10-29T14:04:23.065Z | 1 | 19,612 | 13,184 | 225 | 0 | 19,837 |
+| 2 | 2026-10-29T14:04:48.804Z | 1 | 24,092 | 19,712 | 561 | 329 | 24,653 |
+| 3 | 2026-10-29T14:05:15.654Z | 1 | 26,911 | 24,448 | 438 | 147 | 27,349 |
+| 4 | 2026-10-29T14:05:37.485Z | 1 | 32,799 | 13,184 | 274 | 26 | 33,073 |
+| 5 | 2026-10-29T14:05:58.189Z | 1 | 47,720 | 27,136 | 185 | 62 | 47,905 |
+| 6 | 2026-10-29T14:06:35.939Z | 1 | 56,379 | 47,744 | 423 | 352 | 56,802 |
+| 7 | 2026-10-29T14:10:04.098Z | 1 | 56,870 | 56,576 | 841 | 516 | 57,711 |
+| 8 | 2026-10-29T14:18:54.057Z | 2 | 57,728 | 57,472 | 464 | 0 | 58,192 |
+| 9 | 2026-10-29T14:19:12.819Z | 2 | 58,347 | 57,984 | 85 | 0 | 58,432 |
+| 10 | 2026-10-29T14:43:39.501Z | 3 | 58,670 | 58,240 | 395 | 0 | 59,065 |
+| 11 | 2026-10-29T14:44:09.076Z | 3 | 63,704 | 58,880 | 555 | 229 | 64,259 |
+| 12 | 2026-10-29T14:44:45.655Z | 3 | 64,287 | 64,128 | 42 | 9 | 64,329 |
+| 13 | 2026-10-29T14:44:50.680Z | 3 | 64,357 | 64,128 | 77 | 44 | 64,434 |
+| 14 | 2026-10-29T14:45:01.548Z | 3 | 73,391 | 64,256 | 520 | 51 | 73,911 |
+| 15 | 2026-10-29T14:45:36.272Z | 3 | 73,970 | 73,728 | 55 | 22 | 74,025 |
+| 16 | 2026-10-29T14:45:41.050Z | 3 | 74,053 | 73,856 | 66 | 33 | 74,119 |
+| 17 | 2026-10-29T14:46:36.336Z | 3 | 82,444 | 73,984 | 1,780 | 944 | 84,224 |
+| 18 | 2026-10-29T14:47:51.130Z | 3 | 88,237 | 84,096 | 1,717 | 1,552 | 89,954 |
+| 19 | 2026-10-29T14:51:42.706Z | 3 | 94,862 | 89,728 | 8,066 | 2,588 | 102,928 |
+
+## What was used
+
+Recorded provider: openai. Recorded model(s): gpt-6.1-sol. Host source: vscode; originator: codex-tui; CLI version: 0.165.0. Reasoning effort in the recorded user turns: xhigh.
+
+| Top-level tool | Recorded invocations | Argument characters | Result characters |
+| --- | --- | --- | --- |
+| exec | 11 | 33,599 | 146,009 |
+| wait | 4 | 220 | 62,169 |
+| js | 2 | 215 | 36,694 |
+
+`exec` and `wait` are the functions orchestration tools. `js` is the Computer Use interface. Nested tool call sites found in recorded orchestration code: `exec_command`: 17, `write_stdin`: 1. These nested calls are not additional model requests. Full per-call counts and result sizes are in JSON under `session_inspection.tool_calls`.
+
+The two UI calls inventoried available surfaces and attempted to select Chrome. Computer Use stopped because it could not determine the current browser URL confidently. No successful report rendering was observed. Commands used local Python, PowerShell file operations, ripgrep and a Git status read. No recorded web search, provider quota API capture, explicit collaboration-agent spawn, package installation, configuration change or scheduled collection occurred in this root conversation.
+
+Loaded skill bodies: `agent-usage-analytics`, `computer-use`. Skill invocation detections are inferred from file reads; the standard skill-size table is a combined output proxy when the same command also reads references. It is not an exact token count for the skill body.
+
+### Explicit resource reads
+
+This list comes from literal `Get-Content -LiteralPath` and Python script paths in recorded commands. It does not claim to capture every import, variable-based file read or filesystem access.
+
+| Resource | Recorded read/run commands |
+| --- | --- |
+| C:\Users\labuser\.codex\plugins\cache\openai-bundled\computer-use\26.1021.31345\docs\confirmations.md | 1 |
+| C:\Users\labuser\.codex\plugins\cache\openai-bundled\computer-use\26.1021.31345\docs\guidance.md | 1 |
+| C:\Users\labuser\.codex\plugins\cache\openai-bundled\computer-use\26.1021.31345\skills\computer-use\SKILL.md | 1 |
+| C:\Users\labuser\AppData\Local\Temp\codex-usage-analytics\2026-10-29-all-sessions\report.md | 1 |
+| C:\Users\labuser\Dev\jftp\.agents\skills\agent-usage-analytics\SKILL.md | 2 |
+| C:\Users\labuser\Dev\jftp\.agents\skills\agent-usage-analytics\assets\pricing.json | 1 |
+| C:\Users\labuser\Dev\jftp\.agents\skills\agent-usage-analytics\references\collection-and-quotas.md | 1 |
+| C:\Users\labuser\Dev\jftp\.agents\skills\agent-usage-analytics\references\schema-and-pricing.md | 2 |
+| C:\Users\labuser\Dev\jftp\.agents\skills\agent-usage-analytics\references\sources.md | 2 |
+| C:\Users\labuser\Dev\jftp\.agents\skills\agent-usage-analytics\scripts\agent_usage.py | 2 |
+| C:\Users\labuser\Dev\jftp\.agents\skills\agent-usage-analytics\scripts\usage_collectors.py | 3 |
+| C:\Users\labuser\Dev\jftp\.agents\skills\agent-usage-analytics\scripts\usage_common.py | 1 |
+| C:\Users\labuser\Dev\jftp\.agents\skills\agent-usage-analytics\scripts\usage_render.py | 1 |
+| C:\Users\labuser\Dev\jftp\AGENTS.md | 1 |
+| C:\Users\labuser\Dev\jftp\.agents\skills\agent-usage-analytics\scripts\agent_usage.py (Python entrypoint) | 5 |
+
+Other observed inputs were this session rollout, usage data from known Codex session directories during the earlier all-session scan, environment aliases for the current session, file listings, hashes and the generated report files. Python imports used the analytics collector/accounting/renderer modules and their dashboard template. Repository source maps and the code graph guide were supplied as navigation references in AGENTS.md; their contents were not read for this analytics task. JFTP application source and pom.xml were not examined.
+
+## What is currently retained
+
+The latest measured request used 94,862 input tokens and generated 8,066 output tokens. The native context anchor is **102,928 / 475,000 tokens (21.67%)**, using the collector&#x27;s input-plus-output basis; computed free space is 372,072. It is an observation at 2026-10-29T14:51:42.706Z, not a live reading of an in-flight next prompt. Recorded compactions: 0.
+
+The anchored categories below are estimated from visible recorded characters, not measured tokenization. Skill bodies and reference documents read through tools are included under tool results. The advertised skill catalog is a separate category; advertising does not mean loading every skill.
+
+| Context category | Recorded characters | Estimated tokens | Estimate range |
+| --- | --- | --- | --- |
+| assistant_messages | 2,917 | 729 | 486–1,458 |
+| environment | 921 | 230 | 154–460 |
+| instructions | 27,530 | 6,882 | 4,588–13,765 |
+| skill_catalog | 14,437 | 3,609 | 2,406–7,218 |
+| tool_arguments | 34,034 | 8,508 | 5,672–17,017 |
+| tool_results | 244,872 | 61,218 | 40,812–122,436 |
+| user_messages | 7,393 | 1,848 | 1,232–3,696 |
+
+Visible category estimates total 83,024 tokens, leaving 19,904 tokens as an unattributed residual. Hidden runtime content, tool schemas, non-text representations and estimation error cannot be split exactly using this log. It would be incorrect to assign that residual to one particular tool or document.
+
+At capture, the retained visible inventory contains the earlier request to analyze all local sessions and its aggregate report output; the instruction to copy the three reports and its verification; the current request to inspect this session; user-supplied skill text; user-provided AGENTS.md revisions and environment context; assistant progress/final messages; recorded tool arguments and results; skill/reference/script excerpts; UI API documentation, app inventory and the UI stop result. The latest supplied AGENTS.md replaces earlier instructions semantically; earlier versions can remain as historical text. Tool output from the broad all-session Markdown read is a substantial contributor. Raw reasoning content is not exported; only its reported token count and the number of recorded reasoning items are listed.
+
+The recorded advertised catalog contains 38 skill entries; only the loaded bodies listed above were detected. Catalog names: `imagegen`, `openai-docs`, `skill-creator`, `skill-installer`, `agent-usage-analytics`, `cloudflare-safe`, `create-design-system`, `legacy-codebase-workflows`, `repository-security-audit`, `repository-use-case-advisor`, `respond-to-code-review`, `web-performance-audit`, `write-adr`, `write-agents-md`, `write-prd`, `computer-use:computer-use`, `documents:documents`, `google-drive:google-docs`, `google-drive:google-drive`, `google-drive:google-drive-comments`, `google-drive:google-sheets`, `google-drive:google-slides`, `pages:maintain-space`, `pages:manage-schedules`, `pages:organize-space`, `pages:write-page`, `pdf:pdf`, `plugin-management:plugin-management`, `presentations:Presentations`, `sites:sites`, `sites:sites-remix`, `spreadsheets:Spreadsheets`, `spreadsheets:excel-live-control`, `template-creator:template-creator`, `visualize:visualize`, `work-pets:create-pet`, `work-pets:pets`, `work-pets:update-pet`.
+
+### Structural inventory
+
+| Response item type | Count |
+| --- | --- |
+| additional_tools | 1 |
+| custom_tool_call | 11 |
+| custom_tool_call_output | 10 |
+| function_call | 6 |
+| function_call_output | 6 |
+| message | 19 |
+| reasoning | 22 |
+
+| Message role | Count |
+| --- | --- |
+| assistant | 9 |
+| developer | 4 |
+| user | 6 |
+
+Event mirrors such as agent-message events are not counted again as new messages or requests. JSON also provides event-type counts and the retained visible inventory at capture, which can include items after the latest request anchor.
+
+## Quota observations and measurement limits
+
+| Bucket | Latest recorded use | Observed UTC | Resets UTC |
+| --- | --- | --- | --- |
+| codex:primary | 55.0% | 2026-10-29T14:48:03.428Z | 2026-10-29T16:04:09.000Z |
+| codex:secondary | 25.0% | 2026-10-29T14:48:03.428Z | 2026-11-04T13:32:27.000Z |
+
+Quota percentages describe provider/account windows, not just this conversation. They are retained observations, not a fresh account query, and cannot be converted into a fixed token allowance. No complete device/cloud coverage was declared, so calibration stays unavailable.
+
+Exact per-element token costs are unavailable: native counters measure whole model requests. Character counts and category estimates describe visible content; they do not prove the causal cost of a specific tool, file, skill or message. Hidden platform instructions and internal reasoning are not reproduced in this report.
+
+This is a frozen snapshot of an active conversation. The capture tool may be listed without a result. Later report-writing results, future requests and the final reply are not included in the request cutoff. Generating an analysis also consumes tokens, shown in the third task phase.
+
+## Supported improvements
+
+1. Read selected report.json fields instead of printing the full cross-session Markdown report; the earlier broad read produced a large recorded tool result.
+2. Reuse already loaded skill/reference context where possible; repeated reference reads add retained tool text.
+3. For comparisons, retain a timestamped snapshot and compare request-counter deltas; do not compare lifetime totals with context occupancy.
+
+## Reproduce this scope
+
+Pass the exact root rollout as the source to avoid the CLI default that includes child threads:
+
+```powershell
+python &quot;C:\Users\labuser\Dev\jftp\.agents\skills\agent-usage-analytics\scripts\agent_usage.py&quot; session --source &quot;codex=C:\Users\labuser\.codex\sessions\2026\10\29\rollout-2026-10-29T15-03-03-01a187f8-a6ed-7103-bcd3-81df033c1959.jsonl&quot; --session &quot;01a187f8-a6ed-7103-bcd3-81df033c1959&quot; --out &quot;C:\Users\labuser\Dev\jftp\docs\session-analyses\session-01a187f8-a6ed-7103-bcd3-81df033c1959&quot;
+```
+
+HTML visual verification is unavailable after the earlier Computer Use URL-confidence stop. Local validation checks one-session scope, request sums, embedded JSON consistency, offline dependencies and absence of exported raw transcript content.
+</pre></details>
+</body>
+</html>
