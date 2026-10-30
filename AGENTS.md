@@ -60,16 +60,19 @@ Investigate production code and fixtures before changing a failing assertion. Do
 
 ### Manual QA (required after every task that affects the running app)
 
-Use the application's actual runtime and verified commands. The browser flow below applies to web applications; desktop applications need their real UI, and command-line tools need observable CLI checks.
+Use the application's actual runtime and verified commands. For JFTP's Windows Swing UI, use **Computer Use through `@oai/sky` in `node_repl`**, or human verification on the real application. **Screenshot-based coordinate clicks plus keyboard shortcuts worked best in the completed click-throughs**; Swing's accessibility tree often exposed only the window frame, making element-index actions less reliable. See the [native FTP verification](docs/testing/native-ftp.md).
 
-For a browser-based surface, use **the Playwright CLI**. For JFTP, drive the real desktop windows through native UI automation or human verification:
+- Select the actual application window after each launch. Observe, perform one action, then refresh state. Swing can update after the first capture; reobserve an unchanged/uncertain result before the next input or evidence capture.
+- For modal dialogs and menus, target the returned screenshot region containing the control (the dialog/menu's own region when provided), using its current screenshot ID and region-relative coordinates. Do not reuse stale coordinates, IDs or accessibility indexes.
+- Use CLI tools for build/startup, synthetic server setup, logs and byte/hash comparisons. Use **the Playwright CLI** for browser surfaces and rendered documentation; neither CLI/component tests nor browser automation replaces clicking through JFTP's native UI.
 
 1. Start JFTP with its verified project command and inspect its real desktop window. Record successful startup separately from compilation and test execution.
-2. Take a screenshot of every screen you touched.
-3. Exercise the affected real flow end-to-end by hand: connect to an authorized test server, browse, transfer files, cancel, or reconnect as appropriate to the changed scope.
-4. Verify the flow actually works: correct navigation, correct data displayed, no application/log errors, English UI text.
+2. Take a screenshot of every screen you touched, after the intended state is visible. Save evidence in `docs/testing/screenshots/`.
+3. Exercise the affected real flow end-to-end by hand: connect to an authorized test server, browse, transfer files, cancel, or reconnect as appropriate to the changed scope. Use synthetic data and real services, without mocks.
+4. Verify the flow actually works: correct navigation, correct data displayed, no application/log errors, English UI text. Check actual transferred bytes and destination state, not just a success message.
 5. **Compare your screenshots against the brand reference** (`assets/homepage.png` + `docs/design-guidelines.md` tokens): colors, typography, spacing, button styles and logo placement must match the application's agreed brand reference.
 6. Report what you validated (steps + screenshots) in your task summary. If anything looks or behaves wrong, fix it before committing.
+7. If desktop access, native tooling or a required service is unavailable, state which flows remain unverified. Process/window metadata and passing headless tests do not complete required native QA.
 
 ### Verification (required before every commit)
 
