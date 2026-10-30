@@ -78,9 +78,14 @@
       "source_sha256_lf": "5011053e1d0a60a4ada8a722c253b4648ff5afbfb436cbef4e80c5528190a27e"
     },
     {
+      "path": "docs/ADR/005-contained-archive-extraction.md",
+      "diagrams": 2,
+      "source_sha256_lf": "676258b8e2e2245589412ad2d85b06b56ca3b0aa87b4600455f267c1e93dee46"
+    },
+    {
       "path": "docs/prd/archive-containment.md",
       "diagrams": 1,
-      "source_sha256_lf": "02de438453adc1aa9b87cf3946c6e7ee18653e24cfc628a9618eac9dec78b7a4"
+      "source_sha256_lf": "8be6f87f1d0cca57157028eab04e9fefd5474b329c8436516bd05d9df200aa4f"
     },
     {
       "path": "docs/prd/branded-desktop.md",

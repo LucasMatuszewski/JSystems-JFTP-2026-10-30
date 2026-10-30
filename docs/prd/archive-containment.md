@@ -58,10 +58,11 @@ until its bytes have been read successfully. This is not whole-archive rollback.
 | Z-04 | A destination that would traverse an existing symbolic link or redirected directory, or replace a symbolic-link file, is rejected before output changes. |
 | Z-05 | A ZIP containing a valid entry followed by an unsafe entry leaves existing extraction-folder contents and outside sentinel files unchanged. |
 | Z-06 | Replacing an existing ordinary destination file produces the new bytes inside the chosen folder without changing another name linked to the old file elsewhere. |
-| Z-07 | A failure while reading an entry does not replace an existing complete destination file or leave that entry's temporary output behind. |
+| Z-07 | A read or integrity failure does not replace an existing complete destination file or leave that entry's temporary output behind. |
 | Z-08 | Validation failure retains the downloaded archive and reports the offending entry and reason; the local pane refreshes and busy controls return to idle. |
 | Z-09 | The chosen extraction folder must already exist and be a directory; an invalid choice produces an error without creating extraction output. |
 | Z-10 | Cancelling the dialog performs no download or extraction. |
+| Z-11 | Duplicate file destinations, file/directory conflicts and attempts to overwrite the downloaded ZIP itself are rejected before extracted output changes. |
 
 ## UI and constraints
 
@@ -95,6 +96,10 @@ There is no new maximum archive size or throughput promise in this change.
 ## Self-answered intake
 
 The user explicitly delegated product/technical questions to this session.
+
+The [technical design and implementation gates](../ADR/005-contained-archive-extraction.md)
+define the planned enforcement and validation. Neither document claims the fix
+has already shipped.
 
 | Question | Decision |
 |---|---|

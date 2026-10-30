@@ -145,3 +145,10 @@ was armed. Original local attempt markers and logs remain under ignored
 Preserve unrelated user work in `docs/session-analyses/`; do not stage it as part
 of these milestones. Full modernization, security remediation and final brand
 acceptance remain incomplete. Do not push.
+
+The next archive-security change is specified in the
+[contained extraction PRD](prd/archive-containment.md) and
+[ADR-005](ADR/005-contained-archive-extraction.md). They define entry/path
+validation before output, redirected-path rejection, staged complete-file
+publication, resource cleanup and an explicit stable-filesystem threat boundary.
+The extractor itself is still unchanged; the design is not an implemented fix.
