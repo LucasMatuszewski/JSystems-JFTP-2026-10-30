@@ -129,11 +129,17 @@ README.md</directory_structure><files>This section contains the contents of the 
 			&lt;/excludes&gt;
 		&lt;/fileSet&gt;
 		&lt;fileSet&gt;
+			&lt;directory&gt;${project.basedir}/src/main/distribution&lt;/directory&gt;
+			&lt;outputDirectory&gt;/&lt;/outputDirectory&gt;
+			&lt;includes&gt;
+				&lt;include&gt;README.md&lt;/include&gt;
+			&lt;/includes&gt;
+		&lt;/fileSet&gt;
+		&lt;fileSet&gt;
 			&lt;outputDirectory&gt;/&lt;/outputDirectory&gt;
 			&lt;includes&gt;
 				&lt;include&gt;LICENSE.txt&lt;/include&gt;
 				&lt;include&gt;NOTICE.txt&lt;/include&gt;
-				&lt;include&gt;README.md&lt;/include&gt;
 			&lt;/includes&gt;
 		&lt;/fileSet&gt;
 		&lt;fileSet&gt;
@@ -8404,179 +8410,127 @@ limitations under the License.</file><file path="pom.xml">&lt;project xmlns=&quo
 			&lt;/extension&gt;
 		&lt;/extensions&gt;
 	&lt;/build&gt;
-&lt;/project&gt;</file><file path="README.md">JFTP - The Universal FTP Client
-===============================
+&lt;/project&gt;</file><file path="README.md"># JSystems FTP — course repository
 
-Introduction
-------------
+This repository is the working example for the JSystems course on AI-assisted
+software development. We use an existing Java/Swing FTP client to practise
+understanding legacy code, writing regression tests, documenting decisions,
+and refactoring an application in small, verifiable steps.
 
-JFTP is a graphical FTP (File Transfer Protocol) client software for 
-transferring files from one computer to another over TCP/IP networks such as 
-Internet.
+JFTP browses local and remote files, connects over FTP and FTPS, uploads and
+downloads files and directories, and manages connection favorites and session tabs.
+The application itself does not require an AI service or API key.
 
-JFTP can connect to any system that has a valid Internet address and an FTP 
-server program, allowing you to transfer files between a wide variety of 
-systems, including Windows, Mac OS X, Linux, UNIX and IBM i(AS/400) systems.
+## Application after the visual refactor
 
-JFTP integrates the most widely used and widely accepted security mechanism, 
-SSL (Secured Sockets Layer), to securely transfer your business critical and 
-sensitive data.
+![JSystems FTP after the visual refactor, showing the JSystems logo, burgundy header, session tab, and local and remote file panes](docs/testing/screenshots/2026-10-30-final-workspace.jpg)
 
-JFTP is written entirely in Java(tm), meaning, it can run on a wide variety of 
-platforms such as Windows, Mac OS X, Linux, Solaris, HP-UX, OS/2, UNIX or any 
-other platform with a compatible JVM (Java Virtual Machine). 
+Captured on 30 October 2026 from the local refactor candidate. The workspace has
+a JSystems logo on the right, burgundy accents, a light theme, and English labels.
+The visual refactor is still in the local working tree and is not part of this
+documentation commit; a fresh clone currently opens the earlier interface.
+See the [branded desktop specification](docs/prd/branded-desktop.md) and
+[verification record](docs/testing/branded-desktop.md) for scope and acceptance status.
 
-Features
---------
+## Start here as a course participant
 
-###&quot;The Universal FTP Client&quot;
+You need Git, JDK 25 with `java` and `javac` on your PATH, and a graphical desktop.
+The documented build and launcher checks were performed on Windows with PowerShell.
+Maven is provided by the wrapper. The first build needs HTTPS access to Maven
+Central and the FTPAPI publisher repository.
 
-A &quot;true&quot; Universal FTP Client. JFTP can be installed and run on a wide variety 
-of platforms such as:
+Clone this course repository and enter its directory:
 
-* Windows 
-* Mac OS X
-* Linux
-* Solaris
-* HP-UX
-* OS/2
-* Other UNIX flavors
-* Any other platform with a compatible Java Runtime Environment
+```powershell
+git clone https://github.com/LucasMatuszewski/JSystems-JFTP-2026-10-30.git
+cd JSystems-JFTP-2026-10-30
+```
 
-###Security
+Run the local tests, then build the distribution:
 
-JFTP integrates the most widely used and widely accepted security mechanism, 
-SSL (Secured Sockets Layer), to securely transfer your business critical and 
-sensitive data.
+```powershell
+.\mvnw.cmd test
+.\mvnw.cmd package
+```
 
-* Support for SSL 3.0 and TLS 1.0, 1.1 and 1.2
-* Supports several cryptographic algorithms such as RSA, AES, RC4, DES, Triple 
-  DES, Diffie-Hellman and DSA
-* Support for both Explicit and Implicit SSL connections
-* Option of using SSL if it is supported by the FTP server
+`package` also runs the local tests. Real FTP/FTPS suites use separate fixtures;
+they are not implied by a passing local test run. The compiler currently targets
+Java 8 bytecode (`--release 8`), even though the course build uses JDK 25.
+See [build instructions](docs/build.md) for dependencies and known build warnings.
 
-###File Filters
+Extract the ZIP and start the application:
 
-File filters give you the ability to decide what all files may be listed, 
-uploaded, downloaded or deleted with in JFTP. You can set up either inclusion 
-or exclusion filters on local and/or remote files based on a variety of 
-criteria such as:
+```powershell
+Expand-Archive -LiteralPath .\target\jftp-5.0.2-SNAPSHOT-bin.zip -DestinationPath .\target\course-app
+&amp; .\target\course-app\jftp-5.0.2-SNAPSHOT\jftp.bat
+```
 
-* File name pattern using regular expressions
-* Modification date of the files
-* Attributes of the files (if a file is hidden or not)
+Use an empty extraction destination. Keep the extracted launcher, application JAR,
+and `lib` directory together. On Unix-like systems the build entry point is
+`./mvnw` and the extracted launcher is `sh ./jftp.sh`; Unix and macOS startup
+have not been verified for this checkout.
 
-Using file filters, uploading all the files in your site that were modified on 
-a specific date is as easy as a click of a mouse. No more need to spend time 
-in picking up individual files in several directories of your web site.
+For a first desktop exercise, open and cancel Connect, create a second session
+tab, and browse a local folder. For transfers, use an authorized test FTP server
+with synthetic files: connect, upload a file, download it to a different local
+folder, compare its bytes, then disconnect and reconnect. The
+[native FTP walkthrough](docs/testing/native-ftp.md) shows the recorded baseline;
+the [FTP](docs/testing/ftp-contract.md) and [FTPS](docs/testing/ftps-contract.md)
+guides describe the real test fixtures.
 
-###Transfers
+## What to explore during the course
 
-* Download files and/or directories. Directories will be processed recursively
-* Download As option to download a single file or directory (and its contents) 
-  as a different name
-* Download and Unzip option to automatically unzip downloaded zip files
-* Upload files and/or directories. Directories will be processed recursively
-* Upload As option to upload a single file or directory (and its contents) as 
-  a different name
-* Zip and Upload option to zip one or more files and/or directories and upload 
-  the resulting zip file
-* Filtered transfers
+| Material | What to use it for |
+| --- | --- |
+| [Product requirements](docs/PRD.md) | Understand observed behavior and distinguish it from proposed changes. |
+| [Architecture decisions](docs/ADR/) | Read the constraints and reasons behind implementation choices. |
+| [Source context guide](docs/source-context.md) | Choose a useful starting point before reading individual source files. |
+| [RepoMap](docs/repo-maps/README.md) | Navigate selected class and method declarations. |
+| [Code graph](docs/code-graph/README.md) | Explore relationships in an offline browser viewer and compare them with source-checked callers. |
+| [Focused Repomix pack](docs/repomix/README.md) | Read full source and comments for the selected connection/transfer workflow. |
+| [Design guidance](docs/design-guidelines.md) | Compare visual changes with the supplied JSystems reference. |
+| [Verification records](docs/testing/README.md) | Review what was actually tested, how, and with which limitations. |
+| [Agent instructions](AGENTS.md) and [skills](.agents/skills/) | Inspect the development workflow and reusable agent guidance used in this project. |
 
-###Simultaneous FTP Sessions
+Python 3.12 or newer is needed only for the repository&apos;s context and verification
+helpers. Node.js 22 or newer with npm is additionally needed to regenerate the
+Repomix pack; neither is required to build or run JFTP.
 
-JFTP allows you to work with multiple FTP sites simultaneously. Each session 
-will create a new Tab making it easy to switch between sessions.
+A useful exercise is to trace Connect from its UI action to the FTP client,
+compare what the map, graph, and full-source pack reveal, then check the original
+definitions and callers. Choose one small change, define its expected behavior,
+write a failing test, implement it, and exercise the real application.
 
-###Connect Quickly and Easily
+Generated context is a saved snapshot, not a live view of the checkout. Follow
+each guide&apos;s verification and refresh instructions after changing its inputs.
+Historical baseline reports retain the results and limitations of their own runs.
 
-Well thought-out design allows you to connect to your FTP site quickly and 
-easily. You can configure both simple and advanced connection parameters, all 
-through one easy-to-use connection dialog.
+## Repository layout
 
-###Advanced Connection Options
+```text
+src/main/java/       Swing application, shared components, and ZIP helpers
+src/main/resources/  Application resources
+src/main/images/     Legacy application icons and images
+src/main/help/       JavaHelp documentation
+src/main/distribution/  README shipped with the packaged application
+src/test/java/       Java regression and integration tests
+tests/              Python checks for repository tools and packaging
+tools/              Build, test-fixture, and source-context helpers
+assets/             JSystems logo, tokens, and visual reference
+docs/               Requirements, decisions, course guides, and evidence
+.agents/skills/     Reusable agent skills
+```
 
-JFTP allows you to specify various advanced connection parameters such as:
+## Known limitations and attribution
 
-* Whether to use plain FTP connection or secured FTP connection
-* Ability to provide an &quot;Account&quot; name for login. Most FTP servers just use 
-  user name and password for login, but, some require account name to be 
-  specified for login.
-* Option of encrypting just the command channel to securely transmit the 
-  password over the network
-* Specify initial local and remote working directories to set, upon a 
-  successful login
-* Support for both passive (default) and active data transfers
-* Allows you to execute raw FTP commands (standard or custom) soon after log in
+Legacy FTPS trust handling does not establish full PKIX and hostname validation,
+and favorites encryption relies on an embedded key. Archive extraction hardening
+is a separate planned change in [ADR-005](docs/ADR/005-contained-archive-extraction.md).
+Use the [architecture record](docs/ADR/000-main-architecture.md) for the known
+security limitations; historical platform and protocol claims are not compatibility
+guarantees for this checkout.
 
-###Proxy/Firewall
-
-JFTP gives you the ability to connect through proxy servers and firewalls.
-
-* Supports SOCKS proxy (both version 4 and version 5)
-* Automatic detection of SOCKS version
-* Supports SOCKS authentication
-
-###Certificate Manager
-
-JFTP comes with a built-in certificate manager to manage all your trusted 
-certificates. Certificates are used to establish secured FTP connections. With 
-JFTP&apos;s certificate manger, you can -
-
-* Import certificates in to your trusted certificates database
-* View details of a certificate
-* Delete certificates from your trusted certificates database
-
-###Manage your Favorite FTP Sites
-
-JFTP allows you to store the connection parameters for the FTP sites that you 
-frequently work with. With JFTP, connecting to your favorite FTP site is just 
-one click away! In addition, for added security, JFTP stores all your favorite 
-site definitions in encrypted format.
-
-###Remote File Tasks
-
-* Browse through the file system of your FTP site
-* Open/Edit remote files directly using associated applications, modify them 
-  and save them back to the FTP server 
-* Print remote files using associated applications 
-* Filter files based on their name pattern and/or modification date
-* Create new directories
-* Create new files
-* Move/Rename files and directories
-* Delete files and directories
-* View or change permissions of a file or a directory
-* Change the permissions of a directory and all of its children
-* Execute standard or custom FTP commands
-* Sort directory listing by name, type, size or last modified date
-
-###Local File Tasks
-
-* Browse through the file system of your PC and computers on your network
-* Open/Edit local files using associated applications 
-* Print local files using associated applications 
-* Filter files based on their name pattern, modification date and/or attributes
-* Create new directories
-* Create new files
-* Move/Rename files and directories
-* Delete files and directories
-* View attributes of a file or directory
-* Sort directory listing by name, type, size or last modified date
-
-###Auto-Detection of Transfer Type
-
-JFTP automatically detects the transfer type (ASCII or Binary) to use for a 
-specific file based on its extension. This feature is very useful when you are 
-transferring hundreds or thousands of files of different types, in which case 
-manually setting the transfer type is impossible.
-
-###Internationalization and Localization
-
-Support for Internationalization and Localization. This means JFTP supports 
-multiple languages and Locale specific data such as dates and numbers. You can 
-install as many language packs as you wish and use the language of your 
-choice. The current version of JFTP bundles the following language packs:
-
-* English
-* Chinese (Traditional) 
-* German</file></files></repomix>
+This course project builds on JFTP by Sai Pullabhotla and contributors. The
+original code is licensed under [Apache License 2.0](LICENSE.txt); preserve the
+[original notice](NOTICE.txt). Supplied brand assets have separate
+[provenance and reuse notes](assets/README.md).</file></files></repomix>

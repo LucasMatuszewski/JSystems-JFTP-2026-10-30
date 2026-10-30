@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_revision": "4e3ff982ae37ed35afa105aa74f6c3bd2732dc10",
+  "source_revision": "30b25153a3b9a26491bf30c46cee0e32a020c0c3",
   "profile": "focused connection/transfer workflow; full code with original comments",
   "tool": {
     "name": "repomix",
@@ -11,17 +11,17 @@
   },
   "config_sha256": "753209f537f14668e6f65c64e56a5443d0201220fc68b4689fff87f5846af83f",
   "dependency_lock_sha256": "c3c16c800606ad42a97453339a83a0aee2f2b506e0fa59f6deb849dcb340b5c8",
-  "pack_sha256": "707554b691ace0a286157c08ce922d1fe53f9f757b987900ccac98939b3d128a",
+  "pack_sha256": "eb61c928a578550841f875189f3893d16bf38d1518c2fd7ee4a9b040d0517c46",
   "normalization": "Repomix trims leading/trailing file whitespace. XML escapes are decoded and CRLF/LF is normalized for full-text comparison. Internal code, comments and blank lines are retained.",
   "file_count": 59,
   "java_file_count": 37,
-  "utf8_bytes": 268918,
-  "repomix_total_characters": 268918,
+  "utf8_bytes": 268849,
+  "repomix_total_characters": 268847,
   "tokens": {
     "encoding": "o200k_base",
-    "count": 66300
+    "count": 66402
   },
-  "generation_elapsed_seconds": 4.815274099993985,
+  "generation_elapsed_seconds": 3.2687980999980937,
   "security_findings": 0,
   "skipped_files": [],
   "files": {
@@ -38,10 +38,10 @@
       "tokens": 118
     },
     "README.md": {
-      "sha256": "8821969e8a2c7cd42f0e39c66c794665a54799915d8095c174688329aa2a1bac",
-      "sha256_lf": "5110f119cd07bc8ac99230705a33ae6237b38d5451347d0c45df0a541cf1ee40",
-      "packed_content_sha256": "22f981e2a6f64c5495323ea3121389c79b4702301ab9861bb79ed0dc026ab279",
-      "tokens": 1412
+      "sha256": "b6a648ada3c849034eb80bd0ef4de99c5618f0a0f2a5df3bc61dadb6008e4715",
+      "sha256_lf": "b6a648ada3c849034eb80bd0ef4de99c5618f0a0f2a5df3bc61dadb6008e4715",
+      "packed_content_sha256": "72f5d627e895c2bc73c854b5355de3922f522b01e63390540a1512f0c691ff01",
+      "tokens": 1455
     },
     "pom.xml": {
       "sha256": "adcff66104da76c88c447659ba0ae393a7779211fe124dce1acb1a4ad4c05233",
@@ -50,10 +50,10 @@
       "tokens": 2086
     },
     "src/main/assembly/binary.xml": {
-      "sha256": "163e7b3a5c9fb38dc225dadcb6fe4b280d5f9d28f1423a84e11b944db9888240",
-      "sha256_lf": "3de690128df02e5ebb9c92be9b1fccec33c6820ae0d7c01d779ca7029c28ac64",
-      "packed_content_sha256": "e4fcbd5658ee77ffde92cb4cd4b189345163ec86eea7197c20ff533211c151e3",
-      "tokens": 409
+      "sha256": "544c73a0f1c47d620feea2d668646c8a2776c4472a80c49b9013665322964a23",
+      "sha256_lf": "3ac1d09f87c8e7b12528eb41f96a1703623142e2e984e790c31dead4ecb75d1c",
+      "packed_content_sha256": "f23e36d5cb3da186e278630e183cf130d1d61350affff6fe4f00f11be2ae7838",
+      "tokens": 458
     },
     "src/main/java/com/myjavaworld/gui/SwingWorker.java": {
       "sha256": "7af6d4940056dfd7cb13663695cc23888c18a4dccbb1fd1f349629eae4ef8ac4",
@@ -374,7 +374,7 @@
       "tokens": 24
     },
     "src/main/scripts/jftp.sh": {
-      "sha256": "a320f504a68df1353471f8a304fe2764fd6ea5090fef7319de109826e10d6460",
+      "sha256": "8987e1ff191d93fd817bab2e5e8ead7d149e498ec0af02d2cb1958d3f52ad452",
       "sha256_lf": "8987e1ff191d93fd817bab2e5e8ead7d149e498ec0af02d2cb1958d3f52ad452",
       "packed_content_sha256": "a2c1f8056eb300a12da88ac560e992616a49d8533a87e55c760feb7ed0eeecee",
       "tokens": 49

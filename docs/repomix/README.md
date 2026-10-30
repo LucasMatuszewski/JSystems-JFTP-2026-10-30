@@ -2,7 +2,7 @@
 
 Use [connection-transfer.full.xml](connection-transfer.full.xml) for the implementation context of JFTP's connection and transfer workflow. This is **full code with original comments for selected files**, not a structural summary or the whole application.
 
-The snapshot contains **59 files, including 37 Java files**, and **66,300 `o200k_base` tokens**. Repomix 1.18.1 refreshed it at base HEAD `4e3ff982ae37ed35afa105aa74f6c3bd2732dc10`, including working-tree build and launcher updates. Per-file hashes identify the actual packed content; base HEAD alone does not identify those uncommitted updates. The generated UTF-8 pack is 268,918 bytes; the measured generation subprocess took about 4.82 seconds on the author's Windows machine. These are this pack's measurements, not general compression or speed benchmarks.
+The snapshot contains **59 files, including 37 Java files**, and **66,402 `o200k_base` tokens**. Repomix 1.18.1 refreshed it at base HEAD `30b25153a3b9a26491bf30c46cee0e32a020c0c3`, using the committed course sources plus the updated root README. Uncommitted application changes are excluded from this snapshot. Per-file hashes identify the exact inputs. The generated UTF-8 pack is 268,849 bytes; the measured generation subprocess took about 3.27 seconds on the author's Windows machine. These are this pack's measurements, not general compression or speed benchmarks.
 
 ## What the slice covers
 
@@ -13,11 +13,11 @@ The snapshot contains **59 files, including 37 Java files**, and **66,300 `o200k
 | Transfers | Upload/download actions, their rename/archive variants, `LocalFile`, `LocalFileFilter`, `TransferObject`, and the full session implementation |
 | TLS and certificates | SSL context, key/trust managers, keystore manager, DN parser, and certificate warning dialog |
 | Helpers and archives | Custom `SwingWorker`, resource loader, file utilities, progress interfaces/events, ZIP/unzip implementation and events |
-| Supporting files | 15 English property bundles, `pom.xml`, assembly descriptor, launch scripts, original README, and license/notice files |
+| Supporting files | 15 English property bundles, `pom.xml`, assembly descriptor, launch scripts, course README, and license/notice files |
 
 The explicit include list is in [repomix.config.json](artifacts/repomix.config.json). All selected files are packed in full, so a large class such as `FTPSession` also contains methods beyond the immediate workflow.
 
-This is not a transitive dependency closure. Many Swing widgets, menus, panes, settings/transfer dialog implementations, and other application workflows remain outside the pack. The external `ftpapi` implementation and its types, including the imported `com.myjavaworld.util.Filter`, are not supplied by this checkout. Non-English resource bundles, help pages, binary images, design assets, agent skills, and generated course reports are excluded. The original README describes historical advertised features; use current source and tests to establish behavior.
+This is not a transitive dependency closure. Many Swing widgets, menus, panes, settings/transfer dialog implementations, and other application workflows remain outside the pack. The external `ftpapi` implementation and its types, including the imported `com.myjavaworld.util.Filter`, are not supplied by this checkout. Non-English resource bundles, help pages, binary images, design assets, agent skills, and generated course reports are excluded. The root README describes course setup and labels the local visual-refactor preview separately from the committed application; use current source and tests to establish behavior.
 
 ## Read and verify without installing Repomix
 
